@@ -3,7 +3,7 @@ angular.module('rwsprojectApp')
         console.log('route is ' , $route.current);
 
         $scope.tabs = {};
-        $scope.tabs.activeTab = 'tab3';
+        $scope.tabs.activeTab = 'tab2';
 
         $scope.tabs.rock = 'and roll';
 
