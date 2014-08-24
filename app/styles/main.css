@@ -122,3 +122,7 @@ body {
     top: 0px;
     opacity: 0.9;
 }
+
+.activeRWSTab {
+    background:lightcyan;
+}

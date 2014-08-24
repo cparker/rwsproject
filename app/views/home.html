@@ -1,17 +1,41 @@
-<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs tabs-left">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <p>I'm in Section 1.</p>
+<div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs tabs-left">
+        <li ng-class="{active:tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Projet
+            Information</a></li>
+        <li ng-class="{active:tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures</a>
+        </li>
+        <li ng-class="{active:tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Redwood
+            Systems</a></li>
+        <li ng-class="{active:tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Emergency
+            Lighting</a></li>
+        <li ng-class="{active:tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Service
+            and Support</a></li>
+        <li ng-class="{active:tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Optional
+            Equipment</a></li>
+    </ul>
+    <div class="tab-content">
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab2">
+            <ng-include src="'tabSections/projectInfoTab.html'"/>
+        </div>
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab2')}" id="tab2">
+            <ng-include src="'tabSections/fixturesTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab3')}" id="tab3">
+            <ng-include src="'tabSections/redwoodSystemsTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab4')}" id="tab4">
+            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab5')}" id="tab5">
+            <ng-include src="'tabSections/serviceAndSupportTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab6')}" id="tab6">
+            <ng-include src="'tabSections/optionalEquipmentTab.html'"/>
+        </div>
     </div>
-    <div class="tab-pane" id="tab2">
-      <p>Howdy, I'm in Section 2.</p>
-    </div>
-  </div>
 </div>
-
-
-<ng-include src="'login-modal.html'"/>
