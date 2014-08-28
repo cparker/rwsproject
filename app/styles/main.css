@@ -1,4 +1,14 @@
 /* Space out content a bit */
+
+
+.container {
+    width: 1280px;
+}
+
+.span3 {
+    margin-left: 15px;
+}
+
 body {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -33,33 +43,28 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
-
-
-
 .login-modal {
     -webkit-border-radius: 5px;
     background: lightgray;
     margin: 20px;
-    padding:20px;
-    position:absolute;
-    width:800px;
-    height:500px;
-    top: 0px;
+    padding: 20px;
+    position: absolute;
+    width: 800px;
+    height: 500px;
+    top: 0;
     opacity: 0.9;
 }
 
-
 #fixtureNum {
-    padding:0;
+    padding: 0;
     height: 1.3em;
     width: 100px;
 }
 
-
 #manufacturer {
-    padding:0;
-    height:1.3em;
-    width:105px;
+    padding: 0;
+    height: 1.3em;
+    width: 105px;
 }
 
 #sectionOne {
@@ -70,13 +75,108 @@ body {
     background: #f1f1f1;
 }
 
-
 #fixtureSectionOne span {
     display: block;
-
 }
 
 #fixtureSectionOne * {
-    margin:0;
+    margin: 0;
     font-size: 9pt;
+}
+
+#fixtureSectionTwo span {
+    display: block;
+}
+
+#fixtureSectionTwo * {
+    margin: 0;
+    font-size: 9pt;
+}
+
+#fixtureSectionTwo select {
+    height: 1.3em;
+    width: 120px;
+}
+
+#fixtureSectionTwo input {
+    height: 1.0em;
+    width: 20px;
+}
+
+#fixtureSectionThree span {
+    display: block;
+}
+
+#fixtureSectionThree * {
+    margin: 0;
+    font-size: 9pt;
+}
+
+#fixtureSectionThree select {
+    height: 1.3em;
+    width: 120px;
+}
+
+#fixtureSectionFour * {
+    margin: 0;
+    font-size: 9pt;
+}
+
+#fixtureSectionFour span {
+    display: block;
+}
+
+#fixtureSectionFour input {
+    height: 1.0em;
+    width: 20px;
+}
+
+.redwoodPanelNarrowInput {
+    width: 25px;
+}
+
+.rightSideLabel {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.underlined {
+    border-bottom-width: 2px;
+    border-bottom-color: gray;
+    border-bottom-style: solid;
+}
+
+#redwoodSystemsTabTop {
+    margin-top: 20px;
+}
+
+#redwoodSystemsTabBottom {
+    margin-top: 20px;
+}
+
+
+.servicePanelLine {
+    width: 525px;
+    margin-top:15px;
+}
+
+.servicePanelLine input {
+    padding:1px;
+    margin:0;
+}
+
+.serviceInput {
+    float: right;
+    clear: both;
+    width: 175px;
+}
+
+.optionalEquipLine {
+    margin-top: 5px;
+}
+
+.optionalEquipLine input {
+    margin:0;
+    padding:1px;
+    width:50px;
 }

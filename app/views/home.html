@@ -4,38 +4,46 @@
             Information</a></li>
         <li ng-class="{active:tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures</a>
         </li>
-        <li ng-class="{active:tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Redwood
+        <li ng-class="{active:tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Sensors</a>
+        </li>
+        <li ng-class="{active:tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Redwood
             Systems</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Emergency
+        <li ng-class="{active:tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Emergency
             Lighting</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Service
+        <li ng-class="{active:tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Service
             and Support</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Optional
+        <li ng-class="{active:tabs.isTabActive('tab7')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab7')">Optional
             Equipment</a></li>
     </ul>
     <div class="tab-content">
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab2">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab1">
             <ng-include src="'tabSections/projectInfoTab.html'"/>
         </div>
+
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab2')}" id="tab2">
             <ng-include src="'tabSections/fixturesTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab3')}" id="tab3">
-            <ng-include src="'tabSections/redwoodSystemsTab.html'"/>
+            <ng-include src="'tabSections/lightingSensors.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab4')}" id="tab4">
-            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
+            <ng-include src="'tabSections/redwoodSystemsTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab5')}" id="tab5">
-            <ng-include src="'tabSections/serviceAndSupportTab.html'"/>
+            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab6')}" id="tab6">
+            <ng-include src="'tabSections/serviceAndSupportTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab7')}" id="tab7">
             <ng-include src="'tabSections/optionalEquipmentTab.html'"/>
         </div>
+
     </div>
 </div>
