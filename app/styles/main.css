@@ -1,6 +1,5 @@
 /* Space out content a bit */
 
-
 .container {
     width: 1280px;
 }
@@ -55,42 +54,52 @@ body {
     opacity: 0.9;
 }
 
-#fixtureNum {
+.fixtureLabel {
+    width: 100px;
+    text-align: right;
+}
+
+.fixtureFormLine {
+    margin-bottom: 10px;
+}
+
+.fixtureFormLine input {
     padding: 0;
     height: 1.3em;
     width: 100px;
+    margin: 0;
 }
 
-#manufacturer {
-    padding: 0;
+.fixtureFormLine select {
+    margin: 0;
+    padding: 1px;
     height: 1.3em;
     width: 105px;
 }
 
-#sectionOne {
-    background: #f0f0f0;
+.fixtureFormLine label {
+    display: inline-block;
 }
 
-#sectionTwo {
-    background: #f1f1f1;
+#fixtureSectionOne {
+    border-right: 2px;
+    border-right-style: solid;
+    border-right-color: gray;
+    height: 200px;
 }
 
-#fixtureSectionOne span {
-    display: block;
+#fixtureSectionTwo {
+    border-right: 2px;
+    border-right-style: solid;
+    border-right-color: gray;
+    height: 200px;
 }
 
-#fixtureSectionOne * {
-    margin: 0;
-    font-size: 9pt;
-}
-
-#fixtureSectionTwo span {
-    display: block;
-}
-
-#fixtureSectionTwo * {
-    margin: 0;
-    font-size: 9pt;
+#fixtureSectionThree {
+    border-right: 2px;
+    border-right-style: solid;
+    border-right-color: gray;
+    height: 200px;
 }
 
 #fixtureSectionTwo select {
@@ -98,41 +107,23 @@ body {
     width: 120px;
 }
 
-#fixtureSectionTwo input {
-    height: 1.0em;
-    width: 20px;
-}
-
-#fixtureSectionThree span {
-    display: block;
-}
-
-#fixtureSectionThree * {
-    margin: 0;
-    font-size: 9pt;
-}
-
 #fixtureSectionThree select {
     height: 1.3em;
     width: 120px;
 }
 
-#fixtureSectionFour * {
-    margin: 0;
-    font-size: 9pt;
-}
-
-#fixtureSectionFour span {
-    display: block;
-}
-
 #fixtureSectionFour input {
-    height: 1.0em;
-    width: 20px;
+    padding:1px;
+    margin:0;
+    width: 40px;
 }
 
 .redwoodPanelNarrowInput {
     width: 25px;
+}
+
+.leftSideLabel {
+    display: inline-block;
 }
 
 .rightSideLabel {
@@ -154,15 +145,14 @@ body {
     margin-top: 20px;
 }
 
-
 .servicePanelLine {
     width: 525px;
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .servicePanelLine input {
-    padding:1px;
-    margin:0;
+    padding: 1px;
+    margin: 0;
 }
 
 .serviceInput {
@@ -176,7 +166,7 @@ body {
 }
 
 .optionalEquipLine input {
-    margin:0;
-    padding:1px;
-    width:50px;
+    margin: 0;
+    padding: 1px;
+    width: 50px;
 }
