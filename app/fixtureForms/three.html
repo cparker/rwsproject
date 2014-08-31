@@ -1,20 +1,37 @@
-<div id="fixtureSectionThree">
+<div id="fixtureSectionThree" xmlns="http://www.w3.org/1999/html">
 
     <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="fixtureLumens">Lumens</label>
-        <select id="fixtureLumens">
-            <option>1000</option>
-            <option>2000</option>
-            <option>3000</option>
+        <label class="fixtureLabel" for="controlMethod">Control method</label>
+        <select id="controlMethod">
+            <option>LED Gateway</option>
+            <option>Sensor 3</option>
+            <option>Magic</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="lightDistribution">Light Distribution</label>
-        <select id="lightDistribution">
-            <option>Other</option>
-            <option>Lorum</option>
-            <option>Ipsum</option>
+        <label class="fixtureLabel" for="sensorType">Sensor type</label>
+        <select id="sensorType">
+            <option>None</option>
+            <option>Normal</option>
+            <option>Low</option>
+            <option>High</option>
         </select>
     </div>
+
+    <div class="fixtureFormLine">
+        <label class="fixtureLabel" for="controlQty">Control Qty</label>
+        <input class="redwoodPanelNarrowInput" type="text" id="controlQty"/>
+    </div>
+
+    <div>
+        <input type="button" id="addAccessories" value="Add Accessories"/>
+    </div>
+
+    <div>
+        <input type="button" id="addLine" value="Add"/>
+        <input type="button" id="updateLine" value="Update"/>
+        <input type="button" id="resetLine" value="Reset"/>
+    </div>
+
 </div>

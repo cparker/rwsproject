@@ -1,5 +1,5 @@
 <div id="redwoodSystemsPanel">
-    <div id="redwoodSystemsTabTop">
+    <div id="redwoodSystemsOne">
         <p class="underlined">Channel summary from fixture selection</p>
         <input class="redwoodPanelNarrowInput" type="text" id="standardChannels"/>
         <label class="rightSideLabel" for="standardChannels">Standard channels from fixture selection</label>
@@ -9,13 +9,36 @@
         <label class="rightSideLabel" for="emergencyChannels">Emergency lighting channels from fixture selection</label>
     </div>
 
-    <div id="redwoodSystemsTabBottom">
-        <p class="underlined">Choose number of scene controllers and dimmers</p>
-        <input class="redwoodPanelNarrowInput" type="text" id="sceneControllers"/>
-        <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
-        <br/>
+    <div id="redwoodSystemsTwo">
+        <p class="underlined">Additional engines</p>
 
-        <input class="redwoodPanelNarrowInput" type="text" id="dimmers"/>
-        <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
+        <p><i>If you have multiple engine locations you may require additional engines due to:</i></p>
+
+        <p><i>- Cable length > 100 meters.</i></p>
+
+        <p><i>- Multi-level installations.</i></p>
+
+        <p><i>- IDF rack space considerations.</i></p>
+        <input class="redwoodPanelNarrowInput" type="text" id="additionalEngines"/>
+        <label class="rightSideLabel" for="additionalEngines">Additional Engines</label>
+    </div>
+
+    <div id="redwoodSystemsThree">
+        <p class="underlined">Choose number of scene controllers and dimmers</p>
+
+        <div>
+            <input class="redwoodPanelNarrowInput" type="text" id="sceneControllers"/>
+            <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
+        </div>
+
+        <div>
+            <input class="redwoodPanelNarrowInput" type="text" id="dimmers"/>
+            <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
+        </div>
+
+        <div>
+            <input class="redwoodPanelNarrowInput" type="text" id="spdtWallSwitches"/>
+            <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
+        </div>
     </div>
 </div>

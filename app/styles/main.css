@@ -55,7 +55,7 @@ body {
 }
 
 .fixtureLabel {
-    width: 100px;
+    width: 130px;
     text-align: right;
 }
 
@@ -96,10 +96,6 @@ body {
 }
 
 #fixtureSectionThree {
-    border-right: 2px;
-    border-right-style: solid;
-    border-right-color: gray;
-    height: 200px;
 }
 
 #fixtureSectionTwo select {
@@ -137,11 +133,7 @@ body {
     border-bottom-style: solid;
 }
 
-#redwoodSystemsTabTop {
-    margin-top: 20px;
-}
-
-#redwoodSystemsTabBottom {
+#redwoodSystemsPanel > div {
     margin-top: 20px;
 }
 
@@ -169,4 +161,8 @@ body {
     margin: 0;
     padding: 1px;
     width: 50px;
+}
+
+#emergencyLightingSection {
+    margin-left: 5px;
 }
