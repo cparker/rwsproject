@@ -1,5 +1,15 @@
 /* Space out content a bit */
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+}
+
+
 .container {
     width: 1280px;
 }
@@ -109,8 +119,8 @@ body {
 }
 
 #fixtureSectionFour input {
-    padding:1px;
-    margin:0;
+    padding: 1px;
+    margin: 0;
     width: 40px;
 }
 
@@ -165,4 +175,68 @@ body {
 
 #emergencyLightingSection {
     margin-left: 5px;
+}
+
+#accessoriesDialog {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+    background: lightblue;
+    -webkit-border-radius: 5px;
+}
+
+.accessoriesDialogInner {
+    margin: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    background: #bce7f5;
+    width: 90%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.accessoriesScroller input {
+    margin: 0;
+    display: inline-block;
+}
+
+.accessoriesScroller {
+}
+
+.accessoriesScroller label {
+    margin: 0;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.accessoriesText {
+    padding: 0;
+    margin: 0;
+    width: 50px;
+    height: 10px !important;
+}
+
+.accessoriesDialogButton {
+    float: right;
+    margin-right: 16px;
+}
+
+.fixturesSection {
+    overflow: hidden;
+}
+
+.fixtureLine {
+    border-top-width: 2px;
+    border-top-color: gray;
+    border-top-style: solid;
+}
+
+.fixtureLineSection {
+    border-right-width: 2px;
+    border-right-color: gray;
+    border-right-style: solid;
+    height:175px;
 }
