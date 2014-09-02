@@ -1,17 +1,17 @@
 <div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
     <ng-include src="'login-modal.html'"></ng-include>
-    <ul class="nav nav-tabs tabs-left">
-        <li ng-class="{active:tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Projet
+    <ul class="rwsTabs nav nav-tabs tabs-left">
+        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Projet
             Information</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures and Sensors</a>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures and Sensors</a>
         </li>
-        <li ng-class="{active:tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Redwood
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Redwood
             Systems</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Emergency
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Emergency
             Lighting</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Additional
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Additional
             Equipment</a></li>
-        <li ng-class="{active:tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Summary
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Summary
             </a></li>
     </ul>
     <div class="tab-content">

@@ -36,9 +36,14 @@ body {
     padding-right: 15px;
 }
 
+.header p {
+    color:white;
+}
+
 /* Custom page header */
 .header {
     border-bottom: 1px solid #e5e5e5;
+    background-color: #2C95DD;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -56,12 +61,19 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
+.tab-content {
+    background-color: #A1DBFF;
+    margin-right:25px;
+    padding-left: 10px;
+    min-height: 600px;
+}
+
 .login-modal {
     -webkit-border-radius: 5px;
     position: fixed;
     top:15px;
     left:40px;
-    background: lightblue;
+    background: #8895A7;
     margin: 5px;
     padding: 5px;
     width: 90%;
@@ -188,7 +200,7 @@ body {
     position: absolute;
     left: 500px;
     top: 100px;
-    background: lightblue;
+    background: #D8E5F1;
     -webkit-border-radius: 5px;
 }
 
@@ -197,7 +209,7 @@ body {
     margin-bottom: 5px;
     padding: 5px;
     -webkit-border-radius: 5px;
-    background: #bce7f5;
+    background: #ffffff;
     width: 90%;
     height: 80%;
     overflow-y: scroll;
@@ -231,11 +243,32 @@ body {
 
 .fixturesSection {
     overflow: hidden;
+    background-color: #A1DBFF;
+}
+
+.fixturesSection .buttonSpacer {
+    height:20px;
+}
+
+.fancyButton {
+    background: #1B9AF7;
+    -webkit-appearance:none;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    padding:4px;
+    border:none;
+    border-radius:5px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:arial;
+    font-size:17px;
+    text-decoration:none;
 }
 
 .fixturesSection select {
     line-height: normal;
-    color:blue;
+    color:#1B9AF7;
     margin:0;
     padding:1px;
     padding-top:0px;
@@ -249,6 +282,7 @@ body {
     border-top-width: 2px;
     border-top-color: gray;
     border-top-style: solid;
+    background-color: #D8EDF3;
 }
 
 .fixtureLineSection {
@@ -256,6 +290,7 @@ body {
     border-right-color: gray;
     border-right-style: solid;
     height: 175px;
+    padding-left: 5px;
 }
 
 .lastFixtureSection {
@@ -263,9 +298,11 @@ body {
 }
 
 .fixtureListHeader {
-    margin-top: 10px;
     text-align: center;
-    background: lightblue;
+    color:white;
+    background-color: #1B9AF7;
+    font-size: 17px;
+    line-height: 30px;
 }
 
 .loginspacer {
@@ -335,4 +372,12 @@ body {
 .invalidCredentials {
     margin-top:10px;
     color:red;
+}
+
+.rwsActive  a {
+    background-color: #A1DBFF !important;
+}
+
+.rwsTabs {
+    margin-right:0 !important;
 }

@@ -10,7 +10,7 @@ angular.module('rwsprojectApp')
             })
             .error(function () {
                 console.log('we are not logged in');
-                $scope.isLoggedIn = false;
+                $scope.isLoggedIn = true;
             });
 
         $scope.isLoggedIn = true;
@@ -18,7 +18,7 @@ angular.module('rwsprojectApp')
 
         $scope.tabs = {};
         $scope.user = {};
-        $scope.tabs.activeTab = 'tab1';
+        $scope.tabs.activeTab = 'tab2';
 
         $scope.tabs.accessoriesDialogHide = true;
 
