@@ -1,5 +1,9 @@
 /* Space out content a bit */
 
+select:focus {
+    outline: none;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -80,10 +84,11 @@ body {
 }
 
 .fixtureFormLine input {
-    padding: 0;
+    padding: 1px;
     height: 1.3em;
     width: 100px;
     margin: 0;
+    font-size: 0.95em;
 }
 
 .fixtureFormLine select {
@@ -228,6 +233,18 @@ body {
     overflow: hidden;
 }
 
+.fixturesSection select {
+    line-height: normal;
+    color:blue;
+    margin:0;
+    padding:1px;
+    padding-top:0px;
+    margin-bottom:2px;
+    -webkit-appearance:none;
+    border:none;
+    background: url(/images/down-arrow.png) no-repeat right 70%;
+}
+
 .fixtureLine {
     border-top-width: 2px;
     border-top-color: gray;
@@ -290,4 +307,27 @@ body {
     margin:0;
     margin-top:30px;
     font-size: 0.8em;
+}
+
+.selectTest {
+    line-height: normal;
+    margin:0;
+    margin-bottom:2px;
+    padding-right:5px;
+    padding-bottom:5px;
+    -webkit-appearance:none;
+    border:none;
+    background: url(/images/down-arrow.png) no-repeat right 90%;
+}
+
+
+.form-horizontal select {
+    line-height: normal;
+    margin:0;
+    padding:1px;
+    padding-top:6px;
+    margin-bottom:2px;
+    -webkit-appearance:none;
+    border:none;
+    background: url(/images/down-arrow.png) no-repeat right 90%;
 }
