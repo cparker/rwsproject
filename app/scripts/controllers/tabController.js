@@ -1,8 +1,24 @@
 angular.module('rwsprojectApp')
-    .controller('tabController', function ($scope, $route) {
+    .controller('tabController', function ($scope, $route, $http) {
+
+        // this is really our main controller, so whenever this guy runs, let's check to
+        // see if we're logged in or not
+        $http.get('/server/checkAccess')
+            .success(function () {
+                console.log('we are logged in');
+                $scope.isLoggedIn = true;
+            })
+            .error(function () {
+                console.log('we are not logged in');
+                $scope.isLoggedIn = false;
+            });
+
+        $scope.isLoggedIn = true;
+        $scope.invalidCredentials = false;
 
         $scope.tabs = {};
-        $scope.tabs.activeTab = 'tab2';
+        $scope.user = {};
+        $scope.tabs.activeTab = 'tab1';
 
         $scope.tabs.accessoriesDialogHide = true;
 
@@ -21,12 +37,26 @@ angular.module('rwsprojectApp')
                 $scope.tabs.accessoriesDialogHide == false;
         };
 
-        // this should use $http and ask the server if the user is logged in
-        // what happens when their session times out?
-        $scope.isLoggedIn = true;
 
-        $scope.tempToggleLogin = function() {
+        $scope.tempToggleLogin = function () {
             $scope.isLoggedIn = !$scope.isLoggedIn;
         };
+
+        $scope.doLogin = function () {
+            var loginData = {
+                username: $scope.user.name,
+                password: $scope.user.password
+            };
+
+            $http({method: 'POST', url: '/server/login', data: loginData})
+                .success(function (data, status) {
+                    $scope.isLoggedIn = true;
+                    $scope.invalidCredentials = false;
+                }).error(function (data, status) {
+                    $scope.invalidCredentials = true;
+                    console.log(data);
+                });
+
+        }
 
     });

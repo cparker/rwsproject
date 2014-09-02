@@ -7,7 +7,10 @@
         <hr class="lineSeparator"/>
         <label class="leftSideLabel" for="password">Password</label>
         <input id="password" type="password" ng-model="user.password"/>
-        <input type="submit" value="login" ng-click="tempToggleLogin()"/>
+
+        <p ng-show="invalidCredentials" class="invalidCredentials">Invalid username or password. Please try again.</p>
+        <input type="submit" value="login" ng-click="doLogin()"/>
+
         <p class="copyright">Copyright (c) 2014 Redwood Systems Inc. All Rights Reserved.</p>
     </div>
 

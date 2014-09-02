@@ -294,7 +294,7 @@ body {
 
 .loginCenteredContent input[type="submit"] {
     margin-left:45%;
-    margin-top:30px;
+    margin-top:15px;
 }
 
 .redwoodTitleLogin {
@@ -330,4 +330,9 @@ body {
     -webkit-appearance:none;
     border:none;
     background: url(/images/down-arrow.png) no-repeat right 90%;
+}
+
+.invalidCredentials {
+    margin-top:10px;
+    color:red;
 }

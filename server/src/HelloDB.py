@@ -3,6 +3,7 @@
 
 
 import MySQLdb
+from flask import Flask
 
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
