@@ -18,7 +18,7 @@ angular.module('rwsprojectApp')
 
         $scope.tabs = {};
         $scope.user = {};
-        $scope.tabs.activeTab = 'tab2';
+        $scope.tabs.activeTab = 'tab1';
 
         $scope.tabs.accessoriesDialogHide = true;
 
