@@ -1,8 +1,14 @@
-<div class="login-modal" ng-hide="loggedIn">
-    <h2>Please sign in</h2>
-    <form novalidate class="login-form">
-        <input type="text" ng-model="user.name" placeholder="username"/>
-        <input type="password" ng-model="user.password" placeholder="password"/>
-        <input type="submit"/>
-    </form>
+<div class="row-fluid login-modal" ng-hide="isLoggedIn">
+
+    <div class="loginCenteredContent">
+        <h1 class="redwoodTitleLogin">redwood</h1>
+        <label class="leftSideLabel" for="username">Username</label>
+        <input id="username" type="text" ng-model="user.name"/>
+        <hr class="lineSeparator"/>
+        <label class="leftSideLabel" for="password">Password</label>
+        <input id="password" type="password" ng-model="user.password"/>
+        <input type="submit" value="login" ng-click="tempToggleLogin()"/>
+        <p class="copyright">Copyright (c) 2014 Redwood Systems Inc. All Rights Reserved.</p>
+    </div>
+
 </div>

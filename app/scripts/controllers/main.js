@@ -15,8 +15,5 @@ angular.module('rwsprojectApp')
             'Karma'
         ];
 
-        // this should use $http and ask the server if the user is logged in
-        // what happens when their session times out?
-        $scope.loggedIn = true;
 
     });

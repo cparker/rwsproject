@@ -1,4 +1,5 @@
 <div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+    <ng-include src="'login-modal.html'"></ng-include>
     <ul class="nav nav-tabs tabs-left">
         <li ng-class="{active:tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Projet
             Information</a></li>
@@ -40,4 +41,6 @@
         </div>
 
     </div>
+    <a ng-click="tempToggleLogin()" href="">tempToggleLogin</a>
+    <ng-include src="'dialogs/accessories.html'"></ng-include>
 </div>

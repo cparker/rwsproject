@@ -4,11 +4,11 @@
     -webkit-appearance: none;
     width: 7px;
 }
+
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
 }
-
 
 .container {
     width: 1280px;
@@ -54,14 +54,20 @@ body {
 
 .login-modal {
     -webkit-border-radius: 5px;
-    background: lightgray;
-    margin: 20px;
-    padding: 20px;
-    position: absolute;
-    width: 800px;
-    height: 500px;
-    top: 0;
+    position: fixed;
+    top:15px;
+    left:40px;
+    background: lightblue;
+    margin: 5px;
+    padding: 5px;
+    width: 90%;
+    height: 90%;
     opacity: 0.9;
+}
+
+.login-modal input {
+    margin:0;
+    padding:2px;
 }
 
 .fixtureLabel {
@@ -116,12 +122,6 @@ body {
 #fixtureSectionThree select {
     height: 1.3em;
     width: 120px;
-}
-
-#fixtureSectionFour input {
-    padding: 1px;
-    margin: 0;
-    width: 40px;
 }
 
 .redwoodPanelNarrowInput {
@@ -238,5 +238,56 @@ body {
     border-right-width: 2px;
     border-right-color: gray;
     border-right-style: solid;
-    height:175px;
+    height: 175px;
+}
+
+.lastFixtureSection {
+    border-right-style: none;
+}
+
+.fixtureListHeader {
+    margin-top: 10px;
+    text-align: center;
+    background: lightblue;
+}
+
+.loginspacer {
+    height:100px;
+}
+
+.lineSeparator {
+    width:300px;
+}
+
+.loginCenteredContent {
+    position:relative;
+    top:30%;
+    width: 325px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.loginCenteredContent input {
+    display: inline-block;
+}
+
+.loginCenteredContent label {
+    display: inline-block;
+}
+
+.loginCenteredContent input[type="submit"] {
+    margin-left:45%;
+    margin-top:30px;
+}
+
+.redwoodTitleLogin {
+    font-size: 5.0em;
+    font-family: arial, sans-serif;
+    margin-bottom:50px;
+}
+
+.copyright {
+    margin:0;
+    margin-top:30px;
+    font-size: 0.8em;
 }
