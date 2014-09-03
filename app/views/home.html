@@ -1,7 +1,7 @@
 <div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
     <ng-include src="'login-modal.html'"></ng-include>
-    <ul class="rwsTabs nav nav-tabs tabs-left">
-        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Projet
+    <ul class="rwsTabs nav nav-tabs tabs-left" ng-class="{blur:isLoggedIn==false}">
+        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Project
             Information</a></li>
         <li ng-class="{'active rwsActive':tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures and Sensors</a>
         </li>
@@ -12,10 +12,11 @@
         <li ng-class="{'active rwsActive':tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Additional
             Equipment</a></li>
         <li ng-class="{'active rwsActive':tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Summary
-            </a></li>
+        </a></li>
     </ul>
-    <div class="tab-content">
 
+
+    <div ng-class="{blur:isLoggedIn==false}" class="tab-content" >
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab1">
             <ng-include src="'tabSections/projectInfoTab.html'"/>
         </div>

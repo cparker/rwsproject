@@ -1,7 +1,6 @@
 <div class="row-fluid login-modal" ng-hide="isLoggedIn">
-
     <div class="loginCenteredContent">
-        <h1 class="redwoodTitleLogin">redwood</h1>
+        <div class="redwoodTitleLogin"></div>
         <label class="leftSideLabel" for="username">Username</label>
         <input id="username" type="text" ng-model="user.name"/>
         <hr class="lineSeparator"/>
@@ -9,7 +8,7 @@
         <input id="password" type="password" ng-model="user.password"/>
 
         <p ng-show="invalidCredentials" class="invalidCredentials">Invalid username or password. Please try again.</p>
-        <input type="submit" value="login" ng-click="doLogin()"/>
+        <input class="fancyButton" type="submit" value="login" ng-click="doLogin()"/>
 
         <p class="copyright">Copyright (c) 2014 Redwood Systems Inc. All Rights Reserved.</p>
     </div>

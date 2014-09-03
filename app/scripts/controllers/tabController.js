@@ -1,19 +1,10 @@
 angular.module('rwsprojectApp')
-    .controller('tabController', function ($scope, $route, $http) {
+    .controller('tabController', function ($scope, $rootScope, $route, $http) {
 
-        // this is really our main controller, so whenever this guy runs, let's check to
-        // see if we're logged in or not
-        $http.get('/server/checkAccess')
-            .success(function () {
-                console.log('we are logged in');
-                $scope.isLoggedIn = true;
-            })
-            .error(function () {
-                console.log('we are not logged in');
-                $scope.isLoggedIn = true;
-            });
+        $rootScope.thing = "HAHAHA";
 
-        $scope.isLoggedIn = true;
+        $rootScope.isLoggedIn = undefined;
+
         $scope.invalidCredentials = false;
 
         $scope.tabs = {};
@@ -38,8 +29,22 @@ angular.module('rwsprojectApp')
         };
 
 
-        $scope.tempToggleLogin = function () {
-            $scope.isLoggedIn = !$scope.isLoggedIn;
+        // this is our main controller, so whenever this guy runs, let's check to
+        // see if we're logged in or not
+        $http.get('/server/checkAccess')
+            .success(function () {
+                console.log('we are logged in');
+                $rootScope.isLoggedIn = true;
+                $scope.$emit('loggedInChanged', true);
+            })
+            .error(function () {
+                console.log('we are not logged in');
+                $rootScope.isLoggedIn = true;
+                $scope.$emit('loggedInChanged', false);
+            });
+
+        $rootScope.tempToggleLogin = function () {
+            $rootScope.isLoggedIn = !$rootScope.isLoggedIn;
         };
 
         $scope.doLogin = function () {
@@ -50,13 +55,17 @@ angular.module('rwsprojectApp')
 
             $http({method: 'POST', url: '/server/login', data: loginData})
                 .success(function (data, status) {
-                    $scope.isLoggedIn = true;
+                    $rootScope.isLoggedIn = true;
                     $scope.invalidCredentials = false;
+                    $scope.$emit('loggedInChanged', true);
                 }).error(function (data, status) {
                     $scope.invalidCredentials = true;
+                    $scope.$emit('loggedInChanged', false);
+                    // $rootScope.isLoggedIn = true;
                     console.log(data);
                 });
 
         }
+
 
     });

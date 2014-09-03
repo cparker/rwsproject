@@ -10,8 +10,7 @@ select:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
+    border-radius: 4px background-color : rgba(0, 0, 0, .5);
 }
 
 .container {
@@ -37,7 +36,7 @@ body {
 }
 
 .header p {
-    color:white;
+    color: white;
 }
 
 /* Custom page header */
@@ -63,7 +62,7 @@ body {
 
 .tab-content {
     background-color: #A1DBFF;
-    margin-right:25px;
+    margin-right: 25px;
     padding-left: 10px;
     min-height: 600px;
 }
@@ -71,19 +70,25 @@ body {
 .login-modal {
     -webkit-border-radius: 5px;
     position: fixed;
-    top:15px;
-    left:40px;
+    top: 15px;
+    left: 40px;
     background: #8895A7;
     margin: 5px;
     padding: 5px;
     width: 90%;
     height: 90%;
-    opacity: 0.9;
+    opacity: 0.8;
+    z-index: 100;
 }
 
-.login-modal input {
-    margin:0;
-    padding:2px;
+.login-modal #username {
+    margin: 0;
+    padding: 2px;
+}
+
+.login-modal #password {
+    margin: 0;
+    padding: 2px;
 }
 
 .fixtureLabel {
@@ -247,34 +252,36 @@ body {
 }
 
 .fixturesSection .buttonSpacer {
-    height:20px;
+    height: 20px;
 }
 
 .fancyButton {
     background: #1B9AF7;
-    -webkit-appearance:none;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    padding:4px;
-    border:none;
-    border-radius:5px;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:arial;
-    font-size:17px;
-    text-decoration:none;
+    -webkit-appearance: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 17px;
+    text-decoration: none;
 }
 
 .fixturesSection select {
     line-height: normal;
-    color:#1B9AF7;
-    margin:0;
-    padding:1px;
-    padding-top:0px;
-    margin-bottom:2px;
-    -webkit-appearance:none;
-    border:none;
+    color: #1B9AF7;
+    margin: 0;
+    padding: 1px;
+    padding-top: 0px;
+    margin-bottom: 2px;
+    -webkit-appearance: none;
+    border: none;
     background: url(/images/down-arrow.png) no-repeat right 70%;
 }
 
@@ -299,26 +306,26 @@ body {
 
 .fixtureListHeader {
     text-align: center;
-    color:white;
+    color: white;
     background-color: #1B9AF7;
     font-size: 17px;
     line-height: 30px;
 }
 
 .loginspacer {
-    height:100px;
+    height: 100px;
 }
 
 .lineSeparator {
-    width:300px;
+    width: 300px;
 }
 
 .loginCenteredContent {
-    position:relative;
-    top:30%;
+    position: relative;
+    top: 30%;
     width: 325px;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
 }
 
 .loginCenteredContent input {
@@ -330,54 +337,61 @@ body {
 }
 
 .loginCenteredContent input[type="submit"] {
-    margin-left:45%;
-    margin-top:15px;
+    margin-left: 40%;
+    margin-top: 15px;
 }
 
 .redwoodTitleLogin {
-    font-size: 5.0em;
-    font-family: arial, sans-serif;
-    margin-bottom:50px;
+    height: 130px;
+    width: 545px;
+    background: url(/images/redwood-logo_2c.svg) no-repeat 100%;
+    background-size: 100%;
+    margin-bottom: 30px;
+    margin-left: -170px;
 }
 
 .copyright {
-    margin:0;
-    margin-top:30px;
+    margin: 0;
+    margin-top: 30px;
     font-size: 0.8em;
 }
 
 .selectTest {
     line-height: normal;
-    margin:0;
-    margin-bottom:2px;
-    padding-right:5px;
-    padding-bottom:5px;
-    -webkit-appearance:none;
-    border:none;
+    margin: 0;
+    margin-bottom: 2px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    -webkit-appearance: none;
+    border: none;
     background: url(/images/down-arrow.png) no-repeat right 90%;
 }
 
-
 .form-horizontal select {
     line-height: normal;
-    margin:0;
-    padding:1px;
-    padding-top:6px;
-    margin-bottom:2px;
-    -webkit-appearance:none;
-    border:none;
+    margin: 0;
+    padding: 1px;
+    padding-top: 6px;
+    margin-bottom: 2px;
+    -webkit-appearance: none;
+    border: none;
     background: url(/images/down-arrow.png) no-repeat right 90%;
 }
 
 .invalidCredentials {
-    margin-top:10px;
-    color:red;
+    margin-top: 10px;
+    color: red;
 }
 
-.rwsActive  a {
+.rwsActive a {
     background-color: #A1DBFF !important;
 }
 
 .rwsTabs {
-    margin-right:0 !important;
+    margin-right: 0 !important;
+    border-right: none !important;
+}
+
+.blur {
+   -webkit-filter:blur(5px);
 }
