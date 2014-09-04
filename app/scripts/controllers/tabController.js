@@ -10,10 +10,10 @@ angular.module('rwsprojectApp')
             })
             .error(function () {
                 console.log('we are not logged in');
-                $scope.isLoggedIn = true;
+                $scope.isLoggedIn = false;
             });
 
-        $scope.isLoggedIn = true;
+        $scope.isLoggedIn = undefined;
         $scope.invalidCredentials = false;
 
         $scope.tabs = {};
