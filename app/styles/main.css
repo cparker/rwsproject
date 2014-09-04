@@ -27,7 +27,6 @@ body {
     font-family: tahoma, sans-serif;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
@@ -154,9 +153,6 @@ select#projectCountry {
     height: 200px;
 }
 
-#fixtureSectionThree {
-}
-
 #fixtureSectionTwo select {
     height: 1.3em;
     width: 120px;
@@ -230,8 +226,7 @@ select#projectCountry {
 #emergencyLightingSection {
     margin-left: 5px;
 }
-
-#accessoriesDialog {
+.dialogOuter {
     width: 400px;
     height: 400px;
     position: absolute;
@@ -241,7 +236,7 @@ select#projectCountry {
     -webkit-border-radius: 5px;
 }
 
-.accessoriesDialogInner {
+.dialogInner {
     margin: 14px;
     margin-bottom: 5px;
     padding: 5px;
@@ -252,29 +247,7 @@ select#projectCountry {
     overflow-y: scroll;
 }
 
-/* todo don't need separate notes and accessories styles */
-#notesDialog {
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    left: 500px;
-    top: 100px;
-    background: #D8E5F1;
-    -webkit-border-radius: 5px;
-}
-
-.notesDialogInner {
-    margin: 14px;
-    margin-bottom: 5px;
-    padding: 5px;
-    -webkit-border-radius: 5px;
-    background: #ffffff;
-    width: 90%;
-    height: 80%;
-    overflow-y: scroll;
-}
-
-.notesDialogInner textarea {
+#notesDialog textarea {
     width:96%;
     height:95%;
 }
@@ -282,9 +255,6 @@ select#projectCountry {
 .accessoriesScroller input {
     margin: 0;
     display: inline-block;
-}
-
-.accessoriesScroller {
 }
 
 .accessoriesScroller label {
@@ -399,7 +369,7 @@ select#projectCountry {
 .redwoodTitleLogin {
     height: 130px;
     width: 545px;
-    background: url(/images/redwood-logo_2c.svg) no-repeat 100%;
+    background: url("/images/redwood-logo_2c.svg") no-repeat 100%;
     background-size: 100%;
     margin-bottom: 30px;
     margin-left: -170px;
@@ -409,17 +379,6 @@ select#projectCountry {
     margin: 0;
     margin-top: 30px;
     font-size: 0.8em;
-}
-
-.form-horizontal select {
-    line-height: normal;
-    margin: 0;
-    padding: 1px;
-    padding-top: 6px;
-    margin-bottom: 2px;
-    -webkit-appearance: none;
-    border: none;
-    background: url(/images/down-arrow.png) no-repeat right 90%;
 }
 
 .invalidCredentials {
@@ -438,7 +397,6 @@ select#projectCountry {
 
 .nav-tabs > li > a {
     padding:4px;
-    padding-left: 4px;
 }
 
 .blur {
@@ -469,16 +427,6 @@ select#projectCountry {
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {
     opacity:1;
-}
-
-#tab1icon {
-    float:left;
-    width:35px;
-    height:35px;
-    background: url(/images/light-bulb.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    margin-left: -5px;
 }
 
 .tabLabel {
