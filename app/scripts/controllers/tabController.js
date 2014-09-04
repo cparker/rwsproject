@@ -9,13 +9,38 @@ angular.module('rwsprojectApp')
 
         $scope.tabs = {};
         $scope.user = {};
-        $scope.tabs.activeTab = 'tab1';
+        $scope.tabs.activeTab = 'tab6';
+        $scope.selectedLineId = undefined;
+
+        $scope.fixtureLines = [];
 
         $scope.tabs.accessoriesDialogHide = true;
+        $scope.tabs.notesDialogHide = true;
 
-        $scope.tabs.rock = 'and roll';
+        $scope.addFixtureLine = function() {
+            var nextId = undefined;
+            if ($scope.fixtureLines.length > 0) {
+                nextId = $scope.fixtureLines[$scope.fixtureLines.length-1] + 1;
+            } else {
+                nextId = 1;
+            }
+            $scope.fixtureLines.push(nextId);
+        };
 
-        $scope.tabs.tabClick = function (tabId, event) {
+        $scope.deleteFixtureLine = function(lineId) {
+            var index = $scope.fixtureLines.indexOf(lineId);
+            $scope.fixtureLines.splice(index,1);
+        };
+
+        $scope.fixtureLineSelect = function (lineId) {
+            $scope.selectedLineId = lineId;
+        };
+
+        $scope.isLineSelected = function (lineId) {
+            return lineId == $scope.selectedLineId;
+        };
+
+        $scope.tabs.tabClick = function (tabId, $event) {
             $scope.tabs.activeTab = tabId;
         };
 
@@ -26,6 +51,11 @@ angular.module('rwsprojectApp')
         $scope.tabs.toggleAccessoriesDialog = function () {
             $scope.tabs.accessoriesDialogHide =
                 $scope.tabs.accessoriesDialogHide == false;
+        };
+
+        $scope.tabs.toggleNotesDialog = function () {
+            $scope.tabs.notesDialogHide =
+                $scope.tabs.notesDialogHide == false;
         };
 
 

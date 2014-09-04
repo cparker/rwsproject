@@ -1,22 +1,80 @@
 <div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
     <ng-include src="'login-modal.html'"></ng-include>
     <ul class="rwsTabs nav nav-tabs tabs-left" ng-class="{blur:isLoggedIn==false}">
-        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1')">Project
-            Information</a></li>
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab2')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">Fixtures and Sensors</a>
+
+        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1',$event)">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Project Information</p>
+                    <i>Name, Address, Notes...</i>
+                </span>
+            </a>
         </li>
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab3')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">Redwood
-            Systems</a></li>
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab4')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">Emergency
-            Lighting</a></li>
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab5')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">Additional
-            Equipment</a></li>
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab6')}"><a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">Summary
-        </a></li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab2')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Fixtures and Sensors</p>
+                    <i>Light fixtures, controls, and sensors...</i>
+                </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab3')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Control</p>
+                    <i>Control equipment</i>
+                </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab4')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Engines</p>
+                    <i>Redwood Systems engines</i>
+                </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab5')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Emergency Lighting</p>
+                    <i>Emergency Lighting...</i>
+                </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab6')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Spares and Exclusions</p>
+                    <i>Cables, Switches, Racks...</i>
+                </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active rwsActive':tabs.isTabActive('tab7')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab7')">
+                <div id="tab1icon"></div>
+                <span class="tabLabel">
+                    <p>Summary</p>
+                    <i>Summary of project choices...</i>
+                </span>
+            </a>
+        </li>
     </ul>
 
 
-    <div ng-class="{blur:isLoggedIn==false}" class="tab-content" >
+    <div ng-class="{blur:isLoggedIn==false}" class="tab-content">
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab1">
             <ng-include src="'tabSections/projectInfoTab.html'"/>
         </div>
@@ -26,22 +84,27 @@
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab3')}" id="tab3">
-            <ng-include src="'tabSections/redwoodSystemsTab.html'"/>
+            <ng-include src="'tabSections/controlTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab4')}" id="tab4">
-            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
+            <ng-include src="'tabSections/enginesTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab5')}" id="tab5">
-            <ng-include src="'tabSections/optionalEquipmentTab.html'"/>
+            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab6')}" id="tab6">
+            <ng-include src="'tabSections/optionalEquipmentTab.html'"/>
+        </div>
+
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab7')}" id="tab7">
             <ng-include src="'tabSections/summary.html'"/>
         </div>
 
     </div>
     <a ng-click="tempToggleLogin()" href="">tempToggleLogin</a>
     <ng-include src="'dialogs/accessories.html'"></ng-include>
+    <ng-include src="'dialogs/notes.html'"></ng-include>
 </div>

@@ -2,7 +2,7 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="controlMethod">Control method</label>
-        <select id="controlMethod">
+        <select class="simpleArrowSelect" id="controlMethod">
             <option>LED Gateway</option>
             <option>Sensor 3</option>
             <option>Magic</option>
@@ -11,7 +11,7 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="sensorType">Sensor type</label>
-        <select id="sensorType">
+        <select class="simpleArrowSelect" id="sensorType">
             <option>None</option>
             <option>Normal</option>
             <option>Low</option>
@@ -25,16 +25,18 @@
     </div>
 
     <div>
-        <input class="fancyButton" type="button" id="addAccessories" value="Add Accessories" ng-click="tabs.toggleAccessoriesDialog()"/>
+        <input class="fancyButton" type="button" id="addNotes" value="Notes..." ng-click="tabs.toggleNotesDialog()"/>
+        <input class="fancyButton" type="button" id="addAccessories" value="Accessories..." ng-click="tabs.toggleAccessoriesDialog()"/>
     </div>
 
     <div class="buttonSpacer">
     </div>
 
     <div>
-        <input class="fancyButton" type="button" id="addLine" value="Add"/>
+        <input class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
         <input class="fancyButton" type="button" id="updateLine" value="Update"/>
         <input class="fancyButton" type="button" id="resetLine" value="Reset"/>
     </div>
+
 
 </div>

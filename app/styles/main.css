@@ -60,11 +60,32 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
+.noteArea {
+    resize: none;
+}
+
 .tab-content {
     background-color: #A1DBFF;
     margin-right: 25px;
     padding-left: 10px;
     min-height: 600px;
+}
+
+.simpleArrowSelect {
+    line-height: normal;
+    margin: 0;
+    padding: 1px;
+    padding-top: 6px;
+    margin-bottom: 2px;
+    -webkit-appearance: none;
+    border: none;
+    background: url("/images/down-arrow.png");
+    background-repeat: no-repeat;
+    background-position: 99% 90%;
+}
+
+select#projectCountry {
+    width:100px;
 }
 
 .login-modal {
@@ -157,6 +178,7 @@ body {
 .rightSideLabel {
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 1px;
 }
 
 .underlined {
@@ -165,8 +187,13 @@ body {
     border-bottom-style: solid;
 }
 
-#redwoodSystemsPanel > div {
+
+#controlPanel > div {
     margin-top: 20px;
+}
+
+#controlPanel input[type="checkbox"] {
+    margin:0;
 }
 
 .servicePanelLine {
@@ -177,6 +204,11 @@ body {
 .servicePanelLine input {
     padding: 1px;
     margin: 0;
+}
+
+.servicePanelLine p {
+    color:red;
+    margin-left: 25px;
 }
 
 .serviceInput {
@@ -218,6 +250,33 @@ body {
     width: 90%;
     height: 80%;
     overflow-y: scroll;
+}
+
+/* todo don't need separate notes and accessories styles */
+#notesDialog {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+    background: #D8E5F1;
+    -webkit-border-radius: 5px;
+}
+
+.notesDialogInner {
+    margin: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    background: #ffffff;
+    width: 90%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.notesDialogInner textarea {
+    width:96%;
+    height:95%;
 }
 
 .accessoriesScroller input {
@@ -273,23 +332,19 @@ body {
     text-decoration: none;
 }
 
-.fixturesSection select {
-    line-height: normal;
-    color: #1B9AF7;
-    margin: 0;
-    padding: 1px;
-    padding-top: 0px;
-    margin-bottom: 2px;
-    -webkit-appearance: none;
-    border: none;
-    background: url(/images/down-arrow.png) no-repeat right 70%;
-}
-
 .fixtureLine {
     border-top-width: 2px;
     border-top-color: gray;
     border-top-style: solid;
+    background-color: #ffffff;
+}
+
+.fixtureLineSelected {
     background-color: #D8EDF3;
+}
+
+.fixtureLine:hover {
+    background-color: lightgrey;
 }
 
 .fixtureLineSection {
@@ -356,17 +411,6 @@ body {
     font-size: 0.8em;
 }
 
-.selectTest {
-    line-height: normal;
-    margin: 0;
-    margin-bottom: 2px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    -webkit-appearance: none;
-    border: none;
-    background: url(/images/down-arrow.png) no-repeat right 90%;
-}
-
 .form-horizontal select {
     line-height: normal;
     margin: 0;
@@ -392,6 +436,127 @@ body {
     border-right: none !important;
 }
 
+.nav-tabs > li > a {
+    padding:4px;
+    padding-left: 4px;
+}
+
 .blur {
    -webkit-filter:blur(5px);
+}
+
+.fixtureList {
+    list-style: none;
+    -webkit-appearance:none;
+    margin-left: 0;
+
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+    opacity:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+#tab1icon {
+    float:left;
+    width:35px;
+    height:35px;
+    background: url(/images/light-bulb.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    margin-left: -5px;
+}
+
+.tabLabel {
+    display: inline-block;
+    max-width: 150px;
+}
+
+.tabLabel p {
+    margin:0;
+}
+
+.tabLabel i {
+    color: gray;
+    font-size: 0.85em;
+    margin-top:1px;
+    margin-bottom: 1px;
+}
+
+#enginesOne {
+    margin-bottom: 15px;
+}
+
+#enginesOne p {
+    padding:0;
+    margin:0;
+}
+
+#enginesOne input[type="text"] {
+    width: 75px;
+}
+
+#enginesOne select {
+    width: 90px;
+}
+
+#enginesTwo select {
+    width: 90px;
+}
+
+.engineOneLabel {
+    width:200px;
+    display: inline-block;
+}
+
+#engineSpacerTwo {
+    height:35px;
+}
+
+span#enginesSpacer {
+    display: inline-block;
+    width:30px;
+}
+
+div#enginesOneWarning {
+    background: url(/images/light-bulb.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    height:70px;
+    width:35px;
+    display:inline-block;
+}
+
+div#enginesOneWarningText {
+    display:inline-block;
+}
+
+
+.bulbIcon {
+    float:left;
+    width:35px;
+    height:35px;
+    background: url(/images/light-bulb.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    margin-left: -5px;
+}
+
+div#optionalEquipmentPanel textarea {
+    width:50%;
+    height:200px;
 }
