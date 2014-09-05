@@ -29,7 +29,7 @@ def login():
     if request.method == 'POST':
         print('received ' + str(request.json))
         cur = db.cursor(cursors.DictCursor)
-        cur.execute("select * from accounts where name='{name}'".format(name=request.json['username']))
+        cur.execute("select * from accounts where user='{name}'".format(name=request.json['username']))
         user = cur.fetchone()
         if user['password'] == request.json['password']:
             session['username'] = request.json['username']
@@ -59,4 +59,4 @@ app.secret_key = 'slaskdjfalksdfs90df8sdf8s0d98f0sdf'
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(host='0.0.0.0')

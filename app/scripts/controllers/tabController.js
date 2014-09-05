@@ -69,7 +69,7 @@ angular.module('rwsprojectApp')
             })
             .error(function () {
                 console.log('we are not logged in');
-                $rootScope.isLoggedIn = true;
+                $rootScope.isLoggedIn = false;
                 $scope.$emit('loggedInChanged', false);
             });
 
@@ -96,6 +96,5 @@ angular.module('rwsprojectApp')
                 });
 
         }
-
 
     });
