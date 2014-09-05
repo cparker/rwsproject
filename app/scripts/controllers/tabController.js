@@ -9,7 +9,7 @@ angular.module('rwsprojectApp')
 
         $scope.tabs = {};
         $scope.user = {};
-        $scope.tabs.activeTab = 'tab6';
+        $scope.tabs.activeTab = 'tab1';
         $scope.selectedLineId = undefined;
 
         $scope.fixtureLines = [];
