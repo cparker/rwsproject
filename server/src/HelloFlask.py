@@ -13,7 +13,7 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
-                     passwd="",  # your password
+                     passwd="smartlights",  # your password
                      db="rwsproject")  # name of the data base
 
 @app.route('/')
