@@ -3,13 +3,14 @@
 
 
 import MySQLdb
-from flask import Flask, session, redirect, url_for, escape, request, json
+from flask import Flask, session, redirect, url_for, escape, request, json, jsonify
 from MySQLdb import cursors
 from datetime import timedelta
 
 app = Flask(__name__)
 
 app.permanent_session_lifetime = timedelta(minutes=60)
+
 
 class ConnectionHandler:
     connection = None
@@ -23,8 +24,14 @@ class ConnectionHandler:
     def __init__(self):
         self.setConnection()
 
-    def getConnection(self):
+    def getConnection(self, newCon=False):
         try:
+            if (newCon):
+                if (self.connection != None and self.connection.open):
+                    self.connection.close()
+
+                self.setConnection()
+
             self.connection.ping()
 
         except Exception as ex:
@@ -34,11 +41,7 @@ class ConnectionHandler:
         return self.connection
 
 
-
 connectionHandler = ConnectionHandler()
-
-
-
 
 
 @app.route('/')
@@ -64,6 +67,21 @@ def login():
         else:
             cur.close()
             return '', 401
+
+
+@app.route('/server/regions', methods=['GET'])
+def handleRegions():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute("select * from regions")
+        return jsonify({"payload": cur.fetchall()})
+    except Exception as ex:
+        print("caught exception querying mysql " + str(ex))
+        return jsonify(500, [])
+
+    finally:
+        cur.close()
 
 
 @app.route('/server/checkAccess')

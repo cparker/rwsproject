@@ -1,11 +1,18 @@
-<div class="row-fluid login-modal" ng-hide="isLoggedIn">
+<div class="login-modal" ng-hide="isLoggedIn">
     <div class="loginCenteredContent">
         <div class="redwoodTitleLogin"></div>
-        <label class="leftSideLabel" for="username">Username</label>
-        <input id="username" type="text" ng-model="user.name"/>
+
+        <div class="loginFormLine">
+            <label class="" for="username">Username</label>
+            <input id="username" type="text" ng-model="user.name"/>
+        </div>
+
         <hr class="lineSeparator"/>
-        <label class="leftSideLabel" for="password">Password</label>
-        <input id="password" type="password" ng-model="user.password"/>
+
+        <div class="loginFormLine">
+            <label class="" for="password">Password</label>
+            <input id="password" type="password" ng-model="user.password"/>
+        </div>
 
         <p ng-show="invalidCredentials" class="invalidCredentials">Invalid username or password. Please try again.</p>
         <input class="fancyButton" type="submit" value="login" ng-click="doLogin()"/>

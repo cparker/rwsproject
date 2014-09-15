@@ -17,9 +17,8 @@
     <div class="control-group">
         <label class="control-label" for="projectCountry">Region</label>
         <div class="controls">
-            <select class="simpleArrowSelect" id="projectCountry">
-                <option>US</option>
-                <option>canada</option>
+            <select ng-model="selectedRegion" ng-options="region.name for region in regions" class="simpleArrowSelect" id="projectCountry">
+                <option value="">choose region</option>
             </select>
         </div>
     </div>

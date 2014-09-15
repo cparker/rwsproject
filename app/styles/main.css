@@ -84,7 +84,7 @@ body {
 }
 
 select#projectCountry {
-    width:100px;
+    width:120px;
 }
 
 .login-modal {
@@ -95,10 +95,12 @@ select#projectCountry {
     background: #8895A7;
     margin: 5px;
     padding: 5px;
-    width: 90%;
+    width: 94%;
     height: 90%;
     opacity: 0.8;
     z-index: 100;
+    display: flex;
+    flex-direction: row;
 }
 
 .login-modal #username {
@@ -342,27 +344,39 @@ select#projectCountry {
 }
 
 .lineSeparator {
-    width: 300px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .loginCenteredContent {
     position: relative;
     top: 30%;
-    width: 325px;
+    width: 545px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.loginCenteredContent input {
+.loginFormLine {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginCenteredContent input[type="text"], .loginCenteredContent label , .loginCenteredContent input[type="password"] {
     display: inline-block;
+    width:250px;
 }
 
 .loginCenteredContent label {
-    display: inline-block;
+    width: 100px;
+    text-align: end;
 }
 
 .loginCenteredContent input[type="submit"] {
-    margin-left: 40%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 15px;
 }
 
@@ -373,11 +387,16 @@ select#projectCountry {
     background-size: 100%;
     margin-bottom: 30px;
     margin-left: -170px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .copyright {
     margin: 0;
     margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
     font-size: 0.8em;
 }
 

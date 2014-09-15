@@ -17,6 +17,9 @@ angular.module('rwsprojectApp')
         $scope.tabs.accessoriesDialogHide = true;
         $scope.tabs.notesDialogHide = true;
 
+        $scope.regions = [ ];
+        $scope.selectedRegion = 0;
+
         $scope.addFixtureLine = function() {
             var nextId = undefined;
             if ($scope.fixtureLines.length > 0) {
@@ -69,8 +72,17 @@ angular.module('rwsprojectApp')
             })
             .error(function () {
                 console.log('we are not logged in');
-                $rootScope.isLoggedIn = false;
+                $rootScope.isLoggedIn = true;
                 $scope.$emit('loggedInChanged', false);
+            });
+
+        $http.get('/server/regions')
+            .success(function(regions) {
+                console.log(regions);
+                $scope.regions = regions.payload;
+            })
+            .error(function() {
+                $scope.emit('error retrieving regions')
             });
 
         $rootScope.tempToggleLogin = function () {
