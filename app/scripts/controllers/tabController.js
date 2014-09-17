@@ -1,38 +1,41 @@
 angular.module('rwsprojectApp')
-    .controller('tabController', function ($scope, $rootScope, $route, $http) {
+    .controller('tabController', function ($scope, $rootScope, $route, $http, $filter) {
 
         $rootScope.thing = "HAHAHA";
 
         $rootScope.isLoggedIn = undefined;
 
+
         $scope.invalidCredentials = false;
 
-        $scope.tabs = {};
         $scope.user = {};
-        $scope.tabs.activeTab = 'tab1';
+
+        $rootScope.tabs = {};
+        $rootScope.tabs.activeTab = 'tab1';
+
         $scope.selectedLineId = undefined;
 
         $scope.fixtureLines = [];
 
-        $scope.tabs.accessoriesDialogHide = true;
-        $scope.tabs.notesDialogHide = true;
+        $rootScope.tabs.accessoriesDialogHide = true;
+        $rootScope.tabs.notesDialogHide = true;
 
         $scope.regions = [ ];
         $scope.selectedRegion = 0;
 
-        $scope.addFixtureLine = function() {
+        $scope.addFixtureLine = function () {
             var nextId = undefined;
             if ($scope.fixtureLines.length > 0) {
-                nextId = $scope.fixtureLines[$scope.fixtureLines.length-1] + 1;
+                nextId = $scope.fixtureLines[$scope.fixtureLines.length - 1] + 1;
             } else {
                 nextId = 1;
             }
             $scope.fixtureLines.push(nextId);
         };
 
-        $scope.deleteFixtureLine = function(lineId) {
+        $scope.deleteFixtureLine = function (lineId) {
             var index = $scope.fixtureLines.indexOf(lineId);
-            $scope.fixtureLines.splice(index,1);
+            $scope.fixtureLines.splice(index, 1);
         };
 
         $scope.fixtureLineSelect = function (lineId) {
@@ -44,7 +47,8 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.tabClick = function (tabId, $event) {
-            $scope.tabs.activeTab = tabId;
+            $scope.$emit('tabLosingFocus', $scope.tabs.activeTab, tabId);
+            // $scope.tabs.activeTab = tabId;
         };
 
         $scope.tabs.isTabActive = function (tabId) {
@@ -76,14 +80,6 @@ angular.module('rwsprojectApp')
                 $scope.$emit('loggedInChanged', false);
             });
 
-        $http.get('/server/regions')
-            .success(function(regions) {
-                console.log(regions);
-                $scope.regions = regions.payload;
-            })
-            .error(function() {
-                $scope.emit('error retrieving regions')
-            });
 
         $rootScope.tempToggleLogin = function () {
             $rootScope.isLoggedIn = !$rootScope.isLoggedIn;

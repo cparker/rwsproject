@@ -69,6 +69,21 @@ def login():
             return '', 401
 
 
+@app.route('/server/fixtureTypes', methods=['GET'])
+def handleFixtureTypes():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute("select * from fixtureTypes")
+        return jsonify({"payload": cur.fetchall()})
+    except Exception as ex:
+        print("caught exception querying mysql " + str(ex))
+        return jsonify(500, [])
+
+    finally:
+        cur.close()
+
+
 @app.route('/server/regions', methods=['GET'])
 def handleRegions():
     con = connectionHandler.getConnection(newCon=True)
@@ -82,6 +97,76 @@ def handleRegions():
 
     finally:
         cur.close()
+
+
+@app.route('/server/submitProjectInfo', methods=['POST'])
+def handleSubmitProjectInfo():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        print('submitProjectInfo received ' + str(request.json))
+        print(request.json.get('basedOn'))
+        # insert the project info
+        cur.execute("""insert into project_info
+        (  dateTime,     projectName,     address,     region_id,    createdBy,     basedOn,     email,     notes) values
+        ('{dateTime}', '{projectName}', '{address}', '{regionId}','{createdBy}', '{basedOn}', '{email}', '{notes}')
+        ON DUPLICATE KEY UPDATE projectName='{projectName}', address='{address}',region_id='{regionId}',createdBy='{createdBy}',basedOn='{basedOn}',email='{email}',notes='{notes}'
+        """.format(
+            dateTime=request.json['dateTime'],
+            projectName=request.json['projectName'],
+            address=request.json['address'],
+            regionId=request.json['region']['id'],
+            createdBy=request.json['createdBy'],
+            basedOn=request.json.get('basedOn',''),
+            email=request.json['email'],
+            notes=request.json.get('notes','')
+        ))
+
+        # set the active project id in the session
+        session['activeProject'] = request.json['dateTime']
+        return '', 200
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+        return 'error', 500
+
+    finally:
+        cur.close()
+        con.commit()
+        con.close()
+
+
+# #
+# if the user has an active project in their session, retrieve it
+# #
+@app.route('/server/getProjectInfo', methods=['GET'])
+def handleGetProjectInfo():
+    if session.has_key('activeProject'):
+        con = connectionHandler.getConnection(newCon=True)
+        cur = con.cursor(cursors.DictCursor)
+
+        try:
+            cur.execute("select * from project_info where dateTime='{0}'".format(session['activeProject']))
+            projectInfo = cur.fetchone()
+
+            # now for the region
+            cur.execute("select * from regions where id='{0}'".format(projectInfo['region_id']))
+            regionInfo = cur.fetchone()
+            if regionInfo:
+                projectInfo['region'] = regionInfo
+            return jsonify(projectInfo)
+
+        except Exception as ex:
+            print('caught ' + str(ex))
+
+        finally:
+            cur.close()
+            con.close()
+
+    else:
+        resp = jsonify([])
+        resp.status_code = 404
+        return resp
 
 
 @app.route('/server/checkAccess')

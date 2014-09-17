@@ -27,6 +27,10 @@ body {
     font-family: tahoma, sans-serif;
 }
 
+textarea {
+    resize: none;
+}
+
 .header,
 .marketing,
 .footer {
@@ -529,3 +533,11 @@ div#optionalEquipmentPanel textarea {
 }
 
 
+.projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
+    outline:none;
+}
+.projectInfoForm.ng-submitted input.ng-invalid,
+.projectInfoForm.ng-submitted select.ng-invalid,
+.projectInfoForm.ng-submitted textarea.ng-invalid {
+    outline: 2px dotted red;
+}
