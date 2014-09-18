@@ -1,0 +1,452 @@
+-- MySQL dump 10.13  Distrib 5.5.30, for osx10.9 (x86_64)
+--
+-- Host: localhost    Database: rwsproject
+-- ------------------------------------------------------
+-- Server version	5.5.30
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `accounts`
+--
+
+DROP TABLE IF EXISTS `accounts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accounts` (
+  `user` varchar(256) DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accounts`
+--
+
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES ('admin','smartlights');
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `channels`
+--
+
+DROP TABLE IF EXISTS `channels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `channels` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `channel_count` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `channels`
+--
+
+LOCK TABLES `channels` WRITE;
+/*!40000 ALTER TABLE `channels` DISABLE KEYS */;
+INSERT INTO `channels` VALUES (1,0),(2,0.5),(3,1),(4,2),(5,4);
+/*!40000 ALTER TABLE `channels` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `control_methods`
+--
+
+DROP TABLE IF EXISTS `control_methods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `control_methods` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `control_methods`
+--
+
+LOCK TABLES `control_methods` WRITE;
+/*!40000 ALTER TABLE `control_methods` DISABLE KEYS */;
+INSERT INTO `control_methods` VALUES (1,'Integrated'),(2,'LED Gateway + Sensor 2'),(3,'Sensor 3'),(4,'n/a'),(5,'LED Gateway');
+/*!40000 ALTER TABLE `control_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cptest`
+--
+
+DROP TABLE IF EXISTS `cptest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cptest` (
+  `id` mediumint(9) NOT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cptest`
+--
+
+LOCK TABLES `cptest` WRITE;
+/*!40000 ALTER TABLE `cptest` DISABLE KEYS */;
+INSERT INTO `cptest` VALUES (1,'you');
+/*!40000 ALTER TABLE `cptest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `currents`
+--
+
+DROP TABLE IF EXISTS `currents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currents` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `current` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `currents`
+--
+
+LOCK TABLES `currents` WRITE;
+/*!40000 ALTER TABLE `currents` DISABLE KEYS */;
+INSERT INTO `currents` VALUES (1,'1400'),(2,'2800'),(3,'350'),(4,'500'),(5,'530'),(6,'560'),(7,'625'),(8,'640'),(9,'680'),(10,'700'),(11,'n/a');
+/*!40000 ALTER TABLE `currents` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `descriptions`
+--
+
+DROP TABLE IF EXISTS `descriptions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `descriptions` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `description` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `descriptions`
+--
+
+LOCK TABLES `descriptions` WRITE;
+/*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
+INSERT INTO `descriptions` VALUES (1,'1200x400mm Air Handling Grid Lay in'),(2,'244mm Downlight'),(3,'2x2 Grid Lay in'),(4,'4\" Downlight (New Construction)'),(5,'4\' 5050 Volo Direct Indirect'),(6,'4\' Edge Lit Linear Pendant'),(7,'6\" Downlight (New Construction)'),(8,'6\" Downlight (Remodel)'),(9,'600x600mm Grid Lay in'),(10,'8\' 5050 Volo Direct/Indirect'),(11,'8\' Edge Lit Linear Pendant'),(12,'Alfa Modular 2x2 33W'),(13,'Alva BOB Decorative wall mount LED Sconce'),(14,'Chloe LED 475 4\''),(15,'Chloe LED 475 8\''),(16,'Chloe LED 475 Custom'),(17,'Collin LED 325 4\''),(18,'Collin LED 325 8\''),(19,'Collin LED 325 Custom'),(20,'DL Series Downlight'),(21,'Davis 600x600'),(22,'Davis NCK Q4 downlight'),(23,'Davis NCK R150 downlight'),(24,'Description'),(25,'Flat Panel Grid lay in 1x4'),(26,'Flat Panel Grid lay in 2x2'),(27,'Hailey LED 325 4\''),(28,'Hailey LED 325 8\''),(29,'Hailey LED 325 Custom'),(30,'JAKE LED 325 4\''),(31,'JAKE LED 325 8\''),(32,'JAKE LED 325 Custom'),(33,'JILL LED 325 4\''),(34,'JILL LED 325 8\''),(35,'JILL LED 325 Custom'),(36,'K50 Optic HO Recessed/Ceiling Mounted Linear Fixture'),(37,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)'),(38,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (2 channel)'),(39,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (Custom)'),(40,'K50 System Spots Track Lighting System'),(41,'K50-Square Recessed/Ceiling Mounted Linear fixture'),(42,'K50i-Square Suspended Linear fixture'),(43,'KELSEY LED 325'),(44,'KELSEY LED 325 4\' Redwood Ready'),(45,'KELSEY LED 325 8\' Redwood Ready'),(46,'L-Form Linear LED Fixture'),(47,'MHT LED Magnetic Tube 19\" (Each fixture comes with (2) 2\' sections powered by 1 sensor)'),(48,'MHT LED Magnetic Tube 42.5\" (Each fixture comes with (2) 4\' sections powered by 1 sensor)'),(49,'NOLAN LED 325 4\''),(50,'NOLAN LED 325 8\''),(51,'NOLAN LED 325 Custom'),(52,'Pathway Coventry Architectural Series (Multiple mounts and finishes)'),(53,'RC Series Flat Panel 1x4  (Integrated also available)'),(54,'RC Series Flat Panel 2x2  (Integrated also available)'),(55,'RC Series Flat Panel 2x4'),(56,'RC Series Volumetric 2x2 (Integrated also available)'),(57,'RC Series Volumetric 2x4'),(58,'Remodel 4\" Downlight (Remodel)'),(59,'Richter Camino S Pendant'),(60,'Richter Lumio 6\" downlight'),(61,'Richter Slimpanel 595x595'),(62,'Richter Slimpanel 604x604'),(63,'Richter Slimpanel 619x619'),(64,'Richter Systemkanal HL'),(65,'STELLA LED 4\''),(66,'STELLA LED 8\''),(67,'STELLA LED Custom'),(68,'Suspended 4\' Linear Pendant'),(69,'Suspended 8\' Linear Pendant'),(70,'Volumetric Grid Lay In 2x4'),(71,'Volumetric Grid lay in 1x4'),(72,'Volumetric Grid lay in 2x2'),(73,'Alfa Modular 1200 x 600mm'),(74,'n/a');
+/*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fixture_sizes`
+--
+
+DROP TABLE IF EXISTS `fixture_sizes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fixture_sizes` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fixture_sizes`
+--
+
+LOCK TABLES `fixture_sizes` WRITE;
+/*!40000 ALTER TABLE `fixture_sizes` DISABLE KEYS */;
+INSERT INTO `fixture_sizes` VALUES (1,'1200mm X 400mm'),(2,'1200mm X 50mm'),(3,'1300mm X 50mm'),(4,'140mm Square'),(5,'19\"'),(6,'190mm Round'),(7,'1x4'),(8,'24\" Green'),(9,'2400 x 50mm'),(10,'244mm'),(11,'2x2'),(12,'2x4'),(13,'3600 x 50mm'),(14,'4\"'),(15,'4\''),(16,'42.5\"'),(17,'5.75\"'),(18,'5300mm x 50mm'),(19,'595mm x 595mm'),(20,'6\"'),(21,'600mm x 600mm'),(22,'604mm x 604mm'),(23,'619mm x 619mm'),(24,'8\''),(25,'80mm'),(26,'CUSTOM'),(27,'1200mm x 600mm'),(28,'n/a');
+/*!40000 ALTER TABLE `fixture_sizes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fixture_types`
+--
+
+DROP TABLE IF EXISTS `fixture_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fixture_types` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fixture_types`
+--
+
+LOCK TABLES `fixture_types` WRITE;
+/*!40000 ALTER TABLE `fixture_types` DISABLE KEYS */;
+INSERT INTO `fixture_types` VALUES (1,'Accent'),(2,'Downlight'),(3,'Troffer'),(4,'Linear'),(5,'Fixtureless'),(6,'Occupancy'),(7,'Desk Sensor'),(8,'AC Zones (Qty)'),(9,'Downlight-Shared'),(10,'Out of Scope');
+/*!40000 ALTER TABLE `fixture_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `light_distributions`
+--
+
+DROP TABLE IF EXISTS `light_distributions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `light_distributions` (
+  `id` mediumint(9) NOT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `light_distributions`
+--
+
+LOCK TABLES `light_distributions` WRITE;
+/*!40000 ALTER TABLE `light_distributions` DISABLE KEYS */;
+INSERT INTO `light_distributions` VALUES (0,'n/a'),(1,'Wall Wash'),(2,'Multiple'),(3,'Direct'),(4,'Direct/Indirect');
+/*!40000 ALTER TABLE `light_distributions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lumens`
+--
+
+DROP TABLE IF EXISTS `lumens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lumens` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `lumens` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lumens`
+--
+
+LOCK TABLES `lumens` WRITE;
+/*!40000 ALTER TABLE `lumens` DISABLE KEYS */;
+INSERT INTO `lumens` VALUES (1,'1000'),(2,'1100'),(3,'1300'),(4,'1470'),(5,'1600'),(6,'1870'),(7,'2000'),(8,'2300'),(9,'2700'),(10,'2800'),(11,'2917'),(12,'2980'),(13,'300'),(14,'3000'),(15,'3050'),(16,'3200'),(17,'3300'),(18,'3400'),(19,'3545'),(20,'3625'),(21,'3630'),(22,'3695'),(23,'3761'),(24,'4000'),(25,'4296'),(26,'4600'),(27,'5200'),(28,'5300'),(29,'5600'),(30,'5834'),(31,'6000'),(32,'6100'),(33,'6700'),(34,'8000'),(35,'850'),(36,'8593'),(37,'9200'),(38,'934'),(39,'n/a');
+/*!40000 ALTER TABLE `lumens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `manufacturers`
+--
+
+DROP TABLE IF EXISTS `manufacturers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `manufacturers` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `manufacturers`
+--
+
+LOCK TABLES `manufacturers` WRITE;
+/*!40000 ALTER TABLE `manufacturers` DISABLE KEYS */;
+INSERT INTO `manufacturers` VALUES (1,'Alva'),(2,'Birchwood'),(3,'Davis'),(4,'Hatec'),(5,'Hover / Opti LED'),(6,'Lucifer'),(7,'MFG'),(8,'MHT'),(9,'Maxlite'),(10,'NoviLED'),(11,'Pathway'),(12,'Richter'),(13,'SPM'),(14,'n/a');
+/*!40000 ALTER TABLE `manufacturers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `model_numbers`
+--
+
+DROP TABLE IF EXISTS `model_numbers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `model_numbers` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `model_numbers`
+--
+
+LOCK TABLES `model_numbers` WRITE;
+/*!40000 ALTER TABLE `model_numbers` DISABLE KEYS */;
+INSERT INTO `model_numbers` VALUES (1,'ALVA-Sconce-xxxxK-LINEARCROSSONE-CURVE-RW.'),(2,'ALVA-Sconce-xxxxK-WHITECOTTON-CURVE-RW'),(3,'AM 0606 xx-xx-700'),(4,'C8xRW850XXXXXX'),(5,'CHL-LED-475-RWS-xxx-xxx-SEN-xx-4-xx-xx-xx-xxx-x'),(6,'CHL-LED-475-RWS-xxx-xxx-SEN-xx-8-xx-xx-xx-xxx-x'),(7,'CHL-LED-475-RWS-xxx-xxx-SEN-xx-x-xx-xx-xx-xxx-x'),(8,'COL-LED-325-RWS-XXX-XXX-SEN-XX-4-XX-XX-XX-XXX'),(9,'COL-LED-325-RWS-XXX-XXX-SEN-XX-8-XX-XX-XX-XXX'),(10,'COL-LED-325-RWS-XXX-XXX-SEN-XX-X-XX-XX-XX-XXX'),(11,'CP-DL200A50001-R'),(12,'CP-SQ600A50001-R'),(13,'Camino S 17W xxxxK RW1CH'),(14,'DLXXX-XX-X-XXXX-XX-XXXX'),(15,'HAI-LED-325-RWS-SEN-xx-4-xx-xx-xxx-x'),(16,'HAI-LED-325-RWS-SEN-xx-8-xx-xx-xxx-x'),(17,'HAI-LED-325-RWS-SEN-xx-x-xx-xx-xxx-x'),(18,'HL-DL-12W-6\"-xx-RW1C'),(19,'JAK-LED-325-RWS-XX-SEN-XX-4-XX-XXX'),(20,'JAK-LED-325-RWS-XX-SEN-XX-8-XX-XXX'),(21,'JAK-LED-325-RWS-XX-SEN-XX-X-XX-XXX'),(22,'JIL-LED-325-RWS-XX-SEN-XX-4-XX-XXX'),(23,'KEL-LED-325-RWS-SEN-xx-4-xx-xx-xxx-x'),(24,'KEL-LED-325-RWS-SEN-xx-8-xx-xx-xxx-x'),(25,'KEL-LED-325-RWS-SEN-xx-x-xx-xx-xxx-x'),(26,'LF48HDCB3341RW'),(27,'MHTL-CUBE-RC-4FT'),(28,'MHTL-CUBE-RC-8FT'),(29,'MHTL-MAGNT8-RC-17-2'),(30,'MHTL-MAGNT8-RC-17-4'),(31,'MHTL-PAN-RC-1X4'),(32,'MHTL-PAN-RC-2X2'),(33,'MHTL-PAN-RC-2X4'),(34,'MHTL-VOL-RC-2x2'),(35,'MHTL-VOL-RC-2x4'),(36,'MLFP14DP3541RW3'),(37,'MLFP22DP3541RW3'),(38,'MLVT14D3541RW3'),(39,'MLVT22D3541RW3'),(40,'MLVT24D3541RW3'),(41,'NCK Q4-1000L'),(42,'NCK R150-1300L'),(43,'NOL-LED-325-RWS-SEN-XX-4-XX-XX-XXX-XXX'),(44,'NOL-LED-325-RWS-SEN-XX-8-XX-XX-XXX-XXX'),(45,'NOL-LED-325-RWS-SEN-XX-X-XX-XX-XXX-XXX'),(46,'NUR'),(47,'R201401005-13'),(48,'R201401005-14'),(49,'R201401005-14 K50S S/M/W'),(50,'R201401005-15'),(51,'R201401005-17'),(52,'RF414ICAT35WRW3'),(53,'RF611ICAT30WRW'),(54,'RFR414ICAT35WRW3'),(55,'RFR611ICAT30WRW'),(56,'RL-SKHL-xxx-xxK-RW1CH-S'),(57,'RL-SP-2S-595-xx-RW1C'),(58,'RL-SP-2S-604-xx-RW1C'),(59,'RL-SP-2S-619-xx-RW1C'),(60,'SMARTPanel 172'),(61,'SPM 8L6RWS50/50 4000K 4YY'),(62,'SPM22DRWSxxxxx1YY'),(63,'SPM4L6RWS100xxxxx1YY'),(64,'SPM4L6RWS50/50 4000K 1YY'),(65,'SPM8L6RWS100xxxxx2YY'),(66,'STE-LED-325-RWS-XX-X-SEN-XX-4-XX-XX-XX-XXX'),(67,'STE-LED-325-RWS-XX-X-SEN-XX-8-XX-XX-XX-XXX'),(68,'STE-LED-325-RWS-XX-X-SEN-XX-X-XX-XX-XX-XXX'),(69,'AM 0612 xx-xx-1400'),(70,'n/a');
+/*!40000 ALTER TABLE `model_numbers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mount_options`
+--
+
+DROP TABLE IF EXISTS `mount_options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mount_options` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mount_options`
+--
+
+LOCK TABLES `mount_options` WRITE;
+/*!40000 ALTER TABLE `mount_options` DISABLE KEYS */;
+INSERT INTO `mount_options` VALUES (1,'Suspended'),(2,'Wall'),(3,'Surface'),(4,'Multiple'),(5,'Cord'),(6,'Recessed'),(7,'Direct Mount'),(8,'n/a');
+/*!40000 ALTER TABLE `mount_options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `part_numbers`
+--
+
+DROP TABLE IF EXISTS `part_numbers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `part_numbers` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `part_numbers`
+--
+
+LOCK TABLES `part_numbers` WRITE;
+/*!40000 ALTER TABLE `part_numbers` DISABLE KEYS */;
+INSERT INTO `part_numbers` VALUES (1,'(2) SEN-3M1-W-GNRC1680'),(2,'Consult Factory'),(3,'RG-2G-LED-SP221700'),(4,'SEN-3M1-W-GNRC1350'),(5,'SEN-3M1-W-GNRC1500'),(6,'SEN-3M1-W-GNRC1680'),(7,'SEN-3M1-W-GNRC1700'),(8,'SEN-3M1-W-MH141700'),(9,'SEN-3M1-W-MH221700'),(10,'included'),(11,'(2) SEN-3M1-W-BRCH1700'),(12,'(2) SEN-3M1-W-BRHL1700'),(13,'(2) SEN-3M1-W-BRJK1700'),(14,'(2) SEN-3M1-W-BRJL1700'),(15,'(2) SEN-3M1-W-BRKE1700'),(16,'(2) SEN-3M1-W-BRNL1700'),(17,'(2) SEN-3M1-W-BRST1700'),(18,'(2) SEN-3M1-W-BRCL1700'),(19,'RG-2G-LED-SP221700RS-2G-01PIGTAIL-1-FIXTURE'),(20,'SEN-3M1-W-ALVA1350'),(21,'SEN-3M1-W-BRCH1700'),(22,'SEN-3M1-W-BRCL1700'),(23,'SEN-3M1-W-BRHL1700'),(24,'SEN-3M1-W-BRJK1700'),(25,'SEN-3M1-W-BRJL1700'),(26,'SEN-3M1-W-BRKE1700'),(27,'SEN-3M1-W-BRNL1700'),(28,'SEN-3M1-W-BRST1700'),(29,'SEN-3M1-W-LCDLXC10'),(30,'SEN-3M1-W-MHTT1560'),(31,'SEN-3M1-W-MHTT1700'),(32,'SEN-3M1-W-ML14DI16'),(33,'SEN-3M1-W-ML22DI16'),(34,'SEN-3M1-W-MLDL4I50'),(35,'SEN-3M1-W-MLDL6I64'),(36,'SEN-3M1-W-MLVT1470'),(37,'SEN-3M1-W-MLVT2270'),(38,'SEN-3M1-W-MLVT2470'),(39,'SEN-3M1-W-NOVI3370'),(40,'SEN-3M1-W-PATH1700'),(41,'SEN-3M1-W-RTDL1350'),(42,'SEN-3M1-W-RTPD1350'),(43,'SEN-3M1-W-RTSP3G10'),(44,'n/a');
+/*!40000 ALTER TABLE `part_numbers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_join`
+--
+
+DROP TABLE IF EXISTS `product_join`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_join` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `region_id` mediumint(9) NOT NULL,
+  `fixture_id` mediumint(9) NOT NULL,
+  `mount_id` mediumint(9) NOT NULL,
+  `size_id` mediumint(9) NOT NULL,
+  `light_distribution_id` mediumint(9) NOT NULL,
+  `manufacturer_id` mediumint(9) NOT NULL,
+  `channel_id` mediumint(9) NOT NULL,
+  `lumen_id` mediumint(9) NOT NULL,
+  `model_id` mediumint(9) NOT NULL,
+  `desc_id` mediumint(9) NOT NULL,
+  `control_id` mediumint(9) NOT NULL,
+  `part_number_id` mediumint(9) NOT NULL,
+  `current_id` mediumint(9) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=277 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_join`
+--
+
+LOCK TABLES `product_join` WRITE;
+/*!40000 ALTER TABLE `product_join` DISABLE KEYS */;
+INSERT INTO `product_join` VALUES (140,1,8,8,28,0,14,3,39,70,74,4,44,11),(141,3,8,8,28,0,14,3,39,70,74,4,44,11),(142,2,8,8,28,0,14,3,39,70,74,4,44,11),(143,4,8,8,28,0,14,3,39,70,74,4,44,11),(144,4,1,5,17,2,11,3,35,4,52,3,40,10),(145,4,1,4,5,3,8,3,6,29,47,3,30,6),(146,4,1,4,16,3,8,3,21,30,48,3,31,10),(147,4,1,3,17,2,11,3,35,4,52,3,40,10),(148,1,1,3,25,3,4,1,13,49,40,4,44,11),(149,4,1,1,17,2,11,3,35,4,52,3,40,10),(150,4,1,1,28,3,12,3,4,13,59,3,42,4),(151,4,1,2,28,1,1,3,13,1,13,3,20,3),(152,4,1,2,28,1,1,3,13,2,13,3,20,3),(153,4,1,2,17,2,11,3,35,4,52,3,40,10),(154,2,1,2,28,3,12,3,4,13,59,3,42,4),(155,4,1,2,28,3,12,3,4,13,59,3,42,4),(156,1,1,1,28,3,12,3,4,13,59,3,5,4),(157,1,1,2,28,3,12,3,4,13,59,3,5,4),(158,1,7,8,28,0,14,3,39,70,74,4,44,11),(159,3,7,8,28,0,14,3,39,70,74,4,44,11),(160,2,7,8,28,0,14,3,39,70,74,4,44,11),(161,4,7,8,28,0,14,3,39,70,74,4,44,11),(162,1,2,6,4,3,3,3,1,41,22,3,4,3),(163,1,2,6,6,3,3,3,3,42,23,3,4,3),(164,1,2,6,10,3,5,3,3,11,2,3,5,5),(165,4,2,6,14,3,9,3,38,52,4,3,34,4),(166,4,2,6,14,3,9,3,38,54,58,3,34,4),(167,1,2,6,20,3,12,3,2,18,60,3,4,3),(168,4,2,6,20,3,6,3,14,14,20,3,29,4),(169,4,2,6,20,3,9,3,38,53,7,3,35,8),(170,4,2,6,20,3,9,3,38,55,8,3,35,8),(171,2,2,2,20,3,12,3,2,18,60,3,41,3),(172,1,5,8,28,0,14,3,39,70,74,4,44,11),(173,3,5,8,28,0,14,3,39,70,74,4,44,11),(174,2,5,8,28,0,14,3,39,70,74,4,44,11),(175,4,5,8,28,0,14,3,39,70,74,4,44,11),(176,2,4,6,2,3,4,1,10,47,41,4,44,11),(177,2,4,6,3,3,4,3,10,50,37,4,44,11),(178,2,4,6,3,3,4,4,27,50,38,4,44,11),(179,2,4,6,9,3,4,1,29,47,41,4,44,11),(180,2,4,6,13,3,4,1,29,47,41,4,44,11),(181,4,4,6,15,3,2,3,7,19,30,3,24,10),(182,4,4,6,15,3,2,3,8,22,33,3,25,10),(183,2,4,6,18,3,4,3,28,48,36,4,44,11),(184,4,4,6,24,3,2,4,24,20,31,3,13,1),(185,4,4,6,24,3,2,4,26,22,34,3,14,1),(186,2,4,6,26,3,4,1,39,47,41,4,44,11),(187,2,4,6,26,3,4,1,39,50,39,4,44,11),(188,2,4,6,26,3,4,1,39,48,36,4,44,11),(189,4,4,6,26,3,2,1,39,21,32,3,44,11),(190,4,4,6,26,3,2,1,39,22,35,3,44,11),(191,2,4,3,2,3,4,1,10,47,41,4,44,11),(192,2,4,3,3,3,4,3,10,50,37,4,44,11),(193,2,4,3,3,3,4,4,27,50,38,4,44,11),(194,2,4,3,9,3,4,1,29,47,41,4,44,11),(195,2,4,3,13,3,4,1,29,47,41,4,44,11),(196,4,4,3,15,3,2,3,8,43,49,3,27,10),(197,4,4,3,15,3,9,3,14,26,46,1,44,10),(198,4,4,3,15,3,2,3,7,23,44,3,26,10),(199,2,4,3,18,3,4,3,28,48,36,4,44,11),(200,4,4,3,24,3,2,4,24,24,45,3,15,1),(201,4,4,3,24,3,2,4,26,44,50,3,16,1),(202,2,4,3,26,3,4,1,39,47,41,4,44,11),(203,2,4,3,26,3,4,1,39,50,39,4,44,11),(204,2,4,3,26,3,4,1,39,48,36,4,44,11),(205,4,4,3,26,3,2,1,39,25,43,3,44,11),(206,4,4,3,26,3,2,1,39,45,51,3,44,11),(207,2,4,1,2,3,4,1,10,51,42,4,44,11),(208,2,4,1,9,3,4,1,29,51,42,4,44,11),(209,2,4,1,13,3,4,1,29,51,42,4,44,11),(210,4,4,1,15,4,2,4,26,5,14,3,21,1),(211,4,4,1,15,4,2,4,24,8,17,3,22,1),(212,4,4,1,15,3,2,3,8,15,27,3,23,10),(213,4,4,1,15,3,2,3,8,43,49,3,27,10),(214,4,4,1,15,3,2,3,7,66,65,3,28,10),(215,4,4,1,15,3,9,3,14,26,46,1,44,10),(216,4,4,1,15,3,8,3,18,27,68,1,44,10),(217,4,4,1,15,3,13,3,11,63,6,1,44,10),(218,4,4,1,15,4,13,3,25,64,5,1,44,10),(219,4,4,1,15,3,2,3,7,23,44,3,26,10),(220,4,4,1,24,4,2,5,37,6,15,3,11,2),(221,4,4,1,24,4,2,5,34,9,18,3,18,2),(222,4,4,1,24,3,2,4,26,16,28,3,12,1),(223,4,4,1,24,3,2,4,24,24,45,3,15,1),(224,4,4,1,24,3,2,4,26,44,50,3,16,1),(225,4,4,1,24,3,2,4,24,67,66,3,17,1),(226,4,4,1,24,3,8,4,33,28,69,1,44,1),(227,4,4,1,24,3,13,4,30,65,11,1,44,1),(228,4,4,1,24,4,13,4,36,61,10,1,44,1),(229,2,4,1,26,3,4,1,39,51,42,4,44,11),(230,4,4,1,26,4,2,1,39,7,16,3,44,11),(231,4,4,1,26,4,2,1,24,10,19,3,44,11),(232,4,4,1,26,3,2,1,39,17,29,3,44,11),(233,4,4,1,26,3,2,1,39,25,43,3,44,11),(234,4,4,1,26,3,2,1,39,45,51,3,44,11),(235,4,4,1,26,3,2,1,39,68,67,3,44,11),(236,1,4,2,15,3,12,3,9,56,64,1,44,10),(237,4,4,2,15,4,2,4,24,8,17,3,22,1),(238,4,4,2,24,4,2,5,34,9,18,3,18,2),(239,4,4,2,26,4,2,1,24,10,19,3,44,11),(240,1,6,7,8,3,8,3,39,70,74,4,44,11),(241,3,6,7,8,3,8,3,39,70,74,4,44,11),(242,2,6,7,8,3,8,3,39,70,74,4,44,11),(243,4,6,7,8,3,8,3,39,70,74,4,44,11),(244,1,10,8,28,0,14,1,39,70,74,4,44,11),(245,3,10,8,28,0,14,1,39,70,74,4,44,11),(246,2,10,8,28,0,14,1,39,70,74,4,44,11),(247,4,10,8,28,0,14,1,39,70,74,4,44,11),(248,4,3,6,11,3,8,3,14,34,56,3,9,10),(249,4,3,6,12,3,8,4,31,35,57,1,44,1),(250,5,3,6,27,3,10,4,16,69,73,5,44,1),(251,6,3,6,27,3,10,4,16,69,73,3,44,1),(252,4,3,6,7,3,9,3,12,36,25,3,32,9),(253,4,3,6,7,3,9,3,20,38,71,3,36,10),(254,4,3,6,7,3,8,3,18,31,53,3,8,10),(255,4,3,6,11,3,9,3,15,37,26,3,33,9),(256,4,3,6,11,3,9,3,19,39,72,3,37,10),(257,4,3,6,11,3,8,3,18,32,54,3,9,10),(258,4,3,6,11,3,13,3,23,62,3,2,19,10),(259,4,3,6,12,3,9,3,22,40,70,3,38,10),(260,4,3,6,12,3,8,4,32,33,55,1,44,1),(261,1,3,6,21,3,3,3,17,46,21,3,6,10),(262,1,3,6,21,3,5,3,9,12,9,3,5,7),(263,1,3,6,21,3,10,3,5,3,12,3,6,10),(264,2,3,6,21,3,10,3,5,3,12,3,39,10),(265,4,3,3,7,3,9,3,12,36,25,3,32,9),(266,4,3,3,11,3,9,3,15,37,26,3,33,9),(267,4,3,1,7,3,9,3,12,36,25,3,32,9),(268,4,3,1,11,3,9,3,15,37,26,3,33,9),(269,4,3,1,11,3,13,3,23,62,3,2,19,10),(270,1,3,6,1,3,5,3,16,60,1,3,6,10),(271,1,3,3,19,3,12,3,9,57,61,3,6,10),(272,2,3,3,19,3,12,3,9,57,61,3,43,10),(273,1,3,3,22,3,12,3,9,58,62,3,6,10),(274,2,3,3,22,3,12,3,9,58,62,3,43,10),(275,1,3,3,23,3,12,3,9,59,63,3,6,10),(276,2,3,3,23,3,12,3,9,59,63,3,43,10);
+/*!40000 ALTER TABLE `product_join` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_info`
+--
+
+DROP TABLE IF EXISTS `project_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project_info` (
+  `dateTime` varchar(25) NOT NULL,
+  `projectName` varchar(256) DEFAULT NULL,
+  `address` varchar(256) DEFAULT NULL,
+  `region_id` mediumint(9) DEFAULT NULL,
+  `createdBy` varchar(256) DEFAULT NULL,
+  `basedOn` varchar(256) DEFAULT NULL,
+  `email` varchar(256) DEFAULT NULL,
+  `notes` mediumtext,
+  PRIMARY KEY (`dateTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_info`
+--
+
+LOCK TABLES `project_info` WRITE;
+/*!40000 ALTER TABLE `project_info` DISABLE KEYS */;
+INSERT INTO `project_info` VALUES ('2014-09-17 05:10:09 PM','project3','972 W. Dahlia St.',3,'CJP','noone','cp@cjparker.us','these are notes');
+/*!40000 ALTER TABLE `project_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `regions`
+--
+
+DROP TABLE IF EXISTS `regions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `regions` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `regions`
+--
+
+LOCK TABLES `regions` WRITE;
+/*!40000 ALTER TABLE `regions` DISABLE KEYS */;
+INSERT INTO `regions` VALUES (1,'APAC'),(2,'EMEA'),(3,'CALA'),(4,'NAR'),(5,'Asia Pacific'),(6,'Europe');
+/*!40000 ALTER TABLE `regions` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-09-17 19:33:01
