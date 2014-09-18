@@ -13,7 +13,7 @@ angular.module('rwsprojectApp')
                     data: projectInfo});
             },
 
-            fetchProjectInfo: function() {
+            fetchProjectInfo: function () {
                 // gets the current project info using the current project ID in the session
                 return $http({
                     method: 'GET',
@@ -21,7 +21,21 @@ angular.module('rwsprojectApp')
                 });
             },
 
-            fetchRegions: function() { return $http.get('/server/regions') }
+            fetchRegions: function () {
+                return $http.get('/server/regions')
+            },
+
+            fetchFixtureTypes: function (regionId) {
+                return $http.get('/server/getFixtureTypes?regionId=' + regionId);
+            },
+
+            fetchMountTypes: function (regionId, fixtureTypeId) {
+                return $http.get('/server/getMountTypes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId);
+            },
+
+            fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId) {
+                return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId);
+            }
 
         };
 

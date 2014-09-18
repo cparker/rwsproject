@@ -117,9 +117,9 @@ def handleSubmitProjectInfo():
             address=request.json['address'],
             regionId=request.json['region']['id'],
             createdBy=request.json['createdBy'],
-            basedOn=request.json.get('basedOn',''),
+            basedOn=request.json.get('basedOn', ''),
             email=request.json['email'],
-            notes=request.json.get('notes','')
+            notes=request.json.get('notes', '')
         ))
 
         # set the active project id in the session
@@ -167,6 +167,89 @@ def handleGetProjectInfo():
         resp = jsonify([])
         resp.status_code = 404
         return resp
+
+
+@app.route('/server/getFixtureTypes')
+def doGetFixtureTypes():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+
+    try:
+        cur.execute("""
+        select distinct fixture_types.name, fixture_types.id from
+        fixture_types, product_join, regions
+        where fixture_types.id=product_join.fixture_id AND
+        regions.id=product_join.region_id AND
+        regions.id={regionId}
+        """.format(
+            regionId=request.args.get('regionId')
+        ))
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+
+    finally:
+        cur.close()
+        con.close()
+
+
+@app.route('/server/getMountTypes')
+def doGetMountTypes():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+
+    try:
+        cur.execute("""
+        select distinct mount_options.name, mount_options.id from
+        mount_options, fixture_types, product_join, regions
+        WHERE fixture_types.id=product_join.fixture_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        regions.id='{regionId}' AND
+        fixture_types.id='{fixtureTypeId}';
+        """.format(
+            regionId=request.args.get('regionId'),
+            fixtureTypeId=request.args.get('fixtureTypeId')
+        ))
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+
+    finally:
+        cur.close()
+        con.close()
+
+
+@app.route('/server/getFixtureSizes')
+def doGetFixtureSizes():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute("""
+            select distinct fixture_sizes.name, fixture_sizes.id from
+            fixture_sizes, mount_options, fixture_types, product_join, regions
+            WHERE fixture_types.id=product_join.fixture_id AND
+            fixture_sizes.id = product_join.size_id AND
+            regions.id=product_join.region_id AND
+            mount_options.id = product_join.mount_id AND
+            regions.id='{regionId}' AND
+            fixture_types.id = '{fixtureTypeId}' AND
+            mount_options.id = '{mountTypeId}';
+        """.format(
+            regionId=request.args.get('regionId'),
+            fixtureTypeId=request.args.get('fixtureTypeId'),
+            mountTypeId=request.args.get('mountTypeId')
+        ))
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+
+    finally:
+        con.close()
+        cur.close()
 
 
 @app.route('/server/checkAccess')

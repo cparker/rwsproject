@@ -7,28 +7,22 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="fixtureType">Fixture type</label>
-        <select class="simpleArrowSelect" id="fixtureType">
-            <option>Troffer</option>
-            <option>two</option>
-            <option>three</option>
+        <select required name="fixtureType" ng-change="changeFixtureType()" ng-model="fixtureForm.fixtureType" ng-options="fixture.name for fixture in fixtureTypes track by fixture.id" class="simpleArrowSelect" id="fixtureType">
+            <option value="">choose fixture</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="mountType">Mount type</label>
-        <select class="simpleArrowSelect" id="mountType">
-            <option>Wall</option>
-            <option>two</option>
-            <option>three</option>
+        <select required name="mountType" ng-change="changeMountType()" ng-model="fixtureForm.mountType" ng-options="mount.name for mount in mountTypes track by mount.id" class="simpleArrowSelect" id="mountType">
+            <option value="">choose mount</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="size">Size</label>
-        <select class="simpleArrowSelect" id="size">
-            <option>8'</option>
-            <option>10'</option>
-            <option>20'</option>
+        <select required name="fixtureSize" ng-change="changeFixtureSize()" ng-model="fixtureForm.fixtureSize" ng-options="size.name for size in fixtureSizes track by size.id" class="simpleArrowSelect" id="size">
+            <option value="">choose size</option>
         </select>
     </div>
 

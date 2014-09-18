@@ -7,7 +7,7 @@ angular.module('rwsprojectApp')
                 {name: 'APAC', id:2}
             ];
 
-            $scope.tabs.tabOne = {
+            $rootScope.tabs.tabOne = {
                 dateTime: $filter('date')(new Date(), 'yyyy-MM-dd hh:mm:ss a'),
                 projectName: undefined,
                 address: undefined,
@@ -32,8 +32,8 @@ angular.module('rwsprojectApp')
                 .success(function (data) {
                     console.log('received project info');
                     console.log(data);
-                    $scope.tabs.tabOne = data;
-                    console.log($scope.tabs.tabOne);
+                    $rootScope.tabs.tabOne = data;
+                    console.log($rootScope.tabs.tabOne);
                 })
                 .error(function (data, status) {
                     // no current project
@@ -48,7 +48,7 @@ angular.module('rwsprojectApp')
                     // allow switching to a different tab if this tab is valid
                     if ($scope.projectInfo.$valid) {
                         // send the data
-                        dataService.submitProjectInfo($scope.tabs.tabOne);
+                        dataService.submitProjectInfo($rootScope.tabs.tabOne);
 
                         // switch tabs
                         $rootScope.tabs.activeTab = toTab;
