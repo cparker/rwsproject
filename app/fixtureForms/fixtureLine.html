@@ -1,43 +1,43 @@
 <ul class="fixtureList">
-    <li class="animate-repeat" ng-repeat="line in fixtureLines">
-        <div id="{{line}}" ng-class="{fixtureLineSelected:isLineSelected(line)}" class="row-fluid fixtureLine" ng-click="fixtureLineSelect(line)">
+    <li class="animate-repeat" ng-repeat="line in getFixtureLines()">
+        <div id="{{line.fixtureLineId}}" ng-class="{fixtureLineSelected:isLineSelected(line)}" class="row-fluid fixtureLine" ng-click="fixtureLineSelect(line)">
             <div class="span2 fixtureLineSection">
-                <p>1</p>
+                <p>{{line.fixtureId}}</p>
 
-                <p>Troffer</p>
+                <p>{{line.fixtureType.name}}</p>
 
-                <p>Wall</p>
+                <p>{{line.mountType.name}}</p>
 
-                <p>8"</p>
+                <p>{{line.fixtureSize.name}}</p>
             </div>
 
             <div class="span2 fixtureLineSection">
-                <p>Direct</p>
+                <p>{{line.distribution.name}}</p>
 
-                <p>2000</p>
+                <p>{{line.lumens.lumens}} lumens</p>
 
-                <p>Channels : 1</p>
+                <p>{{line.channels.channel_count}} channels</p>
 
-                <p>Standard Qty: 1</p>1G
-                <p>Emergency Qty: 1</p>
+                <p>Standard Qty: {{line.standardQuantity}}</p>
+                <p>Emergency Qty: {{line.emergencyQuantity}}</p>
             </div>
 
             <div class="span2 fixtureLineSection">
-                <p>Sensor 3</p>
+                <p>{{line.controlMethod.name}}</p>
 
-                <p>Normal</p>
+                <p>{{line.sensorType.name}}</p>
 
-                <p>Control-Qty</p>
+                <p>Ctrl Qty. {{line.controlQuantity}}</p>
             </div>
 
             <div class="span6 fixtureLineSection lastFixtureSection">
-                <p>COL-LED-325-RWS-XXX-XXX-SEN-XX-4-XX-XX-XX-XXX</p>
+                <p>{{line.partInfo.model}}</p>
 
-                <p>MHT LED Magnetic Tube 19" (Each fixture comes with (2) 2' sections powered by 1 sensor)</p>
+                <p>{{line.partInfo.description}}</p>
 
-                <p>Gateway: gateway part number</p>
+                <p>{{line.partInfo.part_number}}</p>
 
-                <p>Sensor: None</p>
+                <p>Sensor: {{line.sensorType.name}}</p>
                 <label class="leftSideLabel" for="12345">Accessories</label>
                 <input type="checkbox" readonly="true" id="12345" checked="yes"/>
                 <a href="" ng-click="deleteFixtureLine(line)">delete</a>

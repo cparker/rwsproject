@@ -161,7 +161,7 @@ select#projectCountry {
 
 #fixtureSectionTwo select {
     height: 1.3em;
-    width: 120px;
+    width: 160px;
 }
 
 #fixtureSectionThree select {
@@ -533,11 +533,32 @@ div#optionalEquipmentPanel textarea {
 }
 
 
+/* if the form hasn't been touched, no red */
 .projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
     outline:none;
 }
+
+/* once they attempt to submit the form, mark fiekds */
 .projectInfoForm.ng-submitted input.ng-invalid,
 .projectInfoForm.ng-submitted select.ng-invalid,
 .projectInfoForm.ng-submitted textarea.ng-invalid {
     outline: 2px dotted red;
 }
+
+/* If they touch a field, and leave it invalid, mark it */
+.projectInfoForm input.ng-invalid.ng-touched,
+.projectInfoForm select.ng-invalid.ng-touched,
+.projectInfoForm textarea.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+
+
+.fixtureForm input[type="text"].ng-invalid.ng-pristine, .fixtureForm select.ng-invalid.ng-pristine {
+    outline: none;
+}
+
+.fixtureForm input[type="text"].ng-invalid.ng-touched,
+.fixtureForm select.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+

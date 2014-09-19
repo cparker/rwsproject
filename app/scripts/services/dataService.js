@@ -4,6 +4,41 @@ angular.module('rwsprojectApp')
 
         var theService = {
 
+            selectedFixtureLine: undefined,
+
+            fixtureLines: [],
+
+            addFixtureLine: function (fixtureForm) {
+                fixtureForm.fixtureLineId = this.fixtureLines.length + 1;
+                this.fixtureLines.push(fixtureForm);
+            },
+
+            getFixtureLines: function () {
+                return this.fixtureLines;
+            },
+
+            deleteFixtureLine: function (lineId) {
+                var delIndex = undefined;
+                for (var i = 0; i < this.fixtureLines.length; i++) {
+                    if (lineId === this.fixtureLines[i][this.fixtureLineId]) {
+
+                    }
+                }
+                this.fixtureLines.splice(delIndex, 1);
+            },
+
+            selectFixtureLine: function (lineId) {
+                this.selectedFixtureLine = lineId;
+                return _.find(this.fixtureLines, function (l) {
+                    return l.fixtureLineId === lineId;
+                })
+            },
+
+            isLineSelected: function (lineId) {
+                return this.selectedFixtureLine === lineId;
+            },
+
+
             submitProjectInfo: function (projectInfo) {
 
                 // return the result of $http, which is a promise, so we can handle it back in the controller
@@ -35,7 +70,32 @@ angular.module('rwsprojectApp')
 
             fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId) {
                 return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId);
+            },
+
+            fetchDistributions: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId) {
+                return $http.get('/server/getDistributions?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId);
+            },
+
+            fetchLumens: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId) {
+                return $http.get('/server/getLumens?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId);
+            },
+
+            fetchChannels: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId) {
+                return $http.get('/server/getChannels?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId);
+            },
+
+            fetchManufacturers: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId) {
+                return $http.get('/server/getManufacturers?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId);
+            },
+
+            fetchControlMethods: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId) {
+                return $http.get('/server/getControlMethods?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId);
+            },
+
+            getPartInfo: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId, controlMethodId) {
+                return $http.get('/server/getPartInfo?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId + '&controlMethodId=' + controlMethodId);
             }
+
 
         };
 
@@ -43,4 +103,5 @@ angular.module('rwsprojectApp')
         return theService;
 
 
-    }]);
+    }])
+;

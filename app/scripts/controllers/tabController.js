@@ -1,5 +1,5 @@
 angular.module('rwsprojectApp')
-    .controller('tabController', function ($scope, $rootScope, $route, $http, $filter) {
+    .controller('tabController', function ($scope, $rootScope, $route, $http, $filter, dataService) {
 
         $rootScope.thing = "HAHAHA";
 
@@ -11,11 +11,9 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab1';
+        $rootScope.tabs.activeTab = 'tab2';
 
         $scope.selectedLineId = undefined;
-
-        $scope.fixtureLines = [];
 
         $rootScope.tabs.accessoriesDialogHide = true;
         $rootScope.tabs.notesDialogHide = true;
@@ -23,27 +21,18 @@ angular.module('rwsprojectApp')
         $scope.regions = [ ];
         $scope.selectedRegion = 0;
 
-        $scope.addFixtureLine = function () {
-            var nextId = undefined;
-            if ($scope.fixtureLines.length > 0) {
-                nextId = $scope.fixtureLines[$scope.fixtureLines.length - 1] + 1;
-            } else {
-                nextId = 1;
-            }
-            $scope.fixtureLines.push(nextId);
-        };
 
         $scope.deleteFixtureLine = function (lineId) {
-            var index = $scope.fixtureLines.indexOf(lineId);
-            $scope.fixtureLines.splice(index, 1);
+            dataService.deleteFixtureLine(lineId);
         };
 
-        $scope.fixtureLineSelect = function (lineId) {
-            $scope.selectedLineId = lineId;
+        $scope.fixtureLineSelect = function (line) {
+            // set the form based on the selected line
+            $rootScope.fixtureForm = dataService.selectFixtureLine(line.fixtureLineId);
         };
 
         $scope.isLineSelected = function (lineId) {
-            return lineId == $scope.selectedLineId;
+            return dataService.isLineSelected(lineId);
         };
 
         $scope.tabs.tabClick = function (tabId, $event) {
@@ -103,6 +92,10 @@ angular.module('rwsprojectApp')
                     console.log(data);
                 });
 
+        }
+
+        $scope.getFixtureLines = function() {
+            return dataService.getFixtureLines();
         }
 
     });

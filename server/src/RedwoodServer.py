@@ -136,6 +136,24 @@ def handleSubmitProjectInfo():
         con.close()
 
 
+def runFixtureQuery(query):
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute(query)
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+        resp = jsonify([])
+        resp.status_code = 500
+        return resp
+
+    finally:
+        con.close()
+        cur.close()
+
+
 # #
 # if the user has an active project in their session, retrieve it
 # #
@@ -250,6 +268,201 @@ def doGetFixtureSizes():
     finally:
         con.close()
         cur.close()
+
+
+@app.route('/server/getDistributions')
+def doGetDistributions():
+    query = """
+        select distinct light_distributions.name, light_distributions.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}';
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getLumens')
+def doGetLumens():
+    query = """
+        select distinct lumens.lumens, lumens.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getChannels')
+def doGetChannels():
+    query = """
+        select distinct channels.channel_count, channels.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getManufacturers')
+def doGetManufacturers():
+    query = """
+        select distinct manufacturers.name, manufacturers.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getControlMethods')
+def doGetControlMethods():
+    query = """
+        select distinct control_methods.name, control_methods.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+        control_methods.id = product_join.control_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}' AND
+        manufacturers.id = '{manufacturerId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId'),
+        manufacturerId=request.args.get('manufacturerId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getPartInfo')
+def doGetPartInfo():
+    query = """
+        select distinct model_numbers.name as model, model_numbers.id as model_id, descriptions.description as description, descriptions.id as desc_id, part_numbers.name as part_number,
+        part_numbers.id as part_id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+        control_methods.id = product_join.control_id AND
+        model_numbers.id = product_join.model_id AND
+        descriptions.id = product_join.desc_id AND
+        part_numbers.id = product_join.part_number_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}' AND
+        manufacturers.id = '{manufacturerId}' AND
+        control_methods.id='{controlMethodId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId'),
+        manufacturerId=request.args.get('manufacturerId'),
+        controlMethodId=request.args.get('controlMethodId')
+    )
+    return runFixtureQuery(query)
 
 
 @app.route('/server/checkAccess')
