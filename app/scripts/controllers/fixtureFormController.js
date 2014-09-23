@@ -53,6 +53,7 @@ angular.module('rwsprojectApp')
 
             $scope.fixtureLines = [];
 
+
             $rootScope.$on('tabLosingFocus', function (stuff, fromTab, toTab) {
                 if (toTab === 'tab2') {
                     dataService.fetchFixtureTypes($rootScope.tabs.tabOne.region.id)
@@ -163,11 +164,32 @@ angular.module('rwsprojectApp')
             };
 
             $scope.addFixtureLine = function () {
-                dataService.addFixtureLine($rootScope.fixtureForm);
+                $scope.fixtureTabForm.$setSubmitted();
+
+                var accessoryDetails = _.map($rootScope.selectedAccessories, function (accessoryCount, accessoryIndex) {
+                    return {
+                        accessoryCount: accessoryCount,
+                        accessory: $scope.accessories[accessoryIndex]
+                    };
+                });
+
+                var filteredAccessoryDetails = _.filter(accessoryDetails, function (d) {
+                    return d.accessoryCount != undefined;
+                });
+
+                if ($scope.fixtureTabForm.$valid) {
+                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails);
+                }
             };
 
             $scope.resetFixtureForm = function () {
                 $rootScope.fixtureForm = {};
-            }
+                $scope.fixtureTabForm.$setPristine();
+                dataService.selectedFixtureLine = undefined;
+            };
+
+            $scope.hasLineBeenAdded = function () {
+                return $scope.fixtureForm.fixtureLineId != undefined;
+            };
 
         }]);

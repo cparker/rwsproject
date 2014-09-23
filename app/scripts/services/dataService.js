@@ -8,9 +8,15 @@ angular.module('rwsprojectApp')
 
             fixtureLines: [],
 
-            addFixtureLine: function (fixtureForm) {
+            addFixtureLine: function (fixtureForm, selectedAccessories) {
                 fixtureForm.fixtureLineId = this.fixtureLines.length + 1;
+                fixtureForm.selectedAccessories = selectedAccessories;
                 this.fixtureLines.push(fixtureForm);
+                // the one you just added becomes immediately selected
+                this.selectedFixtureLine = fixtureForm.fixtureLineId;
+
+                // send it to the server
+                this.submitFixtureLine(fixtureForm);
             },
 
             getFixtureLines: function () {
@@ -94,6 +100,17 @@ angular.module('rwsprojectApp')
 
             getPartInfo: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId, controlMethodId) {
                 return $http.get('/server/getPartInfo?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId + '&controlMethodId=' + controlMethodId);
+            },
+
+            fetchAccessories: function () {
+                return $http.get('/server/getAccessories')
+            },
+
+            submitFixtureLine: function (fixtureLine) {
+                return $http({
+                    method: 'POST',
+                    url: '/server/submitFixture',
+                    data: fixtureLine});
             }
 
 

@@ -1,8 +1,6 @@
 angular.module('rwsprojectApp')
     .controller('tabController', function ($scope, $rootScope, $route, $http, $filter, dataService) {
 
-        $rootScope.thing = "HAHAHA";
-
         $rootScope.isLoggedIn = undefined;
 
 
@@ -21,6 +19,17 @@ angular.module('rwsprojectApp')
         $scope.regions = [ ];
         $scope.selectedRegion = 0;
 
+        $scope.accessories = [];
+
+        $rootScope.selectedAccessories = [];
+
+        dataService.fetchAccessories()
+            .success(function (ac) {
+                $scope.accessories = ac.payload;
+
+            }).error(function (er) {
+                $scope.$emit('httpError', 'Failed to fetch accessories ' + er);
+            });
 
         $scope.deleteFixtureLine = function (lineId) {
             dataService.deleteFixtureLine(lineId);
@@ -31,8 +40,8 @@ angular.module('rwsprojectApp')
             $rootScope.fixtureForm = dataService.selectFixtureLine(line.fixtureLineId);
         };
 
-        $scope.isLineSelected = function (lineId) {
-            return dataService.isLineSelected(lineId);
+        $scope.isLineSelected = function (line) {
+            return dataService.isLineSelected(line.fixtureLineId);
         };
 
         $scope.tabs.tabClick = function (tabId, $event) {
@@ -92,10 +101,10 @@ angular.module('rwsprojectApp')
                     console.log(data);
                 });
 
-        }
+        };
 
-        $scope.getFixtureLines = function() {
+        $scope.getFixtureLines = function () {
             return dataService.getFixtureLines();
-        }
+        };
 
     });

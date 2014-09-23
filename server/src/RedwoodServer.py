@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""
+Good docs for MySQLDb http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+"""
 
 
 import MySQLdb
@@ -129,6 +132,74 @@ def handleSubmitProjectInfo():
     except Exception as ex:
         print('caught ' + str(ex))
         return 'error', 500
+
+    finally:
+        cur.close()
+        con.commit()
+        con.close()
+
+
+@app.route('/server/submitFixture', methods=['POST'])
+def handleSubmitFixture():
+    print('received ' + str(request.json))
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute("""
+            INSERT INTO fixture (projectId, controlMethod,  controlQuantity,    emergencyQuantity,  standardQuantity,   distribution,
+                                 fixtureId, fixtureSize,    fixtureType,        lumens,             manufacturer,       mountType,
+                                 partModel, partDesc,       partNumber,         sensorType)
+            VALUES
+            ('{projectId}',     '{controlMethod}',      '{controlQuantity}',    '{emergencyQuantity}',  '{standardQuantity}',   '{distribution}',
+             '{fixtureId}',     '{fixtureSize}',        '{fixtureType}',        '{lumens}',             '{manufacturer}',       '{mountType}',
+             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}')
+            ON DUPLICATE KEY UPDATE
+                projectId='{projectId}', controlMethod='{controlMethod}', controlQuantity='{controlQuantity}', emergencyQuantity='{emergencyQuantity}',
+                standardQuantity='{standardQuantity}', distribution='{distribution}', fixtureId='{fixtureId}', fixtureSize='{fixtureSize}', fixtureType='{fixtureType}',
+                lumens='{lumens}', manufacturer='{manufacturer}', mountType='{mountType}', partModel='{partModel}', partDesc='{partDesc}',
+                partNumber='{partNumber}', sensorType='{sensorType}'
+        """.format(
+            projectId=request.json['projectId'],
+            controlMethod=request.json['controlMethod']['name'],
+            controlQuantity=int(request.json['controlQuantity']),
+            emergencyQuantity=int(request.json['emergencyQuantity']),
+            standardQuantity=int(request.json['standardQuantity']),
+            distribution=request.json['distribution']['name'],
+            fixtureId=request.json['fixtureId'],
+            fixtureSize=request.json['fixtureSize']['name'],
+            fixtureType=request.json['fixtureType']['name'],
+            lumens=request.json['lumens']['lumens'],
+            manufacturer=request.json['manufacturer']['name'],
+            mountType=request.json['mountType']['name'],
+            partModel=request.json['partInfo']['model'],
+            partDesc=request.json['partInfo']['description'],
+            partNumber=request.json['partInfo']['part_number'],
+            sensorType=request.json['sensorType']['name']
+        ))
+
+        insertedFixtureId = con.insert_id
+
+        # now insert the accessories and notes
+        for accessory in request.json['selectedAccessories']:
+            cur.execute("""
+                INSERT INTO accessory (fixture_id, description, part_number, count)
+                VALUES ('{fixtureId}', '{description}', '{part_number}', '{count}')
+            """.format(
+                fixtureId=insertedFixtureId,
+                description=accessory['accessory']['description'],
+                part_number=accessory['accessory']['part_number'],
+                count=accessory['accessoryCount']
+            ))
+
+        resp = jsonify([])
+        resp.status_code = 200
+        return resp
+
+    except Exception as ex:
+        resp = jsonify([])
+        resp.status_code = 500
+        print('caught exception in submitFixture ' + str(ex))
+        return resp
 
     finally:
         cur.close()
@@ -463,6 +534,24 @@ def doGetPartInfo():
         controlMethodId=request.args.get('controlMethodId')
     )
     return runFixtureQuery(query)
+
+
+@app.route('/server/getAccessories')
+def doGetAccessories():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+
+    try:
+        cur.execute("select * from accessories")
+        return jsonify({"payload": cur.fetchall()})
+    except Exception as ex:
+        resp = jsonify([])
+        resp.status_code = 500
+        return resp
+
+    finally:
+        con.close()
+        cur.close()
 
 
 @app.route('/server/checkAccess')

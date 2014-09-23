@@ -28,7 +28,7 @@
     </div>
 
     <div>
-        <input class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
+        <input ng-disabled="hasLineBeenAdded()" class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
         <input class="fancyButton" type="button" id="updateLine" value="Update"/>
         <input class="fancyButton" type="button" id="resetLine" value="Reset" ng-click="resetFixtureForm()"/>
     </div>
