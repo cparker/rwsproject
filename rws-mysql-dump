@@ -16,6 +16,53 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `accessories`
+--
+
+DROP TABLE IF EXISTS `accessories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accessories` (
+  `part_number` varchar(256) DEFAULT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accessories`
+--
+
+LOCK TABLES `accessories` WRITE;
+/*!40000 ALTER TABLE `accessories` DISABLE KEYS */;
+INSERT INTO `accessories` VALUES ('RG-2G-WH','Universal Gateway Wiring Harness'),('PER-RIB21CDC','RIB Relay -  10 Amp SPDT, 120-277Vac'),('760164233','Downlight Splitter (DL12A)'),('760191841','Cable Sharing Splitter - SP12A (2 per horizontal run)'),('ADAPTER-BOX-1G','Sensor mounting box (open ceiling)'),('ADP-MOUNT-W','Sensor Mounting Bracket for ML 1x4 and 2x2'),('ADP-MOUNT-W-20','Sensor Mounting Bracket for ML 1x4 and 2x2 (20pk)'),('ADP-MOUNT-W-50','Sensor Mounting Bracket for ML 1x4 and 2x2 (50pk)'),('TRM-RJ45-EU','RJ45-18AWG Adapter (1 per CH)'),('CAB-10PIN-RJ45','10 pin to RJ45 fixture adapter'),('HARNESS-3-FIXTURE','3-1 Wire Harness(3 fixtures: 1 LED gateway)'),('CABEXT-2','10Pin Fixt-to-GW cable extender, 2\" length'),('CABEXT-4','10Pin Fixt-to-GW cable extender, 4\" length'),('CABEXT-6','10Pin Fixt-to-GW cable extender, 6\" length'),('CABEXT-8','10Pin Fixt-to-GW cable extender, 8\" length'),('PIGTAIL-1-FIXTURE','1ch fixt-adp pigtail, 36 inch length'),('PIGTAIL-2-FIXTURE','2ch fixt-adp pigtail, 36 inch length');
+/*!40000 ALTER TABLE `accessories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `accessory`
+--
+
+DROP TABLE IF EXISTS `accessory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accessory` (
+  `fixture_id` mediumint(9) NOT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  `part_number` varchar(256) DEFAULT NULL,
+  `count` mediumint(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accessory`
+--
+
+LOCK TABLES `accessory` WRITE;
+/*!40000 ALTER TABLE `accessory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `accessory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `accounts`
 --
 
@@ -94,10 +141,10 @@ DROP TABLE IF EXISTS `cptest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cptest` (
-  `id` mediumint(9) NOT NULL,
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +153,7 @@ CREATE TABLE `cptest` (
 
 LOCK TABLES `cptest` WRITE;
 /*!40000 ALTER TABLE `cptest` DISABLE KEYS */;
-INSERT INTO `cptest` VALUES (1,'you');
+INSERT INTO `cptest` VALUES (1,'foo');
 /*!40000 ALTER TABLE `cptest` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,6 +203,45 @@ LOCK TABLES `descriptions` WRITE;
 /*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
 INSERT INTO `descriptions` VALUES (1,'1200x400mm Air Handling Grid Lay in'),(2,'244mm Downlight'),(3,'2x2 Grid Lay in'),(4,'4\" Downlight (New Construction)'),(5,'4\' 5050 Volo Direct Indirect'),(6,'4\' Edge Lit Linear Pendant'),(7,'6\" Downlight (New Construction)'),(8,'6\" Downlight (Remodel)'),(9,'600x600mm Grid Lay in'),(10,'8\' 5050 Volo Direct/Indirect'),(11,'8\' Edge Lit Linear Pendant'),(12,'Alfa Modular 2x2 33W'),(13,'Alva BOB Decorative wall mount LED Sconce'),(14,'Chloe LED 475 4\''),(15,'Chloe LED 475 8\''),(16,'Chloe LED 475 Custom'),(17,'Collin LED 325 4\''),(18,'Collin LED 325 8\''),(19,'Collin LED 325 Custom'),(20,'DL Series Downlight'),(21,'Davis 600x600'),(22,'Davis NCK Q4 downlight'),(23,'Davis NCK R150 downlight'),(24,'Description'),(25,'Flat Panel Grid lay in 1x4'),(26,'Flat Panel Grid lay in 2x2'),(27,'Hailey LED 325 4\''),(28,'Hailey LED 325 8\''),(29,'Hailey LED 325 Custom'),(30,'JAKE LED 325 4\''),(31,'JAKE LED 325 8\''),(32,'JAKE LED 325 Custom'),(33,'JILL LED 325 4\''),(34,'JILL LED 325 8\''),(35,'JILL LED 325 Custom'),(36,'K50 Optic HO Recessed/Ceiling Mounted Linear Fixture'),(37,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)'),(38,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (2 channel)'),(39,'K50 Prismatic Recessed/Ceiling Mount Linear Fixture (Custom)'),(40,'K50 System Spots Track Lighting System'),(41,'K50-Square Recessed/Ceiling Mounted Linear fixture'),(42,'K50i-Square Suspended Linear fixture'),(43,'KELSEY LED 325'),(44,'KELSEY LED 325 4\' Redwood Ready'),(45,'KELSEY LED 325 8\' Redwood Ready'),(46,'L-Form Linear LED Fixture'),(47,'MHT LED Magnetic Tube 19\" (Each fixture comes with (2) 2\' sections powered by 1 sensor)'),(48,'MHT LED Magnetic Tube 42.5\" (Each fixture comes with (2) 4\' sections powered by 1 sensor)'),(49,'NOLAN LED 325 4\''),(50,'NOLAN LED 325 8\''),(51,'NOLAN LED 325 Custom'),(52,'Pathway Coventry Architectural Series (Multiple mounts and finishes)'),(53,'RC Series Flat Panel 1x4  (Integrated also available)'),(54,'RC Series Flat Panel 2x2  (Integrated also available)'),(55,'RC Series Flat Panel 2x4'),(56,'RC Series Volumetric 2x2 (Integrated also available)'),(57,'RC Series Volumetric 2x4'),(58,'Remodel 4\" Downlight (Remodel)'),(59,'Richter Camino S Pendant'),(60,'Richter Lumio 6\" downlight'),(61,'Richter Slimpanel 595x595'),(62,'Richter Slimpanel 604x604'),(63,'Richter Slimpanel 619x619'),(64,'Richter Systemkanal HL'),(65,'STELLA LED 4\''),(66,'STELLA LED 8\''),(67,'STELLA LED Custom'),(68,'Suspended 4\' Linear Pendant'),(69,'Suspended 8\' Linear Pendant'),(70,'Volumetric Grid Lay In 2x4'),(71,'Volumetric Grid lay in 1x4'),(72,'Volumetric Grid lay in 2x2'),(73,'Alfa Modular 1200 x 600mm'),(74,'n/a');
 /*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fixture`
+--
+
+DROP TABLE IF EXISTS `fixture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fixture` (
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `projectId` varchar(256) DEFAULT NULL,
+  `controlMethod` varchar(256) DEFAULT NULL,
+  `controlQuantity` smallint(6) DEFAULT NULL,
+  `emergencyQuantity` smallint(6) DEFAULT NULL,
+  `standardQuantity` smallint(6) DEFAULT NULL,
+  `distribution` varchar(256) DEFAULT NULL,
+  `fixtureId` varchar(256) DEFAULT NULL,
+  `fixtureSize` varchar(256) DEFAULT NULL,
+  `fixtureType` varchar(256) DEFAULT NULL,
+  `lumens` varchar(256) DEFAULT NULL,
+  `manufacturer` varchar(256) DEFAULT NULL,
+  `mountType` varchar(256) DEFAULT NULL,
+  `partModel` varchar(256) DEFAULT NULL,
+  `partDesc` varchar(256) DEFAULT NULL,
+  `partNumber` varchar(256) DEFAULT NULL,
+  `sensorType` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fixture`
+--
+
+LOCK TABLES `fixture` WRITE;
+/*!40000 ALTER TABLE `fixture` DISABLE KEYS */;
+INSERT INTO `fixture` VALUES (1,'some date time thing','n/a',3,2,1,'Direct','3','1300mm X 50mm','Linear','2800','Hatec','Surface','R201401005-15','K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)','n/a','Normal'),(2,'some date time thing','n/a',3,2,1,'Direct','3','1300mm X 50mm','Linear','2800','Hatec','Surface','R201401005-15','K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)','n/a','Normal');
+/*!40000 ALTER TABLE `fixture` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -412,7 +498,7 @@ CREATE TABLE `project_info` (
 
 LOCK TABLES `project_info` WRITE;
 /*!40000 ALTER TABLE `project_info` DISABLE KEYS */;
-INSERT INTO `project_info` VALUES ('2014-09-17 05:10:09 PM','project3','972 W. Dahlia St.',3,'CJP','noone','cp@cjparker.us','these are notes');
+INSERT INTO `project_info` VALUES ('2014-09-17 05:10:09 PM','project3','972 W. Dahlia St.',3,'CJP','noone','cp@cjparker.us','these are notes'),('2014-09-17 09:03:09 PM','asdfsdf','fsdfsdf',2,'CP','foo','cp@cjparker.us','FOO'),('2014-09-18 04:27:39 PM','TEST3','123123',3,'CJP','','cp@cjparker.us',''),('2014-09-18 06:35:50 PM','sdfsdf','sdfsdf',2,'sdf','sdfs','cparker@cjparker.us','sdf'),('2014-09-19 07:45:00 AM','asdf','asdf',4,'asdf','asdfa','sd@sdf.com','sdf'),('2014-09-21 06:01:58 PM','foo','bar',2,'baz','','cp@cjparker.us','asdfsdf'),('2014-09-21 10:40:01 AM','new','sdf',4,'CP','','cp@cjparker.us',''),('2014-09-22 01:52:33 PM','aaa','asdf',4,'asdf','','christian.parker@emc.com',''),('2014-09-22 03:42:41 PM','foo','sdfsdf',4,'sdfsdf','','cp@cjparker.us','sdfsdf'),('2014-09-23 09:33:09 AM','newproj','foo',2,'CP','sdf','cp@cjparker.us','sdf');
 /*!40000 ALTER TABLE `project_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,4 +535,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-17 19:33:01
+-- Dump completed on 2014-09-23 19:24:25
