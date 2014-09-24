@@ -4,7 +4,6 @@ select:focus {
     outline: none;
 }
 
-
 .container {
     width: 1280px;
 }
@@ -182,7 +181,7 @@ select#projectCountry {
 }
 
 .controlPanel {
-    padding-left:15px;
+    padding-left: 15px;
 }
 
 .controlPanel > div {
@@ -254,9 +253,9 @@ select#projectCountry {
 }
 
 .notesDialogOuter p {
-    margin:0;
-    margin-top:5px;
-    margin-left:15px;
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
 .dialogInner {
@@ -272,7 +271,7 @@ select#projectCountry {
 
 .notesDialogInner {
     margin: 14px;
-    margin-top:5px;
+    margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
     padding-bottom: 0;
@@ -293,15 +292,15 @@ select#projectCountry {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height:28px;
+    height: 28px;
 }
 
 .accessoriesItem input {
-    width:30px;
+    width: 30px;
     margin: 0;
     height: 16px !important;
-    padding:2px;
-    margin:2px;
+    padding: 2px;
+    margin: 2px;
 }
 
 .accessoriesItem label {
@@ -312,19 +311,18 @@ select#projectCountry {
 
 .smallCircle {
     border-radius: 50%;
-    width:10px;
-    height:10px;
+    width: 10px;
+    height: 10px;
     display: inline-block;
-    margin-right:4px;
-    margin-top:3px;
+    margin-right: 4px;
+    margin-top: 3px;
     border: 1px solid #808080;
 }
 
 .smallCircleFilled {
     background-color: #1B9AF7;
-    border:1px solid white;
+    border: 1px solid white;
 }
-
 
 .accessoriesText {
     padding: 0;
@@ -619,4 +617,43 @@ div#enginesOneWarningText {
 
 .enginesPanel {
     padding-left: 15px;
+}
+
+.fileContainer {
+    margin-left: 15px;
+}
+
+.fileContainer li {
+    list-style: none;
+}
+
+.fileContainer p {
+    width: 50%;
+    font-size: 1.5em;
+    padding-bottom: 3px;
+}
+
+.uploadbutton input[type="file"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 15px;
+}
+
+.fileContainer button {
+    background: #1B9AF7;
+    -webkit-appearance: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 17px;
+    text-decoration: none;
 }

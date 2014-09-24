@@ -111,8 +111,11 @@ angular.module('rwsprojectApp')
                     method: 'POST',
                     url: '/server/submitFixture',
                     data: fixtureLine});
-            }
+            },
 
+            getFiles: function () {
+                return $http.get('/server/getFiles');
+            }
 
         };
 

@@ -8,7 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,39 +21,33 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
 <div class="container">
     <div class="header" ng-class="{blur:isLoggedIn==false}">
         <p class="pull-right">Sign off -></p>
-        <!--
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a ng-href="#">Home</a></li>
-            <li><a ng-href="#/about">About</a></li>
-            <li><a ng-href="#">Contact</a></li>
-        </ul>
-        -->
         <h3 class="text-muted">redwood</h3>
     </div>
 
     <div ng-view=""></div>
 
     <div class="footer">
-        <p>footer</p>
+        <p>Copyright 2014 Redwood Inc. ®</p>
     </div>
 </div>
 
 
 <!-- build:js(.) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
-<script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
 <!-- endbuild -->
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/es5-shim/es5-sham.js"></script>
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
 <script src="bower_components/json3/lib/json3.js"></script>
 <script src="bower_components/bootstrap/docs/assets/js/bootstrap.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -72,6 +66,7 @@
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/home.js"></script>
+<script src="scripts/controllers/filesCtrl.js"></script>
 <script src="scripts/controllers/projectInfoFormController.js"></script>
 <script src="scripts/controllers/fixtureFormController.js"></script>
 <script src="scripts/controllers/tabController.js"></script>

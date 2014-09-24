@@ -4,15 +4,17 @@
 Good docs for MySQLDb http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
 """
 
-
 import MySQLdb
-from flask import Flask, session, redirect, url_for, escape, request, json, jsonify
+from flask import Flask, session, redirect, url_for, escape, request, jsonify
+import json
 from MySQLdb import cursors
 from datetime import timedelta
+import os, time
+from werkzeug import secure_filename
 
 app = Flask(__name__)
-
 app.permanent_session_lifetime = timedelta(minutes=60)
+app.config['UPLOAD_FOLDER'] = '/tmp/tue'
 
 
 class ConnectionHandler:
@@ -205,6 +207,27 @@ def handleSubmitFixture():
         cur.close()
         con.commit()
         con.close()
+
+
+@app.route('/server/getFiles')
+def handleGetFiles():
+    fileDir = '/etc/'
+    files = os.listdir(fileDir)
+
+    def makeItem(f):
+        createdDateTimeStr = time.ctime(os.path.getctime(fileDir + f))
+        createdDateTimeStamp = time.ctime(os.path.getctime(fileDir + f))
+
+        return {
+            "name": f,
+            "url": "/files/" + f,
+            "createdDateTimeStr": createdDateTimeStr,
+            "createdDateTimeStamp": createdDateTimeStamp
+        }
+
+    realFiles = sorted(map(makeItem, files), key=lambda x: x['createdDateTimeStamp'], reverse=True)
+
+    return jsonify({"payload": realFiles})
 
 
 def runFixtureQuery(query):
@@ -552,6 +575,18 @@ def doGetAccessories():
     finally:
         con.close()
         cur.close()
+
+
+@app.route('/server/uploadFile', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    filename = file.filename
+    print('filename is ' + filename)
+    if file:
+        file.save(os.path.join('/tmp/tue/', filename))
+        resp = jsonify([])
+        resp.status_code = 200
+        return resp
 
 
 @app.route('/server/checkAccess')

@@ -10,6 +10,7 @@
  */
 angular
     .module('rwsprojectApp', [
+        'angularFileUpload',
         'ngAnimate',
         'ngCookies',
         'ngResource',
@@ -27,6 +28,10 @@ angular
             .when('/about', {
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
+            })
+            .when('/files', {
+                templateUrl: 'views/files.html',
+                controller: 'filesCtrl'
             })
             .when('/#tab:*/', {
                 reloadOnSearch:false
