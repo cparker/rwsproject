@@ -2,26 +2,21 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="controlMethod">Control method</label>
-        <select class="simpleArrowSelect" id="controlMethod">
-            <option>LED Gateway</option>
-            <option>Sensor 3</option>
-            <option>Magic</option>
+        <select name="controlMethod" ng-change="changeControlMethod()" ng-options="controlMethod.name for controlMethod in controlMethods track by controlMethod.id" required ng-model="fixtureForm.controlMethod" class="simpleArrowSelect" id="controlMethod">
+            <option value="">select method</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="sensorType">Sensor type</label>
-        <select class="simpleArrowSelect" id="sensorType">
-            <option>None</option>
-            <option>Normal</option>
-            <option>Low</option>
-            <option>High</option>
+        <select name="sensorType" ng-options="type.name for type in sensorTypes track by type.id" required ng-model="fixtureForm.sensorType" class="simpleArrowSelect" id="sensorType">
+            <option value="">select method</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="controlQty">Control Qty</label>
-        <input class="redwoodPanelNarrowInput" type="text" id="controlQty"/>
+        <input required ng-model="fixtureForm.controlQuantity" class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
     </div>
 
     <div>
@@ -33,9 +28,9 @@
     </div>
 
     <div>
-        <input class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
+        <input ng-disabled="hasLineBeenAdded()" class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
         <input class="fancyButton" type="button" id="updateLine" value="Update"/>
-        <input class="fancyButton" type="button" id="resetLine" value="Reset"/>
+        <input class="fancyButton" type="button" id="resetLine" value="Reset" ng-click="resetFixtureForm()"/>
     </div>
 
 

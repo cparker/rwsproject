@@ -11,12 +11,12 @@ angular.module('rwsprojectApp')
                 dateTime: $filter('date')(new Date(), 'yyyy-MM-dd hh:mm:ss a'),
                 projectName: undefined,
                 address: undefined,
-                region: {name: 'EMEA', id:1},
+                region: {name: 'EMEA', id:2},
                 createdBy: undefined,
                 basedOn: undefined,
                 email: undefined,
                 notes: undefined,
-                region_id: 1
+                region_id: 2
             };
 
             dataService.fetchRegions()

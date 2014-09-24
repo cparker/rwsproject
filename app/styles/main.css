@@ -4,15 +4,6 @@ select:focus {
     outline: none;
 }
 
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 4px background-color : rgba(0, 0, 0, .5);
-}
-
 .container {
     width: 1280px;
 }
@@ -70,7 +61,7 @@ textarea {
 .tab-content {
     background-color: #A1DBFF;
     margin-right: 25px;
-    padding-left: 10px;
+    padding-left: 0;
     min-height: 600px;
 }
 
@@ -88,7 +79,7 @@ textarea {
 }
 
 select#projectCountry {
-    width:120px;
+    width: 120px;
 }
 
 .login-modal {
@@ -161,7 +152,7 @@ select#projectCountry {
 
 #fixtureSectionTwo select {
     height: 1.3em;
-    width: 120px;
+    width: 160px;
 }
 
 #fixtureSectionThree select {
@@ -189,13 +180,16 @@ select#projectCountry {
     border-bottom-style: solid;
 }
 
+.controlPanel {
+    padding-left: 15px;
+}
 
-#controlPanel > div {
+.controlPanel > div {
     margin-top: 20px;
 }
 
-#controlPanel input[type="checkbox"] {
-    margin:0;
+.controlPanel input[type="checkbox"] {
+    margin: 0;
 }
 
 .servicePanelLine {
@@ -209,7 +203,7 @@ select#projectCountry {
 }
 
 .servicePanelLine p {
-    color:red;
+    color: red;
     margin-left: 25px;
 }
 
@@ -217,6 +211,10 @@ select#projectCountry {
     float: right;
     clear: both;
     width: 175px;
+}
+
+.optionalEquipmentPanel {
+    padding-left: 15px;
 }
 
 .optionalEquipLine {
@@ -229,11 +227,13 @@ select#projectCountry {
     width: 50px;
 }
 
-#emergencyLightingSection {
+.emergencyLightingSection {
     margin-left: 5px;
+    padding-left: 15px;
 }
+
 .dialogOuter {
-    width: 400px;
+    width: 500px;
     height: 400px;
     position: absolute;
     left: 500px;
@@ -242,31 +242,86 @@ select#projectCountry {
     -webkit-border-radius: 5px;
 }
 
+.notesDialogOuter {
+    width: 500px;
+    height: 365px;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+    background: #D8E5F1;
+    -webkit-border-radius: 5px;
+}
+
+.notesDialogOuter p {
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
 .dialogInner {
     margin: 14px;
     margin-bottom: 5px;
     padding: 5px;
     -webkit-border-radius: 5px;
     background: #ffffff;
-    width: 90%;
+    width: 92.5%;
     height: 80%;
     overflow-y: scroll;
 }
 
+.notesDialogInner {
+    margin: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-bottom: 0;
+    -webkit-border-radius: 5px;
+    background: #ffffff;
+    width: 92.5%;
+    height: 80%;
+    overflow: hidden;
+}
+
 #notesDialog textarea {
-    width:96%;
-    height:95%;
+    width: 97%;
+    height: 94%;
+    overflow: hidden;
 }
 
-.accessoriesScroller input {
+.accessoriesItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+}
+
+.accessoriesItem input {
+    width: 30px;
     margin: 0;
-    display: inline-block;
+    height: 16px !important;
+    padding: 2px;
+    margin: 2px;
 }
 
-.accessoriesScroller label {
+.accessoriesItem label {
     margin: 0;
     margin-top: 5px;
+    min-width: 350px;
+}
+
+.smallCircle {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
     display: inline-block;
+    margin-right: 4px;
+    margin-top: 3px;
+    border: 1px solid #808080;
+}
+
+.smallCircleFilled {
+    background-color: #1B9AF7;
+    border: 1px solid white;
 }
 
 .accessoriesText {
@@ -367,9 +422,9 @@ select#projectCountry {
     margin-right: auto;
 }
 
-.loginCenteredContent input[type="text"], .loginCenteredContent label , .loginCenteredContent input[type="password"] {
+.loginCenteredContent input[type="text"], .loginCenteredContent label, .loginCenteredContent input[type="password"] {
     display: inline-block;
-    width:250px;
+    width: 250px;
 }
 
 .loginCenteredContent label {
@@ -419,16 +474,16 @@ select#projectCountry {
 }
 
 .nav-tabs > li > a {
-    padding:4px;
+    padding: 4px;
 }
 
 .blur {
-   -webkit-filter:blur(5px);
+    -webkit-filter: blur(5px);
 }
 
 .fixtureList {
     list-style: none;
-    -webkit-appearance:none;
+    -webkit-appearance: none;
     margin-left: 0;
 
 }
@@ -436,20 +491,20 @@ select#projectCountry {
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
 }
 
 .animate-repeat.ng-leave.ng-leave-active,
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter {
-    opacity:0;
+    opacity: 0;
 }
 
 .animate-repeat.ng-leave,
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {
-    opacity:1;
+    opacity: 1;
 }
 
 .tabLabel {
@@ -458,13 +513,13 @@ select#projectCountry {
 }
 
 .tabLabel p {
-    margin:0;
+    margin: 0;
 }
 
 .tabLabel i {
     color: gray;
     font-size: 0.85em;
-    margin-top:1px;
+    margin-top: 1px;
     margin-bottom: 1px;
 }
 
@@ -473,8 +528,8 @@ select#projectCountry {
 }
 
 #enginesOne p {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 #enginesOne input[type="text"] {
@@ -490,54 +545,115 @@ select#projectCountry {
 }
 
 .engineOneLabel {
-    width:200px;
+    width: 200px;
     display: inline-block;
 }
 
 #engineSpacerTwo {
-    height:35px;
+    height: 35px;
 }
 
 span#enginesSpacer {
     display: inline-block;
-    width:30px;
+    width: 30px;
 }
 
 div#enginesOneWarning {
     background: url(/images/light-bulb.svg);
     background-size: 35px 35px;
     background-repeat: no-repeat;
-    height:70px;
-    width:35px;
-    display:inline-block;
+    height: 70px;
+    width: 35px;
+    display: inline-block;
 }
 
 div#enginesOneWarningText {
-    display:inline-block;
+    display: inline-block;
 }
 
-
 .bulbIcon {
-    float:left;
-    width:35px;
-    height:35px;
+    float: left;
+    width: 35px;
+    height: 35px;
     background: url(/images/light-bulb.svg);
     background-size: 35px 35px;
     background-repeat: no-repeat;
     margin-left: -5px;
 }
 
-div#optionalEquipmentPanel textarea {
-    width:50%;
-    height:200px;
+.optionalEquipmentPanel textarea {
+    width: 50%;
+    height: 200px;
 }
 
-
+/* if the form hasn't been touched, no red */
 .projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
-    outline:none;
+    outline: none;
 }
+
+/* once they attempt to submit the form, mark fiekds */
 .projectInfoForm.ng-submitted input.ng-invalid,
 .projectInfoForm.ng-submitted select.ng-invalid,
 .projectInfoForm.ng-submitted textarea.ng-invalid {
     outline: 2px dotted red;
+}
+
+/* If they touch a field, and leave it invalid, mark it */
+.projectInfoForm input.ng-invalid.ng-touched,
+.projectInfoForm select.ng-invalid.ng-touched,
+.projectInfoForm textarea.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+
+.fixtureForm.ng-submitted input[type="text"].ng-invalid,
+.fixtureForm.ng-submitted select.ng-invalid {
+    outline: 2px dotted red;
+}
+
+.fixtureForm:not(.ng-submitted) input[type="text"].ng-touched.ng-invalid:not(.ng-pristine),
+.fixtureForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
+    outline: 2px dotted red;
+}
+
+.enginesPanel {
+    padding-left: 15px;
+}
+
+.fileContainer {
+    margin-left: 15px;
+}
+
+.fileContainer li {
+    list-style: none;
+}
+
+.fileContainer p {
+    width: 50%;
+    font-size: 1.5em;
+    padding-bottom: 3px;
+}
+
+.uploadbutton input[type="file"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 15px;
+}
+
+.fileContainer button {
+    background: #1B9AF7;
+    -webkit-appearance: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 17px;
+    text-decoration: none;
 }

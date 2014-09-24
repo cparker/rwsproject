@@ -1,15 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+"""
+Good docs for MySQLDb http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+"""
 
 import MySQLdb
-from flask import Flask, session, redirect, url_for, escape, request, json, jsonify
+from flask import Flask, session, redirect, url_for, escape, request, jsonify
+import json
 from MySQLdb import cursors
 from datetime import timedelta
+import os, time
+from werkzeug import secure_filename
 
 app = Flask(__name__)
-
 app.permanent_session_lifetime = timedelta(minutes=60)
+app.config['UPLOAD_FOLDER'] = '/tmp/tue'
 
 
 class ConnectionHandler:
@@ -136,6 +141,113 @@ def handleSubmitProjectInfo():
         con.close()
 
 
+@app.route('/server/submitFixture', methods=['POST'])
+def handleSubmitFixture():
+    print('received ' + str(request.json))
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute("""
+            INSERT INTO fixture (projectId, controlMethod,  controlQuantity,    emergencyQuantity,  standardQuantity,   distribution,
+                                 fixtureId, fixtureSize,    fixtureType,        lumens,             manufacturer,       mountType,
+                                 partModel, partDesc,       partNumber,         sensorType)
+            VALUES
+            ('{projectId}',     '{controlMethod}',      '{controlQuantity}',    '{emergencyQuantity}',  '{standardQuantity}',   '{distribution}',
+             '{fixtureId}',     '{fixtureSize}',        '{fixtureType}',        '{lumens}',             '{manufacturer}',       '{mountType}',
+             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}')
+            ON DUPLICATE KEY UPDATE
+                projectId='{projectId}', controlMethod='{controlMethod}', controlQuantity='{controlQuantity}', emergencyQuantity='{emergencyQuantity}',
+                standardQuantity='{standardQuantity}', distribution='{distribution}', fixtureId='{fixtureId}', fixtureSize='{fixtureSize}', fixtureType='{fixtureType}',
+                lumens='{lumens}', manufacturer='{manufacturer}', mountType='{mountType}', partModel='{partModel}', partDesc='{partDesc}',
+                partNumber='{partNumber}', sensorType='{sensorType}'
+        """.format(
+            projectId=request.json['projectId'],
+            controlMethod=request.json['controlMethod']['name'],
+            controlQuantity=int(request.json['controlQuantity']),
+            emergencyQuantity=int(request.json['emergencyQuantity']),
+            standardQuantity=int(request.json['standardQuantity']),
+            distribution=request.json['distribution']['name'],
+            fixtureId=request.json['fixtureId'],
+            fixtureSize=request.json['fixtureSize']['name'],
+            fixtureType=request.json['fixtureType']['name'],
+            lumens=request.json['lumens']['lumens'],
+            manufacturer=request.json['manufacturer']['name'],
+            mountType=request.json['mountType']['name'],
+            partModel=request.json['partInfo']['model'],
+            partDesc=request.json['partInfo']['description'],
+            partNumber=request.json['partInfo']['part_number'],
+            sensorType=request.json['sensorType']['name']
+        ))
+
+        insertedFixtureId = con.insert_id
+
+        # now insert the accessories and notes
+        for accessory in request.json['selectedAccessories']:
+            cur.execute("""
+                INSERT INTO accessory (fixture_id, description, part_number, count)
+                VALUES ('{fixtureId}', '{description}', '{part_number}', '{count}')
+            """.format(
+                fixtureId=insertedFixtureId,
+                description=accessory['accessory']['description'],
+                part_number=accessory['accessory']['part_number'],
+                count=accessory['accessoryCount']
+            ))
+
+        resp = jsonify([])
+        resp.status_code = 200
+        return resp
+
+    except Exception as ex:
+        resp = jsonify([])
+        resp.status_code = 500
+        print('caught exception in submitFixture ' + str(ex))
+        return resp
+
+    finally:
+        cur.close()
+        con.commit()
+        con.close()
+
+
+@app.route('/server/getFiles')
+def handleGetFiles():
+    fileDir = '/etc/'
+    files = os.listdir(fileDir)
+
+    def makeItem(f):
+        createdDateTimeStr = time.ctime(os.path.getctime(fileDir + f))
+        createdDateTimeStamp = time.ctime(os.path.getctime(fileDir + f))
+
+        return {
+            "name": f,
+            "url": "/files/" + f,
+            "createdDateTimeStr": createdDateTimeStr,
+            "createdDateTimeStamp": createdDateTimeStamp
+        }
+
+    realFiles = sorted(map(makeItem, files), key=lambda x: x['createdDateTimeStamp'], reverse=True)
+
+    return jsonify({"payload": realFiles})
+
+
+def runFixtureQuery(query):
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute(query)
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+        resp = jsonify([])
+        resp.status_code = 500
+        return resp
+
+    finally:
+        con.close()
+        cur.close()
+
+
 # #
 # if the user has an active project in their session, retrieve it
 # #
@@ -250,6 +362,231 @@ def doGetFixtureSizes():
     finally:
         con.close()
         cur.close()
+
+
+@app.route('/server/getDistributions')
+def doGetDistributions():
+    query = """
+        select distinct light_distributions.name, light_distributions.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}';
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getLumens')
+def doGetLumens():
+    query = """
+        select distinct lumens.lumens, lumens.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getChannels')
+def doGetChannels():
+    query = """
+        select distinct channels.channel_count, channels.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getManufacturers')
+def doGetManufacturers():
+    query = """
+        select distinct manufacturers.name, manufacturers.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getControlMethods')
+def doGetControlMethods():
+    query = """
+        select distinct control_methods.name, control_methods.id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+        control_methods.id = product_join.control_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}' AND
+        manufacturers.id = '{manufacturerId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId'),
+        manufacturerId=request.args.get('manufacturerId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getPartInfo')
+def doGetPartInfo():
+    query = """
+        select distinct model_numbers.name as model, model_numbers.id as model_id, descriptions.description as description, descriptions.id as desc_id, part_numbers.name as part_number,
+        part_numbers.id as part_id FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers
+
+        WHERE fixture_types.id=product_join.fixture_id AND
+        fixture_sizes.id = product_join.size_id AND
+        regions.id=product_join.region_id AND
+        mount_options.id = product_join.mount_id AND
+        light_distributions.id = product_join.light_distribution_id AND
+        lumens.id = product_join.lumen_id AND
+        channels.id = product_join.channel_id AND
+        manufacturers.id = product_join.manufacturer_id AND
+        control_methods.id = product_join.control_id AND
+        model_numbers.id = product_join.model_id AND
+        descriptions.id = product_join.desc_id AND
+        part_numbers.id = product_join.part_number_id AND
+
+        regions.id='{regionId}' AND
+        fixture_types.id = '{fixtureTypeId}' AND
+        mount_options.id = '{mountTypeId}' AND
+        fixture_sizes.id = '{fixtureSizeId}' AND
+        light_distributions.id = '{distributionId}' AND
+        lumens.id = '{lumensId}' AND
+        channels.id = '{channelsId}' AND
+        manufacturers.id = '{manufacturerId}' AND
+        control_methods.id='{controlMethodId}'
+    """.format(
+        regionId=request.args.get('regionId'),
+        fixtureTypeId=request.args.get('fixtureTypeId'),
+        mountTypeId=request.args.get('mountTypeId'),
+        fixtureSizeId=request.args.get('fixtureSizeId'),
+        distributionId=request.args.get('distributionId'),
+        lumensId=request.args.get('lumensId'),
+        channelsId=request.args.get('channelsId'),
+        manufacturerId=request.args.get('manufacturerId'),
+        controlMethodId=request.args.get('controlMethodId')
+    )
+    return runFixtureQuery(query)
+
+
+@app.route('/server/getAccessories')
+def doGetAccessories():
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+
+    try:
+        cur.execute("select * from accessories")
+        return jsonify({"payload": cur.fetchall()})
+    except Exception as ex:
+        resp = jsonify([])
+        resp.status_code = 500
+        return resp
+
+    finally:
+        con.close()
+        cur.close()
+
+
+@app.route('/server/uploadFile', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    filename = file.filename
+    print('filename is ' + filename)
+    if file:
+        file.save(os.path.join('/tmp/tue/', filename))
+        resp = jsonify([])
+        resp.status_code = 200
+        return resp
 
 
 @app.route('/server/checkAccess')
