@@ -9,7 +9,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab2';
+        $rootScope.tabs.activeTab = 'tab1';
 
         $scope.selectedLineId = undefined;
 
@@ -36,8 +36,12 @@ angular.module('rwsprojectApp')
         };
 
         $scope.fixtureLineSelect = function (line) {
+            var result = dataService.selectFixtureLine(line.fixtureLineId);
+            // restore all the drop down lists with the right choices
+            $rootScope.dropDownChoices = result[1];
+
             // set the form based on the selected line
-            $rootScope.fixtureForm = dataService.selectFixtureLine(line.fixtureLineId);
+            $rootScope.fixtureForm = result[0];
         };
 
         $scope.isLineSelected = function (line) {

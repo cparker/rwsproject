@@ -2,14 +2,14 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="controlMethod">Control method</label>
-        <select name="controlMethod" ng-change="changeControlMethod()" ng-options="controlMethod.name for controlMethod in controlMethods track by controlMethod.id" required ng-model="fixtureForm.controlMethod" class="simpleArrowSelect" id="controlMethod">
+        <select name="controlMethod" ng-change="changeControlMethod()" ng-options="controlMethod.name for controlMethod in dropDownChoices.controlMethods track by controlMethod.id" required ng-model="fixtureForm.controlMethod" class="simpleArrowSelect" id="controlMethod">
             <option value="">select method</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="sensorType">Sensor type</label>
-        <select name="sensorType" ng-options="type.name for type in sensorTypes track by type.id" required ng-model="fixtureForm.sensorType" class="simpleArrowSelect" id="sensorType">
+        <select name="sensorType" ng-options="type.name for type in dropDownChoices.sensorTypes track by type.id" required ng-model="fixtureForm.sensorType" class="simpleArrowSelect" id="sensorType">
             <option value="">select method</option>
         </select>
     </div>

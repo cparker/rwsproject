@@ -9,12 +9,20 @@ from flask import Flask, session, redirect, url_for, escape, request, jsonify
 import json
 from MySQLdb import cursors
 from datetime import timedelta
-import os, time
+import os, time, datetime, traceback
 from werkzeug import secure_filename
+from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBackedSessionManager
 
 app = Flask(__name__)
-app.permanent_session_lifetime = timedelta(minutes=60)
+# app.permanent_session_lifetime = timedelta(minutes=60)
+app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
 app.config['UPLOAD_FOLDER'] = '/tmp/tue'
+app.config['SESSION_PATH'] = '/tmp'
+app.config['SECRET_KEY'] = os.urandom(24)
+skip_paths = []
+app.session_interface = ManagedSessionInterface(
+    CachingSessionManager(FileBackedSessionManager(app.config['SESSION_PATH'], app.config['SECRET_KEY']), 1000),
+    skip_paths, datetime.timedelta(minutes=30))
 
 
 class ConnectionHandler:
@@ -128,7 +136,10 @@ def handleSubmitProjectInfo():
         ))
 
         # set the active project id in the session
+        session.permanent = True
         session['activeProject'] = request.json['dateTime']
+        session.modified = True
+        print('now session looks like ' + str(session))
         return '', 200
 
     except Exception as ex:
@@ -150,16 +161,16 @@ def handleSubmitFixture():
         cur.execute("""
             INSERT INTO fixture (projectId, controlMethod,  controlQuantity,    emergencyQuantity,  standardQuantity,   distribution,
                                  fixtureId, fixtureSize,    fixtureType,        lumens,             manufacturer,       mountType,
-                                 partModel, partDesc,       partNumber,         sensorType)
+                                 partModel, partDesc,       partNumber,         sensorType,         channels,           fixtureLineId)
             VALUES
             ('{projectId}',     '{controlMethod}',      '{controlQuantity}',    '{emergencyQuantity}',  '{standardQuantity}',   '{distribution}',
              '{fixtureId}',     '{fixtureSize}',        '{fixtureType}',        '{lumens}',             '{manufacturer}',       '{mountType}',
-             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}')
+             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}',         '{channels}',           '{fixtureLineId}')
             ON DUPLICATE KEY UPDATE
                 projectId='{projectId}', controlMethod='{controlMethod}', controlQuantity='{controlQuantity}', emergencyQuantity='{emergencyQuantity}',
                 standardQuantity='{standardQuantity}', distribution='{distribution}', fixtureId='{fixtureId}', fixtureSize='{fixtureSize}', fixtureType='{fixtureType}',
                 lumens='{lumens}', manufacturer='{manufacturer}', mountType='{mountType}', partModel='{partModel}', partDesc='{partDesc}',
-                partNumber='{partNumber}', sensorType='{sensorType}'
+                partNumber='{partNumber}', sensorType='{sensorType}', channels='{channels}', fixtureLineId='{fixtureLineId}'
         """.format(
             projectId=request.json['projectId'],
             controlMethod=request.json['controlMethod']['name'],
@@ -176,10 +187,12 @@ def handleSubmitFixture():
             partModel=request.json['partInfo']['model'],
             partDesc=request.json['partInfo']['description'],
             partNumber=request.json['partInfo']['part_number'],
-            sensorType=request.json['sensorType']['name']
+            sensorType=request.json['sensorType']['name'],
+            channels=request.json['channels']['channel_count'],
+            fixtureLineId=request.json['fixtureLineId']
         ))
 
-        insertedFixtureId = con.insert_id
+        insertedFixtureId = con.insert_id()
 
         # now insert the accessories and notes
         for accessory in request.json['selectedAccessories']:
@@ -206,6 +219,142 @@ def handleSubmitFixture():
     finally:
         cur.close()
         con.commit()
+        con.close()
+
+
+@app.route('/server/getProjectFixtures')
+def doGetProjectFixtures():
+    """
+        This has to select all the fixture data from the DB and return JSON that the UI uses to populate the
+        fixture forms
+    """
+
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+
+    try:
+        if not session.has_key('activeProject'):
+            resp = jsonify([])
+            resp.status_code = 404
+            print('no active project')
+            return resp
+
+        projectId = session['activeProject']
+
+        def convertFixtureInfoToJSON(fixtureResult):
+            print('fixtureResult is ' + str(fixtureResult))
+            cur.execute("select id from channels where channel_count='{0}'".format(fixtureResult['channels']))
+            channelId = cur.fetchone()['id']
+
+            cur.execute("select id from control_methods where name='{0}'".format(fixtureResult['controlMethod']))
+            controlMethodId = cur.fetchone()['id']
+
+            cur.execute("select id from light_distributions where name='{0}'".format(fixtureResult['distribution']))
+            distributionId = cur.fetchone()
+
+            cur.execute("select id from fixture_sizes where name='{0}'".format(fixtureResult['fixtureSize']))
+            fixtureSizeId = cur.fetchone()
+
+            cur.execute("select id from fixture_types where name='{0}'".format(fixtureResult['fixtureType']))
+            fixtureTypeID = cur.fetchone()
+
+            cur.execute("select id from lumens where lumens='{0}'".format(fixtureResult['lumens']))
+            lumensId = cur.fetchone()
+
+            cur.execute("select id from manufacturers where name='{0}'".format(fixtureResult['manufacturer']))
+            manufacturerId = cur.fetchone()
+
+            cur.execute("select id from mount_options where name='{0}'".format(fixtureResult['mountType']))
+            mountTypeId = cur.fetchone()
+
+            cur.execute("select id from descriptions where description ='{0}'".format(fixtureResult['partDesc']))
+            descId = cur.fetchone()
+
+            cur.execute("select id from model_numbers where name='{0}'".format(fixtureResult['partModel']))
+            modelId = cur.fetchone()
+
+            cur.execute("select id from part_numbers where name='{0}'".format(fixtureResult['partNumber']))
+            partNumberId = cur.fetchone()
+
+            cur.execute("select * from accessory where fixture_id = '{0}'".format(fixtureResult['id']))
+            accessoryResult = cur.fetchall()
+
+            def convertAccessoryToJSON(accessoryResult):
+                print('accessoryResult ' + str(accessoryResult))
+                return {
+                    "accessory": {
+                        "description": accessoryResult['description'],
+                        "part_number": accessoryResult['part_number']
+                    },
+                    "accessoryCount": accessoryResult['count']
+                }
+
+            return {
+                "channels": {
+                    "id": channelId,
+                    "channel_count": fixtureResult['channels']
+                },
+                "controlMethod": {
+                    "id": controlMethodId,
+                    "name": fixtureResult['controlMethod']
+                },
+                "controlQuantity": fixtureResult['controlQuantity'],
+                "distribution": {
+                    "id": distributionId,
+                    "name": fixtureResult['distribution']
+                },
+                "emergencyQuantity": fixtureResult['emergencyQuantity'],
+                "fixtureId": fixtureResult['fixtureId'],
+                "fixtureLineId": fixtureResult['fixtureLineId'],
+                "fixtureSize": {
+                    "id": fixtureSizeId,
+                    "name": fixtureResult['fixtureSize']
+                },
+                "fixtureType": {
+                    "id": fixtureTypeID,
+                    "name": fixtureResult['fixtureType']
+                },
+                "lumens": {
+                    "id": lumensId,
+                    "lumens": fixtureResult['lumens']
+                },
+                "manufacturer": {
+                    "id": manufacturerId,
+                    "name": fixtureResult['manufacturer']
+                },
+                "mountType": {
+                    "id": mountTypeId,
+                    "name": fixtureResult['mountType']
+                },
+                "partInfo": {
+                    "desc_id": descId,
+                    "description": fixtureResult['partDesc'],
+                    "model": fixtureResult['partModel'],
+                    "model_id": modelId,
+                    "part_id": partNumberId,
+                    "part_number": fixtureResult['partNumber']
+                },
+                "selectedAccessories": map(convertAccessoryToJSON, accessoryResult)
+            }
+
+        q = """
+            SELECT * from fixture where projectId='{0}'
+        """.format(projectId)
+        cur.execute(q)
+        fixtureJSON = map(convertFixtureInfoToJSON, cur.fetchall())
+        resp = jsonify({"payload": fixtureJSON})
+        resp.status_code = 200
+        return resp
+
+    except Exception as ex:
+        resp = jsonify([])
+        print('caught ' + str(ex))
+        traceback.print_exc()
+        resp.status_code = 500
+        return resp
+
+    finally:
+        cur.close()
         con.close()
 
 
@@ -253,6 +402,7 @@ def runFixtureQuery(query):
 # #
 @app.route('/server/getProjectInfo', methods=['GET'])
 def handleGetProjectInfo():
+    print('session looks like ' + str(session))
     if session.has_key('activeProject'):
         con = connectionHandler.getConnection(newCon=True)
         cur = con.cursor(cursors.DictCursor)
@@ -607,7 +757,7 @@ def simple():
     return '', 200
 
 
-app.secret_key = 'slaskdjfalksdfs90df8sdf8s0d98f0sdf'
+app.secret_key = os.urandom(24)
 
 if __name__ == '__main__':
     app.debug = True

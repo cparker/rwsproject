@@ -8,10 +8,18 @@ angular.module('rwsprojectApp')
 
             fixtureLines: [],
 
-            addFixtureLine: function (fixtureForm, selectedAccessories) {
-                fixtureForm.fixtureLineId = this.fixtureLines.length + 1;
+            fixtureLineSelectChoices: [],
+
+            addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices) {
+                fixtureForm.fixtureLineId = this.fixtureLines.length;
                 fixtureForm.selectedAccessories = selectedAccessories;
+                fixtureForm.projectId = projectIdDateTime;
+
                 this.fixtureLines.push(fixtureForm);
+
+                // save all the multi select choices
+                this.fixtureLineSelectChoices[fixtureForm.fixtureLineId] = dropDownChoices;
+
                 // the one you just added becomes immediately selected
                 this.selectedFixtureLine = fixtureForm.fixtureLineId;
 
@@ -35,9 +43,11 @@ angular.module('rwsprojectApp')
 
             selectFixtureLine: function (lineId) {
                 this.selectedFixtureLine = lineId;
-                return _.find(this.fixtureLines, function (l) {
+                var formData = _.find(this.fixtureLines, function (l) {
                     return l.fixtureLineId === lineId;
-                })
+                });
+
+                return [formData, this.fixtureLineSelectChoices[lineId]];
             },
 
             isLineSelected: function (lineId) {

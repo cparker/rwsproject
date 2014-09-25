@@ -2,52 +2,55 @@ angular.module('rwsprojectApp')
     .controller('fixtureFormController', ['$scope', '$filter', '$rootScope', 'dataService',
         function ($scope, $filter, $rootScope, dataService) {
 
-            $scope.fixtureTypes = [
-                {name: 'FIXTURE ONE', id: 1},
-                {name: 'FIXTURE TWO', id: 2}
-            ];
+            $rootScope.dropDownChoices = {
 
-            $scope.mountTypes = [
-                {name: 'MOUNT ONE', id: 1},
-                {name: 'MOUNT TWO', id: 2}
-            ];
+                fixtureTypes: [
+                    {name: 'FIXTURE ONE', id: 1},
+                    {name: 'FIXTURE TWO', id: 2}
+                ],
 
-            $scope.fixtureSizes = [
-                {name: 'SIZE ONE', id: 1},
-                {name: 'SIZE TWO', id: 2}
-            ];
+                mountTypes: [
+                    {name: 'MOUNT ONE', id: 1},
+                    {name: 'MOUNT TWO', id: 2}
+                ],
 
-            $scope.distributions = [
-                {name: 'dist1', id: 1},
-                {name: 'dist2', id: 2}
-            ];
+                fixtureSizes: [
+                    {name: 'SIZE ONE', id: 1},
+                    {name: 'SIZE TWO', id: 2}
+                ],
 
-            $scope.lumens = [
-                {name: '100', id: 1},
-                {name: '200', id: 2}
-            ];
+                distributions: [
+                    {name: 'dist1', id: 1},
+                    {name: 'dist2', id: 2}
+                ],
 
-            $scope.channels = [
-                {name: '1', id: 1},
-                {name: '2', id: 2}
-            ];
+                lumens: [
+                    {name: '100', id: 1},
+                    {name: '200', id: 2}
+                ],
 
-            $scope.manufacturers = [
-                {name: 'm1', id: 1},
-                {name: 'm2', id: 2}
-            ];
+                channels: [
+                    {name: '1', id: 1},
+                    {name: '2', id: 2}
+                ],
 
-            $scope.controlMethods = [
-                {name: 'c1', id: 1},
-                {name: 'c2', id: 2}
-            ];
+                manufacturers: [
+                    {name: 'm1', id: 1},
+                    {name: 'm2', id: 2}
+                ],
 
-            $scope.sensorTypes = [
-                {name: 'None', id: 1},
-                {name: 'Normal', id: 2},
-                {name: 'Low', id: 3},
-                {name: 'High', id: 4}
-            ];
+                controlMethods: [
+                    {name: 'c1', id: 1},
+                    {name: 'c2', id: 2}
+                ],
+
+                sensorTypes: [
+                    {name: 'None', id: 1},
+                    {name: 'Normal', id: 2},
+                    {name: 'Low', id: 3},
+                    {name: 'High', id: 4}
+                ]
+            };
 
             $rootScope.fixtureForm = {};
 
@@ -58,7 +61,7 @@ angular.module('rwsprojectApp')
                 if (toTab === 'tab2') {
                     dataService.fetchFixtureTypes($rootScope.tabs.tabOne.region.id)
                         .success(function (types) {
-                            $scope.fixtureTypes = types.payload;
+                            $rootScope.dropDownChoices.fixtureTypes = types.payload;
                         })
                         .error(function (er) {
                             console.log(er);
@@ -66,12 +69,11 @@ angular.module('rwsprojectApp')
                 }
             });
 
-
             $scope.changeFixtureType = function () {
 
                 dataService.fetchMountTypes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)
                     .success(function (mounts) {
-                        $scope.mountTypes = mounts.payload;
+                        $rootScope.dropDownChoices.mountTypes = mounts.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -82,7 +84,7 @@ angular.module('rwsprojectApp')
 
                 dataService.fetchFixtureSizes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id)
                     .success(function (sizes) {
-                        $scope.fixtureSizes = sizes.payload;
+                        $rootScope.dropDownChoices.fixtureSizes = sizes.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -93,7 +95,7 @@ angular.module('rwsprojectApp')
 
                 dataService.fetchDistributions($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id, $rootScope.fixtureForm.fixtureSize.id)
                     .success(function (distributions) {
-                        $scope.distributions = distributions.payload;
+                        $rootScope.dropDownChoices.distributions = distributions.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -107,7 +109,7 @@ angular.module('rwsprojectApp')
                 dataService.fetchLumens($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
                     $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id)
                     .success(function (lumens) {
-                        $scope.lumens = lumens.payload;
+                        $rootScope.dropDownChoices.lumens = lumens.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -119,7 +121,7 @@ angular.module('rwsprojectApp')
                 dataService.fetchChannels($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
                     $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id)
                     .success(function (channels) {
-                        $scope.channels = channels.payload;
+                        $rootScope.dropDownChoices.channels = channels.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -131,7 +133,7 @@ angular.module('rwsprojectApp')
                 dataService.fetchManufacturers($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
                     $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id)
                     .success(function (manufacturers) {
-                        $scope.manufacturers = manufacturers.payload;
+                        $rootScope.dropDownChoices.manufacturers = manufacturers.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -143,7 +145,7 @@ angular.module('rwsprojectApp')
                     $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id,
                     $rootScope.fixtureForm.manufacturer.id)
                     .success(function (methods) {
-                        $scope.controlMethods = methods.payload;
+                        $rootScope.dropDownChoices.controlMethods = methods.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -178,7 +180,7 @@ angular.module('rwsprojectApp')
                 });
 
                 if ($scope.fixtureTabForm.$valid) {
-                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails);
+                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices);
                 }
             };
 
@@ -186,10 +188,12 @@ angular.module('rwsprojectApp')
                 $rootScope.fixtureForm = {};
                 $scope.fixtureTabForm.$setPristine();
                 dataService.selectedFixtureLine = undefined;
+                $rootScope.selectedAccessories = [];
             };
 
             $scope.hasLineBeenAdded = function () {
                 return $scope.fixtureForm.fixtureLineId != undefined;
             };
 
-        }]);
+        }])
+;
