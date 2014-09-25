@@ -161,16 +161,19 @@ def handleSubmitFixture():
         cur.execute("""
             INSERT INTO fixture (projectId, controlMethod,  controlQuantity,    emergencyQuantity,  standardQuantity,   distribution,
                                  fixtureId, fixtureSize,    fixtureType,        lumens,             manufacturer,       mountType,
-                                 partModel, partDesc,       partNumber,         sensorType,         channels,           fixtureLineId)
+                                 partModel, partDesc,       partNumber,         sensorType,         channels,           fixtureLineId,
+                                 notes)
             VALUES
             ('{projectId}',     '{controlMethod}',      '{controlQuantity}',    '{emergencyQuantity}',  '{standardQuantity}',   '{distribution}',
              '{fixtureId}',     '{fixtureSize}',        '{fixtureType}',        '{lumens}',             '{manufacturer}',       '{mountType}',
-             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}',         '{channels}',           '{fixtureLineId}')
+             '{partModel}',     '{partDesc}',           '{partNumber}',         '{sensorType}',         '{channels}',           '{fixtureLineId}',
+             '{notes}')
+
             ON DUPLICATE KEY UPDATE
                 projectId='{projectId}', controlMethod='{controlMethod}', controlQuantity='{controlQuantity}', emergencyQuantity='{emergencyQuantity}',
                 standardQuantity='{standardQuantity}', distribution='{distribution}', fixtureId='{fixtureId}', fixtureSize='{fixtureSize}', fixtureType='{fixtureType}',
                 lumens='{lumens}', manufacturer='{manufacturer}', mountType='{mountType}', partModel='{partModel}', partDesc='{partDesc}',
-                partNumber='{partNumber}', sensorType='{sensorType}', channels='{channels}', fixtureLineId='{fixtureLineId}'
+                partNumber='{partNumber}', sensorType='{sensorType}', channels='{channels}', fixtureLineId='{fixtureLineId}', notes='{notes}'
         """.format(
             projectId=request.json['projectId'],
             controlMethod=request.json['controlMethod']['name'],
@@ -189,7 +192,8 @@ def handleSubmitFixture():
             partNumber=request.json['partInfo']['part_number'],
             sensorType=request.json['sensorType']['name'],
             channels=request.json['channels']['channel_count'],
-            fixtureLineId=request.json['fixtureLineId']
+            fixtureLineId=request.json['fixtureLineId'],
+            notes=request.json['notes']
         ))
 
         insertedFixtureId = con.insert_id()
@@ -290,6 +294,7 @@ def doGetProjectFixtures():
                 }
 
             return {
+                "notes" : fixtureResult['notes'],
                 "channels": {
                     "id": channelId,
                     "channel_count": fixtureResult['channels']

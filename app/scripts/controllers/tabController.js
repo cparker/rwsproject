@@ -22,6 +22,7 @@ angular.module('rwsprojectApp')
         $scope.accessories = [];
 
         $rootScope.selectedAccessories = [];
+        $scope.fixtureNotes = 'these are notes';
 
         dataService.fetchAccessories()
             .success(function (ac) {
@@ -63,6 +64,8 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.toggleNotesDialog = function () {
+            // this seems silly
+            $rootScope.copiedFixtureNotes = $scope.fixtureNotes;
             $scope.tabs.notesDialogHide =
                 $scope.tabs.notesDialogHide == false;
         };

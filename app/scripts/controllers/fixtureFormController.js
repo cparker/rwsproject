@@ -180,7 +180,7 @@ angular.module('rwsprojectApp')
                 });
 
                 if ($scope.fixtureTabForm.$valid) {
-                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices);
+                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices, $rootScope.copiedFixtureNotes);
                 }
             };
 
