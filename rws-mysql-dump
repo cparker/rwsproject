@@ -144,7 +144,7 @@ CREATE TABLE `cptest` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,8 +230,11 @@ CREATE TABLE `fixture` (
   `partDesc` varchar(256) DEFAULT NULL,
   `partNumber` varchar(256) DEFAULT NULL,
   `sensorType` varchar(256) DEFAULT NULL,
+  `channels` float DEFAULT NULL,
+  `fixtureLineId` mediumint(9) DEFAULT NULL,
+  `notes` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +243,7 @@ CREATE TABLE `fixture` (
 
 LOCK TABLES `fixture` WRITE;
 /*!40000 ALTER TABLE `fixture` DISABLE KEYS */;
-INSERT INTO `fixture` VALUES (1,'some date time thing','n/a',3,2,1,'Direct','3','1300mm X 50mm','Linear','2800','Hatec','Surface','R201401005-15','K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)','n/a','Normal'),(2,'some date time thing','n/a',3,2,1,'Direct','3','1300mm X 50mm','Linear','2800','Hatec','Surface','R201401005-15','K50 Prismatic Recessed/Ceiling Mount Linear Fixture (1 Channel)','n/a','Normal');
+INSERT INTO `fixture` VALUES (6,'2014-09-25 03:50:12 PM','Sensor 3',4,3,2,'Direct','3','n/a','Accent','1470','Richter','Wall','Camino S 17W xxxxK RW1CH','Richter Camino S Pendant','SEN-3M1-W-RTPD1350','None',1,2,''),(7,'2014-09-25 03:50:12 PM','n/a',3,2,1,'Direct','4','3600 x 50mm','Linear','5600','Hatec','Surface','R201401005-13','K50-Square Recessed/Ceiling Mounted Linear fixture','n/a','Normal',0,3,''),(8,'2014-09-25 03:50:12 PM','Sensor 3',5,4,3,'Direct','5','n/a','Accent','1470','Richter','Wall','Camino S 17W xxxxK RW1CH','Richter Camino S Pendant','SEN-3M1-W-RTPD1350','None',1,4,''),(9,'2014-09-25 03:50:12 PM','Sensor 3',4,3,2,'Direct','2','600mm x 600mm','Troffer','1600','NoviLED','Recessed','AM 0606 xx-xx-700','Alfa Modular 2x2 33W','SEN-3M1-W-NOVI3370','None',1,0,'please let me fucking take notes!');
 /*!40000 ALTER TABLE `fixture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -498,7 +501,7 @@ CREATE TABLE `project_info` (
 
 LOCK TABLES `project_info` WRITE;
 /*!40000 ALTER TABLE `project_info` DISABLE KEYS */;
-INSERT INTO `project_info` VALUES ('2014-09-17 05:10:09 PM','project3','972 W. Dahlia St.',3,'CJP','noone','cp@cjparker.us','these are notes'),('2014-09-17 09:03:09 PM','asdfsdf','fsdfsdf',2,'CP','foo','cp@cjparker.us','FOO'),('2014-09-18 04:27:39 PM','TEST3','123123',3,'CJP','','cp@cjparker.us',''),('2014-09-18 06:35:50 PM','sdfsdf','sdfsdf',2,'sdf','sdfs','cparker@cjparker.us','sdf'),('2014-09-19 07:45:00 AM','asdf','asdf',4,'asdf','asdfa','sd@sdf.com','sdf'),('2014-09-21 06:01:58 PM','foo','bar',2,'baz','','cp@cjparker.us','asdfsdf'),('2014-09-21 10:40:01 AM','new','sdf',4,'CP','','cp@cjparker.us',''),('2014-09-22 01:52:33 PM','aaa','asdf',4,'asdf','','christian.parker@emc.com',''),('2014-09-22 03:42:41 PM','foo','sdfsdf',4,'sdfsdf','','cp@cjparker.us','sdfsdf'),('2014-09-23 09:33:09 AM','newproj','foo',2,'CP','sdf','cp@cjparker.us','sdf');
+INSERT INTO `project_info` VALUES ('2014-09-25 03:50:12 PM','new','sdfsdf',2,'sdfsf','sdf','christian.parker@emc.com','sdfsdf');
 /*!40000 ALTER TABLE `project_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,4 +538,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-23 19:24:25
+-- Dump completed on 2014-09-28 16:55:28
