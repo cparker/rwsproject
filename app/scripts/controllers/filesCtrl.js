@@ -1,11 +1,20 @@
 angular.module('rwsprojectApp')
-    .controller('filesCtrl', ['$scope', 'FileUploader', 'dataService',
-        function ($scope, FileUploader, dataService) {
+    .controller('filesCtrl', ['$scope', 'FileUploader', 'dataService','$route',
+        function ($scope, FileUploader, dataService,$route) {
 
-            $scope.fileData = [];
+            console.log('current params');
+            console.log($route);
 
-            var refreshFiles = function () {
-                dataService.getFiles()
+            $scope.baseUploadURL = '/server/uploadFile';
+
+            $scope.fileData = {
+                "files": [],
+                "dirs": []
+            };
+
+
+            var refreshFiles = function (dir) {
+                dataService.getFiles(dir)
                     .success(function (fs) {
                         $scope.fileData = fs.payload;
                     })
@@ -14,11 +23,14 @@ angular.module('rwsprojectApp')
                     });
             };
 
-            refreshFiles();
 
-            $scope.greeting = 'hello';
+            $scope.selectDir = function (dir) {
+                console.log('dirUrl is ' + dir.url);
+                refreshFiles(dir);
+            };
+
             $scope.uploader = new FileUploader();
-            $scope.uploader.url = '/server/uploadFile';
+            $scope.uploader.url = $scope.baseUploadURL;
             $scope.uploader.removeAfterUpload = true;
 
             $scope.uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/, filter, options) {
@@ -53,10 +65,15 @@ angular.module('rwsprojectApp')
             };
             $scope.uploader.onCompleteAll = function () {
                 console.info('onCompleteAll');
-                refreshFiles();
+                refreshFiles($route.current.params.dir);
             };
 
-            console.info('uploader', $scope.uploader);
+
+            if ($route.current.params.dir) {
+                $scope.selectedDir = $route.current.params.dir;
+                $scope.uploader.url = $scope.baseUploadURL + '?dir=' + $route.current.params.dir;
+                refreshFiles($route.current.params.dir);
+            }
 
         }
     ]);

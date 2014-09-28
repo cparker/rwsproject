@@ -124,8 +124,24 @@ angular.module('rwsprojectApp')
                     data: fixtureLine});
             },
 
-            getFiles: function () {
-                return $http.get('/server/getFiles');
+            getFiles: function (dir) {
+                if (dir) {
+                    return $http.get('/server/getFiles?dir=' + dir);
+                } else {
+                    return $http.get('/server/getFiles');
+                }
+            },
+
+            checkAccess: function () {
+                return $http.get('/server/checkAccess')
+            },
+
+            doLogin: function (user, password) {
+                var loginData = {
+                    username: user,
+                    password: password
+                };
+                return $http({method: 'POST', url: '/server/login', data: loginData})
             }
 
         };

@@ -15,9 +15,10 @@ from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBac
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
+baseFileDir = '/opt/tmp/redwoodfiles/'
 app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
-app.config['UPLOAD_FOLDER'] = '/tmp/tue'
-app.config['SESSION_PATH'] = '/tmp'
+app.config['UPLOAD_FOLDER'] = baseFileDir
+app.config['SESSION_PATH'] = '/tmp/sessions'
 app.config['SECRET_KEY'] = os.urandom(24)
 skip_paths = []
 app.session_interface = ManagedSessionInterface(
@@ -294,7 +295,7 @@ def doGetProjectFixtures():
                 }
 
             return {
-                "notes" : fixtureResult['notes'],
+                "notes": fixtureResult['notes'],
                 "channels": {
                     "id": channelId,
                     "channel_count": fixtureResult['channels']
@@ -365,23 +366,53 @@ def doGetProjectFixtures():
 
 @app.route('/server/getFiles')
 def handleGetFiles():
-    fileDir = '/etc/'
-    files = os.listdir(fileDir)
+    print('dir argument is ' + str(request.args.get('dir')))
+    if request.args.get('dir', None) is not None:
+        workingFileDir = baseFileDir + request.args.get('dir') + '/'
+    else:
+        workingFileDir = baseFileDir
 
-    def makeItem(f):
-        createdDateTimeStr = time.ctime(os.path.getctime(fileDir + f))
-        createdDateTimeStamp = time.ctime(os.path.getctime(fileDir + f))
+    print('working is ' + workingFileDir)
+
+    allItems = os.listdir(workingFileDir)
+    files = filter(lambda f: os.path.isfile(workingFileDir + f), allItems)
+    dirs = filter(lambda f: os.path.isdir(workingFileDir + f), allItems)
+
+    requestPath = request.args.get('dir', None)
+    print("!!!!!!!!! " + str(requestPath))
+
+    def makeFile(f):
+        createdDateTimeStr = time.ctime(os.path.getctime(workingFileDir + f))
+        createdDateTimeStamp = time.ctime(os.path.getctime(workingFileDir + f))
 
         return {
             "name": f,
-            "url": "/files/" + f,
+            "url": "/files/" + (requestPath if requestPath is not None else "") + "/" + f,
             "createdDateTimeStr": createdDateTimeStr,
             "createdDateTimeStamp": createdDateTimeStamp
         }
 
-    realFiles = sorted(map(makeItem, files), key=lambda x: x['createdDateTimeStamp'], reverse=True)
+    def makeDir(f):
+        createdDateTimeStr = time.ctime(os.path.getctime(workingFileDir + f))
+        createdDateTimeStamp = time.ctime(os.path.getctime(workingFileDir + f))
 
-    return jsonify({"payload": realFiles})
+        return {
+            "name": f,
+            "url": "/server/getFiles" + "?dir=/{0}".format(f),
+            "createdDateTimeStr": createdDateTimeStr,
+            "createdDateTimeStamp": createdDateTimeStamp
+        }
+
+    jsonFiles = sorted(map(makeFile, files), key=lambda x: x['createdDateTimeStamp'], reverse=True)
+    jsonDirs = sorted(map(makeDir, dirs), key=lambda x: x['createdDateTimeStamp'], reverse=True)
+    toReturn = {
+        "payload": {
+            "files": jsonFiles,
+            "dirs": jsonDirs
+        }
+    }
+
+    return jsonify(toReturn)
 
 
 def runFixtureQuery(query):
@@ -734,11 +765,12 @@ def doGetAccessories():
 
 @app.route('/server/uploadFile', methods=['POST'])
 def upload_file():
+    uploadDir = baseFileDir + '/' + request.args.get('dir') + '/'
     file = request.files['file']
     filename = file.filename
     print('filename is ' + filename)
     if file:
-        file.save(os.path.join('/tmp/tue/', filename))
+        file.save(os.path.join(uploadDir, filename))
         resp = jsonify([])
         resp.status_code = 200
         return resp

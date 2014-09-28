@@ -21,9 +21,13 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
+                templateUrl: 'views/launcher.html',
+                controller: 'launcherCtrl'
+            })
+            .when('/home', {
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl',
-                reloadOnSearch:false
+                reloadOnSearch: false
             })
             .when('/about', {
                 templateUrl: 'views/about.html',
@@ -31,10 +35,16 @@ angular
             })
             .when('/files', {
                 templateUrl: 'views/files.html',
-                controller: 'filesCtrl'
+                controller: 'filesCtrl',
+                reloadOnSearch: false
+            })
+            .when('/dirs', {
+                templateUrl: 'views/dirs.html',
+                controller: 'filesCtrl',
+                reloadOnSearch: false
             })
             .when('/#tab:*/', {
-                reloadOnSearch:false
+                reloadOnSearch: false
             })
             .otherwise({
                 redirectTo: '/'

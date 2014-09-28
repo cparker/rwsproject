@@ -22,6 +22,29 @@ textarea {
     resize: none;
 }
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid gray; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
 .header,
 .marketing,
 .footer {
@@ -623,6 +646,10 @@ div#enginesOneWarningText {
     margin-left: 15px;
 }
 
+.fileContainer ul {
+    max-width: 40%;
+}
+
 .fileContainer li {
     list-style: none;
 }
@@ -656,4 +683,86 @@ div#enginesOneWarningText {
     font-family: arial;
     font-size: 17px;
     text-decoration: none;
+}
+
+.fileContainer ul {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.uploadDirRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.uploadDirs {
+}
+
+.uploadDir {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    margin: auto;
+}
+
+.launcherRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 6%;
+    margin-bottom:6%;
+}
+
+.launcherItem {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 5px;
+}
+
+
+.launcherItem a {
+    color: inherit;
+}
+
+.launchBomOuter {
+    background-color: #F28500;
+}
+
+.launchFilesOuter {
+    background-color: #457AB1;
+}
+
+.launcherItem .launchIcon {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.launchText {
+    margin: auto;
+    text-align: center;
+    padding-top: 13%;
+    vertical-align: bottom;
+    display: table-cell;
+    width: 63%;
+    height: 40px;
+}
+
+#launchBOM {
+    background: url("/images/launchBOM.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#launchFiles {
+    background: url("/images/launchFileDownload.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }

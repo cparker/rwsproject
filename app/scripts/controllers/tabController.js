@@ -90,25 +90,6 @@ angular.module('rwsprojectApp')
             $rootScope.isLoggedIn = !$rootScope.isLoggedIn;
         };
 
-        $scope.doLogin = function () {
-            var loginData = {
-                username: $scope.user.name,
-                password: $scope.user.password
-            };
-
-            $http({method: 'POST', url: '/server/login', data: loginData})
-                .success(function (data, status) {
-                    $rootScope.isLoggedIn = true;
-                    $scope.invalidCredentials = false;
-                    $scope.$emit('loggedInChanged', true);
-                }).error(function (data, status) {
-                    $scope.invalidCredentials = true;
-                    $scope.$emit('loggedInChanged', false);
-                    // $rootScope.isLoggedIn = true;
-                    console.log(data);
-                });
-
-        };
 
         $scope.getFixtureLines = function () {
             return dataService.getFixtureLines();

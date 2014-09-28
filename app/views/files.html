@@ -1,8 +1,12 @@
 <div class="fileContainer">
-    <p class="underlined">Total files: {{fileData.length}}</p>
-    {{x}}
+    <p class="underlined">{{selectedDir}}</p>
+    <!--ul>
+        <li ng-repeat="dir in fileData.dirs"><a href="" ng-click="selectDir(dir)">{{dir.name}}</a></li>
+    </ul-->
+
+    <p class="underlined">Total files: {{fileData.files.length}}</p>
     <ul>
-        <li ng-repeat="file in fileData"><a href="{{file.url}}">{{file.name}}</a></li>
+        <li ng-repeat="file in fileData.files"><a href="{{file.url}}">{{file.name}}</a></li>
     </ul>
 
 
