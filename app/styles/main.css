@@ -696,16 +696,67 @@ div#enginesOneWarningText {
     align-items: center;
     width: 80%;
     margin-top: 10px;
+    margin-bottom:50px;
 }
 
 .uploadDirs {
 }
 
 .uploadDir {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
+    width: 200px;
+    height: 160px;
     margin: auto;
+    font-size: 1.5em;
+}
+
+.dirText {
+    text-align: center;
+}
+
+.uploadDirs a {
+   color:inherit;
+}
+
+.dirDrawings {
+    background: url("/images/dirDrawings.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+
+.dirSpecs {
+    background: url("/images/dirSpecs.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+
+.dirSoftware {
+    background: url("/images/dirSoftware.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+
+.dirInstallation {
+    background: url("/images/dirInstallation.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+
+.dirFixtures {
+    background: url("/images/dirFixtures.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+
+.dirGeneral {
+    background: url("/images/dirGeneral.png");
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
 }
 
 .launcherRow {
@@ -766,3 +817,5 @@ div#enginesOneWarningText {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+
