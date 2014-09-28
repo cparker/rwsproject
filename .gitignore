@@ -5,3 +5,6 @@ dist
 bower_components
 .idea/
 .DS_Store
+app/bower.json
+app/.bowerrc
+server/src/redwood-server-log
