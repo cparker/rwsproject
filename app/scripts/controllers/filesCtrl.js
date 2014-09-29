@@ -12,6 +12,8 @@ angular.module('rwsprojectApp')
                 "dirs": []
             };
 
+            $scope.filesize = filesize;
+
 
             var refreshFiles = function (dir) {
                 dataService.getFiles(dir)

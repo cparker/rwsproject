@@ -6,7 +6,16 @@
 
     <p class="underlined">Total files: {{fileData.files.length}}</p>
     <ul>
-        <li ng-repeat="file in fileData.files"><a href="{{file.url}}">{{file.name}}</a></li>
+        <li ng-repeat="file in fileData.files">
+            <a href="{{file.url}}">
+                <div class="fileListLine">
+                    <div class="fileListItem fileListName">{{file.name}}</div>
+                    <div class="fileListItem fileListDate">{{file.createdDateTimeStr}}</div>
+                    <div class="fileListItem fileListSize">{{filesize(file.sizeBytes)}}</div>
+                </div>
+            </a>
+
+        </li>
     </ul>
 
 

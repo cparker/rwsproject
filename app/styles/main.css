@@ -108,13 +108,13 @@ select#projectCountry {
 .login-modal {
     -webkit-border-radius: 5px;
     position: fixed;
-    top: 15px;
-    left: 40px;
+    top: 0px;
+    left: 4px;
     background: #8895A7;
     margin: 5px;
     padding: 5px;
-    width: 94%;
-    height: 90%;
+    width: 98%;
+    height: 98%;
     opacity: 0.8;
     z-index: 100;
     display: flex;
@@ -755,7 +755,8 @@ div#enginesOneWarningText {
 }
 
 .fileContainer ul {
-    max-width: 40%;
+    max-width: 65%;
+    padding-right: 12px;
 }
 
 .fileContainer li {
@@ -763,7 +764,7 @@ div#enginesOneWarningText {
 }
 
 .fileContainer p {
-    width: 50%;
+    width: 68%;
     font-size: 1.5em;
     padding-bottom: 3px;
 }
@@ -975,4 +976,27 @@ div#enginesOneWarningText {
 
 .controlForm {
     margin-left:40px;
+}
+
+
+.fileListLine {
+    display:flex;
+    flex-direction: row;
+    max-width: 100%;
+}
+
+.fileListItem {
+    flex:1;
+}
+
+.fileListName {
+    flex:8;
+}
+
+.fileListDate {
+    flex:6;
+}
+
+.fileListSize {
+    flex: 2;
 }

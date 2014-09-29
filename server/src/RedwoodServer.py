@@ -384,12 +384,14 @@ def handleGetFiles():
     def makeFile(f):
         createdDateTimeStr = time.ctime(os.path.getctime(workingFileDir + f))
         createdDateTimeStamp = time.ctime(os.path.getctime(workingFileDir + f))
+        sizeB = os.path.getsize(workingFileDir + f)
 
         return {
             "name": f,
             "url": "/files/" + (requestPath if requestPath is not None else "") + "/" + f,
             "createdDateTimeStr": createdDateTimeStr,
-            "createdDateTimeStamp": createdDateTimeStamp
+            "createdDateTimeStamp": createdDateTimeStamp,
+            "sizeBytes" : sizeB
         }
 
     def makeDir(f):
