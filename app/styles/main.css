@@ -163,14 +163,14 @@ select#projectCountry {
     border-right: 2px;
     border-right-style: solid;
     border-right-color: gray;
-    height: 200px;
+    height: 230px;
 }
 
 #fixtureSectionTwo {
     border-right: 2px;
     border-right-style: solid;
     border-right-color: gray;
-    height: 200px;
+    height: 230px;
 }
 
 #fixtureSectionTwo select {
@@ -594,15 +594,111 @@ div#enginesOneWarningText {
     display: inline-block;
 }
 
-.bulbIcon {
+.tabIcon {
     float: left;
     width: 35px;
-    height: 35px;
-    background: url(/images/light-bulb.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    margin-left: -5px;
+    height: 23px;
+    margin-right:5px;
+    margin-left: -3px;
 }
+
+.bulbBold {
+    background: url(/images/bulbBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bulbGrey {
+    background: url(/images/bulbGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.infoBold {
+    background: url(/images/infoBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.infoGrey {
+    background: url(/images/infoGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.controlBold {
+    background: url(/images/star.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.controlGrey {
+    background: url(/images/star.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.enginesBold {
+    background: url(/images/enginesBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.enginesGrey {
+    background: url(/images/enginesGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.emergencyBold {
+    background: url(/images/emergencyBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.emergencyGrey {
+    background: url(/images/emergencyGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sparesBold {
+    background: url(/images/sparesBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sparesGrey {
+    background: url(/images/sparesGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.exclusionsBold {
+    background: url(/images/exclusionsBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.exclusionsGrey {
+    background: url(/images/exclusionsGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.summaryBold {
+    background: url(/images/summaryBold.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.summaryGrey {
+    background: url(/images/summaryGrey.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
 
 .optionalEquipmentPanel textarea {
     width: 50%;
@@ -640,6 +736,18 @@ div#enginesOneWarningText {
 
 .enginesPanel {
     padding-left: 15px;
+}
+
+.enginesPanel p {
+    width:80%;
+}
+
+.enginesPanel .circleNumber {
+    margin-right: 10px;
+}
+
+.engineSection {
+    margin-left: 38px;
 }
 
 .fileContainer {
@@ -818,4 +926,53 @@ div#enginesOneWarningText {
     background-size: contain;
 }
 
+.topLogoContainer {
+    display:flex;
+    flex-direction: row;
+    width: 100px;
+}
 
+.topLogo {
+    background: url("/images/star.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width:80px;
+    height:40px;
+    margin:5px;
+    margin-top:7px;
+}
+
+.topText {
+    font-size: 2.0em;
+    padding-top:13px;
+
+}
+
+.circleNumber {
+    border-radius: 50%;
+    background-color: #457AB1;
+    color:white;
+    width:25px;
+    height:25px;
+    text-align: center;
+    margin:3px;
+    line-height: 23px;
+
+}
+
+.numberAndText {
+    display: flex;
+    flex-direction: row;
+}
+
+.controlSection p {
+    width:80%;
+}
+
+.controlSection .circleNumber {
+    margin-right: 10px;
+}
+
+.controlForm {
+    margin-left:40px;
+}

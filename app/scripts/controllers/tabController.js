@@ -95,4 +95,12 @@ angular.module('rwsprojectApp')
             return dataService.getFixtureLines();
         };
 
+        $scope.tabClass = function (boldClass, dimClass, selectedTab) {
+            if (selectedTab == $rootScope.tabs.activeTab) {
+                return boldClass;
+            } else {
+                return dimClass;
+            }
+        };
+
     });
