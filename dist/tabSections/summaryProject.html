@@ -1,0 +1,82 @@
+<a href="" ng-click="selectSummary('menu')">Back to summary</a>
+<div class="fixtureOuterHeader">
+    <div class="fixtureHeaderContainer">
+        <div class="fixtureIcon"></div>
+        <div class="fixtureHeader">Project File</div>
+    </div>
+    <hr class="whiteline"/>
+    <div class="fixtureSubHeader">Project Information</div>
+</div>
+<div>
+    <ng-include src="'tabSections/summaryProjectInfo.html'"/>
+</div>
+<div class="summaryProjectHeader">Project Worksheet</div>
+
+
+<div class="summaryProjectWorksheet">
+
+    <div class="worksheetRow" ng-repeat="x in [1,2,3,4,5]">
+        <div class="col1 column">
+            <div class="value">AB</div>
+            <div class="value">Troffer</div>
+            <div class="value">Recessed</div>
+            <div class="value">1200mm x 1600mm</div>
+        </div>
+
+        <div class="col2 column">
+            <div class="value">Direct</div>
+            <div class="value">3200 Lumens</div>
+
+            <div class="labelValue">
+                <div class="summaryLabel">Channels</div>
+                <div class="value">2</div>
+            </div>
+            <div class="labelValue">
+                <div class="summaryLabel">Std Qty</div>
+                <div class="value">34</div>
+            </div>
+            <div class="labelValue">
+                <div class="summaryLabel">Emer Qty</div>
+                <div class="value">3</div>
+            </div>
+        </div>
+
+        <div class="col3 column">
+            <div class="value">Sensor 3</div>
+            <div class="value">SEN-3M1-W-GNRC1500</div>
+            <div class="labelValue">
+                <div class="summaryLabel">Ctrl Qty</div>
+                <div class="value">75</div>
+            </div>
+        </div>
+
+        <div class="col4 column">
+            <div class="value">COL-LED-325-RWS-XXX-XXX-SEN-XX-4-XX-XX-XX-XXX</div>
+            <div class="value">MHT LED Magnetic Tube 19" (each fixture comes with 2 2' sections powered by 1 sensor</div>
+
+            <div class="labelValue">
+                <div class="summaryLabel">Gateway:</div>
+                <div class="value">NA</div>
+            </div>
+            <div class="labelValue">
+                <div class="summaryLabel">Sensor</div>
+                <div class="value">None</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="summaryProjectAccessories">
+    <div class="accessoryLabel">Accessories:</div>
+    <div class="accessoryList">
+        <p ng-repeat="x in [1,2,3]">19 sensor mounting box (open ceiling)</p>
+    </div>
+</div>
+
+<div class="summaryProjectNotes">
+    <div class="notesLabel">Notes:</div>
+    <div class="summaryNotes">
+        These are notes
+    </div>
+</div>
