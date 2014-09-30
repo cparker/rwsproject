@@ -1,0 +1,70 @@
+<form ng-blur="projectInfoFormBlur()" name="projectInfo" ng-controller="projectInfoFormController" class="form-horizontal projectInfoForm">
+    <div class="control-group">
+        <label class="control-label" for="dateTime">Date / Time</label>
+
+        <div class="controls">
+            <input name="dateTime" ng-model="tabs.tabOne.dateTime" type="text" id="dateTime" readonly="true"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="inputName">* Project Name</label>
+
+        <div class="controls">
+            <input name="projectName" ng-model="tabs.tabOne.projectName" type="text" id="inputName" placeholder="project name" required/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectAddress">* Address</label>
+
+        <div class="controls">
+            <textarea name="address" ng-model="tabs.tabOne.address" rows="4" id="projectAddress" placeholder="address" required></textarea>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectCountry">* Region</label>
+
+        <div class="controls">
+            <select required name="region" ng-model="tabs.tabOne.region" ng-options="region.name for region in regions track by region.id" class="simpleArrowSelect" id="projectCountry">
+                <option value="">choose region</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectCreator">* Created by</label>
+
+        <div class="controls">
+            <input name="createdBy" ng-model="tabs.tabOne.createdBy" type="text" placeholder="Created by" id="projectCreator" required/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectQuoteBasedOn">Quote based on</label>
+
+        <div class="controls">
+            <input name="basedOn" ng-model="tabs.tabOne.basedOn" type="text" placeholder="Quote based on" id="projectQuoteBasedOn"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectEmail">* Email</label>
+
+        <div class="controls">
+            <input name="email" ng-model="tabs.tabOne.email" type="email" placeholder="email" id="projectEmail" required/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="projectNotes">Notes</label>
+
+        <div class="controls">
+            <textarea name="projectNotes" ng-model="tabs.tabOne.notes" rows="8" id="projectNotes" placeholder="Notes"></textarea>
+        </div>
+    </div>
+
+</form>
+        <p><em>* required field</em></p>
+

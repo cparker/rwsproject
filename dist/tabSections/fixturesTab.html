@@ -1,0 +1,24 @@
+<form class="fixtureForm" ng-controller="fixtureFormController" name="fixtureTabForm">
+    <div class="row-fluid fixturesSection">
+        <div id="sectionOne" class="span4">
+            <ng-include src="'fixtureForms/one.html'"/>
+        </div>
+        <div id="sectionTwo" class="span4">
+            <ng-include src="'fixtureForms/two.html'"/>
+        </div>
+        <div id="sectionThree" class="span4">
+            <ng-include src="'fixtureForms/three.html'"/>
+        </div>
+    </div>
+</form>
+
+<div class="row-fluid">
+    <div class="span12 fixtureListHeader">
+        Fixtures List
+    </div>
+</div>
+
+<ng-include src="'fixtureForms/fixtureLine.html'"/>
+
+
+
