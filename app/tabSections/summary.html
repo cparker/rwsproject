@@ -1,1 +1,17 @@
-<h2>summary</h2>
+<div class="summaryPanel">
+    <div class="summaryMenu" ng-show="activeSummarySection == 'menu'">
+        <ng-include src="'tabSections/summaryMenu.html'"/>
+    </div>
+
+    <div class="summaryFixture" ng-show="activeSummarySection == 'fixture'">
+        <ng-include src="'tabSections/summaryFixture.html'"/>
+    </div>
+
+    <div class="summaryBOM" ng-show="activeSummarySection == 'bom'">
+        <ng-include src="'tabSections/summaryBOM.html'"/>
+    </div>
+
+    <div class="summaryProject" ng-show="activeSummarySection == 'project'">
+        <ng-include src="'tabSections/summaryProject.html'"/>
+    </div>
+</div>

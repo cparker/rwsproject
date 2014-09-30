@@ -46,6 +46,10 @@ angular
             .when('/#tab:*/', {
                 reloadOnSearch: false
             })
+            .when('/printSummary', {
+                templateUrl: 'views/printSummary.html',
+                controller: 'printSummaryCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

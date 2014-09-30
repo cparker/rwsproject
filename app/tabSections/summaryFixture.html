@@ -1,0 +1,38 @@
+<a href="" ng-click="selectSummary('menu')"><- Back to summary</a>
+
+<div class="fixtureOuterHeader">
+    <div class="fixtureHeaderContainer">
+        <div class="fixtureIcon"></div>
+        <div class="fixtureHeader">Fixture Schedule (Not supplied by CommScope)</div>
+        <div><a href="/#/printSummary?section=fixture">Printer Friendly</a></div>
+    </div>
+    <hr class="whiteline"/>
+    <div class="fixtureSubHeader">Project Information</div>
+</div>
+<div>
+    <ng-include src="'tabSections/summaryProjectInfo.html'"/>
+</div>
+
+<div class="fixtureBottom">
+    <div class="fixtureBottomHeader">
+        <div class="id">Fixture ID</div>
+        <div class="qty">Qty</div>
+    </div>
+
+    <div class="fixtureBottomLine">
+        <div class="id">AB</div>
+        <div class="qty">12345</div>
+        <div class="column">Alfa Modular 1200 x 600mm</div>
+        <div class="column">AM 0612 xx-xx-1400</div>
+        <div class="column">And here are some notes for this fixture</div>
+    </div>
+
+    <div class="fixtureBottomLine">
+        <div class="id">ABCD</div>
+        <div class="qty">12</div>
+        <div class="column">Alfa Modular 1200 x 600mm and even longer</div>
+        <div class="column">AM 0612 xx-xx-1400</div>
+        <div class="column">And here are some notes for this fixture which are a bit longer</div>
+    </div>
+
+</div>

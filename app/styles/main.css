@@ -761,6 +761,30 @@ div#enginesOneWarning {
     background-repeat: no-repeat;
 }
 
+.blackSolidBulb {
+    background: url(/images/blackSolidBulb.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.blackSolidGear {
+    background: url(/images/blackSolidGear.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.blackSolidWrench {
+    background: url(/images/blackSolidWrench.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.blackSolidDocument {
+    background: url(/images/blackSolidDocument.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 /* if the form hasn't been touched, no red */
 .projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
     outline: none;
@@ -1131,3 +1155,4 @@ div#enginesOneWarning {
     overflow-x: hidden;
     overflow-y: auto;
 }
+

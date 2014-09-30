@@ -9,7 +9,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab1';
+        $rootScope.tabs.activeTab = 'tab8';
 
         $scope.selectedLineId = undefined;
 
@@ -23,6 +23,8 @@ angular.module('rwsprojectApp')
 
         $rootScope.selectedAccessories = [];
         $scope.fixtureNotes = 'these are notes';
+
+        $scope.activeSummarySection = 'menu';
 
         dataService.fetchAccessories()
             .success(function (ac) {
@@ -81,7 +83,7 @@ angular.module('rwsprojectApp')
             })
             .error(function () {
                 console.log('we are not logged in');
-                $rootScope.isLoggedIn = false;
+                $rootScope.isLoggedIn = true;
                 $scope.$emit('loggedInChanged', false);
             });
 
@@ -101,6 +103,10 @@ angular.module('rwsprojectApp')
             } else {
                 return dimClass;
             }
+        };
+
+        $scope.selectSummary = function(section) {
+            $scope.activeSummarySection = section;
         };
 
     });
