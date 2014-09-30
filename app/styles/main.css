@@ -236,23 +236,45 @@ select#projectCountry {
     width: 175px;
 }
 
-.optionalEquipmentPanel {
+.exclusionPanel {
     padding-left: 15px;
 }
 
-.optionalEquipLine {
-    margin-top: 5px;
+.exclusionPanel textarea {
+    width: 50%;
+    height: 200px;
 }
 
-.optionalEquipLine input {
-    margin: 0;
-    padding: 1px;
-    width: 50px;
+.exclusionPanel .exclusionHeader {
+    font-size: 1.5em;
+    color: #669AD0;
+    display: inline-block;
+}
+
+.exclusionPanel .exclusionIcon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.exclusionPanel ul {
+    list-style: none;
+    font-size: 1.2em;
+}
+
+.exclusionPanel li {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .emergencyLightingSection {
     margin-left: 5px;
     padding-left: 15px;
+    font-size: 1.3em;
+}
+
+.emergencyLightingSection label {
+    font-size: 1.0em;
 }
 
 .dialogOuter {
@@ -537,6 +559,7 @@ select#projectCountry {
 
 .tabLabel p {
     margin: 0;
+    font-size: 1.3em;
 }
 
 .tabLabel i {
@@ -590,16 +613,56 @@ div#enginesOneWarning {
     display: inline-block;
 }
 
-div#enginesOneWarningText {
+.enginesOneWarningText {
     display: inline-block;
+    color: red;
+    width: 50%;
+    margin-top: 15px;
+}
+
+.engineRedTriangle {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    margin-top: 16px;
 }
 
 .tabIcon {
     float: left;
     width: 35px;
     height: 23px;
-    margin-right:5px;
+    margin-right: 5px;
     margin-left: -3px;
+}
+
+.emergencyUnit {
+    background: url(/images/emergency-unit.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 750px;
+    height: 165px;
+}
+
+.emergencyCentral {
+    background: url(/images/emergency-central.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 750px;
+    height: 165px;
+}
+
+.bulbSolid {
+    background: url(/images/bulbSolid.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.redTriangleAlert {
+    background: url(/images/redTriangleAlert.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .bulbBold {
@@ -698,13 +761,6 @@ div#enginesOneWarningText {
     background-repeat: no-repeat;
 }
 
-
-
-.optionalEquipmentPanel textarea {
-    width: 50%;
-    height: 200px;
-}
-
 /* if the form hasn't been touched, no red */
 .projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
     outline: none;
@@ -739,7 +795,7 @@ div#enginesOneWarningText {
 }
 
 .enginesPanel p {
-    width:80%;
+    width: 80%;
 }
 
 .enginesPanel .circleNumber {
@@ -805,7 +861,7 @@ div#enginesOneWarningText {
     align-items: center;
     width: 80%;
     margin-top: 10px;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
 
 .uploadDirs {
@@ -823,49 +879,49 @@ div#enginesOneWarningText {
 }
 
 .uploadDirs a {
-   color:inherit;
+    color: inherit;
 }
 
 .dirDrawings {
     background: url("/images/dirDrawings.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dirSpecs {
     background: url("/images/dirSpecs.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dirSoftware {
     background: url("/images/dirSoftware.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dirInstallation {
     background: url("/images/dirInstallation.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dirFixtures {
     background: url("/images/dirFixtures.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .dirGeneral {
     background: url("/images/dirGeneral.png");
     background-repeat: no-repeat;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
 .launcherRow {
@@ -875,7 +931,7 @@ div#enginesOneWarningText {
     width: 80%;
     margin: auto;
     margin-top: 6%;
-    margin-bottom:6%;
+    margin-bottom: 6%;
 }
 
 .launcherItem {
@@ -884,7 +940,6 @@ div#enginesOneWarningText {
     height: 200px;
     -webkit-border-radius: 5px;
 }
-
 
 .launcherItem a {
     color: inherit;
@@ -928,7 +983,7 @@ div#enginesOneWarningText {
 }
 
 .topLogoContainer {
-    display:flex;
+    display: flex;
     flex-direction: row;
     width: 100px;
 }
@@ -937,26 +992,26 @@ div#enginesOneWarningText {
     background: url("/images/star.svg");
     background-repeat: no-repeat;
     background-size: contain;
-    width:80px;
-    height:40px;
-    margin:5px;
-    margin-top:7px;
+    width: 80px;
+    height: 40px;
+    margin: 5px;
+    margin-top: 7px;
 }
 
 .topText {
     font-size: 2.0em;
-    padding-top:13px;
+    padding-top: 13px;
 
 }
 
 .circleNumber {
     border-radius: 50%;
     background-color: #457AB1;
-    color:white;
-    width:25px;
-    height:25px;
+    color: white;
+    width: 25px;
+    height: 25px;
     text-align: center;
-    margin:3px;
+    margin: 3px;
     line-height: 23px;
 
 }
@@ -967,7 +1022,7 @@ div#enginesOneWarningText {
 }
 
 .controlSection p {
-    width:80%;
+    width: 80%;
 }
 
 .controlSection .circleNumber {
@@ -975,28 +1030,104 @@ div#enginesOneWarningText {
 }
 
 .controlForm {
-    margin-left:40px;
+    margin-left: 40px;
 }
 
-
 .fileListLine {
-    display:flex;
+    display: flex;
     flex-direction: row;
     max-width: 100%;
 }
 
 .fileListItem {
-    flex:1;
+    flex: 1;
 }
 
 .fileListName {
-    flex:8;
+    flex: 8;
 }
 
 .fileListDate {
-    flex:6;
+    flex: 6;
 }
 
 .fileListSize {
     flex: 2;
+}
+
+.spareLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.spareLine .firstItem {
+    flex: 5;
+}
+
+.spareLine .currentQty {
+    flex: 1.5;
+}
+
+.spareLine .spareQty {
+    flex: 1.5;
+}
+
+.spareLine .total {
+    flex: 1.5;
+}
+
+.sparesPanel ul {
+    list-style: none;
+}
+
+.sparesPanel ::-webkit-scrollbar:vertical {
+    width: 4px;
+}
+
+.sparesPanel ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid gray; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.sparesPanel ::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.sparesPanel input[type="number"] {
+    margin: 0;
+    padding: 2px;
+    width: 40px !important;
+}
+
+.spareLine.title {
+    font-size: 1.4em;
+    margin-left: 8px;
+    width: 68%;
+    color: #669AD0;
+}
+
+.spareLine .engineTitle {
+    flex: 10;
+}
+
+.sparesPanel .line {
+    width: 70%;
+    color: #669AD0;
+    background-color: #669AD0;
+    border: 0;
+    height: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 8px;
+}
+
+.sparesPanel .sparesList {
+    max-width: 68%;
+    max-height: 106px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
