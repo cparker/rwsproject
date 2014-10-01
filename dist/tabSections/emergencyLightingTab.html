@@ -3,22 +3,22 @@
     <p class="underlined">Emergency Lighting Solutions (Check for local code compliance)</p>
 
     <div class="servicePanelLine">
-        <input name="emergencyLightingChoice" type="radio" id="unitEquipment"/>
-        <label class="rightSideLabel" for="unitEquipment">Unit Equipment - Non Redwood AC lights</label>
-        <div class="emergencyUnit"></div>
+        <div ng-class="{bigRadioFilled:selectedEmergencyRadio == '1'}" class="bigRadio" ng-click="selectEmergencyRadio('1')"></div>
+        <label>Unit Equipment - Non Redwood AC lights</label>
     </div>
+    <div class="emergencyUnit"></div>
 
     <div class="servicePanelLine">
-        <input name="emergencyLightingChoice" type="radio" id="centralAux"/>
-        <label class="rightSideLabel" for="centralAux">Central Auxiliary Power System - Redwood powered fixtures</label>
-        <div class="emergencyCentral"></div>
+        <div ng-class="{bigRadioFilled:selectedEmergencyRadio == '2'}" class="bigRadio" ng-click="selectEmergencyRadio('2')"></div>
+        <label>Central Auxiliary Power System - Redwood powered fixtures</label>
     </div>
+    <div class="emergencyCentral"></div>
 
     <div class="servicePanelLine">
-        <input name="emergencyLightingChoice" type="radio" id="noEmergencyControl"/>
-        <label class="rightSideLabel" for="noEmergencyControl">No Emergency Control</label>
-        <p>WARNING This may not be code compliant</p>
+        <div ng-class="{bigRadioFilled:selectedEmergencyRadio == '3'}" class="bigRadio" ng-click="selectEmergencyRadio('3')"></div>
+        <label>No Emergency Control</label>
     </div>
+    <p>WARNING This may not be code compliant</p>
 
 
 
