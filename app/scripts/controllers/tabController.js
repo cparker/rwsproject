@@ -9,7 +9,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab8';
+        $rootScope.tabs.activeTab = 'tab5';
 
         $scope.selectedLineId = undefined;
 
@@ -22,7 +22,7 @@ angular.module('rwsprojectApp')
         $scope.accessories = [];
 
         $rootScope.selectedAccessories = [];
-        $scope.fixtureNotes = 'these are notes';
+        $rootScope.fixtureNotes = 'these are notes';
 
         $scope.activeSummarySection = 'menu';
 
@@ -108,5 +108,9 @@ angular.module('rwsprojectApp')
         $scope.selectSummary = function(section) {
             $scope.activeSummarySection = section;
         };
+
+        $scope.selectEmergencyRadio = function(radioId) {
+           $scope.selectedEmergencyRadio = radioId;
+        }
 
     });

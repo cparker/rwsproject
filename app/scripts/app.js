@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var theApp = angular
     .module('rwsprojectApp', [
         'angularFileUpload',
         'ngAnimate',
@@ -16,8 +16,11 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
-    ])
+        'ngTouch',
+        'ngMockE2E'
+    ]);
+
+theApp
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -53,4 +56,32 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
+    });
+
+theApp
+    .run(function ($httpBackend, dataService) {
+        console.log('theApp is initializing');
+
+        var mockEnabled = true;
+
+        if (mockEnabled == true) {
+            console.log('MOCK DATA in effect');
+
+            dataService.fixtureLines = mockFixtureLines;
+            dataService.fixtureLineSelectChoices = mockFixtureLineSelectChoices;
+
+            $httpBackend.whenGET('/server/checkAccess')
+                .respond(200, {});
+
+            $httpBackend.whenGET('/server/getProjectInfo')
+                .respond(mockProjectInfo);
+
+            $httpBackend.whenGET(/.*\.html/).passThrough();
+
+            $httpBackend.whenGET(/^\/server.*/).passThrough();
+        } else {
+            $httpBackend.whenGET(/.*/).passThrough();
+            $httpBackend.whenPOST(/.*/).passThrough();
+            $httpBackend.whenPUT(/.*/).passThrough();
+        }
     });

@@ -6,8 +6,8 @@
  *
  */
 angular.module('rwsprojectApp')
-    .controller('launcherCtrl', ['$scope', 'FileUploader', 'dataService', '$route', '$rootScope',
-        function ($scope, FileUploader, dataService, $route, $rootScope) {
+    .controller('launcherCtrl', ['$scope', 'FileUploader', 'dataService', '$route', '$rootScope', '$httpBackend',
+        function ($scope, FileUploader, dataService, $route, $rootScope, $httpBackend) {
 
             $scope.user = {};
 

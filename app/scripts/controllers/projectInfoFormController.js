@@ -1,17 +1,17 @@
 angular.module('rwsprojectApp')
-    .controller('projectInfoFormController', ['$scope', '$filter', '$rootScope', 'dataService',
-        function ($scope, $filter, $rootScope, dataService) {
+    .controller('projectInfoFormController', ['$scope', '$filter', '$rootScope', 'dataService', '$httpBackend',
+        function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
             $scope.regions = [
-                {name: 'EMEA', id:1},
-                {name: 'APAC', id:2}
+                {name: 'EMEA', id: 1},
+                {name: 'APAC', id: 2}
             ];
 
             $rootScope.tabs.tabOne = {
                 dateTime: $filter('date')(new Date(), 'yyyy-MM-dd hh:mm:ss a'),
                 projectName: undefined,
                 address: undefined,
-                region: {name: 'EMEA', id:2},
+                region: {name: 'EMEA', id: 2},
                 createdBy: undefined,
                 basedOn: undefined,
                 email: undefined,
@@ -20,10 +20,10 @@ angular.module('rwsprojectApp')
             };
 
             dataService.fetchRegions()
-                .success(function(regions) {
+                .success(function (regions) {
                     $scope.regions = regions.payload;
                 })
-                .error(function(error){
+                .error(function (error) {
                     $scope.$emit('error retrieving regions')
                 });
 

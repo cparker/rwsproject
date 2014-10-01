@@ -216,6 +216,9 @@ select#projectCountry {
 }
 
 .servicePanelLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 525px;
     margin-top: 15px;
 }
@@ -223,6 +226,11 @@ select#projectCountry {
 .servicePanelLine input {
     padding: 1px;
     margin: 0;
+}
+
+.servicePanelLine label {
+    margin:0;
+    padding:0;
 }
 
 .servicePanelLine p {
@@ -1156,3 +1164,19 @@ div#enginesOneWarning {
     overflow-y: auto;
 }
 
+
+
+
+.bigRadio {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: 2px solid #808080;
+    margin-right: 4px;
+}
+
+.bigRadioFilled {
+    background-color: darkgreen;
+    border: 2px solid #808080;
+}

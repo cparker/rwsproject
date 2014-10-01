@@ -18,8 +18,8 @@ angular.module('rwsprojectApp')
 
                 this.fixtureLines.push(fixtureForm);
 
-                // save all the multi select choices
-                this.fixtureLineSelectChoices[fixtureForm.fixtureLineId] = dropDownChoices;
+                // save all the multi select choices, need to make a COPY
+                this.fixtureLineSelectChoices[fixtureForm.fixtureLineId] = JSON.parse(JSON.stringify(dropDownChoices));
 
                 // the one you just added becomes immediately selected
                 this.selectedFixtureLine = fixtureForm.fixtureLineId;

@@ -54,18 +54,28 @@ angular.module('rwsprojectApp')
 
             $rootScope.fixtureForm = {};
 
-            $scope.fixtureLines = [];
+
+            $scope.setFixtureTypesBySelectedRegion = function () {
+                $rootScope.dropDownChoices.sensorTypes = [
+                    {name: 'None', id: 1},
+                    {name: 'Normal', id: 2},
+                    {name: 'Low', id: 3},
+                    {name: 'High', id: 4}
+                ];
+
+                dataService.fetchFixtureTypes($rootScope.tabs.tabOne.region.id)
+                    .success(function (types) {
+                        $rootScope.dropDownChoices.fixtureTypes = types.payload;
+                    })
+                    .error(function (er) {
+                        console.log(er);
+                    });
+            };
 
 
             $rootScope.$on('tabLosingFocus', function (stuff, fromTab, toTab) {
                 if (toTab === 'tab2') {
-                    dataService.fetchFixtureTypes($rootScope.tabs.tabOne.region.id)
-                        .success(function (types) {
-                            $rootScope.dropDownChoices.fixtureTypes = types.payload;
-                        })
-                        .error(function (er) {
-                            console.log(er);
-                        });
+                    $scope.setFixtureTypesBySelectedRegion();
                 }
             });
 
@@ -186,6 +196,9 @@ angular.module('rwsprojectApp')
 
             $scope.resetFixtureForm = function () {
                 $rootScope.fixtureForm = {};
+                $rootScope.dropDownChoices = {};
+                $scope.setFixtureTypesBySelectedRegion();
+                $rootScope.fixtureNotes = "";
                 $scope.fixtureTabForm.$setPristine();
                 dataService.selectedFixtureLine = undefined;
                 $rootScope.selectedAccessories = [];
