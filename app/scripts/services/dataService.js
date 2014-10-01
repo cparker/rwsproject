@@ -141,7 +141,14 @@ angular.module('rwsprojectApp')
                     username: user,
                     password: password
                 };
-                return $http({method: 'POST', url: '/server/login', data: loginData})
+                return $http({method: 'POST', url: '/server/login', data: loginData});
+            },
+
+            deleteFile: function (file) {
+                var params = {
+                    url: file.url
+                };
+                return $http({method: 'DELETE', url: '/server/deleteFile', data: file, params: params});
             }
 
         };

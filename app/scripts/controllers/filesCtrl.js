@@ -1,6 +1,6 @@
 angular.module('rwsprojectApp')
-    .controller('filesCtrl', ['$scope', 'FileUploader', 'dataService','$route',
-        function ($scope, FileUploader, dataService,$route) {
+    .controller('filesCtrl', ['$scope', 'FileUploader', 'dataService', '$route', '$rootScope',
+        function ($scope, FileUploader, dataService, $route, $rootScope) {
 
             console.log('current params');
             console.log($route);
@@ -18,7 +18,13 @@ angular.module('rwsprojectApp')
             var refreshFiles = function (dir) {
                 dataService.getFiles(dir)
                     .success(function (fs) {
-                        $scope.fileData = fs.payload;
+                        $scope.fileData.files = [];
+                        $scope.fileData.dirs = [];
+
+                        _.each(fs.payload.files, function (f) {
+                            $scope.fileData.files.push(f);
+                        });
+                        //$scope.fileData = fs.payload;
                     })
                     .error(function (er) {
                         console.log(er);
@@ -75,6 +81,33 @@ angular.module('rwsprojectApp')
                 $scope.selectedDir = $route.current.params.dir;
                 $scope.uploader.url = $scope.baseUploadURL + '?dir=' + $route.current.params.dir;
                 refreshFiles($route.current.params.dir);
+            }
+
+            $scope.toggleFileDeleteDialog = function (file) {
+                if (file) {
+                    $scope.highlightedFile = file.name;
+                } else {
+                    $scope.highlightedFile = undefined;
+                }
+                $scope.fileToDelete = file;
+                $scope.isFileDeleteDialogActive = !$scope.isFileDeleteDialogActive;
+            };
+
+            $scope.confirmDelete = function () {
+                // actually delete the file
+                dataService.deleteFile($scope.fileToDelete)
+                    .success(function () {
+                        refreshFiles($route.current.params.dir);
+                        $scope.isFileDeleteDialogActive = false;
+                    })
+                    .error(function (err) {
+                        $rootScope.emit('error', err);
+                        $scope.isFileDeleteDialogActive = false;
+                    })
+            };
+
+            $scope.isFileHighlighted = function (fileName) {
+                return $scope.highlightedFile === fileName;
             }
 
         }

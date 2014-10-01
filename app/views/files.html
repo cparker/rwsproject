@@ -7,13 +7,15 @@
     <p class="underlined">Total files: {{fileData.files.length}}</p>
     <ul>
         <li ng-repeat="file in fileData.files">
-            <a href="{{file.url}}">
-                <div class="fileListLine">
+            <div class="fileListLine" ng-class="{fileHighlight:isFileHighlighted(file.name)}">
+                <a class="fileListLink" href="{{file.url}}">
                     <div class="fileListItem fileListName">{{file.name}}</div>
                     <div class="fileListItem fileListDate">{{file.createdDateTimeStr}}</div>
                     <div class="fileListItem fileListSize">{{filesize(file.sizeBytes)}}</div>
-                </div>
-            </a>
+                </a>
+
+                <div ng-click="toggleFileDeleteDialog(file)" class="fileListItem fileListDelete"></div>
+            </div>
 
         </li>
     </ul>
@@ -53,4 +55,15 @@
             </div>
         </li>
     </ul>
+</div>
+
+<div ng-show="isFileDeleteDialogActive" class="greyEverything"></div>
+
+<div ng-show="isFileDeleteDialogActive" class="fileDeleteDialog">
+    <label>Really delete {{fileToDelete.name}}?</label>
+
+    <div class="buttons">
+        <input ng-click="toggleFileDeleteDialog()" class="fancyButton" type="button" value="Cancel"/>
+        <input ng-click="confirmDelete()" class="fancyButton" type="button" value="OK"/>
+    </div>
 </div>

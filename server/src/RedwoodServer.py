@@ -9,7 +9,7 @@ from flask import Flask, session, redirect, url_for, escape, request, jsonify
 import json
 from MySQLdb import cursors
 from datetime import timedelta
-import os, time, datetime, traceback
+import os, time, datetime, traceback, re
 from werkzeug import secure_filename
 from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBackedSessionManager
 
@@ -391,7 +391,7 @@ def handleGetFiles():
             "url": "/files/" + (requestPath if requestPath is not None else "") + "/" + f,
             "createdDateTimeStr": createdDateTimeStr,
             "createdDateTimeStamp": createdDateTimeStamp,
-            "sizeBytes" : sizeB
+            "sizeBytes": sizeB
         }
 
     def makeDir(f):
@@ -415,6 +415,24 @@ def handleGetFiles():
     }
 
     return jsonify(toReturn)
+
+
+@app.route('/server/deleteFile', methods=['DELETE'])
+def deleteFile():
+    bareFile = re.search('\/.*?\/(.*)', request.args.get('url')).group(1)
+    fullPath = baseFileDir + bareFile
+    print('deleting {0}'.format(fullPath))
+    try:
+        os.remove(fullPath)
+        resp = jsonify([])
+        resp.status_code = 200
+        return resp
+
+    except Exception as ex:
+        print(ex)
+        resp = jsonify([])
+        resp.status_code = 500
+        return resp
 
 
 def runFixtureQuery(query):

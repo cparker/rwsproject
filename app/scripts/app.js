@@ -62,7 +62,7 @@ theApp
     .run(function ($httpBackend, dataService) {
         console.log('theApp is initializing');
 
-        var mockEnabled = true;
+        var mockEnabled = false;
 
         if (mockEnabled == true) {
             console.log('MOCK DATA in effect');
@@ -79,9 +79,12 @@ theApp
             $httpBackend.whenGET(/.*\.html/).passThrough();
 
             $httpBackend.whenGET(/^\/server.*/).passThrough();
+
+            $httpBackend.whenDELETE(/.*/).passThrough();
         } else {
             $httpBackend.whenGET(/.*/).passThrough();
             $httpBackend.whenPOST(/.*/).passThrough();
             $httpBackend.whenPUT(/.*/).passThrough();
+            $httpBackend.whenDELETE(/.*/).passThrough();
         }
     });
