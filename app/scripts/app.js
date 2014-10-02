@@ -21,7 +21,7 @@ var theApp = angular
     ]);
 
 theApp
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/launcher.html',
@@ -56,6 +56,9 @@ theApp
             .otherwise({
                 redirectTo: '/'
             });
+
+
+        $httpProvider.interceptors.push('myHttpInterceptor');
     });
 
 theApp

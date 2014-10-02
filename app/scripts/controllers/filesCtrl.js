@@ -101,7 +101,7 @@ angular.module('rwsprojectApp')
                         $scope.isFileDeleteDialogActive = false;
                     })
                     .error(function (err) {
-                        $rootScope.emit('error', err);
+                        $rootScope.$emit('error', err);
                         $scope.isFileDeleteDialogActive = false;
                     })
             };

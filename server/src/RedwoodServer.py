@@ -58,6 +58,45 @@ class ConnectionHandler:
 connectionHandler = ConnectionHandler()
 
 
+@app.before_request
+def filterRequests():
+    print('####### filtering requests ' + request.path)
+
+    # let's list out some roles that we'll allow through with guest access
+    # the default will be admin access is required
+    guestAccessAllowed = [
+        "\/server\/getFiles",
+        "\/server\/checkAccess"
+    ]
+
+    bypass = [
+        "\/server\/login"
+    ]
+
+    matchedGuestURLS = [regex for regex in guestAccessAllowed if re.match(regex, request.path)]
+    matchedBypassURLs = [regex for regex in bypass if re.match(regex, request.path)]
+
+    if len(matchedBypassURLs) > 0:
+        return
+
+    resp = jsonify({})
+    if len(matchedGuestURLS) > 0:
+        if session.has_key('role') and (session['role'] == 'guest' or session['role'] == 'admin'):
+            print('allowing guest access to ' + request.path)
+            resp.status_code = 200
+        else:
+            resp.status_code = 401
+
+    elif session and session.has_key('role') and session['role'] == 'admin':
+        resp.status_code = 200
+
+    else:
+        resp.status_code = 401
+
+    if resp.status_code == 401:
+        return resp  # prevent access
+
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -68,19 +107,32 @@ def index():
 @app.route('/server/login', methods=['POST'])
 def login():
     session.permanent = True
-    if request.method == 'POST':
-        print('received ' + str(request.json))
-        con = connectionHandler.getConnection()
-        cur = con.cursor(cursors.DictCursor)
+
+    con = connectionHandler.getConnection()
+    cur = con.cursor(cursors.DictCursor)
+    resp = jsonify({})
+
+    try:
         cur.execute("select * from accounts where user='{name}'".format(name=request.json['username']))
         user = cur.fetchone()
+
         if user['password'] == request.json['password']:
-            session['username'] = request.json['username']
-            cur.close()
-            return '', 200
+            session['username'] = user['user']
+            session['role'] = user['role']
+            resp = jsonify(username=user['user'], role=user['role'])
+            resp.status_code = 200
         else:
-            cur.close()
-            return '', 401
+            resp.status_code = 401
+
+    except Exception as ex:
+        print('caught ' + str(ex))
+        resp.status_code = 500
+
+    finally:
+        cur.close()
+        con.close()
+
+    return resp
 
 
 @app.route('/server/fixtureTypes', methods=['GET'])
@@ -798,8 +850,13 @@ def upload_file():
 
 @app.route('/server/checkAccess')
 def checkAccess():
-    if 'username' in session:
-        return '', 200
+    if session.has_key('username') and session.has_key('role'):
+        resp = jsonify({
+            "role": session['role'],
+            "username": session['username']
+        })
+        resp.status_code = 200
+        return resp
     else:
         return '', 401
 

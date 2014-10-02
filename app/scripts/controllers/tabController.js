@@ -1,11 +1,6 @@
 angular.module('rwsprojectApp')
     .controller('tabController', function ($scope, $rootScope, $route, $http, $filter, dataService) {
 
-        $rootScope.isLoggedIn = undefined;
-
-
-        $scope.invalidCredentials = false;
-
         $scope.user = {};
 
         $rootScope.tabs = {};
@@ -71,21 +66,6 @@ angular.module('rwsprojectApp')
             $scope.tabs.notesDialogHide =
                 $scope.tabs.notesDialogHide == false;
         };
-
-
-        // this is our main controller, so whenever this guy runs, let's check to
-        // see if we're logged in or not
-        $http.get('/server/checkAccess')
-            .success(function () {
-                console.log('we are logged in');
-                $rootScope.isLoggedIn = true;
-                $scope.$emit('loggedInChanged', true);
-            })
-            .error(function () {
-                console.log('we are not logged in');
-                $rootScope.isLoggedIn = true;
-                $scope.$emit('loggedInChanged', false);
-            });
 
 
         $rootScope.tempToggleLogin = function () {

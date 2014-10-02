@@ -12,13 +12,18 @@ angular.module('rwsprojectApp')
         console.log('main controller is being instantiated');
 
         $scope.user = {};
+        $rootScope.authenticatedUser = {};
+        $rootScope.isLoggedIn = undefined;
 
         dataService.checkAccess()
-            .success(function () {
+            .success(function (data) {
                 $rootScope.isLoggedIn = true;
+                $rootScope.authenticatedUser.username = data.username;
+                $rootScope.authenticatedUser.role = data.role;
                 $scope.$emit('loggedInChanged', true);
             })
             .error(function () {
+                $rootScope.authenticatedUser = {};
                 $rootScope.isLoggedIn = false;
                 $scope.$emit('loggedInChanged', false);
             });
@@ -27,13 +32,14 @@ angular.module('rwsprojectApp')
             dataService.doLogin($scope.user.name, $scope.user.password)
                 .success(function (data, status) {
                     $rootScope.isLoggedIn = true;
+                    $rootScope.authenticatedUser.username = data.username;
+                    $rootScope.authenticatedUser.role = data.role;
                     $scope.invalidCredentials = false;
                     $scope.$emit('loggedInChanged', true);
                 }).error(function (data, status) {
                     $scope.invalidCredentials = true;
+                    $rootScope.authenticatedUser = {};
                     $scope.$emit('loggedInChanged', false);
-                    // $rootScope.isLoggedIn = true;
-                    console.log(data);
                 });
 
         };
