@@ -1,4 +1,3 @@
-
 var mockFixtureLines = [
     {
         "$$hashKey": "object:69",
@@ -712,4 +711,148 @@ var mockProjectInfo = {
         "name": "EMEA"
     },
     "region_id": 2
-}
+};
+
+var mockRegions = {
+    "payload": [
+        {
+            "id": 1,
+            "name": "APAC"
+        },
+        {
+            "id": 2,
+            "name": "EMEA"
+        },
+        {
+            "id": 3,
+            "name": "CALA"
+        },
+        {
+            "id": 4,
+            "name": "NAR"
+        },
+        {
+            "id": 5,
+            "name": "Asia Pacific"
+        },
+        {
+            "id": 6,
+            "name": "Europe"
+        }
+    ]
+};
+
+
+var mockAccessories = {
+    "payload": [
+        {
+            "description": "Universal Gateway Wiring Harness",
+            "part_number": "RG-2G-WH"
+        },
+        {
+            "description": "RIB Relay -  10 Amp SPDT, 120-277Vac",
+            "part_number": "PER-RIB21CDC"
+        },
+        {
+            "description": "Downlight Splitter (DL12A)",
+            "part_number": "760164233"
+        },
+        {
+            "description": "Cable Sharing Splitter - SP12A (2 per horizontal run)",
+            "part_number": "760191841"
+        },
+        {
+            "description": "Sensor mounting box (open ceiling)",
+            "part_number": "ADAPTER-BOX-1G"
+        },
+        {
+            "description": "Sensor Mounting Bracket for ML 1x4 and 2x2",
+            "part_number": "ADP-MOUNT-W"
+        },
+        {
+            "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (20pk)",
+            "part_number": "ADP-MOUNT-W-20"
+        },
+        {
+            "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (50pk)",
+            "part_number": "ADP-MOUNT-W-50"
+        },
+        {
+            "description": "RJ45-18AWG Adapter (1 per CH)",
+            "part_number": "TRM-RJ45-EU"
+        },
+        {
+            "description": "10 pin to RJ45 fixture adapter",
+            "part_number": "CAB-10PIN-RJ45"
+        },
+        {
+            "description": "3-1 Wire Harness(3 fixtures: 1 LED gateway)",
+            "part_number": "HARNESS-3-FIXTURE"
+        },
+        {
+            "description": "10Pin Fixt-to-GW cable extender, 2\" length",
+            "part_number": "CABEXT-2"
+        },
+        {
+            "description": "10Pin Fixt-to-GW cable extender, 4\" length",
+            "part_number": "CABEXT-4"
+        },
+        {
+            "description": "10Pin Fixt-to-GW cable extender, 6\" length",
+            "part_number": "CABEXT-6"
+        },
+        {
+            "description": "10Pin Fixt-to-GW cable extender, 8\" length",
+            "part_number": "CABEXT-8"
+        },
+        {
+            "description": "1ch fixt-adp pigtail, 36 inch length",
+            "part_number": "PIGTAIL-1-FIXTURE"
+        },
+        {
+            "description": "2ch fixt-adp pigtail, 36 inch length",
+            "part_number": "PIGTAIL-2-FIXTURE"
+        }
+    ]
+};
+
+var mockFixtureTypes = {
+    "payload": [
+        {
+            "id": 8,
+            "name": "AC Zones (Qty)"
+        },
+        {
+            "id": 1,
+            "name": "Accent"
+        },
+        {
+            "id": 7,
+            "name": "Desk Sensor"
+        },
+        {
+            "id": 2,
+            "name": "Downlight"
+        },
+        {
+            "id": 5,
+            "name": "Fixtureless"
+        },
+        {
+            "id": 4,
+            "name": "Linear"
+        },
+        {
+            "id": 6,
+            "name": "Occupancy"
+        },
+        {
+            "id": 10,
+            "name": "Out of Scope"
+        },
+        {
+            "id": 3,
+            "name": "Troffer"
+        }
+    ]
+};

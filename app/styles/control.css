@@ -1,0 +1,57 @@
+.controlPanel {
+    padding-left: 15px;
+}
+
+.controlPanel > div {
+    margin-top: 20px;
+}
+
+.controlPanel input[type="checkbox"] {
+    margin: 0;
+}
+
+.controlSection p {
+    width: 80%;
+}
+
+.controlSection .circleNumber {
+    margin-right: 10px;
+}
+
+.controlForm {
+    margin-left: 40px;
+}
+
+.controlForm textarea {
+    height: 100px;
+    width: 70%;
+}
+
+/* if the form hasn't been touched, no red */
+.controlForm input.ng-invalid.ng-pristine, .controlForm select.ng-invalid.ng-pristine {
+    outline: none;
+}
+
+/* once they attempt to submit the form, mark fiekds */
+.controlForm.ng-submitted input.ng-invalid,
+.controlForm.ng-submitted select.ng-invalid,
+.controlForm.ng-submitted textarea.ng-invalid {
+    outline: 2px dotted red;
+}
+
+/* If they touch a field, and leave it invalid, mark it */
+.controlForm input.ng-invalid.ng-touched,
+.controlForm select.ng-invalid.ng-touched,
+.controlForm textarea.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+
+.controlForm.ng-submitted input.ng-invalid,
+.controlForm.ng-submitted select.ng-invalid {
+    outline: 2px dotted red;
+}
+
+.controlForm:not(.ng-submitted) input.ng-touched.ng-invalid:not(.ng-pristine),
+.controlForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
+    outline: 2px dotted red;
+}

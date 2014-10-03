@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab1';
+        $rootScope.tabs.activeTab = 'tab5';
 
         $scope.selectedLineId = undefined;
 
@@ -89,9 +89,6 @@ angular.module('rwsprojectApp')
             $scope.activeSummarySection = section;
         };
 
-        $scope.selectEmergencyRadio = function (radioId) {
-            $scope.selectedEmergencyRadio = radioId;
-        };
 
         $scope.testBroadcast = function (one, two) {
             console.log('emiting event ' + one + ' ' + two);

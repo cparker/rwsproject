@@ -1,0 +1,104 @@
+.enginesPanel {
+    padding-left: 15px;
+}
+
+.enginesPanel p {
+    width: 80%;
+}
+
+.enginesPanel .circleNumber {
+    margin-right: 10px;
+}
+
+.engineSection {
+    margin-left: 38px;
+}
+
+#enginesOne {
+    margin-bottom: 15px;
+}
+
+#enginesOne p {
+    padding: 0;
+    margin: 0;
+}
+
+#enginesOne input {
+    width: 75px;
+}
+
+#enginesOne select {
+    width: 90px;
+}
+
+#enginesTwo select {
+    width: 90px;
+}
+
+.engineOneLabel {
+    width: 200px;
+    display: inline-block;
+}
+
+#engineSpacerTwo {
+    height: 35px;
+}
+
+span#enginesSpacer {
+    display: inline-block;
+    width: 30px;
+}
+
+div#enginesOneWarning {
+    background: url(/images/light-bulb.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 35px;
+    display: inline-block;
+}
+
+.enginesOneWarningText {
+    display: inline-block;
+    color: red;
+    width: 50%;
+    margin-top: 15px;
+}
+
+.engineRedTriangle {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    margin-top: 16px;
+}
+
+/* if the form hasn't been touched, no red */
+.enginesForm input.ng-invalid.ng-pristine, .enginesForm select.ng-invalid.ng-pristine {
+    outline: none;
+}
+
+/* once they attempt to submit the form, mark fiekds */
+.enginesForm.ng-submitted input.ng-invalid,
+.enginesForm.ng-submitted select.ng-invalid,
+.enginesForm.ng-submitted textarea.ng-invalid {
+    outline: 2px dotted red;
+}
+
+/* If they touch a field, and leave it invalid, mark it */
+.enginesForm input.ng-invalid.ng-touched,
+.enginesForm select.ng-invalid.ng-touched,
+.enginesForm textarea.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+
+.enginesForm.ng-submitted input.ng-invalid,
+.enginesForm.ng-submitted select.ng-invalid {
+    outline: 2px dotted red;
+}
+
+.enginesForm:not(.ng-submitted) input.ng-touched.ng-invalid:not(.ng-pristine),
+.enginesForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
+    outline: 2px dotted red;
+}

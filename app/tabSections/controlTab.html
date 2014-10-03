@@ -6,22 +6,24 @@
         </div>
 
         <div class="controlForm">
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="sceneControllers"/>
-                <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
-            </div>
+            <form class="controlForm" name="controlForm" ng-controller="controlFormController">
+                <div>
+                    <input name="sceneControllers" ng-model="$parent.controlModel.sceneControllers" required class="redwoodPanelNarrowInput" type="number" min="0" placeholder="0" id="sceneControllers"/>
+                    <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
+                </div>
 
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="dimmers"/>
-                <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
-            </div>
+                <div>
+                    <input name="dimmers" ng-model="$parent.controlModel.dimmers" required class="redwoodPanelNarrowInput" type="number" min="0" placeholder="0" id="dimmers"/>
+                    <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
+                </div>
 
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="spdtWallSwitches"/>
-                <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
-            </div>
+                <div>
+                    <input name="spdtSwitches" ng-model="$parent.controlModel.spdtSwitches" required class="redwoodPanelNarrowInput" type="number" min="0" placeholder="0" id="spdtWallSwitches"/>
+                    <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
+                </div>
 
-            <textarea placeholder="Notes"></textarea>
+                <textarea name="notes" ng-model="$parent.controlModel.notes" placeholder="Notes"></textarea>
+            </form>
         </div>
     </div>
 
@@ -39,5 +41,13 @@
 
         </div>
     </div>
+
+    <input type="button" value="clickMe" ng-click="testMe(controlForm)"/>
+
+    {{ controlForm | json }}<br/>
+
+    {{ $id }} <br/>
+
+    {{ $parent.$id }}
 
 </div>

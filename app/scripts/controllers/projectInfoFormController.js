@@ -41,9 +41,10 @@ angular.module('rwsprojectApp')
                 });
 
 
-            $rootScope.$on('tabLosingFocus', function (stuff, fromTab, toTab) {
+            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
                 // check to see if the tab being switched is tab1
                 if (fromTab === 'tab1') {
+                    event.stopPropagation();
 
                     // allow switching to a different tab if this tab is valid
                     if ($scope.projectInfo.$valid) {
@@ -56,9 +57,6 @@ angular.module('rwsprojectApp')
                         // once the user attempts to submit the form, mark any invalid fields
                         $scope.projectInfo.$setSubmitted();
                     }
-                } else {
-                    // a user is switching a different tab than ours
-                    $rootScope.tabs.activeTab = toTab;
                 }
             });
 

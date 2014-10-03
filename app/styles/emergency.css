@@ -1,0 +1,30 @@
+.emergencyLightingSection {
+    margin-left: 5px;
+    padding-left: 15px;
+    font-size: 1.3em;
+}
+
+.emergencyLightingSection label {
+    font-size: 1.0em;
+}
+
+.emergencyUnit {
+    background: url(/images/emergency-unit.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 750px;
+    height: 165px;
+}
+
+.emergencyCentral {
+    background: url(/images/emergency-central.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 750px;
+    height: 165px;
+}
+
+.emergencyLightingSection .important {
+    font-weight: bold;
+    color:red;
+}

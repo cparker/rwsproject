@@ -65,7 +65,7 @@ theApp
     .run(function ($httpBackend, dataService) {
         console.log('theApp is initializing');
 
-        var mockEnabled = false;
+        var mockEnabled = true;
 
         if (mockEnabled == true) {
             console.log('MOCK DATA in effect');
@@ -78,6 +78,15 @@ theApp
 
             $httpBackend.whenGET('/server/getProjectInfo')
                 .respond(mockProjectInfo);
+
+            $httpBackend.whenGET('/server/regions')
+                .respond(mockRegions);
+
+            $httpBackend.whenGET('/server/getAccessories')
+                .respond(mockAccessories);
+
+            $httpBackend.whenGET('/server/getFixtureTypes')
+                .respond(mockFixtureTypes);
 
             $httpBackend.whenGET(/.*\.html/).passThrough();
 

@@ -79,6 +79,19 @@ angular.module('rwsprojectApp')
                 }
             });
 
+            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
+                // check to see if the tab being switched is tab1
+                if (fromTab === 'tab2') {
+                    event.stopPropagation();
+                    // TRYING TO LEAVE THE FIXTURE FORM
+                    if (dataService.fixtureLines.length > 0) {
+                        $rootScope.tabs.activeTab = toTab;
+                    } else {
+                        $rootScope.$emit('error', 'Please add some fixtures before continuing');
+                    }
+                }
+            });
+
             $scope.changeFixtureType = function () {
 
                 dataService.fetchMountTypes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)

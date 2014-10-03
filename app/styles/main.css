@@ -184,7 +184,7 @@ select#projectCountry {
 }
 
 .redwoodPanelNarrowInput {
-    width: 25px;
+    width: 45px;
 }
 
 .leftSideLabel {
@@ -203,17 +203,6 @@ select#projectCountry {
     border-bottom-style: solid;
 }
 
-.controlPanel {
-    padding-left: 15px;
-}
-
-.controlPanel > div {
-    margin-top: 20px;
-}
-
-.controlPanel input[type="checkbox"] {
-    margin: 0;
-}
 
 .servicePanelLine {
     display: flex;
@@ -275,15 +264,6 @@ select#projectCountry {
     padding-bottom: 10px;
 }
 
-.emergencyLightingSection {
-    margin-left: 5px;
-    padding-left: 15px;
-    font-size: 1.3em;
-}
-
-.emergencyLightingSection label {
-    font-size: 1.0em;
-}
 
 .dialogOuter {
     width: 500px;
@@ -559,65 +539,6 @@ select#projectCountry {
     margin-bottom: 1px;
 }
 
-#enginesOne {
-    margin-bottom: 15px;
-}
-
-#enginesOne p {
-    padding: 0;
-    margin: 0;
-}
-
-#enginesOne input[type="text"] {
-    width: 75px;
-}
-
-#enginesOne select {
-    width: 90px;
-}
-
-#enginesTwo select {
-    width: 90px;
-}
-
-.engineOneLabel {
-    width: 200px;
-    display: inline-block;
-}
-
-#engineSpacerTwo {
-    height: 35px;
-}
-
-span#enginesSpacer {
-    display: inline-block;
-    width: 30px;
-}
-
-div#enginesOneWarning {
-    background: url(/images/light-bulb.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    height: 70px;
-    width: 35px;
-    display: inline-block;
-}
-
-.enginesOneWarningText {
-    display: inline-block;
-    color: red;
-    width: 50%;
-    margin-top: 15px;
-}
-
-.engineRedTriangle {
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    float: left;
-    margin-right: 10px;
-    margin-top: 16px;
-}
 
 .tabIcon {
     float: left;
@@ -627,21 +548,6 @@ div#enginesOneWarning {
     margin-left: -3px;
 }
 
-.emergencyUnit {
-    background: url(/images/emergency-unit.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 750px;
-    height: 165px;
-}
-
-.emergencyCentral {
-    background: url(/images/emergency-central.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 750px;
-    height: 165px;
-}
 
 .bulbSolid {
     background: url(/images/bulbSolid.svg);
@@ -804,21 +710,6 @@ div#enginesOneWarning {
     outline: 2px dotted red;
 }
 
-.enginesPanel {
-    padding-left: 15px;
-}
-
-.enginesPanel p {
-    width: 80%;
-}
-
-.enginesPanel .circleNumber {
-    margin-right: 10px;
-}
-
-.engineSection {
-    margin-left: 38px;
-}
 
 .fileContainer {
     margin-left: 15px;
@@ -1035,23 +926,6 @@ div#enginesOneWarning {
     flex-direction: row;
 }
 
-.controlSection p {
-    width: 80%;
-}
-
-.controlSection .circleNumber {
-    margin-right: 10px;
-}
-
-.controlForm {
-    margin-left: 40px;
-}
-
-.controlForm textarea {
-    height: 100px;
-    width: 70%;
-}
-
 .fileListLine, .fileListLine a {
     display: flex;
     flex-direction: row;
@@ -1230,7 +1104,11 @@ div#enginesOneWarning {
 .errorDialog {
     width: 100%;
     height: 100px;
-    background-color: lightgoldenrodyellow;
+    opacity: 0.5;
+    color: black;
+    font-size: 1.5em;
+    background-color: lightcoral;
+    border: 2px dashed red;
     padding:5px;
     border-radius: 5px;
 }

@@ -1,102 +1,108 @@
 <div class="enginesPanel">
 
-    <div id="enginesOne">
-        <div class="numberAndText">
-            <div class="circleNumber">1</div>
-            <p class="underlined">Channel summary from fixture selection</p>
-        </div>
+    <form name="enginesForm" ng-controller="enginesController" class="enginesForm">
 
-        <div class="engineSection">
-            <div>
-                <div class="engineOneLabel"></div>
-                <span>Standard</span>
-                <span id="enginesSpacer">&nbsp;</span>
-                <span>Emergency</span>
-            </div>
-            <div>
-                <div class="engineOneLabel">Total channels used</div>
-                <input type="text" value="1900"/>
-                <input type="text" value="85"/>
+        <div id="enginesOne">
+            <div class="numberAndText">
+                <div class="circleNumber">1</div>
+                <p class="underlined">Channel summary from fixture selection</p>
             </div>
 
-            <div>
-                <div class="engineOneLabel">Total engines (channels/47)</div>
-                <input type="text" value="1900"/>
-                <input type="text" value="85"/>
-            </div>
+            <div class="engineSection">
+                <div>
+                    <div class="engineOneLabel"></div>
+                    <span>Standard</span>
+                    <span id="enginesSpacer">&nbsp;</span>
+                    <span>Emergency</span>
+                </div>
+                <div>
+                    <div class="engineOneLabel">Total channels used</div>
+                    <input readonly type="text" value="{{standardChannels}}"/>
+                    <input readonly type="text" value="{{emergencyChannels}}"/>
+                </div>
 
-            <div>
-                <div class="redTriangleAlert engineRedTriangle"></div>
-                <div class="enginesOneWarningText">
-                    <p><i>Multiple engine locations may require additional engines due to:</i></p>
+                <div>
+                    <div class="engineOneLabel">Total engines (channels/47)</div>
+                    <input readonly type="text" value="{{standardEngines}}"/>
+                    <input readonly type="text" value="{{emergencyEngines}}"/>
+                </div>
 
-                    <p><i>- Cable length > 100 meters.</i></p>
+                <div>
+                    <div class="redTriangleAlert engineRedTriangle"></div>
+                    <div class="enginesOneWarningText">
+                        <p><i>Multiple engine locations may require additional engines due to:</i></p>
 
-                    <p><i>- Multi-level installations.</i></p>
+                        <p><i>- Cable length > 100 meters.</i></p>
 
-                    <p><i>- IDF rack space considerations.</i></p>
+                        <p><i>- Multi-level installations.</i></p>
+
+                        <p><i>- IDF rack space considerations.</i></p>
+                    </div>
+                </div>
+
+                <div id="engineSpacerTwo">&nbsp;</div>
+                <div>
+                    <div class="engineOneLabel"></div>
+                    <span>Standard</span>
+                    <span id="enginesSpacer">&nbsp;</span>
+                    <span>Emergency</span>
+                </div>
+
+                <div>
+                    <div class="engineOneLabel">Additional Engines</div>
+                    <input ng-model="engineModel.enginesStandard" name="enginesStandard" required type="number" placeholder="0">
+                    <input ng-model="engineModel.enginesEmergency" name="enginesEmergency" required type="number" placeholder="0">
+                </div>
+                <div>
+                    <div class="engineOneLabel">Engine Voltage</div>
+                    <select ng-model="engineModel.voltageStandard" name="engineVoltageStandard" required class="simpleArrowSelect">
+                        <option>110</option>
+                        <option>220</option>
+                    </select>
+                    <select ng-model="engineModel.voltageEmergency" name="engineVoltageEmergency" required class="simpleArrowSelect">
+                        <option>110</option>
+                        <option>220</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="engineOneLabel">Power cord</div>
+                    <select required ng-model="engineModel.cordStandard" name="engineCordStandard" class="simpleArrowSelect">
+                        <option>110</option>
+                        <option>220</option>
+                    </select>
+                    <select required ng-model="engineModel.cordEmergency" name="engineCordEmergency" class="simpleArrowSelect">
+                        <option>110</option>
+                        <option>220</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="engineOneLabel">Wall mounting plates</div>
+                    <input name="platesStandard" ng-model="engineModel.platesStandard" required type="number" placeholder="0">
+                    <input name="platesEmergency" ng-model="engineModel.platesEmergency" required type="number" placeholder="0">
                 </div>
             </div>
+        </div>
 
-            <div id="engineSpacerTwo">&nbsp;</div>
-            <div>
-                <div class="engineOneLabel"></div>
-                <span>Standard</span>
-                <span id="enginesSpacer">&nbsp;</span>
-                <span>Emergency</span>
+
+        <div id="enginesTwo">
+            <div class="numberAndText">
+                <div class="circleNumber">2</div>
+                <p class="underlined">Director</p>
             </div>
 
-            <div>
-                <div class="engineOneLabel">Additional Engines</div>
-                <input type="text" value="0">
-                <input type="text" value="0">
-            </div>
-            <div>
-                <div class="engineOneLabel">Engine Voltage</div>
-                <select class="simpleArrowSelect">
-                    <option>110</option>
-                    <option>220</option>
-                </select>
-                <select class="simpleArrowSelect">
-                    <option>110</option>
-                    <option>220</option>
-                </select>
-            </div>
-
-            <div>
+            <div class="engineSection">
                 <div class="engineOneLabel">Power cord</div>
-                <select class="simpleArrowSelect">
-                    <option>110</option>
-                    <option>220</option>
-                </select>
-                <select class="simpleArrowSelect">
-                    <option>110</option>
-                    <option>220</option>
+                <select required name="directorCord" ng-model="engineModel.directorCord" class="simpleArrowSelect">
+                    <option>USA</option>
+                    <option>China</option>
                 </select>
             </div>
-
-            <div>
-                <div class="engineOneLabel">Wall mounting plates</div>
-                <input type="text" value="0">
-                <input type="text" value="0">
-            </div>
-        </div>
-    </div>
-
-
-    <div id="enginesTwo">
-        <div class="numberAndText">
-            <div class="circleNumber">2</div>
-            <p class="underlined">Director</p>
         </div>
 
-        <div class="engineSection">
-            <div class="engineOneLabel">Power cord</div>
-            <select class="simpleArrowSelect">
-                <option>USA</option>
-                <option>China</option>
-            </select>
-        </div>
-    </div>
+        {{emergencyChannels}}
+
+    </form>
 
 </div>

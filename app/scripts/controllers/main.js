@@ -9,7 +9,8 @@
  */
 angular.module('rwsprojectApp')
     .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', function ($scope, $http, $rootScope, dataService) {
-        console.log('main controller is being instantiated');
+
+        console.log('main controller is being instantiated, id ' + $scope.id);
 
         $scope.user = {};
         $rootScope.authenticatedUser = {};
