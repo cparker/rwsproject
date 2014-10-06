@@ -1,271 +1,170 @@
 <div class="sparesPanel">
+<form name="sparesForm" class="sparesForm" ng-controller="sparesController">
 
-    <!-- SENSORS -->
-    <div class="spareLine title">
-        <div class="firstItem">Sensor 3</div>
-        <div class="currentQty">Current</div>
-        <div class="spareQty">Spares</div>
-        <div class="total">Total</div>
-    </div>
-    <hr class="line"/>
-    <ul class="sparesList">
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Sensor and part # here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
+<!-- SENSORS -->
+<div class="spareLine title">
+    <div class="firstItem">Sensor 3</div>
+    <div class="currentQty">Current</div>
+    <div class="spareQty">Spares</div>
+    <div class="total">Total</div>
+</div>
+<hr class="line"/>
+<ul class="sparesList">
+    <li ng-repeat="fixture in sensorThreeFixtures">
+        <div class="spareLine">
+            <div class="firstItem">{{fixture.partInfo.part_number}}</div>
+            <div class="currentQty">{{fixture.controlQuantity}}</div>
+            <div class="spareQty"><input placeholder="0" min="0" name="spareThree{{$index}}" ng-model="dataService.fixtureLines[$index].controlQuantitySpare" type="number" />
             </div>
-        </li>
-
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">This is a much longer part number and stuff</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-    </ul>
+            <div class="total">{{dataService.fixtureLines[$index].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+        </div>
+    </li>
+</ul>
 
 
-    <!-- GATEWAY -->
-    <div class="spareLine title">
-        <div class="firstItem">LED Gateway</div>
-        <div class="currentQty"></div>
-        <div class="spareQty"></div>
-        <div class="total"></div>
-    </div>
-    <hr class="line"/>
-    <ul class="sparesList">
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Sensor and part # here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">This is a much longer part number and stuff</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-    </ul>
+<!-- GATEWAY -->
+<div class="spareLine title">
+    <div class="firstItem">LED Gateway</div>
+    <div class="currentQty"></div>
+    <div class="spareQty"></div>
+    <div class="total"></div>
+</div>
+<hr class="line"/>
+<ul class="sparesList">
+    <li ng-repeat="fixture in ledGatewayFixtures">
+        <div class="spareLine">
+            <div class="firstItem">{{fixture.partInfo.part_number}}</div>
+            <div class="currentQty">{{fixture.controlQuantity}}</div>
+            <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="dataService.fixtureLines[$index].controlQuantitySpare" type="number" min="0"/></div>
+            <div class="total">{{dataService.fixtureLines[$index].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+        </div>
+    </li>
+</ul>
 
 
-    <!-- ENGINES -->
-    <div class="spareLine title">
-        <div class="firstItem engineTitle">Engines, Directors, Adaptors, and Emergency Controls</div>
-        <div class="currentQty"></div>
-        <div class="spareQty"></div>
-        <div class="total"></div>
-    </div>
-    <hr class="line"/>
-    <ul class="sparesList">
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Sensor and part # here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
+<!-- ENGINES -->
+<div class="spareLine title">
+    <div class="firstItem engineTitle">Engines, Directors, Adaptors, and Emergency Controls</div>
+    <div class="currentQty"></div>
+    <div class="spareQty"></div>
+    <div class="total"></div>
+</div>
+<hr class="line"/>
+<ul class="sparesList">
 
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">This is a much longer part number and stuff</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
+    <li ng-repeat="pair in engineVoltagePairs">
+        <div class="spareLine">
+            <div class="firstItem">{{pair[0]}}</div>
+            <div class="currentQty">{{pair[1]}}</div>
+            <div class="spareQty"><input placeholder="0" name="spareEngine{{pair[0]}}" type="number" min="0" ng-model="sparesModel[pair[0]]"/></div>
+            <div class="total">{{pair[1] + sparesModel[pair[0]]}}</div>
+        </div>
+    </li>
 
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-    </ul>
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Director</div>
+            <div class="currentQty">{{engineModel.directorCount}}</div>
+            <div class="spareQty"><input placeholder="0" name="directorSpares" type="number" min="0" ng-model="sparesModel.directorSpares"/></div>
+            <div class="total">{{engineModel.directorCount + sparesModel.directorSpares}}</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Cable sharing adaptor</div>
+            <div class="currentQty">{{cableSharingAdaptorCount}}</div>
+            <div class="spareQty"><input placeholder="0" name="directorSpares" type="number" min="0" ng-model="sparesModel.spareSharingCables"/></div>
+            <div class="total">{{cableSharingAdaptorCount + sparesModel.spareSharingCables}}</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Emergency light controls ???</div>
+            <div class="currentQty"></div>
+            <div class="spareQty"><input placeholder="0" name="emergencyControlSpares" type="number" min="0" ng-model="sparesModel.emergencySpareControls"/></div>
+            <div class="total"></div>
+        </div>
+    </li>
+
+</ul>
 
 
-    <!-- DIMMERS -->
-    <div class="spareLine title">
-        <div class="firstItem">Dimmers</div>
-        <div class="currentQty"></div>
-        <div class="spareQty"></div>
-        <div class="total"></div>
-    </div>
-    <hr class="line"/>
-    <ul class="sparesList">
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Sensor and part # here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
+<!-- DIMMERS -->
+<div class="spareLine title">
+    <div class="firstItem">Dimmers ???</div>
+    <div class="currentQty"></div>
+    <div class="spareQty"></div>
+    <div class="total"></div>
+</div>
+<hr class="line"/>
+<ul class="sparesList">
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Sensor and part # here</div>
+            <div class="currentQty">123</div>
+            <div class="spareQty"><input type="number" min="0"/></div>
+            <div class="total">123</div>
+        </div>
+    </li>
 
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">This is a much longer part number and stuff</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">This is a much longer part number and stuff</div>
+            <div class="currentQty">123</div>
+            <div class="spareQty"><input type="number" min="0"/></div>
+            <div class="total">123</div>
+        </div>
+    </li>
 
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-    </ul>
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Shorter one here</div>
+            <div class="currentQty">123</div>
+            <div class="spareQty"><input type="number" min="0"/></div>
+            <div class="total">123</div>
+        </div>
+    </li>
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Shorter one here</div>
+            <div class="currentQty">123</div>
+            <div class="spareQty"><input type="number" min="0"/></div>
+            <div class="total">123</div>
+        </div>
+    </li>
+    <li>
+        <div class="spareLine">
+            <div class="firstItem">Shorter one here</div>
+            <div class="currentQty">123</div>
+            <div class="spareQty"><input type="number" min="0"/></div>
+            <div class="total">123</div>
+        </div>
+    </li>
+</ul>
 
 
-    <!-- ACCESSORIES -->
-    <div class="spareLine title">
-        <div class="firstItem">Accessories</div>
-        <div class="currentQty"></div>
-        <div class="spareQty"></div>
-        <div class="total"></div>
-    </div>
-    <hr class="line"/>
-    <ul class="sparesList">
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Sensor and part # here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
+<!-- ACCESSORIES -->
+<div class="spareLine title">
+    <div class="firstItem">Accessories</div>
+    <div class="currentQty"></div>
+    <div class="spareQty"></div>
+    <div class="total"></div>
+</div>
+<hr class="line"/>
 
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">This is a much longer part number and stuff</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-        <li>
-            <div class="spareLine">
-                <div class="firstItem">Shorter one here</div>
-                <div class="currentQty">123</div>
-                <div class="spareQty"><input type="number" min="0"/></div>
-                <div class="total">123</div>
-            </div>
-        </li>
-    </ul>
+<!-- we need to combine the accessories from all fixtures together -->
+<ul class="sparesList">
+    <li ng-repeat="acc in masterAccessoryList">
+        <div class="spareLine">
+            <div class="firstItem">{{acc[1].desc}}</div>
+            <div class="currentQty">{{acc[1].count}}</div>
+            <div class="spareQty"><input name="spareAccessory{{acc[0]}}" ng-model="acc[1].spares" type="number" min="0"/></div>
+            <div class="total">{{acc[1].count + acc[1].spares}}</div>
+        </div>
+    </li>
+</ul>
+<pre>{{ masterAccessoryList | json}}</pre>
+</form>
 </div>

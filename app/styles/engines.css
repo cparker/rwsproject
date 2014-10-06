@@ -14,48 +14,31 @@
     margin-left: 38px;
 }
 
-#enginesOne {
+.enginesOne {
     margin-bottom: 15px;
 }
 
-#enginesOne p {
+.enginesOne p {
     padding: 0;
     margin: 0;
 }
 
-#enginesOne input {
-    width: 75px;
-}
-
-#enginesOne select {
-    width: 90px;
-}
-
-#enginesTwo select {
-    width: 90px;
+.enginesOne input, .enginesTwo input {
+    width: 80px;
 }
 
 .engineOneLabel {
-    width: 200px;
+    width: 180px;
     display: inline-block;
 }
 
-#engineSpacerTwo {
+.engineSpacerTwo {
     height: 35px;
 }
 
-span#enginesSpacer {
+span.enginesSpacer {
     display: inline-block;
     width: 30px;
-}
-
-div#enginesOneWarning {
-    background: url(/images/light-bulb.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    height: 70px;
-    width: 35px;
-    display: inline-block;
 }
 
 .enginesOneWarningText {
@@ -101,4 +84,28 @@ div#enginesOneWarning {
 .enginesForm:not(.ng-submitted) input.ng-touched.ng-invalid:not(.ng-pristine),
 .enginesForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
     outline: 2px dotted red;
+}
+
+.enginesPanel .simpleArrowSelect.voltage {
+    width:95px;
+}
+
+.enginesPanel .engineSelectRow label {
+    flex:1;
+}
+
+.enginesPanel .simpleArrowSelect.cord {
+    display:block;
+    flex:1.05
+}
+
+.engineSelectRow {
+    display:flex;
+    flex-direction: row;
+    width:382px;
+    align-items: baseline;
+}
+
+.enginesPanel .simpleArrowSelect.powerCord {
+    width:490px;
 }

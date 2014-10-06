@@ -10,9 +10,11 @@ angular.module('rwsprojectApp')
 
             fixtureLineSelectChoices: [],
 
-            controlModel: {},
+            controlModel: mockControlModel,
 
-            engineModel : {},
+            engineModel : mockEnginesFormData,
+
+            sparesModel : {},
 
             addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
                 fixtureForm.fixtureLineId = this.fixtureLines.length;

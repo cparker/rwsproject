@@ -46,7 +46,24 @@ var mockFixtureLines = [
             "part_number": "SEN-3M1-W-NOVI3370"
         },
         "projectId": "2014-09-30 04:39:28 PM",
-        "selectedAccessories": [],
+        "selectedAccessories": [
+            {
+                "accessory": {
+                    "$$hashKey": "object:15",
+                    "description": "Universal Gateway Wiring Harness",
+                    "part_number": "RG-2G-WH"
+                },
+                "accessoryCount": 7
+            },
+            {
+                "accessory": {
+                    "$$hashKey": "object:19",
+                    "description": "Sensor mounting box (open ceiling)",
+                    "part_number": "ADAPTER-BOX-1G"
+                },
+                "accessoryCount": 12
+            }
+        ],
         "sensorType": {
             "id": 2,
             "name": "Normal"
@@ -187,7 +204,7 @@ var mockFixtureLines = [
         },
         "controlMethod": {
             "id": 4,
-            "name": "n/a"
+            "name": "LED Gateway"
         },
         "controlQuantity": "1",
         "distribution": {
@@ -855,4 +872,27 @@ var mockFixtureTypes = {
             "name": "Troffer"
         }
     ]
+};
+
+
+var mockEnginesFormData = {
+    "directorCord": "250 VAC ENG-3-4834-250 North America (PC-NA-250)",
+    "enginesStandard": 1,
+    "enginesEmergency": 1,
+    "voltageStandard": "277v",
+    "voltageEmergency": "200v-250v",
+    "cordStandard": "Included",
+    "cordEmergency": "UK, Hong Kong, Singapore",
+    "platesStandard": 2,
+    "platesEmergency": 2,
+    "directorCount": 1
+};
+
+
+var mockControlModel = {
+    "spdtSwitches": 6,
+    "dimmers": 6,
+    "sceneControllers": 7,
+    "notes": "theseAreNotes",
+    "useSharedCable": true
 };
