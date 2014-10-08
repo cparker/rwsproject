@@ -21,6 +21,8 @@ angular.module('rwsprojectApp')
 
         $scope.activeSummarySection = 'menu';
 
+        $rootScope.exclusionNotes = "";
+
         dataService.fetchAccessories()
             .success(function (ac) {
                 $scope.accessories = ac.payload;
@@ -93,6 +95,18 @@ angular.module('rwsprojectApp')
         $scope.testBroadcast = function (one, two) {
             console.log('emiting event ' + one + ' ' + two);
             $scope.$emit(one, two);
-        }
+        };
+
+        $rootScope.$on('tabLosingFocus', function(event, fromTab, toTab) {
+            if (fromTab === 'tab7') {
+                // nothing to validate here
+                event.stopPropagation();
+                $rootScope.tabs.activeTab = toTab;
+            } else if (fromTab === 'tab8') {
+                event.stopPropagation();
+                $rootScope.tabs.activeTab = toTab;
+            };
+
+        });
 
     });

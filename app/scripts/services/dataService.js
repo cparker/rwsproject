@@ -12,9 +12,11 @@ angular.module('rwsprojectApp')
 
             controlModel: mockControlModel,
 
-            engineModel : mockEnginesFormData,
+            engineModel: mockEnginesFormData,
 
-            sparesModel : {},
+            sparesModel: {},
+
+            emergencyOption: 2,
 
             addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
                 fixtureForm.fixtureLineId = this.fixtureLines.length;

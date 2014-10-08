@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    min-height: 26px;
 }
 
 .spareLine .firstItem {
@@ -44,6 +45,7 @@
     margin: 0;
     padding: 2px;
     width: 40px !important;
+    height:18px;
 }
 
 .spareLine.title {
@@ -73,4 +75,33 @@
     max-height: 106px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+/* if the form hasn't been touched, no red */
+.sparesForm input.ng-invalid.ng-pristine, .sparesForm select.ng-invalid.ng-pristine {
+    outline: none;
+}
+
+/* once they attempt to submit the form, mark fiekds */
+.sparesForm.ng-submitted input.ng-invalid,
+.sparesForm.ng-submitted select.ng-invalid,
+.sparesForm.ng-submitted textarea.ng-invalid {
+    outline: 2px dotted red;
+}
+
+/* If they touch a field, and leave it invalid, mark it */
+.sparesForm input.ng-invalid.ng-touched,
+.sparesForm select.ng-invalid.ng-touched,
+.sparesForm textarea.ng-invalid.ng-touched {
+    outline: 2px dotted red;
+}
+
+.sparesForm.ng-submitted input.ng-invalid,
+.sparesForm.ng-submitted select.ng-invalid {
+    outline: 2px dotted red;
+}
+
+.sparesForm:not(.ng-submitted) input.ng-touched.ng-invalid:not(.ng-pristine),
+.sparesForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
+    outline: 2px dotted red;
 }

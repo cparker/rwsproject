@@ -9,6 +9,7 @@ angular.module('rwsprojectApp')
                     event.stopPropagation();
                     if ($scope.selectedEmergencyRadio) {
                         $rootScope.tabs.activeTab = toTab;
+                        dataService.emergencyOption = $scope.selectedEmergencyRadio;
                     } else {
                         $rootScope.$emit('error', 'Please choose an emergency lighting solution before continuing');
                     }

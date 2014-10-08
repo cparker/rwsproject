@@ -12,6 +12,8 @@ angular.module('rwsprojectApp')
 
             $scope.engineModel = dataService.engineModel;
             $scope.controlModel = dataService.controlModel;
+            $scope.emergencyOption = dataService.emergencyOption;
+            $scope.emergencyKitNumber = $scope.emergencyOption == 1 || $scope.emergencyOption == 2 ? 1 : 0;
 
             $scope.sensorThreeFixtures = _.filter(dataService.fixtureLines, function (fix) {
                 return fix.controlMethod.name === "Sensor 3";
@@ -23,13 +25,17 @@ angular.module('rwsprojectApp')
 
             $scope.engineTotals = {};
 
+            $scope.totalChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
+                return initial +
+                    fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity) +
+                    fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity)
+            }, 0);
+
             $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
             $scope.engineTotals[dataService.engineModel.voltageEmergency] =
                 dataService.engineModel.enginesEmergency + ($scope.engineTotals[dataService.engineModel.voltageEmergency] || 0);
 
             $scope.engineVoltagePairs = _.pairs($scope.engineTotals);
-
-            $scope.cableSharingAdaptorCount = dataService.controlModel.useSharedCable ? 1 : 0;
 
             $scope.masterAccessoryList = _.pairs(_.reduce(dataService.fixtureLines, function (masterAcc, fixture) {
                 var accessoriesByPartNumber = _.pairs(_.groupBy(fixture.selectedAccessories, function (acc) {
@@ -51,5 +57,18 @@ angular.module('rwsprojectApp')
                 return masterAcc;
 
             }, {}));
+
+            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
+                if (fromTab === 'tab6') {
+                    event.stopPropagation();
+
+                    if ($scope.sparesForm.$valid) {
+                        dataService.sparesModel = $scope.sparesModel;
+                        $rootScope.tabs.activeTab = toTab;
+                    } else {
+                        $scope.sparesForm.$setSubmitted();
+                    }
+                }
+            });
 
         }]);
