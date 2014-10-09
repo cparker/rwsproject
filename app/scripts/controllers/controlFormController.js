@@ -3,11 +3,15 @@ angular.module('rwsprojectApp')
         function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
 
-            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
-                // check to see if the tab being switched is tab1
-                if (fromTab === 'tab3') {
-                    event.stopPropagation();
-                    // TRYING TO LEAVE THE CONTROL FORM
+            $rootScope.$on('leaving3', function (event, fromTab, toTab) {
+                event.stopPropagation();
+
+                // back
+                if (parseInt(toTab) < 3) {
+                    $rootScope.tabs.activeTab = toTab;
+                } else {
+
+                    // forward
                     if ($scope.controlForm.$valid) {
 
                         $scope.totalChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
@@ -22,8 +26,8 @@ angular.module('rwsprojectApp')
                     } else {
                         $scope.controlForm.$setSubmitted();
                     }
-
                 }
+
             });
 
 

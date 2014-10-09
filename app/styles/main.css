@@ -516,9 +516,23 @@ select#projectCountry {
     list-style: none;
     -webkit-appearance: none;
     margin-left: 0;
-
 }
 
+.fixtureList .deleteLine {
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.fixtureList .trashIcon {
+    background-image: url('/images/trash.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width:20px;
+    margin:4px;
+    cursor:pointer;
+}
 
 .tabLabel {
     display: inline-block;

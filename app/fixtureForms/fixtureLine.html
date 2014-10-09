@@ -31,16 +31,16 @@
             </div>
 
             <div class="span6 fixtureLineSection lastFixtureSection">
-                <p>{{line.partInfo.model}}</p>
+                <div class="deleteLine">
+                    <p>{{line.partInfo.model}}</p>
+                    <div ng-click="deleteFixtureLine(line)" class="trashIcon"></div>
+                </div>
 
                 <p>{{line.partInfo.description}}</p>
 
                 <p>{{line.partInfo.part_number}}</p>
 
                 <p>Sensor: {{line.sensorType.name}}</p>
-                <label class="leftSideLabel" for="12345">Accessories</label>
-                <input type="checkbox" readonly="true" id="12345" checked="yes"/>
-                <a href="" ng-click="deleteFixtureLine(line)">delete</a>
             </div>
 
         </div>

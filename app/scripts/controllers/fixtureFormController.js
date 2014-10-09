@@ -73,26 +73,24 @@ angular.module('rwsprojectApp')
             };
 
 
-            $rootScope.$on('tabLosingFocus', function (stuff, fromTab, toTab) {
-                if (toTab === 'tab2') {
-                    $scope.setFixtureTypesBySelectedRegion();
-                }
+            $rootScope.$on('entering2', function (stuff, fromTab, toTab) {
+                $scope.setFixtureTypesBySelectedRegion();
             });
 
-            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
-                // check to see if the tab being switched is tab1
-                if (fromTab === 'tab2' && toTab != 'tab1') {
-                    event.stopPropagation();
-                    // TRYING TO LEAVE THE FIXTURE FORM
+            $rootScope.$on('leaving2', function (event, fromTab, toTab) {
+                event.stopPropagation();
+
+                // let's allow going back
+                if (parseInt(toTab) < 2) {
+                    $rootScope.tabs.activeTab = toTab;
+                } else {
                     if (dataService.fixtureLines.length > 0) {
                         $rootScope.tabs.activeTab = toTab;
                     } else {
                         $rootScope.$emit('error', 'Please add some fixtures before continuing');
                     }
-                } else {
-                    // they can go back to the project tab even if the fixture form has no fixtures
-                    $rootScope.tabs.activeTab = toTab;
                 }
+
             });
 
             $scope.changeFixtureType = function () {
@@ -194,19 +192,18 @@ angular.module('rwsprojectApp')
             $scope.addFixtureLine = function () {
                 $scope.fixtureTabForm.$setSubmitted();
 
-                var accessoryDetails = _.map($rootScope.selectedAccessories, function (accessoryCount, accessoryIndex) {
+                var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
                     return {
-                        accessoryCount: accessoryCount,
-                        accessory: $scope.accessories[accessoryIndex]
+                        accessoryCount: tallyPair[1],
+                        accessory:  {
+                            "description" : $rootScope.accessoriesByPartNumber[tallyPair[0]],
+                            "part_number" : tallyPair[0]
+                        }
                     };
                 });
 
-                var filteredAccessoryDetails = _.filter(accessoryDetails, function (d) {
-                    return d.accessoryCount != undefined;
-                });
-
                 if ($scope.fixtureTabForm.$valid) {
-                    dataService.addFixtureLine($rootScope.fixtureForm, filteredAccessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices, $rootScope.copiedFixtureNotes);
+                    dataService.addFixtureLine($rootScope.fixtureForm, accessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices, $rootScope.copiedFixtureNotes);
                 }
             };
 

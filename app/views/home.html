@@ -1,9 +1,9 @@
 <div ng-controller="tabController" class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
     <ul class="rwsTabs nav nav-tabs tabs-left" ng-class="{blur:isLoggedIn==false}">
 
-        <li ng-class="{'rwsActive active':tabs.isTabActive('tab1')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab1',$event)">
-                <div class="tabIcon" ng-class="tabClass('bulbBold','bulbGrey','tab1')"></div>
+        <li ng-class="{'rwsActive active':tabs.isTabActive('1')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('1',$event)">
+                <div class="tabIcon" ng-class="tabClass('bulbBold','bulbGrey','1')"></div>
                 <span class="tabLabel">
                     <p>Project Information</p>
                     <i>Name, Address, Notes...</i>
@@ -11,9 +11,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab2')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab2')">
-                <div class="tabIcon" ng-class="tabClass('infoBold','infoGrey','tab2')"></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('2')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('2')">
+                <div class="tabIcon" ng-class="tabClass('infoBold','infoGrey','2')"></div>
                 <span class="tabLabel">
                     <p>Fixtures and Sensors</p>
                     <i>Light fixtures, controls, and sensors...</i>
@@ -21,9 +21,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab3')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab3')">
-                <div class="tabIcon" ng-class="tabClass('controlBold','controlGrey','tab3')" ></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('3')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('3')">
+                <div class="tabIcon" ng-class="tabClass('controlBold','controlGrey','3')" ></div>
                 <span class="tabLabel">
                     <p>Control</p>
                     <i>Control equipment</i>
@@ -31,9 +31,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab4')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab4')">
-                <div class="tabIcon" ng-class="tabClass('enginesBold','enginesGrey','tab4')"></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('4')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('4')">
+                <div class="tabIcon" ng-class="tabClass('enginesBold','enginesGrey','4')"></div>
                 <span class="tabLabel">
                     <p>Engines</p>
                     <i>Redwood Systems engines</i>
@@ -41,9 +41,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab5')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab5')">
-                <div class="tabIcon" ng-class="tabClass('emergencyBold','emergencyGrey','tab5')" ></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('5')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('5')">
+                <div class="tabIcon" ng-class="tabClass('emergencyBold','emergencyGrey','5')" ></div>
                 <span class="tabLabel">
                     <p>Emergency Lighting</p>
                     <i>Emergency Lighting...</i>
@@ -51,9 +51,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab6')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab6')">
-                <div class="tabIcon" ng-class="tabClass('sparesBold','sparesGrey','tab6')"></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('6')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('6')">
+                <div class="tabIcon" ng-class="tabClass('sparesBold','sparesGrey','6')"></div>
                 <span class="tabLabel">
                     <p>Spares</p>
                     <i>Additional engines, etc.</i>
@@ -61,9 +61,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab7')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab7')">
-                <div class="tabIcon" ng-class="tabClass('exclusionsBold','exclusionsGrey','tab7')"></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('7')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('7')">
+                <div class="tabIcon" ng-class="tabClass('exclusionsBold','exclusionsGrey','7')"></div>
                 <span class="tabLabel">
                     <p>Exclusions</p>
                     <i>Non Redwood parts</i>
@@ -71,9 +71,9 @@
             </a>
         </li>
 
-        <li ng-class="{'active rwsActive':tabs.isTabActive('tab8')}">
-            <a href="" data-toggle="tab" ng-click="tabs.tabClick('tab8')">
-                <div class="tabIcon" ng-class="tabClass('summaryBold','summaryGrey','tab8')" ></div>
+        <li ng-class="{'active rwsActive':tabs.isTabActive('8')}">
+            <a href="" data-toggle="tab" ng-click="tabs.tabClick('8')">
+                <div class="tabIcon" ng-class="tabClass('summaryBold','summaryGrey','8')" ></div>
                 <span class="tabLabel">
                     <p>Summary</p>
                     <i>Summary of project choices...</i>
@@ -84,35 +84,35 @@
 
 
     <div ng-class="{blur:isLoggedIn==false}" class="tab-content">
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab1')}" id="tab1">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('1')}" id="1">
             <ng-include src="'tabSections/projectInfoTab.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab2')}" id="tab2">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('2')}" id="2">
             <ng-include src="'tabSections/fixturesTab.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab3')}" id="tab3">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('3')}" id="3">
             <ng-include src="'tabSections/controlTab.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab4')}" id="tab4">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('4')}" id="4">
             <ng-include src="'tabSections/enginesTab.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab5')}" id="tab5">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('5')}" id="5">
             <ng-include src="'tabSections/emergencyLightingTab.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab6')}" id="tab6">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('6')}" id="6">
             <ng-include src="'tabSections/spares.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab7')}" id="tab7">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('7')}" id="7">
             <ng-include src="'tabSections/exclusions.html'"/>
         </div>
 
-        <div class="tab-pane" ng-class="{active:tabs.isTabActive('tab8')}" id="tab8">
+        <div class="tab-pane" ng-class="{active:tabs.isTabActive('8')}" id="8">
             <ng-include src="'tabSections/summary.html'"/>
         </div>
 

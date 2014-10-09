@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = 'tab1';
+        $rootScope.tabs.activeTab = '2';
 
         $scope.selectedLineId = undefined;
 
@@ -15,8 +15,9 @@ angular.module('rwsprojectApp')
         $scope.selectedRegion = 0;
 
         $scope.accessories = [];
-
         $rootScope.selectedAccessories = [];
+        $rootScope.accessoryTally = {};
+
         $rootScope.fixtureNotes = 'these are notes';
 
         $scope.activeSummarySection = 'menu';
@@ -26,9 +27,19 @@ angular.module('rwsprojectApp')
         dataService.fetchAccessories()
             .success(function (ac) {
                 $scope.accessories = ac.payload;
+                $rootScope.accessoriesByDescription = {};
+                $rootScope.accessoriesByPartNumber = {};
+
+                _.each($scope.accessories, function (a) {
+                    $rootScope.accessoriesByDescription[a.description] = a;
+                });
+
+                _.each($scope.accessories, function (a) {
+                    $rootScope.accessoriesByPartNumber[a.part_number] = a;
+                });
 
             }).error(function (er) {
-                $scope.$emit('httpError', 'Failed to fetch accessories ' + er);
+                $scope.$emit('error', 'Failed to fetch accessories ' + er);
             });
 
         $scope.deleteFixtureLine = function (lineId) {
@@ -42,6 +53,14 @@ angular.module('rwsprojectApp')
 
             // set the form based on the selected line
             $rootScope.fixtureForm = result[0];
+
+            $rootScope.fixtureNotes = result[0].notes;
+            $rootScope.selectedAccessories = result[0].selectedAccessories;
+            $rootScope.accessoryTally = {};
+
+            _.each($rootScope.selectedAccessories, function (sa) {
+                $rootScope.accessoryTally[sa.accessory.part_number] = sa.accessoryCount;
+            });
         };
 
         $scope.isLineSelected = function (line) {
@@ -49,8 +68,8 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.tabClick = function (tabId, $event) {
-            $scope.$emit('tabLosingFocus', $scope.tabs.activeTab, tabId);
-            // $scope.tabs.activeTab = tabId;
+            $scope.$emit('leaving' + $scope.tabs.activeTab, $scope.tabs.activeTab, tabId);
+            $scope.$emit('entering' + tabId, $scope.tabs.activeTab, tabId);
         };
 
         $scope.tabs.isTabActive = function (tabId) {
@@ -58,8 +77,24 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.toggleAccessoriesDialog = function () {
+            if ($scope.tabs.accessoriesDialogHide == false) {
+                // it is open and we are closing it
+                $rootScope.fixtureForm.selectedAccessories = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
+                    return {
+                        accessoryCount: tallyPair[1],
+                        accessory: {
+                            "description": $rootScope.accessoriesByPartNumber[tallyPair[0]],
+                            "part_number": tallyPair[0]
+                        }
+                    };
+                });
+            }
             $scope.tabs.accessoriesDialogHide =
                 $scope.tabs.accessoriesDialogHide == false;
+        };
+
+        $scope.isAccessorySelected = function (accPartNum) {
+            return $rootScope.accessoryTally[accPartNum] && $rootScope.accessoryTally[accPartNum] > 0;
         };
 
         $scope.tabs.toggleNotesDialog = function () {
@@ -97,15 +132,10 @@ angular.module('rwsprojectApp')
             $scope.$emit(one, two);
         };
 
-        $rootScope.$on('tabLosingFocus', function(event, fromTab, toTab) {
-            if (fromTab === 'tab7') {
-                // nothing to validate here
-                event.stopPropagation();
-                $rootScope.tabs.activeTab = toTab;
-            } else if (fromTab === 'tab8') {
-                event.stopPropagation();
-                $rootScope.tabs.activeTab = toTab;
-            };
+        // this is here because there is no exclusions tab controller
+        $rootScope.$on('leaving7', function (event, fromTab, toTab) {
+            event.stopPropagation();
+            $rootScope.tabs.activeTab = toTab;
 
         });
 

@@ -7,7 +7,7 @@ angular.module('rwsprojectApp')
                 if (response.status == 401) {
                     console.log('denied');
                     $rootScope.authenticatedUser = {};
-                    $rootScope.isLoggedIn = undefined;
+                    $rootScope.isLoggedIn = rwsMockEnabled ? true : undefined;
                 }
 
                 return $q.reject(response);

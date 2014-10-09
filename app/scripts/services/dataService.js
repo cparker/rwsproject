@@ -1,6 +1,8 @@
 angular.module('rwsprojectApp')
     .factory('dataService', ['$http', function ($http) {
 
+        var mockEnabled = true;
+
 
         var theService = {
 
@@ -10,15 +12,15 @@ angular.module('rwsprojectApp')
 
             fixtureLineSelectChoices: [],
 
-            controlModel: mockControlModel,
+            controlModel: rwsMockEnabled ? mockControlModel : {},
 
-            engineModel: mockEnginesFormData,
+            engineModel: rwsMockEnabled ? mockEnginesFormData : {},
 
-            projectInfo: mockProjectInfo,
+            projectInfo: rwsMockEnabled ? mockProjectInfo : {},
 
-            sparesModel: mockSpares,
+            sparesModel: rwsMockEnabled ? mockSpares : {},
 
-            accessoryMasterList : mockAccessoryMaster,
+            accessoryMasterList : rwsMockEnabled ? mockAccessoryMaster  : {},
 
             emergencyOption: 2,
 

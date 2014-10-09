@@ -18,6 +18,8 @@ angular.module('rwsprojectApp')
         $rootScope.authenticatedUser = {};
         $rootScope.isLoggedIn = undefined;
 
+        $rootScope.dataService = dataService;
+
         dataService.checkAccess()
             .success(function (data) {
                 $rootScope.isLoggedIn = true;

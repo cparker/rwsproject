@@ -65,9 +65,7 @@ theApp
     .run(function ($httpBackend, dataService) {
         console.log('theApp is initializing');
 
-        var mockEnabled = false;
-
-        if (mockEnabled == true) {
+        if (rwsMockEnabled == true) {
             console.log('MOCK DATA in effect');
 
             dataService.fixtureLines = mockFixtureLines;

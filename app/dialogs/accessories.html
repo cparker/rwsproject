@@ -3,12 +3,14 @@
     <div class="dialogInner">
 
         <div class="accessoriesItem" ng-repeat="ac in accessories">
-            <div ng-class="{smallCircleFilled:selectedAccessories[$index] != undefined}" class="smallCircle">&nbsp;</div>
+            <div ng-class="{smallCircleFilled:isAccessorySelected(ac.part_number)}" class="smallCircle">&nbsp;</div>
             <label> {{ac.description}}</label>
-            <input  ng-model="selectedAccessories[$index]" class="accessoriesText" id="{{$index}}" type="number" min="0" placeholder="0"/>
+            <input  ng-model="accessoryTally[ac.part_number]" class="accessoriesText" id="{{$index}}" type="number" min="0" placeholder="0"/>
         </div>
 
     </div>
     <input class="accessoriesDialogButton" type="button" value="save" ng-click="tabs.toggleAccessoriesDialog()"/>
     <input class="accessoriesDialogButton" type="button" value="cancel" ng-click="tabs.toggleAccessoriesDialog()"/>
+    <pre>{{accessoryTally | json}}</pre>
+    <pre>{{accessoriesByDescription | json}}</pre>
 </div>

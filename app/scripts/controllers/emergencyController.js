@@ -3,10 +3,13 @@ angular.module('rwsprojectApp')
         function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
 
-            $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
+            $rootScope.$on('leaving5', function (event, fromTab, toTab) {
                 // check to see if the tab being switched is tab1
-                if (fromTab === 'tab5') {
-                    event.stopPropagation();
+                event.stopPropagation();
+
+                if (parseInt(toTab) < 5) {
+                    $rootScope.tabs.activeTab = toTab;
+                } else {
                     if ($scope.selectedEmergencyRadio) {
                         $rootScope.tabs.activeTab = toTab;
                         dataService.emergencyOption = $scope.selectedEmergencyRadio;
