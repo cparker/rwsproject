@@ -81,7 +81,7 @@ angular.module('rwsprojectApp')
 
             $rootScope.$on('tabLosingFocus', function (event, fromTab, toTab) {
                 // check to see if the tab being switched is tab1
-                if (fromTab === 'tab2') {
+                if (fromTab === 'tab2' && toTab != 'tab1') {
                     event.stopPropagation();
                     // TRYING TO LEAVE THE FIXTURE FORM
                     if (dataService.fixtureLines.length > 0) {
@@ -89,6 +89,9 @@ angular.module('rwsprojectApp')
                     } else {
                         $rootScope.$emit('error', 'Please add some fixtures before continuing');
                     }
+                } else {
+                    // they can go back to the project tab even if the fixture form has no fixtures
+                    $rootScope.tabs.activeTab = toTab;
                 }
             });
 

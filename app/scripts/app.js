@@ -65,7 +65,7 @@ theApp
     .run(function ($httpBackend, dataService) {
         console.log('theApp is initializing');
 
-        var mockEnabled = true;
+        var mockEnabled = false;
 
         if (mockEnabled == true) {
             console.log('MOCK DATA in effect');
