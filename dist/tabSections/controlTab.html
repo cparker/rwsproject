@@ -1,43 +1,50 @@
 <div class="controlPanel">
-    <div class="controlSection">
-        <div class="numberAndText">
-            <div class="circleNumber">1</div>
-            <p class="underlined">Choose number of scene controllers and dimmers</p>
-        </div>
-
-        <div class="controlForm">
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="sceneControllers"/>
-                <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
+    <form class="controlForm" name="controlForm" ng-controller="controlFormController">
+        <div class="controlSection">
+            <div class="numberAndText">
+                <div class="circleNumber">1</div>
+                <p class="underlined">Choose number of scene controllers and dimmers</p>
             </div>
 
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="dimmers"/>
-                <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
+            <div class="controlForm">
+                <div>
+                    <input name="sceneControllers" ng-model="$parent.controlModel.sceneControllers" required class="redwoodPanelNarrowInput" type="number"
+                           min="0" placeholder="0" id="sceneControllers"/>
+                    <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
+                </div>
+
+                <div>
+                    <input name="dimmers" ng-model="$parent.controlModel.dimmers" required class="redwoodPanelNarrowInput" type="number" min="0" placeholder="0"
+                           id="dimmers"/>
+                    <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
+                </div>
+
+                <div>
+                    <input name="spdtSwitches" ng-model="$parent.controlModel.spdtSwitches" required class="redwoodPanelNarrowInput" type="number" min="0"
+                           placeholder="0" id="spdtWallSwitches"/>
+                    <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
+                </div>
+
+                <textarea name="notes" ng-model="$parent.controlModel.notes" placeholder="Notes"></textarea>
+            </div>
+        </div>
+
+        <div class="controlSection">
+            <div class="numberAndText">
+                <div class="circleNumber">2</div>
+                <p class="underlined">Cable Sharing</p>
             </div>
 
-            <div>
-                <input class="redwoodPanelNarrowInput" type="text" id="spdtWallSwitches"/>
-                <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
+            <div class="controlForm">
+                <input name="shareCable" id="controlShareCable" type="checkbox" value="useSharedCable" ng-model="$parent.controlModel.useSharedCable"/>
+                <label class="rightSideLabel" for="controlShareCable">Share 1 horizontal CommScope Cat6A cable for 2 channels (not supported with LED
+                    gateways)</label>
+                <img src="/images/control-cable.2de98587.png"/>
+
             </div>
-
-            <textarea placeholder="Notes"></textarea>
-        </div>
-    </div>
-
-    <div class="controlSection">
-        <div class="numberAndText">
-            <div class="circleNumber">2</div>
-            <p class="underlined">Cable Sharing</p>
         </div>
 
-        <div class="controlForm">
-            <input id="controlShareCable" type="checkbox"/>
-            <label class="rightSideLabel" for="controlShareCable">Share 1 horizontal CommScope Cat6A cable for 2 channels (not supported with LED
-                gateways)</label>
-            <img src="/images/control-cable.2de98587.png"/>
+        <pre>{{ $parent.controlModel | json }}</pre>
 
-        </div>
-    </div>
-
+    </form>
 </div>

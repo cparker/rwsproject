@@ -1,6 +1,6 @@
-<div class="emergencyLightingSection">
+<div class="emergencyLightingSection" ng-controller="emergencyController">
 
-    <p class="underlined">Emergency Lighting Solutions (Check for local code compliance)</p>
+    <p class="underlined">Emergency Lighting Solutions <span class="important">(Check for local code compliance)</span></p>
 
     <div class="servicePanelLine">
         <div ng-class="{bigRadioFilled:selectedEmergencyRadio == '1'}" class="bigRadio" ng-click="selectEmergencyRadio('1')"></div>
@@ -18,7 +18,7 @@
         <div ng-class="{bigRadioFilled:selectedEmergencyRadio == '3'}" class="bigRadio" ng-click="selectEmergencyRadio('3')"></div>
         <label>No Emergency Control</label>
     </div>
-    <p>WARNING This may not be code compliant</p>
+    <p class="important">WARNING This may not be code compliant</p>
 
 
 
