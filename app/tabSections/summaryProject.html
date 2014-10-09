@@ -15,68 +15,70 @@
 
 <div class="summaryProjectWorksheet">
 
-    <div class="worksheetRow" ng-repeat="x in [1,2,3,4,5]">
-        <div class="col1 column">
-            <div class="value">AB</div>
-            <div class="value">Troffer</div>
-            <div class="value">Recessed</div>
-            <div class="value">1200mm x 1600mm</div>
+    <div class="worksheetRowWithAccessories" ng-repeat="fix in fixtures">
+        <div class="worksheetRow">
+            <div class="col1 column">
+                <div class="value">{{fix.fixtureId}}</div>
+                <div class="value">{{fix.fixtureType.name}}</div>
+                <div class="value">{{fix.mountType.name}}</div>
+                <div class="value">{{fix.fixtureSize.name}}</div>
+            </div>
+
+            <div class="col2 column">
+                <div class="value">{{fix.distribution.name}}</div>
+                <div class="value">{{fix.lumens.lumens}} Lumens</div>
+
+                <div class="labelValue">
+                    <div class="summaryLabel">Channels</div>
+                    <div class="value">{{fix.channels.channel_count}}</div>
+                </div>
+                <div class="labelValue">
+                    <div class="summaryLabel">Std Qty</div>
+                    <div class="value">{{fix.standardQuantity}}</div>
+                </div>
+                <div class="labelValue">
+                    <div class="summaryLabel">Emer Qty</div>
+                    <div class="value">{{fix.emergencyQuantity}}</div>
+                </div>
+            </div>
+
+            <div class="col3 column">
+                <div class="value">{{fix.controlMethod.name}}</div>
+                <div class="value">{{fix.partInfo.part_number}}</div>
+                <div class="labelValue">
+                    <div class="summaryLabel">Ctrl Qty</div>
+                    <div class="value">{{fix.controlQuantity}}</div>
+                </div>
+            </div>
+
+            <div class="col4 column">
+                <div class="value">{{fix.partInfo.model}}</div>
+                <div class="value">{{fix.partInfo.description}}</div>
+
+                <div class="labelValue">
+                    <div class="summaryLabel">Gateway:</div>
+                    <div class="value">NA</div>
+                </div>
+                <div class="labelValue">
+                    <div class="summaryLabel">Sensor</div>
+                    <div class="value">{{fix.sensorType.name}}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="summaryProjectAccessories" ng-show="fix.selectedAccessories.length > 0">
+            <div class="accessoryLabel">Accessories:</div>
+            <div class="accessoryList">
+                <p ng-repeat="acc in fix.selectedAccessories">{{acc.accessory.description}}</p>
+            </div>
         </div>
 
-        <div class="col2 column">
-            <div class="value">Direct</div>
-            <div class="value">3200 Lumens</div>
-
-            <div class="labelValue">
-                <div class="summaryLabel">Channels</div>
-                <div class="value">2</div>
-            </div>
-            <div class="labelValue">
-                <div class="summaryLabel">Std Qty</div>
-                <div class="value">34</div>
-            </div>
-            <div class="labelValue">
-                <div class="summaryLabel">Emer Qty</div>
-                <div class="value">3</div>
-            </div>
-        </div>
-
-        <div class="col3 column">
-            <div class="value">Sensor 3</div>
-            <div class="value">SEN-3M1-W-GNRC1500</div>
-            <div class="labelValue">
-                <div class="summaryLabel">Ctrl Qty</div>
-                <div class="value">75</div>
-            </div>
-        </div>
-
-        <div class="col4 column">
-            <div class="value">COL-LED-325-RWS-XXX-XXX-SEN-XX-4-XX-XX-XX-XXX</div>
-            <div class="value">MHT LED Magnetic Tube 19" (each fixture comes with 2 2' sections powered by 1 sensor</div>
-
-            <div class="labelValue">
-                <div class="summaryLabel">Gateway:</div>
-                <div class="value">NA</div>
-            </div>
-            <div class="labelValue">
-                <div class="summaryLabel">Sensor</div>
-                <div class="value">None</div>
-            </div>
+        <div class="summaryProjectNotes" ng-show="fix.notes && fix.notes.length > 0">
+            <div class="notesLabel">Notes:</div>
+            <div class="summaryNotes">{{fix.notes}}</div>
         </div>
     </div>
 
 </div>
 
-<div class="summaryProjectAccessories">
-    <div class="accessoryLabel">Accessories:</div>
-    <div class="accessoryList">
-        <p ng-repeat="x in [1,2,3]">19 sensor mounting box (open ceiling)</p>
-    </div>
-</div>
 
-<div class="summaryProjectNotes">
-    <div class="notesLabel">Notes:</div>
-    <div class="summaryNotes">
-        These are notes
-    </div>
-</div>

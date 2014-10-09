@@ -7,6 +7,8 @@ angular.module('rwsprojectApp')
             //todo REMOVE THIS
             $scope.fixLines = dataService.fixtureLines;
 
+            $scope.dataService = dataService;
+
             $scope.parseInt = parseInt;
             $scope.sparesModel = {};
 

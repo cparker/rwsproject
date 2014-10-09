@@ -9,6 +9,14 @@ angular.module('rwsprojectApp')
                     event.stopPropagation();
                     // TRYING TO LEAVE THE CONTROL FORM
                     if ($scope.controlForm.$valid) {
+
+                        $scope.totalChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
+                            return initial +
+                                fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity) +
+                                fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity)
+                        }, 0);
+
+                        $scope.controlModel.totalSharingCables = $scope.totalChannels;
                         dataService.controlModel = $scope.controlModel;
                         $rootScope.tabs.activeTab = toTab;
                     } else {

@@ -15,9 +15,9 @@
                     <div class="firstItem">{{fixture.partInfo.part_number}}</div>
                     <div class="currentQty">{{fixture.controlQuantity}}</div>
                     <div class="spareQty"><input placeholder="0" min="0" name="spareThree{{$index}}"
-                                                 ng-model="dataService.fixtureLines[$index].controlQuantitySpare" type="number"/>
+                                                 ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare" type="number"/>
                     </div>
-                    <div class="total">{{dataService.fixtureLines[$index].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
                 </div>
             </li>
         </ul>
@@ -36,9 +36,9 @@
                 <div class="spareLine">
                     <div class="firstItem">{{fixture.partInfo.part_number}}</div>
                     <div class="currentQty">{{fixture.controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="dataService.fixtureLines[$index].controlQuantitySpare"
+                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare"
                                                  type="number" min="0"/></div>
-                    <div class="total">{{dataService.fixtureLines[$index].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
                 </div>
             </li>
         </ul>
@@ -149,4 +149,5 @@
             </li>
         </ul>
     </form>
+
 </div>

@@ -14,7 +14,11 @@ angular.module('rwsprojectApp')
 
             engineModel: mockEnginesFormData,
 
-            sparesModel: {},
+            projectInfo: mockProjectInfo,
+
+            sparesModel: mockSpares,
+
+            accessoryMasterList : mockAccessoryMaster,
 
             emergencyOption: 2,
 
@@ -65,6 +69,8 @@ angular.module('rwsprojectApp')
 
 
             submitProjectInfo: function (projectInfo) {
+
+                this.projectInfo = projectInfo;
 
                 // return the result of $http, which is a promise, so we can handle it back in the controller
                 return $http({

@@ -10,6 +10,8 @@
 angular.module('rwsprojectApp')
     .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', function ($scope, $http, $rootScope, dataService) {
 
+        $rootScope.parseInt = parseInt;
+
         console.log('main controller is being instantiated, id ' + $scope.id);
 
         $scope.user = {};

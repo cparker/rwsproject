@@ -3,22 +3,22 @@
     <div class="fixtureTopLeft">
         <div class="nameValue">
             <div class="fieldName">Project Name</div>
-            <div class="fieldValue">Test</div>
+            <div class="fieldValue">{{projectInfo.projectName}}</div>
         </div>
 
         <div class="nameValue">
             <div class="fieldName">Address</div>
-            <div class="fieldValue">123 Elm St., Louisville, CO 80027</div>
+            <div class="fieldValue">{{projectInfo.address}}</div>
         </div>
 
         <div class="nameValue">
             <div class="fieldName">Region</div>
-            <div class="fieldValue">EMEA</div>
+            <div class="fieldValue">{{projectInfo.region.name}}</div>
         </div>
 
         <div class="nameValue">
             <div class="fieldName">Created By</div>
-            <div class="fieldValue">Morne Erasmus</div>
+            <div class="fieldValue">{{projectInfo.createdBy}}</div>
         </div>
     </div>
     <div class="fixtureTopRight">
@@ -29,17 +29,17 @@
 
         <div class="nameValue">
             <div class="fieldName">Date/Time</div>
-            <div class="fieldValue">09-25-2014 10:00:00 PM PST</div>
+            <div class="fieldValue">{{projectInfo.dateTime}}</div>
         </div>
 
         <div class="nameValue">
             <div class="fieldName">Quote based on</div>
-            <div class="fieldValue">Drawing reference bla</div>
+            <div class="fieldValue">{{projectInfo.basedOn}}</div>
         </div>
 
         <div class="nameValue">
             <div class="fieldName">email</div>
-            <div class="fieldValue">cp@cjparker.us</div>
+            <div class="fieldValue">{{projectInfo.email}}</div>
         </div>
     </div>
 </div>
