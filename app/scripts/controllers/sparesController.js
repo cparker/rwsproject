@@ -5,12 +5,12 @@ angular.module('rwsprojectApp')
             //todo REMOVE THIS
 
             $scope.parseInt = parseInt;
-            $scope.sparesModel = {};
-            $scope.engineTotals = {};
 
 
             // when we switch to the spares tab, we need to recompute some things
             $rootScope.$on('entering6', function (event, fromTab, toTab) {
+                $scope.sparesModel = {};
+                $scope.engineTotals = {};
 
                 $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
 
@@ -31,7 +31,10 @@ angular.module('rwsprojectApp')
                 $scope.engineTotals[dataService.engineModel.voltageEmergency] =
                     dataService.engineModel.enginesEmergency + ($scope.engineTotals[dataService.engineModel.voltageEmergency] || 0);
 
+                $scope.engineTotals[dataService.engineModel.voltageStandard] = 0;
+                $scope.engineTotals[dataService.engineModel.voltageEmergency] = 0;
                 $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
+                $scope.engineTotals[dataService.engineModel.voltageEmergency] += dataService.engineModel.enginesEmergency;
 
                 $scope.engineVoltagePairs = _.pairs($scope.engineTotals);
 

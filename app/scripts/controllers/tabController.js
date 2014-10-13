@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = '2';
+        $rootScope.tabs.activeTab = '1';
 
         $scope.selectedLineId = undefined;
 
@@ -17,8 +17,6 @@ angular.module('rwsprojectApp')
         $scope.accessories = [];
         $rootScope.selectedAccessories = [];
         $rootScope.accessoryTally = {};
-
-        $rootScope.fixtureNotes = 'these are notes';
 
         $scope.activeSummarySection = 'menu';
 
@@ -54,7 +52,7 @@ angular.module('rwsprojectApp')
             // set the form based on the selected line
             $rootScope.fixtureForm = result[0];
 
-            $rootScope.fixtureNotes = result[0].notes;
+            dataService.fixNotes = result[0].notes;
             $rootScope.selectedAccessories = result[0].selectedAccessories;
             $rootScope.accessoryTally = {};
 
@@ -83,7 +81,7 @@ angular.module('rwsprojectApp')
                     return {
                         accessoryCount: tallyPair[1],
                         accessory: {
-                            "description": $rootScope.accessoriesByPartNumber[tallyPair[0]],
+                            "description": $rootScope.accessoriesByPartNumber[tallyPair[0]].description,
                             "part_number": tallyPair[0]
                         }
                     };
@@ -98,8 +96,6 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.toggleNotesDialog = function () {
-            // this seems silly
-            $rootScope.copiedFixtureNotes = $scope.fixtureNotes;
             $scope.tabs.notesDialogHide =
                 $scope.tabs.notesDialogHide == false;
         };

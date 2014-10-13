@@ -22,6 +22,8 @@ angular.module('rwsprojectApp')
 
             accessoryMasterList : rwsMockEnabled ? mockAccessoryMaster  : {},
 
+            fixNotes : '',
+
             emergencyOption: 2,
 
             addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
@@ -34,9 +36,6 @@ angular.module('rwsprojectApp')
 
                 // save all the multi select choices, need to make a COPY
                 this.fixtureLineSelectChoices[fixtureForm.fixtureLineId] = JSON.parse(JSON.stringify(dropDownChoices));
-
-                // the one you just added becomes immediately selected
-                this.selectedFixtureLine = fixtureForm.fixtureLineId;
 
                 // send it to the server
                 this.submitFixtureLine(fixtureForm);

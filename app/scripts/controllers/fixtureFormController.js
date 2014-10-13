@@ -196,14 +196,17 @@ angular.module('rwsprojectApp')
                     return {
                         accessoryCount: tallyPair[1],
                         accessory:  {
-                            "description" : $rootScope.accessoriesByPartNumber[tallyPair[0]],
+                            "description" : $rootScope.accessoriesByPartNumber[tallyPair[0]].description,
                             "part_number" : tallyPair[0]
                         }
                     };
                 });
 
                 if ($scope.fixtureTabForm.$valid) {
-                    dataService.addFixtureLine($rootScope.fixtureForm, accessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices, $rootScope.copiedFixtureNotes);
+                    dataService.addFixtureLine($rootScope.fixtureForm, accessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.dropDownChoices, dataService.fixNotes);
+
+                    // reset the form
+                    $scope.resetFixtureForm();
                 }
             };
 
@@ -211,10 +214,11 @@ angular.module('rwsprojectApp')
                 $rootScope.fixtureForm = {};
                 $rootScope.dropDownChoices = {};
                 $scope.setFixtureTypesBySelectedRegion();
-                $rootScope.fixtureNotes = "";
+                dataService.fixNotes = '';
                 $scope.fixtureTabForm.$setPristine();
                 dataService.selectedFixtureLine = undefined;
                 $rootScope.selectedAccessories = [];
+                $rootScope.accessoryTally = {};
             };
 
             $scope.hasLineBeenAdded = function () {

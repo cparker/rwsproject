@@ -1,4 +1,4 @@
-var rwsMockEnabled = true;
+var rwsMockEnabled = false;
 
 var mockFixtureLines =
     [
