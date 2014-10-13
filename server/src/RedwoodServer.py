@@ -1,12 +1,24 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-Good docs for MySQLDb http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+
+Server for rwsproject.com
+
+Usage:
+    RedwoodServer.py [--verbose]
+
+Arguments:
+
+Options:
+    --verbose       lots of logging
 """
+
+__author__ = 'cp@cjparker.us'
 
 import MySQLdb
 from flask import Flask, session, redirect, url_for, escape, request, jsonify
 import json
+from docopt import docopt
 from MySQLdb import cursors
 from datetime import timedelta
 import os, time, datetime, traceback, re
@@ -22,8 +34,30 @@ app.config['SESSION_PATH'] = '/tmp/sessions'
 app.config['SECRET_KEY'] = os.urandom(24)
 skip_paths = []
 app.session_interface = ManagedSessionInterface(
-    CachingSessionManager(FileBackedSessionManager(app.config['SESSION_PATH'], app.config['SECRET_KEY']), 1000),
-    skip_paths, datetime.timedelta(minutes=30))
+    CachingSessionManager(
+        FileBackedSessionManager(
+            app.config['SESSION_PATH'],
+            app.config['SECRET_KEY']
+        ),
+        1000),
+    skip_paths,
+    datetime.timedelta(minutes=30)
+)
+
+"""
+Good docs for MySQLDb http://mysql-python.sourceforge.net/MySQLdb-1.2.2/
+"""
+
+
+def emptyResponse(code):
+    r = jsonify({})
+    r.status_code = code
+    return r
+
+
+def log(text):
+    if cli.get('--verbose', False):
+        print(text)
 
 
 class ConnectionHandler:
@@ -49,7 +83,8 @@ class ConnectionHandler:
             self.connection.ping()
 
         except Exception as ex:
-            print('our db connection broke, compensating ' + str(ex))
+            log('our db connection broke, compensating ' + str(ex))
+            traceback.print_exc()
             self.setConnection()
 
         return self.connection
@@ -57,10 +92,12 @@ class ConnectionHandler:
 
 connectionHandler = ConnectionHandler()
 
+cli = {}
+
 
 @app.before_request
 def filterRequests():
-    print('####### filtering requests ' + request.path)
+    log('####### filtering requests ' + request.path)
 
     # let's list out some roles that we'll allow through with guest access
     # the default will be admin access is required
@@ -82,7 +119,7 @@ def filterRequests():
     resp = jsonify({})
     if len(matchedGuestURLS) > 0:
         if session.has_key('role') and (session['role'] == 'guest' or session['role'] == 'admin'):
-            print('allowing guest access to ' + request.path)
+            log('allowing guest access to ' + request.path)
             resp.status_code = 200
         else:
             resp.status_code = 401
@@ -95,6 +132,23 @@ def filterRequests():
 
     if resp.status_code == 401:
         return resp  # prevent access
+
+
+def runFixtureQuery(query):
+    con = connectionHandler.getConnection(newCon=True)
+    cur = con.cursor(cursors.DictCursor)
+    try:
+        cur.execute(query)
+        return jsonify({"payload": cur.fetchall()})
+
+    except Exception as ex:
+        log('caught ' + str(ex))
+        traceback.print_exc()
+        return emptyResponse(500)
+
+    finally:
+        con.close()
+        cur.close()
 
 
 @app.route('/')
@@ -125,7 +179,8 @@ def login():
             resp.status_code = 401
 
     except Exception as ex:
-        print('caught ' + str(ex))
+        log('caught ' + str(ex))
+        traceback.print_exc()
         resp.status_code = 500
 
     finally:
@@ -137,32 +192,14 @@ def login():
 
 @app.route('/server/fixtureTypes', methods=['GET'])
 def handleFixtureTypes():
-    con = connectionHandler.getConnection(newCon=True)
-    cur = con.cursor(cursors.DictCursor)
-    try:
-        cur.execute("select * from fixtureTypes")
-        return jsonify({"payload": cur.fetchall()})
-    except Exception as ex:
-        print("caught exception querying mysql " + str(ex))
-        return jsonify(500, [])
-
-    finally:
-        cur.close()
+    query = "select * from fixtureTypes"
+    return runFixtureQuery(query)
 
 
 @app.route('/server/regions', methods=['GET'])
 def handleRegions():
-    con = connectionHandler.getConnection(newCon=True)
-    cur = con.cursor(cursors.DictCursor)
-    try:
-        cur.execute("select * from regions")
-        return jsonify({"payload": cur.fetchall()})
-    except Exception as ex:
-        print("caught exception querying mysql " + str(ex))
-        return jsonify(500, [])
-
-    finally:
-        cur.close()
+    query = "select * from regions"
+    return runFixtureQuery(query)
 
 
 @app.route('/server/submitProjectInfo', methods=['POST'])
@@ -170,8 +207,7 @@ def handleSubmitProjectInfo():
     con = connectionHandler.getConnection(newCon=True)
     cur = con.cursor(cursors.DictCursor)
     try:
-        print('submitProjectInfo received ' + str(request.json))
-        print(request.json.get('basedOn'))
+        log('submitProjectInfo received ' + str(request.json))
         # insert the project info
         cur.execute("""insert into project_info
         (  dateTime,     projectName,     address,     region_id,    createdBy,     basedOn,     email,     notes) values
@@ -192,12 +228,12 @@ def handleSubmitProjectInfo():
         session.permanent = True
         session['activeProject'] = request.json['dateTime']
         session.modified = True
-        print('now session looks like ' + str(session))
-        return '', 200
+        return emptyResponse(200)
 
     except Exception as ex:
-        print('caught ' + str(ex))
-        return 'error', 500
+        log('caught ' + str(ex))
+        traceback.print_exc()
+        return emptyResponse(500)
 
     finally:
         cur.close()
@@ -207,7 +243,7 @@ def handleSubmitProjectInfo():
 
 @app.route('/server/submitFixture', methods=['POST'])
 def handleSubmitFixture():
-    print('received ' + str(request.json))
+    log('received ' + str(request.json))
     con = connectionHandler.getConnection(newCon=True)
     cur = con.cursor(cursors.DictCursor)
     try:
@@ -263,15 +299,12 @@ def handleSubmitFixture():
                 count=accessory['accessoryCount']
             ))
 
-        resp = jsonify([])
-        resp.status_code = 200
-        return resp
+        return emptyResponse(200)
 
     except Exception as ex:
-        resp = jsonify([])
-        resp.status_code = 500
-        print('caught exception in submitFixture ' + str(ex))
-        return resp
+        log('caught exception in submitFixture ' + str(ex))
+        traceback.print_exc()
+        return emptyResponse(500)
 
     finally:
         cur.close()
@@ -291,15 +324,13 @@ def doGetProjectFixtures():
 
     try:
         if not session.has_key('activeProject'):
-            resp = jsonify([])
-            resp.status_code = 404
-            print('no active project')
-            return resp
+            log('no active project')
+            return emptyResponse(404)
 
         projectId = session['activeProject']
 
         def convertFixtureInfoToJSON(fixtureResult):
-            print('fixtureResult is ' + str(fixtureResult))
+            log('fixtureResult is ' + str(fixtureResult))
             cur.execute("select id from channels where channel_count='{0}'".format(fixtureResult['channels']))
             channelId = cur.fetchone()['id']
 
@@ -337,7 +368,7 @@ def doGetProjectFixtures():
             accessoryResult = cur.fetchall()
 
             def convertAccessoryToJSON(accessoryResult):
-                print('accessoryResult ' + str(accessoryResult))
+                log('accessoryResult ' + str(accessoryResult))
                 return {
                     "accessory": {
                         "description": accessoryResult['description'],
@@ -405,11 +436,9 @@ def doGetProjectFixtures():
         return resp
 
     except Exception as ex:
-        resp = jsonify([])
-        print('caught ' + str(ex))
+        log('caught ' + str(ex))
         traceback.print_exc()
-        resp.status_code = 500
-        return resp
+        return emptyResponse(500)
 
     finally:
         cur.close()
@@ -418,20 +447,19 @@ def doGetProjectFixtures():
 
 @app.route('/server/getFiles')
 def handleGetFiles():
-    print('dir argument is ' + str(request.args.get('dir')))
+    log('dir argument is ' + str(request.args.get('dir')))
     if request.args.get('dir', None) is not None:
         workingFileDir = baseFileDir + request.args.get('dir') + '/'
     else:
         workingFileDir = baseFileDir
 
-    print('working is ' + workingFileDir)
+    log('working is ' + workingFileDir)
 
     allItems = os.listdir(workingFileDir)
     files = filter(lambda f: os.path.isfile(workingFileDir + f), allItems)
     dirs = filter(lambda f: os.path.isdir(workingFileDir + f), allItems)
 
     requestPath = request.args.get('dir', None)
-    print("!!!!!!!!! " + str(requestPath))
 
     def makeFile(f):
         createdDateTimeStr = time.ctime(os.path.getctime(workingFileDir + f))
@@ -473,36 +501,15 @@ def handleGetFiles():
 def deleteFile():
     bareFile = re.search('\/.*?\/(.*)', request.args.get('url')).group(1)
     fullPath = baseFileDir + bareFile
-    print('deleting {0}'.format(fullPath))
+    log('deleting {0}'.format(fullPath))
     try:
         os.remove(fullPath)
-        resp = jsonify([])
-        resp.status_code = 200
-        return resp
+        return emptyResponse(200)
 
     except Exception as ex:
-        print(ex)
-        resp = jsonify([])
-        resp.status_code = 500
-        return resp
-
-
-def runFixtureQuery(query):
-    con = connectionHandler.getConnection(newCon=True)
-    cur = con.cursor(cursors.DictCursor)
-    try:
-        cur.execute(query)
-        return jsonify({"payload": cur.fetchall()})
-
-    except Exception as ex:
-        print('caught ' + str(ex))
-        resp = jsonify([])
-        resp.status_code = 500
-        return resp
-
-    finally:
-        con.close()
-        cur.close()
+        log(ex)
+        traceback.print_exc()
+        return emptyResponse(500)
 
 
 # #
@@ -510,7 +517,6 @@ def runFixtureQuery(query):
 # #
 @app.route('/server/getProjectInfo', methods=['GET'])
 def handleGetProjectInfo():
-    print('session looks like ' + str(session))
     if session.has_key('activeProject'):
         con = connectionHandler.getConnection(newCon=True)
         cur = con.cursor(cursors.DictCursor)
@@ -527,16 +533,15 @@ def handleGetProjectInfo():
             return jsonify(projectInfo)
 
         except Exception as ex:
-            print('caught ' + str(ex))
+            log('caught ' + str(ex))
+            traceback.print_exc()
 
         finally:
             cur.close()
             con.close()
 
     else:
-        resp = jsonify([])
-        resp.status_code = 404
-        return resp
+        return emptyResponse(404)
 
 
 @app.route('/server/getFixtureTypes')
@@ -557,7 +562,8 @@ def doGetFixtureTypes():
         return jsonify({"payload": cur.fetchall()})
 
     except Exception as ex:
-        print('caught ' + str(ex))
+        log('caught ' + str(ex))
+        traceback.print_exc()
 
     finally:
         cur.close()
@@ -585,7 +591,8 @@ def doGetMountTypes():
         return jsonify({"payload": cur.fetchall()})
 
     except Exception as ex:
-        print('caught ' + str(ex))
+        log('caught ' + str(ex))
+        traceback.print_exc()
 
     finally:
         cur.close()
@@ -615,7 +622,8 @@ def doGetFixtureSizes():
         return jsonify({"payload": cur.fetchall()})
 
     except Exception as ex:
-        print('caught ' + str(ex))
+        log('caught ' + str(ex))
+        traceback.print_exc()
 
     finally:
         con.close()
@@ -819,20 +827,8 @@ def doGetPartInfo():
 
 @app.route('/server/getAccessories')
 def doGetAccessories():
-    con = connectionHandler.getConnection(newCon=True)
-    cur = con.cursor(cursors.DictCursor)
-
-    try:
-        cur.execute("select * from accessories")
-        return jsonify({"payload": cur.fetchall()})
-    except Exception as ex:
-        resp = jsonify([])
-        resp.status_code = 500
-        return resp
-
-    finally:
-        con.close()
-        cur.close()
+    query = "select * from accessories"
+    return runFixtureQuery(query)
 
 
 @app.route('/server/uploadFile', methods=['POST'])
@@ -840,12 +836,10 @@ def upload_file():
     uploadDir = baseFileDir + '/' + request.args.get('dir') + '/'
     file = request.files['file']
     filename = file.filename
-    print('filename is ' + filename)
+    log('filename is ' + filename)
     if file:
         file.save(os.path.join(uploadDir, filename))
-        resp = jsonify([])
-        resp.status_code = 200
-        return resp
+        return emptyResponse(200)
 
 
 @app.route('/server/checkAccess')
@@ -858,22 +852,26 @@ def checkAccess():
         resp.status_code = 200
         return resp
     else:
-        return '', 401
+        return emptyResponse(401)
 
 
 @app.route('/server/hello')
 def hello():
-    return '', 200
+    return emptyResponse(200)
 
 
 @app.route('/simplepost', methods=['POST'])
 def simple():
-    return '', 200
+    return emptyResponse(200)
 
 
 app.secret_key = os.urandom(24)
 
 if __name__ == '__main__':
+    cli = docopt(__doc__)
+
+    log('verbose logging enabled')
+
     app.debug = True
     app.run(host='0.0.0.0')
 

@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = '2';
+        $rootScope.tabs.activeTab = '1';
 
         $scope.selectedLineId = undefined;
 

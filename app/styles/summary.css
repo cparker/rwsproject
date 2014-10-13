@@ -8,7 +8,7 @@
 
 .summaryMenu .summaryIcon.fixtureIcon {
     background: url("/images/blackSolidDocument.svg") 0 0 / 28px 28px no-repeat,
-    url("/images/blackSolidBulb.svg") 5px 7px / 16px 16px no-repeat;
+    url("/images/blackSolidBulb.svg") 6px 7px / 16px 16px no-repeat;
 }
 
 .summaryMenu .summaryIcon.bomIcon {
@@ -101,7 +101,7 @@
     color: white;
 }
 
-.summaryPanel .fixtureIcon {
+.summaryPanel .fixtureHeaderIcon {
     height: 24px;
     width: 24px;
     background-color: darkred;

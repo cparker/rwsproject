@@ -1,7 +1,7 @@
 <a href="" ng-click="selectSummary('menu')">Back to summary</a>
 <div class="fixtureOuterHeader">
     <div class="fixtureHeaderContainer">
-        <div class="fixtureIcon"></div>
+        <div class="fixtureHeaderIcon"></div>
         <div class="fixtureHeader">Bill of Materials</div>
     </div>
     <hr class="whiteline"/>
@@ -43,6 +43,14 @@
     <div class="qty">{{dataService.controlModel.dimmers + dataService.sparesModel.dimmers}}</div>
     <div class="item">RW Dimmer, White</div>
     <div class="partNum">RD-1G-W</div>
+    <div class="notes">These are some notes</div>
+</div>
+
+<!-- wall switches-->
+<div class="bomRow">
+    <div class="qty">{{dataService.controlModel.spdtSwitches}}</div>
+    <div class="item">SPDT wall switch (not supplied by redwood)</div>
+    <div class="partNum">???</div>
     <div class="notes">These are some notes</div>
 </div>
 
