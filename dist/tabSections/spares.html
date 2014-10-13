@@ -66,10 +66,10 @@
             <li>
                 <div class="spareLine">
                     <div class="firstItem">Director</div>
-                    <div class="currentQty">{{engineModel.directorCount}}</div>
+                    <div class="currentQty">{{dataService.engineModel.directorCount}}</div>
                     <div class="spareQty"><input required name="spareDirector" placeholder="0" name="directorSpares" type="number" min="0"
                                                  ng-model="sparesModel.directorSpares"/></div>
-                    <div class="total">{{engineModel.directorCount + sparesModel.directorSpares}}</div>
+                    <div class="total">{{dataService.engineModel.directorCount + sparesModel.directorSpares}}</div>
                 </div>
             </li>
 
@@ -110,19 +110,19 @@
             <li>
                 <div class="spareLine">
                     <div class="firstItem">Redwood Scene Controllers</div>
-                    <div class="currentQty">{{controlModel.sceneControllers}}</div>
+                    <div class="currentQty">{{dataService.controlModel.sceneControllers}}</div>
                     <div class="spareQty"><input placeholder="0" required name="sceneControllers" ng-model="sparesModel.sceneControllers" type="number"
                                                  min="0"/></div>
-                    <div class="total">{{sparesModel.sceneControllers + controlModel.sceneControllers}}</div>
+                    <div class="total">{{sparesModel.sceneControllers + dataService.controlModel.sceneControllers}}</div>
                 </div>
             </li>
 
             <li>
                 <div class="spareLine">
                     <div class="firstItem">Redwood Dimmers</div>
-                    <div class="currentQty">{{controlModel.dimmers}}</div>
+                    <div class="currentQty">{{dataService.controlModel.dimmers}}</div>
                     <div class="spareQty"><input placeholder="0" required name="dimmers" ng-model="sparesModel.dimmers" type="number" min="0"/></div>
-                    <div class="total">{{sparesModel.dimmers + controlModel.dimmers}}</div>
+                    <div class="total">{{sparesModel.dimmers + dataService.controlModel.dimmers}}</div>
                 </div>
             </li>
         </ul>
@@ -143,8 +143,8 @@
                 <div class="spareLine">
                     <div class="firstItem">{{acc[1].desc}}</div>
                     <div class="currentQty">{{acc[1].count}}</div>
-                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}" ng-model="acc[1].spares" type="number" min="0"/></div>
-                    <div class="total">{{acc[1].count + acc[1].spares}}</div>
+                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}" ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
+                    <div class="total">{{acc[1].count + sparesModel.accessorySpareTally[acc[1].desc]}}</div>
                 </div>
             </li>
         </ul>

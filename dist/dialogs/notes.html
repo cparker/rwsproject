@@ -1,7 +1,7 @@
 <div class="notesDialogOuter" ng-hide="tabs.notesDialogHide" id="notesDialog">
     <p><i>Additional notes for this feature.</i></p>
     <div class="notesDialogInner">
-        <textarea ng-model='$parent.fixtureNotes' class='noteArea'/>
+        <textarea ng-model='dataService.fixNotes' class='noteArea'/>
     </div>
     <input class="accessoriesDialogButton" type="button" value="save" ng-click="tabs.toggleNotesDialog()"/>
     <input class="accessoriesDialogButton" type="button" value="cancel" ng-click="tabs.toggleNotesDialog()"/>

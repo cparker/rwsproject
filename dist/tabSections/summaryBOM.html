@@ -1,7 +1,7 @@
 <a href="" ng-click="selectSummary('menu')">Back to summary</a>
 <div class="fixtureOuterHeader">
     <div class="fixtureHeaderContainer">
-        <div class="fixtureIcon"></div>
+        <div class="fixtureHeaderIcon"></div>
         <div class="fixtureHeader">Bill of Materials</div>
     </div>
     <hr class="whiteline"/>
@@ -33,21 +33,29 @@
 <div class="bomHeader">Controls and Engines</div>
 
 <div class="bomRow">
-    <div class="qty">{{controlModel.sceneControllers + sparesModel.sceneControllers}}</div>
+    <div class="qty">{{dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers}}</div>
     <div class="item">RW Scene Controller, White. 7 Button</div>
     <div class="partNum">DIM-2-4SW</div>
     <div class="notes">These are some notes</div>
 </div>
 
 <div class="bomRow">
-    <div class="qty">{{controlModel.dimmers + sparesModel.dimmers}}</div>
+    <div class="qty">{{dataService.controlModel.dimmers + dataService.sparesModel.dimmers}}</div>
     <div class="item">RW Dimmer, White</div>
     <div class="partNum">RD-1G-W</div>
     <div class="notes">These are some notes</div>
 </div>
 
+<!-- wall switches-->
 <div class="bomRow">
-    <div class="qty">{{sparesModel.spareSharingCables + controlModel.totalSharingCables}}</div>
+    <div class="qty">{{dataService.controlModel.spdtSwitches}}</div>
+    <div class="item">SPDT wall switch (not supplied by redwood)</div>
+    <div class="partNum">???</div>
+    <div class="notes">These are some notes</div>
+</div>
+
+<div class="bomRow">
+    <div class="qty">{{dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables}}</div>
     <div class="item">Cable Sharing Splitter - SP12A (2 per horizontal run)</div>
     <div class="partNum">760191841</div>
     <div class="notes">These are some notes</div>
@@ -57,7 +65,7 @@
 <!--  EMERGENCY -->
 <div class="bomHeader">Emergency Lighting Controls</div>
 <div class="bomRow">
-    <div class="qty">{{emergencyRelayCount + sparesModel.emergencySpareControls}}</div>
+    <div class="qty">{{emergencyRelayCount + dataService.sparesModel.emergencySpareControls}}</div>
     <div class="item">Outage Gateway & Relay - 10A SPDT, 120-277VAC</div>
     <div class="partNum">RG-2G-OUTAGE-KT</div>
     <div class="notes">These are some notes</div>
