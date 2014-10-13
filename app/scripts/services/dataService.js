@@ -20,9 +20,9 @@ angular.module('rwsprojectApp')
 
             sparesModel: rwsMockEnabled ? mockSpares : {},
 
-            accessoryMasterList : rwsMockEnabled ? mockAccessoryMaster  : {},
+            accessoryMasterList: rwsMockEnabled ? mockAccessoryMaster : {},
 
-            fixNotes : '',
+            fixNotes: '',
 
             emergencyOption: 2,
 
@@ -53,6 +53,14 @@ angular.module('rwsprojectApp')
                     }
                 }
                 this.fixtureLines.splice(delIndex, 1);
+            },
+
+            updateNotesForLine: function (lineId, notes) {
+                var fix = _.find(this.fixtureLines, function (l) {
+                    return l.fixtureLineId === lineId;
+                });
+
+                fix.notes = notes;
             },
 
             selectFixtureLine: function (lineId) {

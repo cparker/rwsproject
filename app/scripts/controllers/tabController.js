@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = '1';
+        $rootScope.tabs.activeTab = '2';
 
         $scope.selectedLineId = undefined;
 
@@ -96,6 +96,11 @@ angular.module('rwsprojectApp')
         };
 
         $scope.tabs.toggleNotesDialog = function () {
+            // this means they are updating a selected line with new notes
+            if (dataService.selectedFixtureLine != undefined) {
+                dataService.updateNotesForLine(dataService.selectedFixtureLine, dataService.fixNotes);
+            }
+
             $scope.tabs.notesDialogHide =
                 $scope.tabs.notesDialogHide == false;
         };
