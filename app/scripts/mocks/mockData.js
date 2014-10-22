@@ -1,4 +1,4 @@
-var rwsMockEnabled = false;
+var rwsMockEnabled = true;
 
 var mockFixtureLines =
     [
@@ -69,7 +69,111 @@ var mockFixtureLines =
                 "name": "Normal"
             },
             "standardQuantity": "1",
-            "controlQuantitySpare": 3
+            "controlQuantitySpare": 3,
+            "dropDownChoices": {
+                "channels": [
+                    {
+                        "channel_count": 1,
+                        "id": 3
+                    }
+                ],
+                "controlMethods": [
+                    {
+                        "id": 3,
+                        "name": "Sensor 3"
+                    }
+                ],
+                "distributions": [
+                    {
+                        "id": 3,
+                        "name": "Direct"
+                    }
+                ],
+                "fixtureSizes": [
+                    {
+                        "id": 21,
+                        "name": "600mm x 600mm"
+                    }
+                ],
+                "fixtureTypes": [
+                    {
+                        "id": 8,
+                        "name": "AC Zones (Qty)"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Accent"
+                    },
+                    {
+                        "id": 7,
+                        "name": "Desk Sensor"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Downlight"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Fixtureless"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Linear"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Occupancy"
+                    },
+                    {
+                        "id": 10,
+                        "name": "Out of Scope"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Troffer"
+                    }
+                ],
+                "lumens": [
+                    {
+                        "id": 5,
+                        "lumens": "1600"
+                    }
+                ],
+                "manufacturers": [
+                    {
+                        "id": 10,
+                        "name": "NoviLED"
+                    }
+                ],
+                "mountTypes": [
+                    {
+                        "id": 6,
+                        "name": "Recessed"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Surface"
+                    }
+                ],
+                "sensorTypes": [
+                    {
+                        "id": 1,
+                        "name": "None"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Normal"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Low"
+                    },
+                    {
+                        "id": 4,
+                        "name": "High"
+                    }
+                ]
+            }
         },
         {
             "channels": {
@@ -123,7 +227,107 @@ var mockFixtureLines =
                 "name": "Normal"
             },
             "standardQuantity": "2",
-            "controlQuantitySpare": 2
+            "controlQuantitySpare": 2,
+            "dropDownChoices": {
+                "channels": [
+                    {
+                        "channel_count": 1,
+                        "id": 3
+                    }
+                ],
+                "controlMethods": [
+                    {
+                        "id": 3,
+                        "name": "Sensor 3"
+                    }
+                ],
+                "distributions": [
+                    {
+                        "id": 3,
+                        "name": "Direct"
+                    }
+                ],
+                "fixtureSizes": [
+                    {
+                        "id": 20,
+                        "name": "6\""
+                    }
+                ],
+                "fixtureTypes": [
+                    {
+                        "id": 8,
+                        "name": "AC Zones (Qty)"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Accent"
+                    },
+                    {
+                        "id": 7,
+                        "name": "Desk Sensor"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Downlight"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Fixtureless"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Linear"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Occupancy"
+                    },
+                    {
+                        "id": 10,
+                        "name": "Out of Scope"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Troffer"
+                    }
+                ],
+                "lumens": [
+                    {
+                        "id": 2,
+                        "lumens": "1100"
+                    }
+                ],
+                "manufacturers": [
+                    {
+                        "id": 12,
+                        "name": "Richter"
+                    }
+                ],
+                "mountTypes": [
+                    {
+                        "id": 2,
+                        "name": "Wall"
+                    }
+                ],
+                "sensorTypes": [
+                    {
+                        "id": 1,
+                        "name": "None"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Normal"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Low"
+                    },
+                    {
+                        "id": 4,
+                        "name": "High"
+                    }
+                ]
+            }
         },
         {
             "channels": {
@@ -193,7 +397,107 @@ var mockFixtureLines =
                 "name": "Low"
             },
             "standardQuantity": "3",
-            "controlQuantitySpare": 4
+            "controlQuantitySpare": 4,
+            "dropDownChoices": {
+                "channels": [
+                    {
+                        "channel_count": 1,
+                        "id": 3
+                    }
+                ],
+                "controlMethods": [
+                    {
+                        "id": 3,
+                        "name": "Sensor 3"
+                    }
+                ],
+                "distributions": [
+                    {
+                        "id": 3,
+                        "name": "Direct"
+                    }
+                ],
+                "fixtureSizes": [
+                    {
+                        "id": 28,
+                        "name": "n/a"
+                    }
+                ],
+                "fixtureTypes": [
+                    {
+                        "id": 8,
+                        "name": "AC Zones (Qty)"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Accent"
+                    },
+                    {
+                        "id": 7,
+                        "name": "Desk Sensor"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Downlight"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Fixtureless"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Linear"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Occupancy"
+                    },
+                    {
+                        "id": 10,
+                        "name": "Out of Scope"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Troffer"
+                    }
+                ],
+                "lumens": [
+                    {
+                        "id": 4,
+                        "lumens": "1470"
+                    }
+                ],
+                "manufacturers": [
+                    {
+                        "id": 12,
+                        "name": "Richter"
+                    }
+                ],
+                "mountTypes": [
+                    {
+                        "id": 2,
+                        "name": "Wall"
+                    }
+                ],
+                "sensorTypes": [
+                    {
+                        "id": 1,
+                        "name": "None"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Normal"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Low"
+                    },
+                    {
+                        "id": 4,
+                        "name": "High"
+                    }
+                ]
+            }
         },
         {
             "channels": {
@@ -270,445 +574,137 @@ var mockFixtureLines =
                 "name": "None"
             },
             "standardQuantity": "1",
-            "controlQuantitySpare": 2
+            "controlQuantitySpare": 2,
+            "dropDownChoices": {
+                "channels": [
+                    {
+                        "channel_count": 0,
+                        "id": 1
+                    }
+                ],
+                "controlMethods": [
+                    {
+                        "id": 4,
+                        "name": "n/a"
+                    }
+                ],
+                "distributions": [
+                    {
+                        "id": 3,
+                        "name": "Direct"
+                    }
+                ],
+                "fixtureSizes": [
+                    {
+                        "id": 2,
+                        "name": "1200mm X 50mm"
+                    },
+                    {
+                        "id": 3,
+                        "name": "1300mm X 50mm"
+                    },
+                    {
+                        "id": 9,
+                        "name": "2400 x 50mm"
+                    },
+                    {
+                        "id": 13,
+                        "name": "3600 x 50mm"
+                    },
+                    {
+                        "id": 18,
+                        "name": "5300mm x 50mm"
+                    },
+                    {
+                        "id": 26,
+                        "name": "CUSTOM"
+                    }
+                ],
+                "fixtureTypes": [
+                    {
+                        "id": 8,
+                        "name": "AC Zones (Qty)"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Accent"
+                    },
+                    {
+                        "id": 7,
+                        "name": "Desk Sensor"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Downlight"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Fixtureless"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Linear"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Occupancy"
+                    },
+                    {
+                        "id": 10,
+                        "name": "Out of Scope"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Troffer"
+                    }
+                ],
+                "lumens": [
+                    {
+                        "id": 10,
+                        "lumens": "2800"
+                    }
+                ],
+                "manufacturers": [
+                    {
+                        "id": 4,
+                        "name": "Hatec"
+                    }
+                ],
+                "mountTypes": [
+                    {
+                        "id": 6,
+                        "name": "Recessed"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Surface"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Suspended"
+                    }
+                ],
+                "sensorTypes": [
+                    {
+                        "id": 1,
+                        "name": "None"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Normal"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Low"
+                    },
+                    {
+                        "id": 4,
+                        "name": "High"
+                    }
+                ]
+            }
         }
     ];
-
-
-var mockFixtureLineSelectChoices = [
-    {
-        "channels": [
-            {
-                "channel_count": 1,
-                "id": 3
-            }
-        ],
-        "controlMethods": [
-            {
-                "id": 3,
-                "name": "Sensor 3"
-            }
-        ],
-        "distributions": [
-            {
-                "id": 3,
-                "name": "Direct"
-            }
-        ],
-        "fixtureSizes": [
-            {
-                "id": 21,
-                "name": "600mm x 600mm"
-            }
-        ],
-        "fixtureTypes": [
-            {
-                "id": 8,
-                "name": "AC Zones (Qty)"
-            },
-            {
-                "id": 1,
-                "name": "Accent"
-            },
-            {
-                "id": 7,
-                "name": "Desk Sensor"
-            },
-            {
-                "id": 2,
-                "name": "Downlight"
-            },
-            {
-                "id": 5,
-                "name": "Fixtureless"
-            },
-            {
-                "id": 4,
-                "name": "Linear"
-            },
-            {
-                "id": 6,
-                "name": "Occupancy"
-            },
-            {
-                "id": 10,
-                "name": "Out of Scope"
-            },
-            {
-                "id": 3,
-                "name": "Troffer"
-            }
-        ],
-        "lumens": [
-            {
-                "id": 5,
-                "lumens": "1600"
-            }
-        ],
-        "manufacturers": [
-            {
-                "id": 10,
-                "name": "NoviLED"
-            }
-        ],
-        "mountTypes": [
-            {
-                "id": 6,
-                "name": "Recessed"
-            },
-            {
-                "id": 3,
-                "name": "Surface"
-            }
-        ],
-        "sensorTypes": [
-            {
-                "id": 1,
-                "name": "None"
-            },
-            {
-                "id": 2,
-                "name": "Normal"
-            },
-            {
-                "id": 3,
-                "name": "Low"
-            },
-            {
-                "id": 4,
-                "name": "High"
-            }
-        ]
-    },
-    {
-        "channels": [
-            {
-                "channel_count": 1,
-                "id": 3
-            }
-        ],
-        "controlMethods": [
-            {
-                "id": 3,
-                "name": "Sensor 3"
-            }
-        ],
-        "distributions": [
-            {
-                "id": 3,
-                "name": "Direct"
-            }
-        ],
-        "fixtureSizes": [
-            {
-                "id": 20,
-                "name": "6\""
-            }
-        ],
-        "fixtureTypes": [
-            {
-                "id": 8,
-                "name": "AC Zones (Qty)"
-            },
-            {
-                "id": 1,
-                "name": "Accent"
-            },
-            {
-                "id": 7,
-                "name": "Desk Sensor"
-            },
-            {
-                "id": 2,
-                "name": "Downlight"
-            },
-            {
-                "id": 5,
-                "name": "Fixtureless"
-            },
-            {
-                "id": 4,
-                "name": "Linear"
-            },
-            {
-                "id": 6,
-                "name": "Occupancy"
-            },
-            {
-                "id": 10,
-                "name": "Out of Scope"
-            },
-            {
-                "id": 3,
-                "name": "Troffer"
-            }
-        ],
-        "lumens": [
-            {
-                "id": 2,
-                "lumens": "1100"
-            }
-        ],
-        "manufacturers": [
-            {
-                "id": 12,
-                "name": "Richter"
-            }
-        ],
-        "mountTypes": [
-            {
-                "id": 2,
-                "name": "Wall"
-            }
-        ],
-        "sensorTypes": [
-            {
-                "id": 1,
-                "name": "None"
-            },
-            {
-                "id": 2,
-                "name": "Normal"
-            },
-            {
-                "id": 3,
-                "name": "Low"
-            },
-            {
-                "id": 4,
-                "name": "High"
-            }
-        ]
-    },
-    {
-        "channels": [
-            {
-                "channel_count": 1,
-                "id": 3
-            }
-        ],
-        "controlMethods": [
-            {
-                "id": 3,
-                "name": "Sensor 3"
-            }
-        ],
-        "distributions": [
-            {
-                "id": 3,
-                "name": "Direct"
-            }
-        ],
-        "fixtureSizes": [
-            {
-                "id": 28,
-                "name": "n/a"
-            }
-        ],
-        "fixtureTypes": [
-            {
-                "id": 8,
-                "name": "AC Zones (Qty)"
-            },
-            {
-                "id": 1,
-                "name": "Accent"
-            },
-            {
-                "id": 7,
-                "name": "Desk Sensor"
-            },
-            {
-                "id": 2,
-                "name": "Downlight"
-            },
-            {
-                "id": 5,
-                "name": "Fixtureless"
-            },
-            {
-                "id": 4,
-                "name": "Linear"
-            },
-            {
-                "id": 6,
-                "name": "Occupancy"
-            },
-            {
-                "id": 10,
-                "name": "Out of Scope"
-            },
-            {
-                "id": 3,
-                "name": "Troffer"
-            }
-        ],
-        "lumens": [
-            {
-                "id": 4,
-                "lumens": "1470"
-            }
-        ],
-        "manufacturers": [
-            {
-                "id": 12,
-                "name": "Richter"
-            }
-        ],
-        "mountTypes": [
-            {
-                "id": 2,
-                "name": "Wall"
-            }
-        ],
-        "sensorTypes": [
-            {
-                "id": 1,
-                "name": "None"
-            },
-            {
-                "id": 2,
-                "name": "Normal"
-            },
-            {
-                "id": 3,
-                "name": "Low"
-            },
-            {
-                "id": 4,
-                "name": "High"
-            }
-        ]
-    },
-    {
-        "channels": [
-            {
-                "channel_count": 0,
-                "id": 1
-            }
-        ],
-        "controlMethods": [
-            {
-                "id": 4,
-                "name": "n/a"
-            }
-        ],
-        "distributions": [
-            {
-                "id": 3,
-                "name": "Direct"
-            }
-        ],
-        "fixtureSizes": [
-            {
-                "id": 2,
-                "name": "1200mm X 50mm"
-            },
-            {
-                "id": 3,
-                "name": "1300mm X 50mm"
-            },
-            {
-                "id": 9,
-                "name": "2400 x 50mm"
-            },
-            {
-                "id": 13,
-                "name": "3600 x 50mm"
-            },
-            {
-                "id": 18,
-                "name": "5300mm x 50mm"
-            },
-            {
-                "id": 26,
-                "name": "CUSTOM"
-            }
-        ],
-        "fixtureTypes": [
-            {
-                "id": 8,
-                "name": "AC Zones (Qty)"
-            },
-            {
-                "id": 1,
-                "name": "Accent"
-            },
-            {
-                "id": 7,
-                "name": "Desk Sensor"
-            },
-            {
-                "id": 2,
-                "name": "Downlight"
-            },
-            {
-                "id": 5,
-                "name": "Fixtureless"
-            },
-            {
-                "id": 4,
-                "name": "Linear"
-            },
-            {
-                "id": 6,
-                "name": "Occupancy"
-            },
-            {
-                "id": 10,
-                "name": "Out of Scope"
-            },
-            {
-                "id": 3,
-                "name": "Troffer"
-            }
-        ],
-        "lumens": [
-            {
-                "id": 10,
-                "lumens": "2800"
-            }
-        ],
-        "manufacturers": [
-            {
-                "id": 4,
-                "name": "Hatec"
-            }
-        ],
-        "mountTypes": [
-            {
-                "id": 6,
-                "name": "Recessed"
-            },
-            {
-                "id": 3,
-                "name": "Surface"
-            },
-            {
-                "id": 1,
-                "name": "Suspended"
-            }
-        ],
-        "sensorTypes": [
-            {
-                "id": 1,
-                "name": "None"
-            },
-            {
-                "id": 2,
-                "name": "Normal"
-            },
-            {
-                "id": 3,
-                "name": "Low"
-            },
-            {
-                "id": 4,
-                "name": "High"
-            }
-        ]
-    }
-];
 
 
 var mockProjectInfo = {
@@ -891,7 +887,7 @@ var mockControlModel = {
     "sceneControllers": 7,
     "notes": "theseAreNotes",
     "useSharedCable": true,
-    "totalSharingCables" : 11
+    "totalSharingCables": 11
 };
 
 var mockSpares = {
@@ -901,7 +897,7 @@ var mockSpares = {
     "200v-250v": 4,
     "directorSpares": 3,
     "spareSharingCables": 3,
-    "emergencySpareControls" : 3
+    "emergencySpareControls": 3
 };
 
 var mockAccessoryMaster = [

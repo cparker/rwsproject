@@ -14,13 +14,38 @@ angular.module('rwsprojectApp')
 
                 $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
 
-                $scope.sensorThreeFixtures = _.filter(dataService.fixtureLines, function (fix) {
-                    return fix.controlMethod.name === "Sensor 3";
-                });
 
-                $scope.ledGatewayFixtures = _.filter(dataService.fixtureLines, function (fix) {
-                    return fix.controlMethod.name === "LED Gateway";
-                });
+                $scope.sensorThreeFixtures = _.chain(dataService.fixtureLines)
+                    .filter(function (fix) {
+                        return fix.controlMethod.name === "Sensor 3";
+                    })
+                    .reduce(function (totals, fix) {
+                        if (totals[fix.partInfo.part_number] === undefined) {
+                            totals[fix.partInfo.part_number] = {};
+                        }
+                        totals[fix.partInfo.part_number].controlQuantity = (totals[fix.partInfo.part_number].controlQuantity || 0) + parseInt(fix.controlQuantity);
+                        totals[fix.partInfo.part_number].spares = 0;
+                        return totals;
+                    }, {})
+                    .pairs()
+                    .value();
+
+
+                $scope.ledGatewayFixtures = _.chain(dataService.fixtureLines)
+                    .filter(function (fix) {
+                        return fix.controlMethod.name === "LED Gateway";
+                    })
+                    .reduce(function (totals, fix) {
+                        if (totals[fix.partInfo.part_number] === undefined) {
+                            totals[fix.partInfo.part_number] = {};
+                        }
+                        totals[fix.partInfo.part_number].controlQuantity = (totals[fix.partInfo.part_number].controlQuantity || 0) + parseInt(fix.controlQuantity);
+                        totals[fix.partInfo.part_number].spares = 0;
+                        return totals;
+                    }, {})
+                    .pairs()
+                    .value();
+
 
                 $scope.totalChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
                     return initial +
@@ -79,6 +104,17 @@ angular.module('rwsprojectApp')
                     return masterAcc;
 
                 }, {}));
+
+                // now default spares to 0
+                $scope.sparesModel.dimmers = $scope.sparesModel.dimmers ? $scope.sparesModel.dimmers : 0;
+                $scope.sparesModel.sceneControllers = $scope.sparesModel.sceneControllers ? $scope.sparesModel.sceneControllers : 0;
+                $scope.sparesModel.emergencySpareControls = $scope.sparesModel.emergencySpareControls ? $scope.sparesModel.emergencySpareControls : 0;
+                $scope.sparesModel.spareSharingCables = $scope.sparesModel.spareSharingCables ? $scope.sparesModel.spareSharingCables : 0;
+                $scope.sparesModel.directorSpares = $scope.sparesModel.directorSpares ? $scope.sparesModel.directorSpares : 0;
+                $scope.sparesModel['200v-250v'] = $scope.sparesModel['200v-250v'] ? $scope.sparesModel['200v-250v'] : 0;
+                $scope.sparesModel['277v'] = $scope.sparesModel['277v'] ? $scope.sparesModel['277v'] : 0;
+
+
             });
 
 

@@ -19,6 +19,7 @@
                 <p>{{line.channels.channel_count}} channels</p>
 
                 <p>Standard Qty: {{line.standardQuantity}}</p>
+
                 <p>Emergency Qty: {{line.emergencyQuantity}}</p>
             </div>
 
@@ -33,7 +34,8 @@
             <div class="span6 fixtureLineSection lastFixtureSection">
                 <div class="deleteLine">
                     <p>{{line.partInfo.model}}</p>
-                    <div ng-click="deleteFixtureLine(line)" class="trashIcon"></div>
+
+                    <div ng-click="deleteFixtureLine($index)" class="trashIcon"></div>
                 </div>
 
                 <p>{{line.partInfo.description}}</p>
@@ -41,7 +43,9 @@
                 <p>{{line.partInfo.part_number}}</p>
 
                 <p>Sensor: {{line.sensorType.name}}</p>
+
                 <p ng-show="line.notes.length > 0">Notes √</p>
+
                 <p ng-show="line.selectedAccessories && line.selectedAccessories.length > 0">Accessories √</p>
             </div>
 
@@ -50,3 +54,14 @@
 
 </ul>
 
+
+<div ng-show="deleteFixtureAckShow" class="greyEverything">
+</div>
+<div ng-show="deleteFixtureAckShow" class="fixtureDeleteAckDialog">
+    <p>Are you sure you want to delete fixture ID {{fixtureForm.fixtureId}}</p>
+
+    <div class="buttons">
+        <input class="fancyButton" type="button" value="Cancel" ng-click="deleteFixtureAckShow = false"/>
+        <input class="fancyButton" type="button" value="OK" ng-click="deleteFixtureLineYes()"/>
+    </div>
+</div>

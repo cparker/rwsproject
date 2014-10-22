@@ -3,7 +3,7 @@ select:focus {
 }
 
 .container {
-    width: 1280px;
+    width: 98%;
 }
 
 .span3 {
@@ -77,6 +77,10 @@ textarea {
 
 .noteArea {
     resize: none;
+}
+
+.projectInfoForm .projectNotes {
+    width: 55%;
 }
 
 .tab-content {
@@ -201,30 +205,6 @@ select#projectCountry {
     border-bottom-style: solid;
 }
 
-
-.servicePanelLine {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 525px;
-    margin-top: 15px;
-}
-
-.servicePanelLine input {
-    padding: 1px;
-    margin: 0;
-}
-
-.servicePanelLine label {
-    margin: 0;
-    padding: 0;
-}
-
-.servicePanelLine p {
-    color: red;
-    margin-left: 25px;
-}
-
 .serviceInput {
     float: right;
     clear: both;
@@ -262,10 +242,9 @@ select#projectCountry {
     padding-bottom: 10px;
 }
 
-
 .dialogOuter {
     width: 500px;
-    height: 400px;
+    height: 565px;
     position: absolute;
     left: 500px;
     top: 100px;
@@ -296,7 +275,7 @@ select#projectCountry {
     -webkit-border-radius: 5px;
     background: #ffffff;
     width: 92.5%;
-    height: 80%;
+    height: 85%;
     overflow-y: scroll;
 }
 
@@ -392,6 +371,43 @@ select#projectCountry {
     font-family: arial;
     font-size: 17px;
     text-decoration: none;
+}
+
+.fixtureLineContainer {
+    max-height: 515px;
+    overflow-y: scroll;
+}
+
+.fixtureDeleteAckDialog {
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    width: 305px;
+    height: 83px;
+    background-color: #D8E5F1;
+    z-index: 60;
+    opacity: 1;
+}
+
+.fixtureDeleteAckDialog p {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.fixtureDeleteAckDialog .buttons {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 20px;
+}
+
+.fixtureDeleteAckDialog .buttons .fancyButton {
+    flex-grow: none;
+    flex-shrink: none;
+    margin: auto;
 }
 
 .fixtureLine {
@@ -491,6 +507,7 @@ select#projectCountry {
 }
 
 .invalidCredentials {
+    text-align: center;
     margin-top: 10px;
     color: red;
 }
@@ -519,7 +536,7 @@ select#projectCountry {
 }
 
 .fixtureList .deleteLine {
-    display:flex;
+    display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
@@ -529,9 +546,9 @@ select#projectCountry {
     background-image: url('/images/trash.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    width:20px;
-    margin:4px;
-    cursor:pointer;
+    width: 20px;
+    margin: 4px;
+    cursor: pointer;
 }
 
 .tabLabel {
@@ -551,7 +568,6 @@ select#projectCountry {
     margin-bottom: 1px;
 }
 
-
 .tabIcon {
     float: left;
     width: 35px;
@@ -559,7 +575,6 @@ select#projectCountry {
     margin-right: 5px;
     margin-left: -3px;
 }
-
 
 .bulbSolid {
     background: url(/images/bulbSolid.svg);
@@ -722,7 +737,6 @@ select#projectCountry {
     outline: 2px dotted red;
 }
 
-
 .fileContainer {
     margin-left: 15px;
 }
@@ -776,7 +790,7 @@ select#projectCountry {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 80%;
+    width: 100%;
     margin-top: 10px;
     margin-bottom: 50px;
 }
@@ -958,10 +972,14 @@ select#projectCountry {
 
 .fileListDate {
     flex: 6;
+    text-align: right;
+    margin-right: 10%;
 }
 
 .fileListSize {
     flex: 2;
+    text-align: right;
+    margin-right: 15px;
 }
 
 .fileListLine.fileHighlight {
@@ -978,14 +996,13 @@ select#projectCountry {
     cursor: pointer;
 }
 
-
 .bigRadio {
     border-radius: 50%;
     width: 25px;
     height: 25px;
     display: inline-block;
     border: 2px solid #808080;
-    margin-right: 4px;
+    margin-right: 14px;
 }
 
 .bigRadioFilled {
@@ -1029,7 +1046,7 @@ select#projectCountry {
 .greyEverything {
     position: absolute;
     top: 0;
-    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: #505050;
@@ -1045,16 +1062,42 @@ select#projectCountry {
     font-size: 1.5em;
     background-color: lightcoral;
     border: 2px dashed red;
-    padding:5px;
+    padding: 5px;
     border-radius: 5px;
 }
 
-
 .launcherDisableBOM {
-    height:200px;
-    width:200px;
+    height: 200px;
+    width: 200px;
     background-color: #303030;
     opacity: 0.7;
-    position:relative;
+    position: relative;
 }
 
+.headerRight {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.headerRight p {
+    width: 85px;
+}
+
+.headerRight p, .headerRight div {
+    flex: 1;
+}
+
+.headerRight div {
+    background: url("/images/signoffWhite.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+}
+
+label.disabled {
+    color: #909090;
+}

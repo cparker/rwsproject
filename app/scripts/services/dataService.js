@@ -10,8 +10,6 @@ angular.module('rwsprojectApp')
 
             fixtureLines: [],
 
-            fixtureLineSelectChoices: [],
-
             controlModel: rwsMockEnabled ? mockControlModel : {},
 
             engineModel: rwsMockEnabled ? mockEnginesFormData : {},
@@ -31,11 +29,10 @@ angular.module('rwsprojectApp')
                 fixtureForm.selectedAccessories = selectedAccessories;
                 fixtureForm.projectId = projectIdDateTime;
                 fixtureForm.notes = notes;
+                fixtureForm.dropDownChoices = JSON.parse(JSON.stringify(dropDownChoices));
 
-                this.fixtureLines.push(fixtureForm);
-
-                // save all the multi select choices, need to make a COPY
-                this.fixtureLineSelectChoices[fixtureForm.fixtureLineId] = JSON.parse(JSON.stringify(dropDownChoices));
+                // insert at the beginning of the list
+                this.fixtureLines.unshift(fixtureForm);
 
                 // send it to the server
                 this.submitFixtureLine(fixtureForm);
@@ -45,14 +42,8 @@ angular.module('rwsprojectApp')
                 return this.fixtureLines;
             },
 
-            deleteFixtureLine: function (lineId) {
-                var delIndex = undefined;
-                for (var i = 0; i < this.fixtureLines.length; i++) {
-                    if (lineId === this.fixtureLines[i][this.fixtureLineId]) {
-
-                    }
-                }
-                this.fixtureLines.splice(delIndex, 1);
+            deleteFixtureLine: function (fixtureIndex) {
+                this.fixtureLines.splice(fixtureIndex, 1);
             },
 
             updateNotesForLine: function (lineId, notes) {
@@ -69,7 +60,7 @@ angular.module('rwsprojectApp')
                     return l.fixtureLineId === lineId;
                 });
 
-                return [formData, this.fixtureLineSelectChoices[lineId]];
+                return formData;
             },
 
             isLineSelected: function (lineId) {
@@ -172,7 +163,13 @@ angular.module('rwsprojectApp')
                     url: file.url
                 };
                 return $http({method: 'DELETE', url: '/server/deleteFile', data: file, params: params});
-            }
+            },
+
+            signoff: function () {
+                return $http({method: 'POST', url: '/server/signoff'});
+            },
+
+            sensorDisabled: false
 
         };
 

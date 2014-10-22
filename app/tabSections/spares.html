@@ -1,7 +1,7 @@
 <div class="sparesPanel">
     <form name="sparesForm" class="sparesForm" ng-controller="sparesController">
 
-        <!-- SENSORS -->
+        <!-- SENSOR 3 -->
         <div class="spareLine title">
             <div class="firstItem">Sensor 3</div>
             <div class="currentQty">Current</div>
@@ -12,12 +12,12 @@
         <ul class="sparesList">
             <li ng-repeat="fixture in sensorThreeFixtures">
                 <div class="spareLine">
-                    <div class="firstItem">{{fixture.partInfo.part_number}}</div>
-                    <div class="currentQty">{{fixture.controlQuantity}}</div>
+                    <div class="firstItem">{{fixture[0]}}</div>
+                    <div class="currentQty">{{fixture[1].controlQuantity}}</div>
                     <div class="spareQty"><input placeholder="0" min="0" name="spareThree{{$index}}"
-                                                 ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare" type="number"/>
+                                                 ng-model="fixture[1].spares" type="number"/>
                     </div>
-                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="total">{{fixture[1].spares + fixture[1].controlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -34,11 +34,11 @@
         <ul class="sparesList">
             <li ng-repeat="fixture in ledGatewayFixtures">
                 <div class="spareLine">
-                    <div class="firstItem">{{fixture.partInfo.part_number}}</div>
-                    <div class="currentQty">{{fixture.controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare"
+                    <div class="firstItem">{{fixture[0]}}</div>
+                    <div class="currentQty">{{fixture[1].controlQuantity}}</div>
+                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="fixture[1].spares"
                                                  type="number" min="0"/></div>
-                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="total">{{fixture[1].spares + fixture[1].controlQuantity}}</div>
                 </div>
             </li>
         </ul>

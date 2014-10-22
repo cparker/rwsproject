@@ -1,3 +1,27 @@
+.servicePanelLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 525px;
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+
+.servicePanelLine input {
+    padding: 1px;
+    margin: 0;
+}
+
+.servicePanelLine label {
+    margin: 0;
+    padding: 0;
+}
+
+.servicePanelLine p {
+    color: red;
+    margin-left: 25px;
+}
+
 .emergencyLightingSection {
     margin-left: 5px;
     padding-left: 15px;
@@ -13,7 +37,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 750px;
-    height: 165px;
+    height: 215px;
 }
 
 .emergencyCentral {
@@ -21,7 +45,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 750px;
-    height: 165px;
+    height: 215px;
 }
 
 .emergencyLightingSection .important {

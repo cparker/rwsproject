@@ -190,6 +190,14 @@ def login():
     return resp
 
 
+@app.route('/server/signoff', methods=['POST'])
+def handleSignoff():
+   session['username'] = None
+   session['role'] = None
+   session['activeProject'] = None
+   return emptyResponse(401)
+
+
 @app.route('/server/fixtureTypes', methods=['GET'])
 def handleFixtureTypes():
     query = "select * from fixtureTypes"

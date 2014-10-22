@@ -69,7 +69,6 @@ theApp
             console.log('MOCK DATA in effect');
 
             dataService.fixtureLines = mockFixtureLines;
-            dataService.fixtureLineSelectChoices = mockFixtureLineSelectChoices;
 
             $httpBackend.whenGET('/server/checkAccess')
                 .respond(200, {});
@@ -91,6 +90,8 @@ theApp
             $httpBackend.whenGET(/^\/server.*/).passThrough();
 
             $httpBackend.whenDELETE(/.*/).passThrough();
+
+            $httpBackend.whenPOST('/server/submitProjectInfo').passThrough();
         } else {
             $httpBackend.whenGET(/.*/).passThrough();
             $httpBackend.whenPOST(/.*/).passThrough();

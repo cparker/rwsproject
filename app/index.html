@@ -29,7 +29,10 @@
 
 <div class="container" ng-controller="MainCtrl">
     <div class="header" ng-class="{blur:isLoggedIn==false}">
-        <p class="pull-right">Sign off -></p>
+        <div class="pull-right headerRight" ng-click="signoff()">
+            <p>Sign off</p>
+            <div></div>
+        </div>
 
         <div class="topLogoContainer">
             <div class="topLogo"></div>

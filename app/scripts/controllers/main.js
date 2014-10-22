@@ -49,6 +49,11 @@ angular.module('rwsprojectApp')
 
         };
 
+        $scope.signoff = function() {
+            console.log('signing off');
+            dataService.signoff();
+        };
+
         $rootScope.errorMessage = undefined;
 
         $rootScope.$on('error', function (event, errorMessage) {

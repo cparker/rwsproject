@@ -4,7 +4,7 @@ angular.module('rwsprojectApp')
         $scope.user = {};
 
         $rootScope.tabs = {};
-        $rootScope.tabs.activeTab = '1';
+        $rootScope.tabs.activeTab = '2';
 
         $scope.selectedLineId = undefined;
 
@@ -22,6 +22,8 @@ angular.module('rwsprojectApp')
 
         $rootScope.exclusionNotes = "";
 
+        $scope.deleteFixtureAckShow = false;
+
         dataService.fetchAccessories()
             .success(function (ac) {
                 $scope.accessories = ac.payload;
@@ -37,23 +39,30 @@ angular.module('rwsprojectApp')
                 });
 
             }).error(function (er) {
-                $scope.$emit('error', 'Failed to fetch accessories ' + er);
+                $scope.$emit('error', 'Failed to fetch accessories ' + JSON.stringify(er));
             });
 
-        $scope.deleteFixtureLine = function (lineId) {
-            dataService.deleteFixtureLine(lineId);
+        // we're passed the array index of the fixture to delete from fixtureLines
+        $scope.deleteFixtureLine = function (lineIndex) {
+            $scope.fixtureDeleteChoice = lineIndex;
+            $scope.deleteFixtureAckShow = true;
+        };
+
+        $scope.deleteFixtureLineYes = function () {
+            $scope.deleteFixtureAckShow = false;
+            dataService.deleteFixtureLine($scope.fixtureDeleteChoice);
         };
 
         $scope.fixtureLineSelect = function (line) {
             var result = dataService.selectFixtureLine(line.fixtureLineId);
             // restore all the drop down lists with the right choices
-            $rootScope.dropDownChoices = result[1];
+            $rootScope.dropDownChoices = result.dropDownChoices;
 
             // set the form based on the selected line
-            $rootScope.fixtureForm = result[0];
+            $rootScope.fixtureForm = result;
 
-            dataService.fixNotes = result[0].notes;
-            $rootScope.selectedAccessories = result[0].selectedAccessories;
+            dataService.fixNotes = result.notes;
+            $rootScope.selectedAccessories = result.selectedAccessories;
             $rootScope.accessoryTally = {};
 
             _.each($rootScope.selectedAccessories, function (sa) {
@@ -139,5 +148,6 @@ angular.module('rwsprojectApp')
             $rootScope.tabs.activeTab = toTab;
 
         });
+
 
     });

@@ -4,7 +4,6 @@
         <li ng-repeat="dir in fileData.dirs"><a href="" ng-click="selectDir(dir)">{{dir.name}}</a></li>
     </ul-->
 
-    <p class="underlined">Total files: {{fileData.files.length}}</p>
     <ul>
         <li ng-repeat="file in fileData.files">
             <div class="fileListLine" ng-class="{fileHighlight:isFileHighlighted(file.name)}">
