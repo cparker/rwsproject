@@ -101,10 +101,14 @@ textarea {
     background: url("/images/down-arrow.png");
     background-repeat: no-repeat;
     background-position: 99% 90%;
+    background-color: white;
 }
 
 select#projectCountry {
     width: 120px;
+    background-color: white;
+    height:1.8em;
+    padding:3px;
 }
 
 .login-modal {
@@ -153,8 +157,10 @@ select#projectCountry {
 .fixtureFormLine select {
     margin: 0;
     padding: 1px;
-    height: 1.3em;
+    height: 1.5em;
     width: 140px;
+    background-color: white;
+    padding:2px;
 }
 
 .fixtureFormLine label {
@@ -176,13 +182,13 @@ select#projectCountry {
 }
 
 #fixtureSectionTwo select {
-    height: 1.3em;
     width: 160px;
+    padding:2px;
 }
 
 #fixtureSectionThree select {
-    height: 1.3em;
     width: 120px;
+    padding:2px;
 }
 
 .redwoodPanelNarrowInput {

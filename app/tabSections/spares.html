@@ -14,10 +14,12 @@
                 <div class="spareLine">
                     <div class="firstItem">{{fixture[0]}}</div>
                     <div class="currentQty">{{fixture[1].controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" min="0" name="spareThree{{$index}}"
-                                                 ng-model="fixture[1].spares" type="number"/>
+                    <div class="spareQty">
+                        <input placeholder="0" min="0" name="spareThree{{$index}}"
+                               ng-model="dataService.fixturesByLineId[fixture[1].fixtureLineId].spares"
+                               type="number"/>
                     </div>
-                    <div class="total">{{fixture[1].spares + fixture[1].controlQuantity}}</div>
+                    <div class="total">{{dataService.fixturesByLineId[fixture[1].fixtureLineId].spares + fixture[1].controlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -36,9 +38,11 @@
                 <div class="spareLine">
                     <div class="firstItem">{{fixture[0]}}</div>
                     <div class="currentQty">{{fixture[1].controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="fixture[1].spares"
-                                                 type="number" min="0"/></div>
-                    <div class="total">{{fixture[1].spares + fixture[1].controlQuantity}}</div>
+                    <div class="spareQty">
+                        <input placeholder="0" name="spareLed{{$index}}"
+                               ng-model="dataService.fixturesByLineId[fixture[1].fixtureLineId].spares"
+                               type="number" min="0"/></div>
+                    <div class="total">{{dataService.fixturesByLineId[fixture[1].fixtureLineId].spares + fixture[1].controlQuantity}}</div>
                 </div>
             </li>
         </ul>

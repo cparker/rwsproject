@@ -10,6 +10,8 @@ angular.module('rwsprojectApp')
 
             fixtureLines: [],
 
+            fixturesByLineId: {},
+
             controlModel: rwsMockEnabled ? mockControlModel : {},
 
             engineModel: rwsMockEnabled ? mockEnginesFormData : {},
@@ -33,6 +35,9 @@ angular.module('rwsprojectApp')
 
                 // insert at the beginning of the list
                 this.fixtureLines.unshift(fixtureForm);
+
+                // insert into a 'map' so we can refer to it by fixtureLineId
+                this.fixturesByLineId[fixtureForm.fixtureLineId] = fixtureForm;
 
                 // send it to the server
                 this.submitFixtureLine(fixtureForm);

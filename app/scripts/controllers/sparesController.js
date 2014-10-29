@@ -9,12 +9,14 @@ angular.module('rwsprojectApp')
 
             // when we switch to the spares tab, we need to recompute some things
             $rootScope.$on('entering6', function (event, fromTab, toTab) {
-                $scope.sparesModel = {};
-                $scope.engineTotals = {};
+                // only initialize these if they are not defined
+                $scope.sparesModel = $scope.sparesModel | {};
+                $scope.engineTotals = $scope.engineTotals | {};
 
                 $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
 
 
+                // these need to get recomputed every time because they might go back and add fixtures
                 $scope.sensorThreeFixtures = _.chain(dataService.fixtureLines)
                     .filter(function (fix) {
                         return fix.controlMethod.name === "Sensor 3";
@@ -31,6 +33,7 @@ angular.module('rwsprojectApp')
                     .value();
 
 
+                // these need to get recomputed every time because they might go back and add fixtures
                 $scope.ledGatewayFixtures = _.chain(dataService.fixtureLines)
                     .filter(function (fix) {
                         return fix.controlMethod.name === "LED Gateway";

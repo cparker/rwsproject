@@ -102,8 +102,10 @@ span.enginesSpacer {
 .engineSelectRow {
     display:flex;
     flex-direction: row;
-    width:382px;
+    width:380px;
     align-items: baseline;
+    margin-top:2px;
+    margin-bottom:2px;
 }
 
 .enginesPanel .simpleArrowSelect.powerCord {

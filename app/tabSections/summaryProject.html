@@ -63,19 +63,20 @@
                     <div class="summaryLabel">Sensor</div>
                     <div class="value">{{fix.sensorType.name}}</div>
                 </div>
+
+                <div class="summaryProjectAccessories">
+                    <div class="accessoryLabel">Accessories:</div>
+                    <div class="accessoryList">
+                        <p ng-repeat="acc in fix.selectedAccessories">{{acc.accessory.description}}</p>
+                    </div>
+                </div>
+
+                <div class="summaryProjectNotes">
+                    <div class="notesLabel">Notes:</div>
+                    <div class="summaryNotes">{{fix.notes}}</div>
+                </div>
             </div>
 
-        </div>
-        <div class="summaryProjectAccessories" ng-show="fix.selectedAccessories.length > 0">
-            <div class="accessoryLabel">Accessories:</div>
-            <div class="accessoryList">
-                <p ng-repeat="acc in fix.selectedAccessories">{{acc.accessory.description}}</p>
-            </div>
-        </div>
-
-        <div class="summaryProjectNotes" ng-show="fix.notes && fix.notes.length > 0">
-            <div class="notesLabel">Notes:</div>
-            <div class="summaryNotes">{{fix.notes}}</div>
         </div>
     </div>
 

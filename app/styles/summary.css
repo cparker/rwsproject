@@ -21,6 +21,11 @@
     url("/images/blackSolidWrench.svg") 6px 7px / 16px 16px no-repeat;
 }
 
+.summaryMenu .summaryIcon.printAllIcon {
+    background: url("/images/printerWhite.svg") 0 0 / 28px 28px no-repeat,
+    6px 7px / 16px 16px no-repeat;
+}
+
 .summaryMenu .projectIcon {
 
 }
@@ -153,11 +158,15 @@
 }
 
 .summaryPanel .fixtureBottomHeader .id {
-    flex: 1.3;
+    flex: 2;
 }
 
 .summaryPanel .fixtureBottomHeader .qty {
-    flex: 10;
+    flex: 2;
+}
+
+.summaryPanel .fixtureBottomHeader .column {
+    flex: 5;
 }
 
 .summaryPanel .fixtureBottomLine {
@@ -166,8 +175,8 @@
 }
 
 .fixtureBottomLine div {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 2px;
+    padding-right: 0;
 }
 
 .summaryPanel .fixtureBottomLine .id {
@@ -257,7 +266,6 @@
 }
 
 .summaryProject .summaryProjectAccessories {
-    font-size:0.8em;
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
@@ -277,7 +285,6 @@
 }
 
 .summaryProject .summaryProjectNotes {
-    font-size:0.8em;
     display: flex;
     flex-direction: row;
 }
