@@ -10,8 +10,8 @@ angular.module('rwsprojectApp')
             // when we switch to the spares tab, we need to recompute some things
             $rootScope.$on('entering6', function (event, fromTab, toTab) {
                 // only initialize these if they are not defined
-                $scope.sparesModel = $scope.sparesModel | {};
-                $scope.engineTotals = $scope.engineTotals | {};
+                $scope.sparesModel = $scope.sparesModel == undefined ? {} : $scope.sparesModel;
+                $scope.engineTotals = $scope.engineTotals == undefined ? {} : $scope.engineTotals;
 
                 $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
 
@@ -21,34 +21,26 @@ angular.module('rwsprojectApp')
                     .filter(function (fix) {
                         return fix.controlMethod.name === "Sensor 3";
                     })
-                    .reduce(function (totals, fix) {
-                        if (totals[fix.partInfo.part_number] === undefined) {
-                            totals[fix.partInfo.part_number] = {};
+                    .map(function (fix) {
+                        if (!fix.spareControlQuantity) {
+                            fix.spareControlQuantity = 0;
                         }
-                        totals[fix.partInfo.part_number].controlQuantity = (totals[fix.partInfo.part_number].controlQuantity || 0) + parseInt(fix.controlQuantity);
-                        totals[fix.partInfo.part_number].spares = 0;
-                        return totals;
-                    }, {})
-                    .pairs()
+                        return fix;
+                    })
                     .value();
-
 
                 // these need to get recomputed every time because they might go back and add fixtures
                 $scope.ledGatewayFixtures = _.chain(dataService.fixtureLines)
                     .filter(function (fix) {
                         return fix.controlMethod.name === "LED Gateway";
                     })
-                    .reduce(function (totals, fix) {
-                        if (totals[fix.partInfo.part_number] === undefined) {
-                            totals[fix.partInfo.part_number] = {};
+                    .map(function (fix) {
+                        if (!fix.spareControlQuantity) {
+                            fix.spareControlQuantity = 0;
                         }
-                        totals[fix.partInfo.part_number].controlQuantity = (totals[fix.partInfo.part_number].controlQuantity || 0) + parseInt(fix.controlQuantity);
-                        totals[fix.partInfo.part_number].spares = 0;
-                        return totals;
-                    }, {})
-                    .pairs()
+                        return fix;
+                    })
                     .value();
-
 
                 $scope.totalChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
                     return initial +
@@ -140,4 +132,5 @@ angular.module('rwsprojectApp')
 
             });
 
-        }]);
+        }])
+;

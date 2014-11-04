@@ -4,7 +4,7 @@
         <!-- SENSOR 3 -->
         <div class="spareLine title">
             <div class="firstItem">Sensor 3</div>
-            <div class="currentQty">Current</div>
+            <div class="currentQty">Current Control Qty.</div>
             <div class="spareQty">Spares</div>
             <div class="total">Total</div>
         </div>
@@ -12,14 +12,14 @@
         <ul class="sparesList">
             <li ng-repeat="fixture in sensorThreeFixtures">
                 <div class="spareLine">
-                    <div class="firstItem">{{fixture[0]}}</div>
-                    <div class="currentQty">{{fixture[1].controlQuantity}}</div>
+                    <div class="firstItem">{{fixture.partInfo.part_number}}</div>
+                    <div class="currentQty">{{fixture.controlQuantity}}</div>
                     <div class="spareQty">
                         <input placeholder="0" min="0" name="spareThree{{$index}}"
-                               ng-model="dataService.fixturesByLineId[fixture[1].fixtureLineId].spares"
+                               ng-model="fixture.spareControlQuantity"
                                type="number"/>
                     </div>
-                    <div class="total">{{dataService.fixturesByLineId[fixture[1].fixtureLineId].spares + fixture[1].controlQuantity}}</div>
+                    <div class="total">{{parseInt(fixture.controlQuantity) + fixture.spareControlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -36,13 +36,13 @@
         <ul class="sparesList">
             <li ng-repeat="fixture in ledGatewayFixtures">
                 <div class="spareLine">
-                    <div class="firstItem">{{fixture[0]}}</div>
-                    <div class="currentQty">{{fixture[1].controlQuantity}}</div>
+                    <div class="firstItem">{{fixture.partInfo.part_number}}</div>
+                    <div class="currentQty">{{fixture.controlQuantity}}</div>
                     <div class="spareQty">
                         <input placeholder="0" name="spareLed{{$index}}"
-                               ng-model="dataService.fixturesByLineId[fixture[1].fixtureLineId].spares"
+                               ng-model="fixture.spareControlQuantity"
                                type="number" min="0"/></div>
-                    <div class="total">{{dataService.fixturesByLineId[fixture[1].fixtureLineId].spares + fixture[1].controlQuantity}}</div>
+                    <div class="total">{{parseInt(fixture.controlQuantity) + fixture.spareControlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -147,11 +147,13 @@
                 <div class="spareLine">
                     <div class="firstItem">{{acc[1].desc}}</div>
                     <div class="currentQty">{{acc[1].count}}</div>
-                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}" ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
+                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}"
+                                                 ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
                     <div class="total">{{acc[1].count + sparesModel.accessorySpareTally[acc[1].desc]}}</div>
                 </div>
             </li>
         </ul>
+        <pre>{{sparesModel | json}}</pre>
     </form>
 
 </div>
