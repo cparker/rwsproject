@@ -32,7 +32,7 @@ angular.module('rwsprojectApp')
                 // these need to get recomputed every time because they might go back and add fixtures
                 $scope.ledGatewayFixtures = _.chain(dataService.fixtureLines)
                     .filter(function (fix) {
-                        return fix.controlMethod.name === "LED Gateway";
+                        return fix.controlMethod.name.toLowerCase().indexOf('led gateway') != -1;
                     })
                     .map(function (fix) {
                         if (!fix.spareControlQuantity) {

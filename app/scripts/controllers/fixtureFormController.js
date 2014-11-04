@@ -222,7 +222,7 @@ angular.module('rwsprojectApp')
                 console.log('the control method just changed to ', newVal);
                 var sensorDisabled = undefined;
                 if ($rootScope.fixtureForm.controlMethod) {
-                    sensorDisabled = $rootScope.fixtureForm.controlMethod.name != 'Sensor 3' && $rootScope.fixtureForm.controlMethod.name != 'LED Gateway';
+                    sensorDisabled = $rootScope.fixtureForm.controlMethod.name.toLowerCase().indexOf('sensor 3') == -1 && $rootScope.fixtureForm.controlMethod.name.toLowerCase().indexOf('led gateway') == -1
                 } else {
                     sensorDisabled = true;
                 }

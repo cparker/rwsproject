@@ -107,9 +107,14 @@
 }
 
 .summaryPanel .fixtureHeaderIcon {
+    background-image: url('/images/printerWhite.svg');
+    background-size: 90%;
+    background-position-x: 2px;
+    background-position-y: 2px;
+    background-repeat: no-repeat;
     height: 24px;
     width: 24px;
-    background-color: darkred;
+    cursor: pointer;
 }
 
 .summaryPanel .fixtureHeader {
@@ -191,6 +196,10 @@
     flex: 5;
 }
 
+.summaryBOM {
+    margin: 8px;
+}
+
 .summaryBOM .bomHeader, .summaryProject .summaryProjectHeader {
     color: white;
     background: #2C95DD;
@@ -211,11 +220,13 @@
 }
 
 .summaryBOM .bomRow .partNum {
-    flex: 3
+    flex: 4.2;
 }
 
-.summaryBOM .bomRow .notes {
-    flex: 3
+.summaryBOM .bomRow .bomNotes {
+    flex: 3;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .summaryProject .summaryProjectWorksheet {
@@ -296,3 +307,45 @@
 .summaryProject .summaryProjectNotes .summaryNotes {
     flex: 8;
 }
+
+.printSummaryFixtureHeader {
+    text-align: center;
+    width: 100%;
+    font-size: 2.1em;
+    padding-top: 5px;
+}
+
+.printSummarySpacer {
+    height: 100px;
+    width: 100%;
+}
+
+.topButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.topButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-image: url('/images/printerWhite.svg');
+    background-repeat: no-repeat;
+    background-size: 90%;
+    width: 3em;
+    height: 3em;
+    background-color: #2C95DD;
+    padding: 0px;
+    background-position-x: 2px;
+    background-position-y: 2px;
+    cursor: pointer;
+}
+
+.printButton {
+    background-image: url('/images/printerWhite.svg');
+}
+
+.backbutton {
+    background-image: url('/images/back_arrow_white.png');
+}
+
+

@@ -24,7 +24,7 @@ angular.module('rwsprojectApp')
 
             fixNotes: '',
 
-            emergencyOption: 2,
+            emergencyOption: undefined,
 
             addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
                 fixtureForm.fixtureLineId = this.fixtureLines.length;

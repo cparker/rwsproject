@@ -1,10 +1,14 @@
 angular.module('rwsprojectApp')
-    .controller('tabController', function ($scope, $rootScope, $route, $http, $filter, dataService) {
+    .controller('tabController', function ($scope, $rootScope, $route, $http, $filter, dataService, $routeParams) {
 
         $scope.user = {};
 
         $rootScope.tabs = {};
         $rootScope.tabs.activeTab = '1';
+
+        if ($routeParams.tab != undefined) {
+            $rootScope.tabs.activeTab = $routeParams.tab;
+        }
 
         $scope.selectedLineId = undefined;
 

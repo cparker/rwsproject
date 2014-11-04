@@ -27,7 +27,7 @@ theApp
                 templateUrl: 'views/launcher.html',
                 controller: 'launcherCtrl'
             })
-            .when('/home', {
+            .when('/home/:tab?', {
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl',
                 reloadOnSearch: false

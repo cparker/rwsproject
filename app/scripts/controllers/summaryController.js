@@ -14,7 +14,7 @@ angular.module('rwsprojectApp')
                 });
 
                 $scope.ledGatewayFixtures = _.filter(dataService.fixtureLines, function (fix) {
-                    return fix.controlMethod.name === "LED Gateway";
+                    return fix.controlMethod.name.toLowerCase().indexOf('led gateway') != -1;
                 });
 
                 $scope.s3BySensorPart = _.pairs(_.groupBy($scope.sensorThreeFixtures, function (fix) {

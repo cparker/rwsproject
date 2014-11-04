@@ -2,9 +2,9 @@
 
 <div class="fixtureOuterHeader">
     <div class="fixtureHeaderContainer">
-        <div class="fixtureHeaderIcon"></div>
+        <div class="fixtureHeaderIcon" ng-click="print()"></div>
         <div class="fixtureHeader">Fixture Schedule (Not supplied by CommScope)</div>
-        <div class="fixturePrint"><a href="/#/printSummary?section=fixture">Printer Friendly</a></div>
+        <div class="fixturePrint">&nbsp;</div>
     </div>
     <hr class="whiteline"/>
     <div class="fixtureSubHeader">Project Information</div>
@@ -13,21 +13,4 @@
     <ng-include src="'tabSections/summaryProjectInfo.html'"/>
 </div>
 
-<div class="fixtureBottom">
-    <div class="fixtureBottomHeader">
-        <div class="id">Fixture ID</div>
-        <div class="qty">Qty</div>
-        <div class="column">Description</div>
-        <div class="column">Model</div>
-        <div class="column">Notes</div>
-    </div>
-
-    <div ng-repeat="fixture in dataService.fixtureLines" class="fixtureBottomLine">
-        <div class="id">{{fixture.fixtureId}}</div>
-        <div class="qty">{{parseInt(fixture.standardQuantity) + parseInt(fixture.emergencyQuantity) + dataService.fixturesByLineId[fixture.fixtureLineId].spares }}</div>
-        <div class="column">{{fixture.partInfo.description}}</div>
-        <div class="column">{{fixture.partInfo.model}}</div>
-        <div class="column">{{fixture.notes}}</div>
-    </div>
-
-</div>
+<ng-include src="'tabSections/summaryFixtureDetail.html'"/>

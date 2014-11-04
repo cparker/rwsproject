@@ -1,0 +1,17 @@
+<div class="fixtureBottom">
+    <div class="fixtureBottomHeader">
+        <div class="id">Fixture ID</div>
+        <div class="qty">Qty</div>
+        <div class="column">Description</div>
+        <div class="column">Model</div>
+        <div class="column">Notes</div>
+    </div>
+
+    <div ng-repeat="fixture in dataService.fixtureLines" class="fixtureBottomLine">
+        <div class="id">{{fixture.fixtureId}}</div>
+        <div class="qty">{{parseInt(fixture.standardQuantity) + parseInt(fixture.emergencyQuantity)}}</div>
+        <div class="column">{{fixture.partInfo.description}}</div>
+        <div class="column">{{fixture.partInfo.model}}</div>
+        <div class="column">{{fixture.notes}}</div>
+    </div>
+</div>

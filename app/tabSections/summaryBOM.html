@@ -1,7 +1,7 @@
-<a href="" ng-click="selectSummary('menu')">Back to summary</a>
+<a href="" ng-click="selectSummary('menu')"><- Back to summary</a>
 <div class="fixtureOuterHeader">
     <div class="fixtureHeaderContainer">
-        <div class="fixtureHeaderIcon"></div>
+        <div class="fixtureHeaderIcon" ng-click="print()"></div>
         <div class="fixtureHeader">Bill of Materials</div>
     </div>
     <hr class="whiteline"/>
@@ -12,60 +12,5 @@
 </div>
 
 
-<!--  FIXTURE GATEWAYS -->
-<div class="bomHeader">Fixture Gateways, Sensors and Accessories</div>
-<div class="bomRow" ng-repeat="s3Pair in s3BySensorPart">
-    <div class="qty">{{s3Pair[1].length}}</div>
-    <div class="item">Sensor 3</div>
-    <div class="partNum">{{s3Pair[0]}}</div>
-    <div class="notes">&nbsp;</div>
-</div>
+<ng-include src="'tabSections/summaryBOMDetail.html'"></ng-include>
 
-<div class="bomRow" ng-repeat="ledPair in ledBySensorPart">
-    <div class="qty">{{ledPair[1].length}}</div>
-    <div class="item">LED GW - ???</div>
-    <div class="partNum">{{ledPair[0]}}</div>
-    <div class="notes">&nbsp;</div>
-</div>
-
-
-<!--  CONTROLS AND ENGINES -->
-<div class="bomHeader">Controls and Engines</div>
-
-<div class="bomRow">
-    <div class="qty">{{dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers}}</div>
-    <div class="item">RW Scene Controller, White. 7 Button</div>
-    <div class="partNum">DIM-2-4SW</div>
-    <div class="notes">{{dataService.controlModel.notes}}</div>
-</div>
-
-<div class="bomRow">
-    <div class="qty">{{dataService.controlModel.dimmers + dataService.sparesModel.dimmers}}</div>
-    <div class="item">RW Dimmer, White</div>
-    <div class="partNum">RD-1G-W</div>
-    <div class="notes">&nbsp;</div>
-</div>
-
-<div class="bomRow">
-    <div class="qty">{{dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables}}</div>
-    <div class="item">Cable Sharing Splitter - SP12A (2 per horizontal run)</div>
-    <div class="partNum">760191841</div>
-    <div class="notes">&nbsp;</div>
-</div>
-
-
-<!--  EMERGENCY -->
-<div class="bomHeader">Emergency Lighting Controls</div>
-<div class="bomRow">
-    <div class="qty">{{emergencyRelayCount + dataService.sparesModel.emergencySpareControls}}</div>
-    <div class="item">Outage Gateway & Relay - 10A SPDT, 120-277VAC</div>
-    <div class="partNum">RG-2G-OUTAGE-KT</div>
-    <div class="notes">&nbsp;</div>
-</div>
-
-<div class="bomRow">
-    <div class="qty">{{emergencyGatewayCount}}</div>
-    <div class="item">Emergency Lighting Gateway</div>
-    <div class="partNum">RG-2G-ELCC-KT</div>
-    <div class="notes">&nbsp;</div>
-</div>
