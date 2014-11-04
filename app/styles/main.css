@@ -13,7 +13,8 @@ select:focus {
 body {
     padding-top: 20px;
     padding-bottom: 20px;
-    font-family: tahoma, sans-serif;
+    /* font-family: tahoma, sans-serif; */
+    font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
 }
 
 textarea {

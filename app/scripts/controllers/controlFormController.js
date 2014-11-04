@@ -20,6 +20,7 @@ angular.module('rwsprojectApp')
                                 fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity)
                         }, 0);
 
+                        $scope.controlModel = $scope.controlModel ? $scope.controlModel : {};
                         $scope.controlModel.totalSharingCables = $scope.totalChannels;
                         dataService.controlModel = $scope.controlModel;
                         $rootScope.tabs.activeTab = toTab;
