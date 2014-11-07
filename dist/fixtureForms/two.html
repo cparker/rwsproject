@@ -3,28 +3,28 @@
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="lightDistribution">Light Distribution</label>
-        <select name="distribution" ng-change="changeDistribution()" ng-options="distribution.name for distribution in dropDownChoices.distributions track by distribution.id" ng-model="fixtureForm.distribution" required class="simpleArrowSelect" id="lightDistribution">
+        <select name="distribution" ng-change="changeDistribution()" ng-options="distribution.name for distribution in fixtureForm.dropDownChoices.distributions track by distribution.id" ng-model="fixtureForm.distribution" required class="simpleArrowSelect" id="lightDistribution">
             <option value="">select distribution</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="fixtureLumens">Lumens</label>
-        <select name="lumens" ng-change="changeLumens()" ng-options="lumen.lumens for lumen in dropDownChoices.lumens track by lumen.id" ng-model="fixtureForm.lumens" required class="simpleArrowSelect" id="fixtureLumens">
+        <select name="lumens" ng-change="changeLumens()" ng-options="lumen.lumens for lumen in fixtureForm.dropDownChoices.lumens track by lumen.id" ng-model="fixtureForm.lumens" required class="simpleArrowSelect" id="fixtureLumens">
             <option value="">select lumens</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="numChannels"># Channels</label>
-        <select name="channels" ng-change="changeChannels()" ng-options="channel.channel_count for channel in dropDownChoices.channels track by channel.id" ng-model="fixtureForm.channels" required class="simpleArrowSelect" id="numChannels">
+        <select name="channels" ng-change="changeChannels()" ng-options="channel.channel_count for channel in fixtureForm.dropDownChoices.channels track by channel.id" ng-model="fixtureForm.channels" required class="simpleArrowSelect" id="numChannels">
             <option value="">select channels</option>
         </select>
     </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="manufacturer">Manufacturer</label>
-        <select name="manufacturer" ng-change="changeManufacturers()" ng-options="man.name for man in dropDownChoices.manufacturers track by man.id" ng-model="fixtureForm.manufacturer" required class="simpleArrowSelect" id="manufacturer">
+        <select name="manufacturer" ng-change="changeManufacturers()" ng-options="man.name for man in fixtureForm.dropDownChoices.manufacturers track by man.id" ng-model="fixtureForm.manufacturer" required class="simpleArrowSelect" id="manufacturer">
             <option value="">select manufacturer</option>
         </select>
     </div>

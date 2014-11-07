@@ -1,10 +1,10 @@
 <div class="sparesPanel">
     <form name="sparesForm" class="sparesForm" ng-controller="sparesController">
 
-        <!-- SENSORS -->
+        <!-- SENSOR 3 -->
         <div class="spareLine title">
             <div class="firstItem">Sensor 3</div>
-            <div class="currentQty">Current</div>
+            <div class="currentQty">Current Control Qty.</div>
             <div class="spareQty">Spares</div>
             <div class="total">Total</div>
         </div>
@@ -14,10 +14,12 @@
                 <div class="spareLine">
                     <div class="firstItem">{{fixture.partInfo.part_number}}</div>
                     <div class="currentQty">{{fixture.controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" min="0" name="spareThree{{$index}}"
-                                                 ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare" type="number"/>
+                    <div class="spareQty">
+                        <input placeholder="0" min="0" name="spareThree{{$index}}"
+                               ng-model="fixture.spareControlQuantity"
+                               type="number"/>
                     </div>
-                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="total">{{parseInt(fixture.controlQuantity) + fixture.spareControlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -36,9 +38,11 @@
                 <div class="spareLine">
                     <div class="firstItem">{{fixture.partInfo.part_number}}</div>
                     <div class="currentQty">{{fixture.controlQuantity}}</div>
-                    <div class="spareQty"><input placeholder="0" name="spareLed{{$index}}" ng-model="dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare"
-                                                 type="number" min="0"/></div>
-                    <div class="total">{{dataService.fixtureLines[fixture.fixtureLineId].controlQuantitySpare + parseInt(fixture.controlQuantity)}}</div>
+                    <div class="spareQty">
+                        <input placeholder="0" name="spareLed{{$index}}"
+                               ng-model="fixture.spareControlQuantity"
+                               type="number" min="0"/></div>
+                    <div class="total">{{parseInt(fixture.controlQuantity) + fixture.spareControlQuantity}}</div>
                 </div>
             </li>
         </ul>
@@ -86,7 +90,10 @@
             <li>
                 <div class="spareLine">
                     <div class="firstItem">Emergency light controls</div>
-                    <div class="currentQty">{{emergencyKitNumber}}</div>
+                    <div class="currentQty">
+                        <input name="emergencyControlOverride" placeholder="0" type="number" min="0"
+                               ng-model="emergencyKitNumber"/>
+                    </div>
                     <div class="spareQty"><input required placeholder="0" name="emergencyControlSpares" type="number" min="0"
                                                  ng-model="sparesModel.emergencySpareControls"/></div>
                     <div class="total">{{emergencyKitNumber + sparesModel.emergencySpareControls}}</div>
@@ -143,7 +150,8 @@
                 <div class="spareLine">
                     <div class="firstItem">{{acc[1].desc}}</div>
                     <div class="currentQty">{{acc[1].count}}</div>
-                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}" ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
+                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}"
+                                                 ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
                     <div class="total">{{acc[1].count + sparesModel.accessorySpareTally[acc[1].desc]}}</div>
                 </div>
             </li>
