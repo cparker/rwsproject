@@ -2,6 +2,15 @@ angular.module('rwsprojectApp')
     .controller('controlFormController', ['$scope', '$filter', '$rootScope', 'dataService', '$httpBackend',
         function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
+            $rootScope.$on('entering3', function (event, fromTab, toTab) {
+                event.stopPropagation();
+                // defaults for non required fields
+                $scope.controlModel = $scope.controlModel ? $scope.controlModel : {};
+
+                $scope.controlModel.dimmers = $scope.controlModel.dimmers || 0;
+                $scope.controlModel.spdtSwitches = $scope.controlModel.spdtSwitches || 0;
+            });
+
 
             $rootScope.$on('leaving3', function (event, fromTab, toTab) {
                 event.stopPropagation();

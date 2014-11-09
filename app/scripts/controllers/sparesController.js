@@ -48,13 +48,12 @@ angular.module('rwsprojectApp')
                         fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity)
                 }, 0);
 
-                $scope.engineTotals[dataService.engineModel.voltageEmergency] =
-                    dataService.engineModel.enginesEmergency + ($scope.engineTotals[dataService.engineModel.voltageEmergency] || 0);
-
-                $scope.engineTotals[dataService.engineModel.voltageStandard] = 0;
-                $scope.engineTotals[dataService.engineModel.voltageEmergency] = 0;
-                $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
-                $scope.engineTotals[dataService.engineModel.voltageEmergency] += dataService.engineModel.enginesEmergency;
+                if (dataService.engineModel.voltageStandard) {
+                    $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
+                }
+                if (dataService.engineModel.voltageEmergency) {
+                    $scope.engineTotals[dataService.engineModel.voltageEmergency] = dataService.engineModel.enginesEmergency;
+                }
 
                 $scope.engineVoltagePairs = _.pairs($scope.engineTotals);
 

@@ -4,6 +4,11 @@
         <div class="topButton backbutton" ng-click="goSummary()"></div>
         <div class="topButton printButton" ng-click="print()"></div>
     </div>
+
+    <div class="printSummaryFixtureHeader">Project Information</div>
+    <div class="summaryPanel">
+        <ng-include src="'templates/summaryProjectInfo.html'"/>
+    </div>
     <div class="printSummaryFixtureHeader">Fixture Schedule</div>
     <div class="summaryPanel"><ng-include src="'templates/summaryFixtureDetail.html'"></ng-include></div>
 

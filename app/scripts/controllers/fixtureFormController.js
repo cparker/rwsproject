@@ -26,6 +26,10 @@ angular.module('rwsprojectApp')
 
             $rootScope.$on('entering2', function (stuff, fromTab, toTab) {
                 $scope.setFixtureTypesBySelectedRegion();
+
+                $rootScope.fixtureForm = $rootScope.fixtureForm ? $rootScope.fixtureForm : {};
+                // set some defaults
+                $rootScope.fixtureForm.emergencyQuantity = $rootScope.fixtureForm.emergencyQuantity | 0;
             });
 
             $rootScope.$on('leaving2', function (event, fromTab, toTab) {
@@ -206,6 +210,7 @@ angular.module('rwsprojectApp')
 
             $scope.resetFixtureForm = function () {
                 $rootScope.fixtureForm = {};
+                $rootScope.fixtureForm.emergencyQuantity = 0;
                 $scope.setFixtureTypesBySelectedRegion();
                 dataService.fixNotes = '';
                 $scope.fixtureTabForm.$setPristine(true);
