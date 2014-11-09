@@ -85,38 +85,38 @@
 
     <div ng-class="{blur:isLoggedIn==false}" class="tab-content">
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('1')}" id="1">
-            <ng-include src="'tabSections/projectInfoTab.html'"/>
+            <ng-include src="'templates/projectInfoTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('2')}" id="2">
-            <ng-include src="'tabSections/fixturesTab.html'"/>
+            <ng-include src="'templates/fixturesTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('3')}" id="3">
-            <ng-include src="'tabSections/controlTab.html'"/>
+            <ng-include src="'templates/controlTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('4')}" id="4">
-            <ng-include src="'tabSections/enginesTab.html'"/>
+            <ng-include src="'templates/enginesTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('5')}" id="5">
-            <ng-include src="'tabSections/emergencyLightingTab.html'"/>
+            <ng-include src="'templates/emergencyLightingTab.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('6')}" id="6">
-            <ng-include src="'tabSections/spares.html'"/>
+            <ng-include src="'templates/spares.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('7')}" id="7">
-            <ng-include src="'tabSections/exclusions.html'"/>
+            <ng-include src="'templates/exclusions.html'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('8')}" id="8">
-            <ng-include src="'tabSections/summary.html'"/>
+            <ng-include src="'templates/summary.html'"/>
         </div>
 
     </div>
-    <ng-include src="'dialogs/accessories.html'"></ng-include>
-    <ng-include src="'dialogs/notes.html'"></ng-include>
+    <ng-include src="'templates/accessories.html'"></ng-include>
+    <ng-include src="'templates/notes.html'"></ng-include>
 </div>

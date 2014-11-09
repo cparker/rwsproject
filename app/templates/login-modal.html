@@ -1,0 +1,23 @@
+<div class="login-modal" ng-hide="isLoggedIn" ng-keypress="$event.keyCode == 13 ? doLogin() : 0" ng-init="count=0">
+    <div class="loginCenteredContent" >
+        <div class="redwoodTitleLogin"></div>
+
+        <div class="loginFormLine">
+            <label class="" for="username">Username</label>
+            <input id="username" type="text" ng-model="user.name"/>
+        </div>
+
+        <hr class="lineSeparator"/>
+
+        <div class="loginFormLine">
+            <label class="" for="password">Password</label>
+            <input id="password" type="password" ng-model="user.password" />
+        </div>
+
+        <p ng-show="invalidCredentials" class="invalidCredentials">Invalid username or password. Please try again.</p>
+        <input class="fancyButton" type="submit" value="login" ng-click="doLogin()"/>
+
+        <p class="copyright">Copyright (c) 2014 Redwood Systems Inc. All Rights Reserved.</p>
+    </div>
+
+</div>

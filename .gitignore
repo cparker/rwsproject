@@ -8,3 +8,5 @@ app/bower.json
 app/.bowerrc
 server/src/redwood-server-log
 server/src/*.pyc
+dist
+dist/*

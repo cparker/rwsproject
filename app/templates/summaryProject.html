@@ -1,0 +1,17 @@
+<a href="" ng-click="selectSummary('menu')"><- Back to summary</a>
+<div class="fixtureOuterHeader">
+    <div class="fixtureHeaderContainer">
+        <div class="fixtureHeaderIcon" ng-click="print()"></div>
+        <div class="fixtureHeader">Project File</div>
+    </div>
+    <hr class="whiteline"/>
+    <div class="fixtureSubHeader">Project Information</div>
+</div>
+<div>
+    <ng-include src="'templates/summaryProjectInfo.html'"/>
+</div>
+<div class="summaryProjectHeader">Project Worksheet</div>
+
+
+<ng-include src="'templates/summaryProjectDetail.html'"/>
+

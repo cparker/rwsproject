@@ -16,8 +16,7 @@ var theApp = angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch',
-        'ngMockE2E'
+        'ngTouch'
     ]);
 
 theApp
@@ -64,38 +63,4 @@ theApp
 theApp
     .run(function ($httpBackend, dataService) {
         console.log('theApp is initializing');
-
-        if (rwsMockEnabled == true) {
-            console.log('MOCK DATA in effect');
-
-            dataService.fixtureLines = mockFixtureLines;
-
-            $httpBackend.whenGET('/server/checkAccess')
-                .respond(200, {});
-
-            $httpBackend.whenGET('/server/getProjectInfo')
-                .respond(mockProjectInfo);
-
-            $httpBackend.whenGET('/server/regions')
-                .respond(mockRegions);
-
-            $httpBackend.whenGET('/server/getAccessories')
-                .respond(mockAccessories);
-
-            $httpBackend.whenGET('/server/getFixtureTypes')
-                .respond(mockFixtureTypes);
-
-            $httpBackend.whenGET(/.*\.html/).passThrough();
-
-            $httpBackend.whenGET(/^\/server.*/).passThrough();
-
-            $httpBackend.whenDELETE(/.*/).passThrough();
-
-            $httpBackend.whenPOST('/server/submitProjectInfo').passThrough();
-        } else {
-            $httpBackend.whenGET(/.*/).passThrough();
-            $httpBackend.whenPOST(/.*/).passThrough();
-            $httpBackend.whenPUT(/.*/).passThrough();
-            $httpBackend.whenDELETE(/.*/).passThrough();
-        }
     });
