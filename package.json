@@ -1,6 +1,8 @@
 {
   "name": "newrws",
   "version": "0.0.0",
+  "description" : "BOM application for Redwood Inc.",
+  "repository" : "https://github.com/cparker/rwsproject.git",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",
