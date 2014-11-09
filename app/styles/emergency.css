@@ -52,3 +52,9 @@
     font-weight: bold;
     color:red;
 }
+
+.emergencyDisclaimer {
+    font-style: italic;
+    font-size: 0.7em;
+    margin:10px;
+}
