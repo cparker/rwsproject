@@ -30,6 +30,7 @@ angular.module('rwsprojectApp')
                 $rootScope.fixtureForm = $rootScope.fixtureForm ? $rootScope.fixtureForm : {};
                 // set some defaults
                 $rootScope.fixtureForm.emergencyQuantity = $rootScope.fixtureForm.emergencyQuantity | 0;
+                $rootScope.fixtureForm.sensorType = $rootScope.fixtureForm.sensorType | 2;
             });
 
             $rootScope.$on('leaving2', function (event, fromTab, toTab) {
@@ -224,14 +225,18 @@ angular.module('rwsprojectApp')
             };
 
             $scope.$watch('fixtureForm.controlMethod', function (newVal, oldVal) {
-                console.log('the control method just changed to ', newVal);
-                var sensorDisabled = undefined;
                 if ($rootScope.fixtureForm.controlMethod) {
-                    sensorDisabled = $rootScope.fixtureForm.controlMethod.name.toLowerCase().indexOf('sensor 3') == -1 && $rootScope.fixtureForm.controlMethod.name.toLowerCase().indexOf('led gateway') == -1
-                } else {
-                    sensorDisabled = true;
+                    if (newVal.name.toLowerCase().indexOf('sensor 3') != -1) {
+                        $scope.sensorDisabled = true;
+                        $rootScope.fixtureForm.sensorType = {name: 'Normal', id: 2};
+                    } else if (newVal.name.toLowerCase().indexOf('led gateway') != -1) {
+                        $scope.sensorDisabled = false;
+                        $rootScope.fixtureForm.sensorType = {};
+                    } else {
+                        $scope.sensorDisabled = true;
+                        $rootScope.fixtureForm.sensorType = {};
+                    }
                 }
-                $scope.sensorDisabled = sensorDisabled;
             });
 
 

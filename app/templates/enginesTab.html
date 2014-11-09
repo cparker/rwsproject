@@ -70,33 +70,18 @@
 
                 <div class="engineSelectRow">
                     <label ng-class="{disabled:engineModel.enginesStandard <= 0}">Standard Power Cord</label>
-                    <select ng-disabled="engineModel.enginesStandard <= 0" ng-model="engineModel.cordStandard" name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesStandard > 0">
-                        <option>Included</option>
-                        <option>North America</option>
-                        <option>European Union</option>
-                        <option>UK, Hong Kong, Singapore</option>
-                        <option>Australia, New Zealand</option>
-                        <option>Brazil, China</option>
-                        <option>China</option>
-                        <option>Denmark</option>
-                        <option>Switzerland</option>
+                    <select ng-disabled="(engineModel.enginesStandard <= 0 || disableStandardCord)" ng-model="engineModel.cordStandard" name="engineCordStandard"
+                            class="simpleArrowSelect cord" ng-required="engineModel.enginesStandard > 0" ng-options="cord for cord in cordOptions">
+                        <option value="">choose cord</option>
                     </select>
                 </div>
 
                 <div class="engineSelectRow">
                     <label ng-class="{disabled:engineModel.enginesEmergency <= 0}">Emergency Power Cord</label>
-                    <select ng-disabled="engineModel.enginesEmergency <= 0" ng-model="engineModel.cordEmergency" name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergency > 0">
-                        <option>Included</option>
-                        <option>North America</option>
-                        <option>European Union</option>
-                        <option>UK, Hong Kong, Singapore</option>
-                        <option>Australia, New Zealand</option>
-                        <option>Brazil, China</option>
-                        <option>China</option>
-                        <option>Denmark</option>
-                        <option>Switzerland</option>
+                    <select ng-disabled="engineModel.enginesEmergency <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
+                            name="engineCordStandard"
+                            class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergency > 0" ng-options="cord for cord in cordOptions">
+                        <option value="">choose cord</option>
                     </select>
                 </div>
 
@@ -125,19 +110,14 @@
                 <div ng-class="{disabled:engineModel.directorCount <= 0}" class="engineOneLabel">Power cord</div>
                 <select ng-disabled="engineModel.directorCount <= 0" name="directorCord" ng-model="engineModel.directorCord"
                         class="simpleArrowSelect powerCord">
-                    <option>277 VAC ENG-3-4834-277 Included</option>
-                    <option>250 VAC ENG-3-4834-250 North America (PC-NA-250)</option>
-                    <option>250 VAC ENG-3-4834-250 European Union (PC-EU-120-250)</option>
-                    <option>250 VAC ENG-3-4834-250 UK, Hong Kong, Singapore (PC-UK-120-250)</option>
-                    <option>250 VAC ENG-3-4834-250 Australia / New Zealand (PC-AUS-120-250)</option>
-                    <option>250 VAC ENG-3-4834-250 Brazil (PC-BRAZIL)</option>
-                    <option>250 VAC ENG-3-4834-250 China (PC-CHINA)</option>
-                    <option>250 VAC ENG-3-4834-250 Denmark (PC-DENMARK)</option>
-                    <option>250 VAC ENG-3-4834-250 Switzerland (PC-SWISS)</option>
+                    <option>PC-DIR-AUS (Australia)</option>
+                    <option>PC-DIR-CHINA (China)</option>
+                    <option>PC-DIR-EU (EU)</option>
+                    <option>PC-DIR-UK (UK)</option>
+                    <option>Included (US/Canada)</option>
                 </select>
             </div>
         </div>
-
     </form>
 
 </div>

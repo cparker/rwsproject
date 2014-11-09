@@ -96,13 +96,13 @@ span.enginesSpacer {
 
 .enginesPanel .simpleArrowSelect.cord {
     display:block;
-    flex:1.05
+    flex:1.7;
 }
 
 .engineSelectRow {
     display:flex;
     flex-direction: row;
-    width:380px;
+    width:500px;
     align-items: baseline;
     margin-top:2px;
     margin-bottom:2px;
