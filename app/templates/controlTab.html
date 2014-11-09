@@ -8,24 +8,24 @@
 
             <div class="controlForm">
                 <div>
-                    <input name="sceneControllers" ng-model="$parent.controlModel.sceneControllers" required class="redwoodPanelNarrowInput" type="number"
+                    <input name="sceneControllers" ng-model="controlModel.sceneControllers" class="redwoodPanelNarrowInput" type="number"
                            min="0" placeholder="0" id="sceneControllers"/>
                     <label class="rightSideLabel" for="sceneControllers">Redwood Scene Controller White</label>
                 </div>
 
                 <div>
-                    <input name="dimmers" ng-model="$parent.controlModel.dimmers" class="redwoodPanelNarrowInput" type="number" min="0" value="0"
+                    <input name="dimmers" ng-model="controlModel.dimmers" class="redwoodPanelNarrowInput" type="number" min="0"
                            id="dimmers"/>
                     <label class="rightSideLabel" for="dimmers">Redwood Dimmer, White.</label>
                 </div>
 
                 <div>
-                    <input name="spdtSwitches" ng-model="$parent.controlModel.spdtSwitches" class="redwoodPanelNarrowInput" type="number" min="0"
-                           id="spdtWallSwitches" value="0"/>
+                    <input name="spdtSwitches" ng-model="controlModel.spdtSwitches" class="redwoodPanelNarrowInput" type="number" min="0"
+                           id="spdtWallSwitches" />
                     <label class="rightSideLabel" for="spdtWallSwitches">SPDT wall switch (not supplied by Redwood).</label>
                 </div>
 
-                <textarea name="notes" ng-model="$parent.controlModel.notes" placeholder="Notes"></textarea>
+                <textarea name="notes" ng-model="controlModel.notes" placeholder="Notes"></textarea>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
             </div>
 
             <div class="controlForm">
-                <input name="shareCable" id="controlShareCable" type="checkbox" value="useSharedCable" ng-model="$parent.controlModel.useSharedCable"/>
+                <input name="shareCable" id="controlShareCable" type="checkbox" value="useSharedCable" ng-model="controlModel.useSharedCable"/>
                 <label class="rightSideLabel" for="controlShareCable">Share 1 horizontal CommScope Cat6A cable for 2 channels (not supported with LED
                     gateways)</label>
                 <img src="/images/control-cable.png"/>
