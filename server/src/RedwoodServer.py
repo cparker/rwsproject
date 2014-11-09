@@ -27,7 +27,7 @@ from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBac
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
-baseFileDir = '/opt/tmp/redwoodfiles/'
+baseFileDir = '/bigfs/files/'
 app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
 app.config['SESSION_PATH'] = '/tmp/sessions'
