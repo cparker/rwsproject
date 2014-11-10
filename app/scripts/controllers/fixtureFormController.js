@@ -227,13 +227,16 @@ angular.module('rwsprojectApp')
             $scope.$watch('fixtureForm.controlMethod', function (newVal, oldVal) {
                 if ($rootScope.fixtureForm.controlMethod) {
                     if (newVal.name.toLowerCase().indexOf('sensor 3') != -1) {
-                        $scope.sensorDisabled = true;
+                        $scope.sensorTypeDisabled = true;
+                        $scope.sensorQtyDisabled = false;
                         $rootScope.fixtureForm.sensorType = {name: 'Normal', id: 2};
                     } else if (newVal.name.toLowerCase().indexOf('led gateway') != -1) {
-                        $scope.sensorDisabled = false;
+                        $scope.sensorTypeDisabled = false;
+                        $scope.sensorQty= false;
                         $rootScope.fixtureForm.sensorType = {};
                     } else {
-                        $scope.sensorDisabled = true;
+                        $scope.sensorTypeDisabled = true;
+                        $scope.sensorQtyDisabled = true;
                         $rootScope.fixtureForm.sensorType = {};
                     }
                 }
