@@ -1010,6 +1010,8 @@ select#projectCountry {
     display: inline-block;
     border: 2px solid #808080;
     margin-right: 14px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .bigRadioFilled {
