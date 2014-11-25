@@ -1,1112 +1,1120 @@
 select:focus {
-    outline: none;
+  outline: none;
 }
 
 .container {
-    width: 98%;
+  width: 98%;
 }
 
 .span3 {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    /* font-family: tahoma, sans-serif; */
-    font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  /* font-family: tahoma, sans-serif; */
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 ::-webkit-scrollbar {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 ::-webkit-scrollbar:vertical {
-    width: 11px;
+  width: 11px;
 }
 
 ::-webkit-scrollbar:horizontal {
-    height: 11px;
+  height: 11px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid gray; /* should match background, can't be transparent */
-    background-color: rgba(0, 0, 0, .5);
+  border-radius: 8px;
+  border: 2px solid gray; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #fff;
-    border-radius: 8px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .header,
 .marketing,
 .footer {
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .header p {
-    color: white;
+  color: white;
 }
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
-    background-color: #2C95DD;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #2C95DD;
 }
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
 }
 
 /* Custom page footer */
 .footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
 }
 
 .noteArea {
-    resize: none;
+  resize: none;
 }
 
 .projectInfoForm .projectNotes {
-    width: 55%;
+  width: 55%;
 }
 
 .tab-content {
-    background-color: #A1DBFF;
-    margin-right: 25px;
-    padding-left: 0;
-    min-height: 600px;
+  background-color: #A1DBFF;
+  margin-right: 25px;
+  padding-left: 0;
+  min-height: 600px;
 }
 
 .simpleArrowSelect {
-    line-height: normal;
-    margin: 0;
-    padding: 1px;
-    padding-top: 6px;
-    margin-bottom: 2px;
-    -webkit-appearance: none;
-    border: none;
-    background: url("/images/down-arrow.png");
-    background-repeat: no-repeat;
-    background-position: 99% 90%;
-    background-color: white;
+  line-height: normal;
+  margin: 0;
+  padding: 1px;
+  padding-top: 6px;
+  margin-bottom: 2px;
+  -webkit-appearance: none;
+  border: none;
+  background: url("/images/down-arrow.png");
+  background-repeat: no-repeat;
+  background-position: 99% 90%;
+  background-color: white;
 }
 
 select#projectCountry {
-    width: 120px;
-    background-color: white;
-    height:1.8em;
-    padding:3px;
+  width: 120px;
+  background-color: white;
+  height: 1.8em;
+  padding: 3px;
 }
 
 .login-modal {
-    -webkit-border-radius: 5px;
-    position: fixed;
-    top: 0px;
-    left: 4px;
-    background: #8895A7;
-    margin: 5px;
-    padding: 5px;
-    width: 98%;
-    height: 98%;
-    opacity: 0.8;
-    z-index: 100;
-    display: flex;
-    flex-direction: row;
+  -webkit-border-radius: 5px;
+  position: fixed;
+  top: 0px;
+  left: 4px;
+  background: #8895A7;
+  margin: 5px;
+  padding: 5px;
+  width: 98%;
+  height: 98%;
+  opacity: 0.8;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
 }
 
 .login-modal #username {
-    margin: 0;
-    padding: 2px;
+  margin: 0;
+  padding: 2px;
 }
 
 .login-modal #password {
-    margin: 0;
-    padding: 2px;
+  margin: 0;
+  padding: 2px;
 }
 
 .fixtureLabel {
-    width: 130px;
-    text-align: right;
+  width: 130px;
+  text-align: right;
 }
 
 .fixtureFormLine {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .fixtureFormLine input {
-    padding: 1px;
-    height: 1.3em;
-    width: 100px;
-    margin: 0;
-    font-size: 0.95em;
+  padding: 1px;
+  height: 1.3em;
+  width: 100px;
+  margin: 0;
+  font-size: 0.95em;
 }
 
 .fixtureFormLine select {
-    margin: 0;
-    padding: 1px;
-    height: 1.5em;
-    width: 140px;
-    background-color: white;
-    padding:2px;
+  -webkit-border-radius: 2px;
+  width: 120px;
+  padding: 4px;
+  line-height: 100%;
+  margin: 0;
+  height: 1.5em;
+  background-color: white;
+  padding: 2px;
 }
 
 .fixtureFormLine label {
-    display: inline-block;
+  display: inline-block;
+  vertical-align: text-top;
 }
 
 #fixtureSectionOne {
-    border-right: 2px;
-    border-right-style: solid;
-    border-right-color: gray;
-    height: 230px;
+  border-right: 2px;
+  border-right-style: solid;
+  border-right-color: gray;
+  height: 230px;
 }
 
 #fixtureSectionTwo {
-    border-right: 2px;
-    border-right-style: solid;
-    border-right-color: gray;
-    height: 230px;
+  border-right: 2px;
+  border-right-style: solid;
+  border-right-color: gray;
+  height: 230px;
 }
 
 #fixtureSectionTwo select {
-    width: 160px;
-    padding:2px;
+  width: 160px;
+  padding: 2px;
 }
 
-#fixtureSectionThree select {
-    width: 120px;
-    padding:2px;
+.fixtureFormLine select[name="controlMethod"] {
+  width: 14.8vw;
 }
 
 .redwoodPanelNarrowInput {
-    width: 45px;
+  width: 45px;
 }
 
 .leftSideLabel {
-    display: inline-block;
+  display: inline-block;
 }
 
 .rightSideLabel {
-    display: inline-block;
-    margin-left: 10px;
-    margin-bottom: 1px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 1px;
 }
 
 .underlined {
-    border-bottom-width: 2px;
-    border-bottom-color: gray;
-    border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: gray;
+  border-bottom-style: solid;
 }
 
 .serviceInput {
-    float: right;
-    clear: both;
-    width: 175px;
+  float: right;
+  clear: both;
+  width: 175px;
 }
 
 .exclusionPanel {
-    padding-left: 15px;
+  padding-left: 15px;
 }
 
 .exclusionPanel textarea {
-    width: 50%;
-    height: 200px;
+  width: 50%;
+  height: 200px;
 }
 
 .exclusionPanel .exclusionHeader {
-    font-size: 1.5em;
-    color: #669AD0;
-    display: inline-block;
+  font-size: 1.5em;
+  color: #669AD0;
+  display: inline-block;
 }
 
 .exclusionPanel .exclusionIcon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
 }
 
 .exclusionPanel ul {
-    list-style: none;
-    font-size: 1.2em;
+  list-style: none;
+  font-size: 1.2em;
 }
 
 .exclusionPanel li {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .dialogOuter {
-    width: 500px;
-    height: 565px;
-    position: absolute;
-    left: 500px;
-    top: 100px;
-    background: #D8E5F1;
-    -webkit-border-radius: 5px;
+  width: 500px;
+  height: 565px;
+  position: absolute;
+  left: 500px;
+  top: 100px;
+  background: #D8E5F1;
+  -webkit-border-radius: 5px;
 }
 
 .notesDialogOuter {
-    width: 500px;
-    height: 365px;
-    position: absolute;
-    left: 500px;
-    top: 100px;
-    background: #D8E5F1;
-    -webkit-border-radius: 5px;
+  width: 443px;
+  height: 365px;
+  position: absolute;
+  left: 500px;
+  top: 100px;
+  background: #D8E5F1;
+  -webkit-border-radius: 5px;
 }
 
 .notesDialogOuter p {
-    margin: 0;
-    margin-top: 5px;
-    margin-left: 15px;
+  margin: 0;
+  margin-top: 5px;
+  margin-left: 15px;
 }
 
 .dialogInner {
-    margin: 14px;
-    margin-bottom: 5px;
-    padding: 5px;
-    -webkit-border-radius: 5px;
-    background: #ffffff;
-    width: 92.5%;
-    height: 85%;
-    overflow-y: scroll;
+  margin: 14px;
+  margin-bottom: 5px;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  background: #ffffff;
+  width: 91%;
+  height: 85%;
+  overflow-y: scroll;
 }
 
 .notesDialogInner {
-    margin: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-    padding-bottom: 0;
-    -webkit-border-radius: 5px;
-    background: #ffffff;
-    width: 92.5%;
-    height: 80%;
-    overflow: hidden;
+  margin: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-bottom: 0;
+  -webkit-border-radius: 5px;
+  background: #ffffff;
+  width: 92.5%;
+  height: 80%;
+  overflow: hidden;
 }
 
 #notesDialog textarea {
-    width: 97%;
-    height: 94%;
-    overflow: hidden;
+  width: 97%;
+  height: 94%;
+  overflow: hidden;
 }
 
 .accessoriesItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 28px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 28px;
 }
 
 .accessoriesItem input {
-    width: 30px;
-    margin: 0;
-    height: 16px !important;
-    padding: 2px;
-    margin: 2px;
+  width: 30px;
+  margin: 0;
+  height: 16px !important;
+  padding: 2px;
+  margin: 2px;
 }
 
 .accessoriesItem label {
-    margin: 0;
-    margin-top: 5px;
-    min-width: 350px;
+  margin: 0;
+  margin-top: 5px;
+  min-width: 350px;
 }
 
 .smallCircle {
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    margin-right: 4px;
-    margin-top: 3px;
-    border: 1px solid #808080;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 4px;
+  margin-top: 3px;
+  border: 1px solid #808080;
 }
 
 .smallCircleFilled {
-    background-color: #1B9AF7;
-    border: 1px solid white;
+  background-color: #1B9AF7;
+  border: 1px solid white;
 }
 
 .accessoriesText {
-    padding: 0;
-    margin: 0;
-    width: 50px;
-    height: 10px !important;
+  padding: 0;
+  margin: 0;
+  width: 50px;
+  height: 10px !important;
 }
 
 .accessoriesDialogButton {
-    float: right;
-    margin-right: 16px;
+  float: right;
+  margin-right: 16px;
 }
 
 .fixturesSection {
-    overflow: hidden;
-    background-color: #A1DBFF;
+  overflow: hidden;
+  background-color: #A1DBFF;
 }
 
 .fixturesSection .buttonSpacer {
-    height: 20px;
+  height: 20px;
 }
 
 .fancyButton {
-    background: #1B9AF7;
-    -webkit-appearance: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border: none;
-    border-radius: 5px;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: arial;
-    font-size: 17px;
-    text-decoration: none;
+  background: #1B9AF7;
+  -webkit-appearance: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 17px;
+  text-decoration: none;
 }
 
 .fixtureLineContainer {
-    max-height: 515px;
-    overflow-y: scroll;
+  max-height: 515px;
+  overflow-y: scroll;
 }
 
 .fixtureDeleteAckDialog {
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    width: 305px;
-    height: 83px;
-    background-color: #D8E5F1;
-    z-index: 60;
-    opacity: 1;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  width: 305px;
+  height: 83px;
+  background-color: #D8E5F1;
+  z-index: 60;
+  opacity: 1;
 }
 
 .fixtureDeleteAckDialog p {
-    width: 100%;
-    margin: auto;
-    text-align: center;
+  width: 100%;
+  margin: auto;
+  text-align: center;
 }
 
 .fixtureDeleteAckDialog .buttons {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 20px;
 }
 
 .fixtureDeleteAckDialog .buttons .fancyButton {
-    flex-grow: none;
-    flex-shrink: none;
-    margin: auto;
+  flex-grow: none;
+  flex-shrink: none;
+  margin: auto;
 }
 
 .fixtureLine {
-    border-top-width: 2px;
-    border-top-color: gray;
-    border-top-style: solid;
-    background-color: #ffffff;
+  border-top-width: 2px;
+  border-top-color: gray;
+  border-top-style: solid;
+  background-color: #ffffff;
 }
 
 .fixtureLineSelected {
-    background-color: #D8EDF3;
+  background-color: #D8EDF3;
 }
 
 .fixtureLine:hover {
-    background-color: lightgrey;
+  background-color: lightgrey;
 }
 
 .fixtureLineSection {
-    border-right-width: 2px;
-    border-right-color: gray;
-    border-right-style: solid;
-    height: 175px;
-    padding-left: 5px;
+  border-right-width: 2px;
+  border-right-color: gray;
+  border-right-style: solid;
+  height: 175px;
+  padding-left: 5px;
 }
 
 .lastFixtureSection {
-    border-right-style: none;
+  border-right-style: none;
 }
 
 .fixtureListHeader {
-    text-align: center;
-    color: white;
-    background-color: #1B9AF7;
-    font-size: 17px;
-    line-height: 30px;
+  text-align: center;
+  color: white;
+  background-color: #1B9AF7;
+  font-size: 17px;
+  line-height: 30px;
 }
 
 .loginspacer {
-    height: 100px;
+  height: 100px;
 }
 
 .lineSeparator {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loginCenteredContent {
-    position: relative;
-    top: 30%;
-    width: 545px;
-    margin-left: auto;
-    margin-right: auto;
+  position: relative;
+  top: 30%;
+  width: 545px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loginFormLine {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loginCenteredContent input[type="text"], .loginCenteredContent label, .loginCenteredContent input[type="password"] {
-    display: inline-block;
-    width: 250px;
+  display: inline-block;
+  width: 250px;
 }
 
 .loginCenteredContent label {
-    width: 100px;
-    text-align: end;
+  width: 100px;
+  text-align: end;
 }
 
 .loginCenteredContent input[type="submit"] {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 15px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
 }
 
 .redwoodTitleLogin {
-    height: 130px;
-    width: 545px;
-    background: url("/images/redwood-logo_2c.svg") no-repeat 100%;
-    background-size: 100%;
-    margin-bottom: 30px;
-    margin-left: -170px;
-    margin-left: auto;
-    margin-right: auto;
+  height: 130px;
+  width: 545px;
+  background: url("/images/redwood-logo_2c.svg") no-repeat 100%;
+  background-size: 100%;
+  margin-bottom: 30px;
+  margin-left: -170px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .copyright {
-    margin: 0;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    font-size: 0.8em;
+  margin: 0;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  font-size: 0.8em;
 }
 
 .invalidCredentials {
-    text-align: center;
-    margin-top: 10px;
-    color: red;
+  text-align: center;
+  margin-top: 10px;
+  color: red;
 }
 
 .rwsActive a {
-    background-color: #A1DBFF !important;
+  background-color: #A1DBFF !important;
 }
 
 .rwsTabs {
-    margin-right: 0 !important;
-    border-right: none !important;
+  margin-right: 0 !important;
+  border-right: none !important;
 }
 
 .nav-tabs > li > a {
-    padding: 4px;
+  padding: 4px;
 }
 
 .blur {
-    -webkit-filter: blur(5px);
+  -webkit-filter: blur(5px);
 }
 
 .fixtureList {
-    list-style: none;
-    -webkit-appearance: none;
-    margin-left: 0;
+  list-style: none;
+  -webkit-appearance: none;
+  margin-left: 0;
 }
 
 .fixtureList .deleteLine {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .fixtureList .trashIcon {
-    background-image: url('/images/trash.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 20px;
-    margin: 4px;
-    cursor: pointer;
+  background-image: url('/images/trash.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  margin: 4px;
+  cursor: pointer;
 }
 
 .tabLabel {
-    display: inline-block;
-    max-width: 150px;
+  display: inline-block;
+  max-width: 150px;
 }
 
 .tabLabel p {
-    margin: 0;
-    font-size: 1.3em;
+  margin: 0;
+  font-size: 1.3em;
 }
 
 .tabLabel i {
-    color: gray;
-    font-size: 0.85em;
-    margin-top: 1px;
-    margin-bottom: 1px;
+  color: gray;
+  font-size: 0.85em;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .tabIcon {
-    float: left;
-    width: 35px;
-    height: 23px;
-    margin-right: 5px;
-    margin-left: -3px;
+  float: left;
+  width: 35px;
+  height: 23px;
+  margin-right: 5px;
+  margin-left: -3px;
 }
 
 .bulbSolid {
-    background: url(/images/bulbSolid.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/bulbSolid.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .redTriangleAlert {
-    background: url(/images/redTriangleAlert.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/redTriangleAlert.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bulbBold {
-    background: url(/images/bulbBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/bulbBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bulbGrey {
-    background: url(/images/bulbGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/bulbGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .infoBold {
-    background: url(/images/infoBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/infoBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .infoGrey {
-    background: url(/images/infoGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/infoGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .controlBold {
-    background: url(/images/star.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/star.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .controlGrey {
-    background: url(/images/star.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/star.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .enginesBold {
-    background: url(/images/enginesBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/enginesBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .enginesGrey {
-    background: url(/images/enginesGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/enginesGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .emergencyBold {
-    background: url(/images/emergencyBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/emergencyBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .emergencyGrey {
-    background: url(/images/emergencyGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/emergencyGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .sparesBold {
-    background: url(/images/sparesBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/sparesBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .sparesGrey {
-    background: url(/images/sparesGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/sparesGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .exclusionsBold {
-    background: url(/images/exclusionsBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/exclusionsBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .exclusionsGrey {
-    background: url(/images/exclusionsGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/exclusionsGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .summaryBold {
-    background: url(/images/summaryBold.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/summaryBold.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .summaryGrey {
-    background: url(/images/summaryGrey.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/summaryGrey.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .blackSolidBulb {
-    background: url(/images/blackSolidBulb.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/blackSolidBulb.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .blackSolidGear {
-    background: url(/images/blackSolidGear.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/blackSolidGear.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .blackSolidWrench {
-    background: url(/images/blackSolidWrench.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/blackSolidWrench.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .blackSolidDocument {
-    background: url(/images/blackSolidDocument.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  background: url(/images/blackSolidDocument.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* if the form hasn't been touched, no red */
 .projectInfoForm input.ng-invalid.ng-pristine, .projectInfoForm select.ng-invalid.ng-pristine {
-    outline: none;
+  outline: none;
 }
 
 /* once they attempt to submit the form, mark fiekds */
 .projectInfoForm.ng-submitted input.ng-invalid,
 .projectInfoForm.ng-submitted select.ng-invalid,
 .projectInfoForm.ng-submitted textarea.ng-invalid {
-    outline: 2px dotted red;
+  outline: 2px dotted red;
 }
 
 /* If they touch a field, and leave it invalid, mark it */
 .projectInfoForm input.ng-invalid.ng-touched,
 .projectInfoForm select.ng-invalid.ng-touched,
 .projectInfoForm textarea.ng-invalid.ng-touched {
-    outline: 2px dotted red;
+  outline: 2px dotted red;
 }
 
 .fixtureForm.ng-submitted input[type="text"].ng-invalid,
 .fixtureForm.ng-submitted select.ng-invalid {
-    outline: 2px dotted red;
+  outline: 2px dotted red;
 }
 
 .fixtureForm:not(.ng-submitted) input[type="text"].ng-touched.ng-invalid:not(.ng-pristine),
 .fixtureForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
-    outline: 2px dotted red;
+  outline: 2px dotted red;
 }
 
 .fileContainer {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .fileContainer ul {
-    max-width: 70%;
-    padding-right: 12px;
+  max-width: 70%;
+  padding-right: 12px;
 }
 
 .fileContainer li {
-    list-style: none;
+  list-style: none;
 }
 
 .fileContainer p {
-    width: 73%;
-    font-size: 1.5em;
-    padding-bottom: 3px;
+  width: 73%;
+  font-size: 1.5em;
+  padding-bottom: 3px;
 }
 
 .uploadbutton input[type="file"] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    line-height: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 15px;
 }
 
 .fileContainer button {
-    background: #1B9AF7;
-    -webkit-appearance: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border: none;
-    border-radius: 5px;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: arial;
-    font-size: 17px;
-    text-decoration: none;
+  background: #1B9AF7;
+  -webkit-appearance: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 17px;
+  text-decoration: none;
 }
 
 .fileContainer ul {
-    max-height: 500px;
-    overflow-y: scroll;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .uploadDirRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 .uploadDirs {
 }
 
 .uploadDir {
-    width: 200px;
-    height: 160px;
-    margin: auto;
-    font-size: 1.5em;
+  width: 200px;
+  height: 160px;
+  margin: auto;
+  font-size: 1.5em;
 }
 
 .dirText {
-    text-align: center;
+  text-align: center;
 }
 
 .uploadDirs a {
-    color: inherit;
+  color: inherit;
 }
 
 .dirDrawings {
-    background: url("/images/dirDrawings.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirDrawings.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .dirSpecs {
-    background: url("/images/dirSpecs.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirSpecs.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .dirSoftware {
-    background: url("/images/dirSoftware.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirSoftware.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .dirInstallation {
-    background: url("/images/dirInstallation.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirInstallation.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .dirFixtures {
-    background: url("/images/dirFixtures.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirFixtures.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .dirGeneral {
-    background: url("/images/dirGeneral.png");
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+  background: url("/images/dirGeneral.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .launcherRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 80%;
-    margin: auto;
-    margin-top: 6%;
-    margin-bottom: 6%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 6%;
+  margin-bottom: 6%;
 }
 
 .launcherItem {
-    margin: auto;
-    width: 200px;
-    height: 200px;
-    -webkit-border-radius: 5px;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  -webkit-border-radius: 5px;
 }
 
 .launcherItem a {
-    color: inherit;
+  color: inherit;
 }
 
 .launchBomOuter {
-    background-color: #F28500;
+  background-color: #F28500;
 }
 
 .launchFilesOuter {
-    background-color: #457AB1;
+  background-color: #457AB1;
 }
 
 .launcherItem .launchIcon {
-    width: 50%;
-    height: 50%;
-    margin: auto;
-    margin-top: 10px;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .launchText {
-    margin: auto;
-    text-align: center;
-    padding-top: 13%;
-    vertical-align: bottom;
-    display: table-cell;
-    width: 63%;
-    height: 40px;
+  margin: auto;
+  text-align: center;
+  padding-top: 13%;
+  vertical-align: bottom;
+  display: table-cell;
+  width: 63%;
+  height: 40px;
 }
 
 #launchBOM {
-    background: url("/images/launchBOM.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
+  background: url("/images/launchBOM.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 #launchFiles {
-    background: url("/images/launchFileDownload.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
+  background: url("/images/launchFileDownload.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .topLogoContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100px;
+  display: flex;
+  flex-direction: row;
+  width: 100px;
 }
 
 .topLogo {
-    background: url("/images/star.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 80px;
-    height: 40px;
-    margin: 5px;
-    margin-top: 7px;
+  background: url("/images/star.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 80px;
+  height: 40px;
+  margin: 5px;
+  margin-top: 7px;
 }
 
 .topText {
-    font-size: 2.0em;
-    padding-top: 13px;
+  font-size: 2.0em;
+  padding-top: 13px;
 
 }
 
 .circleNumber {
-    border-radius: 50%;
-    background-color: #457AB1;
-    color: white;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    margin: 3px;
-    line-height: 23px;
+  border-radius: 50%;
+  background-color: #457AB1;
+  color: white;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  margin: 3px;
+  line-height: 23px;
 
 }
 
 .numberAndText {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .fileListLine, .fileListLine a {
-    display: flex;
-    flex-direction: row;
-    max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
 }
 
 .fileListLink {
-    flex: 10;
+  flex: 10;
 }
 
 .fileListItem {
-    flex: 1;
+  flex: 1;
 }
 
 .fileListName {
-    flex: 8;
+  flex: 8;
 }
 
 .fileListDate {
-    flex: 6;
-    text-align: right;
-    margin-right: 10%;
+  flex: 6;
+  text-align: right;
+  margin-right: 10%;
 }
 
 .fileListSize {
-    flex: 2;
-    text-align: right;
-    margin-right: 15px;
+  flex: 2;
+  text-align: right;
+  margin-right: 15px;
 }
 
 .fileListLine.fileHighlight {
-    background-color: lightskyblue;
+  background-color: lightskyblue;
 }
 
 .fileListLine .fileListDelete {
-    background-image: url('/images/trash.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 14px;
-    height: 14px;
-    flex: 1;
-    cursor: pointer;
+  background-image: url('/images/trash.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 14px;
+  height: 14px;
+  flex: 1;
+  cursor: pointer;
 }
 
 .bigRadio {
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    border: 2px solid #808080;
-    margin-right: 14px;
-    flex-grow: 0;
-    flex-shrink: 0;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border: 2px solid #808080;
+  margin-right: 14px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .bigRadioFilled {
-    background-color: darkgreen;
-    border: 2px solid #808080;
+  background-color: darkgreen;
+  border: 2px solid #808080;
 }
 
 .fileDeleteDialog {
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute;
-    top: 30%;
-    left: 37%;
-    width: 255px;
-    height: 120px;
-    background-color: #D8E5F1;
-    z-index: 60;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 30%;
+  left: 37%;
+  width: 255px;
+  height: 120px;
+  background-color: #D8E5F1;
+  z-index: 60;
 }
 
 .fileDeleteDialog label {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    margin-top: 14px;
-    min-height: 40px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  margin-top: 14px;
+  min-height: 40px;
 }
 
 .fileDeleteDialog .buttons {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 25px;
 }
 
 .fileDeleteDialog .buttons .fancyButton {
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: auto;
 }
 
 .greyEverything {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #505050;
-    opacity: 0.7;
-    z-index: 50;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #505050;
+  opacity: 0.7;
+  z-index: 50;
 }
 
 .errorDialog {
-    width: 100%;
-    height: 100px;
-    opacity: 0.5;
-    color: black;
-    font-size: 1.5em;
-    background-color: lightcoral;
-    border: 2px dashed red;
-    padding: 5px;
-    border-radius: 5px;
+  width: 100%;
+  height: 100px;
+  opacity: 0.5;
+  color: black;
+  font-size: 1.5em;
+  background-color: lightcoral;
+  border: 2px dashed red;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .launcherDisableBOM {
-    height: 200px;
-    width: 200px;
-    background-color: #303030;
-    opacity: 0.7;
-    position: relative;
+  height: 200px;
+  width: 200px;
+  background-color: #303030;
+  opacity: 0.7;
+  position: relative;
 }
 
 .headerRight {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-top: 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .headerRight p {
-    width: 85px;
+  width: 85px;
 }
 
 .headerRight p, .headerRight div {
-    flex: 1;
+  flex: 1;
 }
 
 .headerRight div {
-    background: url("/images/signoffWhite.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 22px;
-    height: 22px;
+  background: url("/images/signoffWhite.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 22px;
+  height: 22px;
 }
 
 label.disabled {
-    color: #909090;
+  color: #909090;
+}
+
+.projectInfoDisclaimer {
+  font-style: italic;
+  font-size: 0.7rem;
+  margin: 10px;
 }

@@ -1,186 +1,188 @@
 angular.module('rwsprojectApp')
-    .factory('dataService', ['$http', function ($http) {
+  .factory('dataService', ['$http', '$rootScope', function ($http, $rootScope) {
 
-        var mockEnabled = true;
+    var theService = {
 
+      selectedFixtureLine: undefined,
 
-        var theService = {
+      fixtureLines: [],
 
-            selectedFixtureLine: undefined,
+      fixturesByLineId: {},
 
-            fixtureLines: [],
+      controlModel: {},
 
-            fixturesByLineId: {},
+      engineModel: {},
 
-            controlModel: rwsMockEnabled ? mockControlModel : {},
+      projectInfo: {},
 
-            engineModel: rwsMockEnabled ? mockEnginesFormData : {},
+      sparesModel: {},
 
-            projectInfo: rwsMockEnabled ? mockProjectInfo : {},
+      accessoryMasterList: {},
 
-            sparesModel: rwsMockEnabled ? mockSpares : {},
+      fixNotes: '',
 
-            accessoryMasterList: rwsMockEnabled ? mockAccessoryMaster : {},
+      emergencyOption: undefined,
 
-            fixNotes: '',
+      addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
+        fixtureForm.fixtureLineId = this.fixtureLines.length;
+        fixtureForm.selectedAccessories = selectedAccessories;
+        fixtureForm.projectId = projectIdDateTime;
+        fixtureForm.notes = notes;
+        fixtureForm.dropDownChoices = JSON.parse(JSON.stringify(dropDownChoices));
 
-            emergencyOption: undefined,
+        // insert at the beginning of the list
+        this.fixtureLines.unshift(fixtureForm);
 
-            addFixtureLine: function (fixtureForm, selectedAccessories, projectIdDateTime, dropDownChoices, notes) {
-                fixtureForm.fixtureLineId = this.fixtureLines.length;
-                fixtureForm.selectedAccessories = selectedAccessories;
-                fixtureForm.projectId = projectIdDateTime;
-                fixtureForm.notes = notes;
-                fixtureForm.dropDownChoices = JSON.parse(JSON.stringify(dropDownChoices));
+        // insert into a 'map' so we can refer to it by fixtureLineId
+        this.fixturesByLineId[fixtureForm.fixtureLineId] = fixtureForm;
 
-                // insert at the beginning of the list
-                this.fixtureLines.unshift(fixtureForm);
+        // send it to the server
+        this.submitFixtureLine(fixtureForm);
+      },
 
-                // insert into a 'map' so we can refer to it by fixtureLineId
-                this.fixturesByLineId[fixtureForm.fixtureLineId] = fixtureForm;
+      getFixtureLines: function () {
+        return this.fixtureLines;
+      },
 
-                // send it to the server
-                this.submitFixtureLine(fixtureForm);
-            },
+      deleteFixtureLine: function (fixtureIndex) {
+        this.fixtureLines.splice(fixtureIndex, 1);
+      },
 
-            getFixtureLines: function () {
-                return this.fixtureLines;
-            },
+      updateNotesForLine: function (lineId, notes) {
+        var fix = _.find(this.fixtureLines, function (l) {
+          return l.fixtureLineId === lineId;
+        });
 
-            deleteFixtureLine: function (fixtureIndex) {
-                this.fixtureLines.splice(fixtureIndex, 1);
-            },
+        fix.notes = notes;
+      },
 
-            updateNotesForLine: function (lineId, notes) {
-                var fix = _.find(this.fixtureLines, function (l) {
-                    return l.fixtureLineId === lineId;
-                });
+      selectFixtureLine: function (lineId) {
+        this.selectedFixtureLine = lineId;
+        var formData = _.find(this.fixtureLines, function (l) {
+          return l.fixtureLineId === lineId;
+        });
 
-                fix.notes = notes;
-            },
+        return formData;
+      },
 
-            selectFixtureLine: function (lineId) {
-                this.selectedFixtureLine = lineId;
-                var formData = _.find(this.fixtureLines, function (l) {
-                    return l.fixtureLineId === lineId;
-                });
-
-                return formData;
-            },
-
-            isLineSelected: function (lineId) {
-                return this.selectedFixtureLine === lineId;
-            },
+      isLineSelected: function (lineId) {
+        return this.selectedFixtureLine === lineId;
+      },
 
 
-            submitProjectInfo: function (projectInfo) {
+      submitProjectInfo: function (projectInfo) {
 
-                this.projectInfo = projectInfo;
+        this.projectInfo = projectInfo;
 
-                // return the result of $http, which is a promise, so we can handle it back in the controller
-                return $http({
-                    method: 'POST',
-                    url: '/server/submitProjectInfo',
-                    data: projectInfo});
-            },
+        // return the result of $http, which is a promise, so we can handle it back in the controller
+        return $http({
+          method: 'POST',
+          url: '/server/submitProjectInfo',
+          data: projectInfo
+        });
+      },
 
-            fetchProjectInfo: function () {
-                // gets the current project info using the current project ID in the session
-                return $http({
-                    method: 'GET',
-                    url: '/server/getProjectInfo'
-                });
-            },
+      fetchProjectInfo: function () {
+        // gets the current project info using the current project ID in the session
+        return $http({
+          method: 'GET',
+          url: '/server/getProjectInfo'
+        });
+      },
 
-            fetchRegions: function () {
-                return $http.get('/server/regions')
-            },
+      fetchRegions: function () {
+        return $http.get('/server/regions')
+      },
 
-            fetchFixtureTypes: function (regionId) {
-                return $http.get('/server/getFixtureTypes?regionId=' + regionId);
-            },
+      fetchFixtureTypes: function (regionId) {
+        return $http.get('/server/getFixtureTypes?regionId=' + regionId);
+      },
 
-            fetchMountTypes: function (regionId, fixtureTypeId) {
-                return $http.get('/server/getMountTypes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId);
-            },
+      fetchMountTypes: function (regionId, fixtureTypeId) {
+        return $http.get('/server/getMountTypes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId);
+      },
 
-            fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId) {
-                return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId);
-            },
+      fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId) {
+        return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId);
+      },
 
-            fetchDistributions: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId) {
-                return $http.get('/server/getDistributions?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId);
-            },
+      fetchDistributions: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId) {
+        return $http.get('/server/getDistributions?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId);
+      },
 
-            fetchLumens: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId) {
-                return $http.get('/server/getLumens?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId);
-            },
+      fetchLumens: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId) {
+        return $http.get('/server/getLumens?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId);
+      },
 
-            fetchChannels: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId) {
-                return $http.get('/server/getChannels?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId);
-            },
+      fetchChannels: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId) {
+        return $http.get('/server/getChannels?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId);
+      },
 
-            fetchManufacturers: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId) {
-                return $http.get('/server/getManufacturers?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId);
-            },
+      fetchManufacturers: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId) {
+        return $http.get('/server/getManufacturers?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId);
+      },
 
-            fetchControlMethods: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId) {
-                return $http.get('/server/getControlMethods?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId);
-            },
+      fetchControlMethods: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId) {
+        return $http.get('/server/getControlMethods?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId);
+      },
 
-            getPartInfo: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId, controlMethodId) {
-                return $http.get('/server/getPartInfo?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId + '&controlMethodId=' + controlMethodId);
-            },
+      getPartInfo: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId, controlMethodId) {
+        return $http.get('/server/getPartInfo?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId + '&controlMethodId=' + controlMethodId);
+      },
 
-            fetchAccessories: function () {
-                return $http.get('/server/getAccessories')
-            },
+      fetchAccessories: function () {
+        return $http.get('/server/getAccessories')
+      },
 
-            submitFixtureLine: function (fixtureLine) {
-                return $http({
-                    method: 'POST',
-                    url: '/server/submitFixture',
-                    data: fixtureLine});
-            },
+      submitFixtureLine: function (fixtureLine) {
+        return $http({
+          method: 'POST',
+          url: '/server/submitFixture',
+          data: fixtureLine
+        });
+      },
 
-            getFiles: function (dir) {
-                if (dir) {
-                    return $http.get('/server/getFiles?dir=' + dir);
-                } else {
-                    return $http.get('/server/getFiles');
-                }
-            },
+      getFiles: function (dir) {
+        if (dir) {
+          return $http.get('/server/getFiles?dir=' + dir);
+        } else {
+          return $http.get('/server/getFiles');
+        }
+      },
 
-            checkAccess: function () {
-                return $http.get('/server/checkAccess')
-            },
+      checkAccess: function () {
+        return $http.get('/server/checkAccess')
+      },
 
-            doLogin: function (user, password) {
-                var loginData = {
-                    username: user,
-                    password: password
-                };
-                return $http({method: 'POST', url: '/server/login', data: loginData});
-            },
-
-            deleteFile: function (file) {
-                var params = {
-                    url: file.url
-                };
-                return $http({method: 'DELETE', url: '/server/deleteFile', data: file, params: params});
-            },
-
-            signoff: function () {
-                return $http({method: 'POST', url: '/server/signoff'});
-            },
-
-            sensorDisabled: false
-
+      doLogin: function (user, password) {
+        var loginData = {
+          username: user,
+          password: password
         };
+        return $http({method: 'POST', url: '/server/login', data: loginData});
+      },
+
+      deleteFile: function (file) {
+        var params = {
+          url: file.url
+        };
+        return $http({method: 'DELETE', url: '/server/deleteFile', data: file, params: params});
+      },
+
+      signoff: function () {
+        return $http({method: 'POST', url: '/server/signoff'});
+      },
+
+      sensorDisabled: false,
+
+      engineGrandTotal: function () {
+        return this.engineModel.enginesStandard + this.engineModel.enginesEmergency + this.engineModel.enginesStandardSpare + this.engineModel.enginesEmergencySpare;
+      }
+
+    };
 
 
-        return theService;
+    return theService;
 
 
-    }])
-;
+  }]);

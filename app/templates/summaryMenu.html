@@ -1,37 +1,29 @@
 <div class="summaryLine">
-    <a href="" ng-click="selectSummary('fixture')">
-        <div class="summaryIcon fixtureIcon"></div>
-        <div class="summaryHeading">Fixture Schedule (Not supplied by CommScope)</div>
-        <div class="summarySubHeading">Description of what the fixture schedule contains. Click the link above to preview the fixture schedule for this
-            project
-        </div>
-    </a>
+  <a href="" ng-click="selectSummary('fixture')">
+    <div class="summaryIcon fixtureIcon"></div>
+    <div class="summaryHeading">Fixture Schedule (Not supplied by CommScope)</div>
+    <div class="summarySubHeading">Description of what the fixture schedule contains. Click the link above to preview the fixture schedule for this
+      project
+    </div>
+  </a>
 </div>
 
 <div class="summaryLine">
-    <a href="" ng-click="selectSummary('bom')">
-        <div class="summaryIcon bomIcon"></div>
-        <div class="summaryHeading">Bill Of Materials</div>
-        <div class="summarySubHeading">Description of what the fixture schedule contains. Click the link above to preview the fixture schedule for this
-            project
-        </div>
-    </a>
+  <a href="" ng-click="selectSummary('bom')">
+    <div class="summaryIcon bomIcon"></div>
+    <div class="summaryHeading">Bill Of Materials</div>
+    <div class="summarySubHeading">Description of what the fixture schedule contains. Click the link above to preview the fixture schedule for this
+      project
+    </div>
+  </a>
 </div>
 
 <div class="summaryLine">
-    <a href="" ng-click="selectSummary('project')">
-        <div class="summaryIcon projectIcon"></div>
-        <div class="summaryHeading">Project File</div>
-        <div class="summarySubHeading">Description of what the fixture schedule contains. Click the link above to preview the fixture schedule for this
-            project
-        </div>
-    </a>
+  <a href="#/printSummary">
+    <div class="summaryIcon printAllIcon"></div>
+    <div class="summaryHeading">View all and print</div>
+    <div class="summarySubHeading">View everything in a printer friendly format</div>
+  </a>
 </div>
 
-<div class="summaryLine">
-    <a href="/#/printSummary">
-        <div class="summaryIcon printAllIcon"></div>
-        <div class="summaryHeading">View all and print</div>
-        <div class="summarySubHeading">View everything in a printer friendly format</div>
-    </a>
-</div>
+<pre>{{dataService.sparesModel | json}}</pre>

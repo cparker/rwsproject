@@ -55,3 +55,11 @@
 .controlForm:not(.ng-submitted) select.ng-touched.ng-invalid:not(.ng-pristine) {
     outline: 2px dotted red;
 }
+
+.controlSection .dimmerBox {
+  border: 2px solid rgb(180,180,180);
+  padding: 4px;
+  padding-bottom: 0;
+  margin-bottom: 4px;
+  width: 20vw;
+}

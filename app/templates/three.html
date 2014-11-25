@@ -12,7 +12,7 @@
 
     <div class="fixtureFormLine">
         <label ng-class="{disabled:sensorTypeDisabled}" class="fixtureLabel disabled" for="sensorType">Sensor type</label>
-        <select ng-required="!sensorDisabled" ng-disabled="sensorTypeDisabled"
+        <select ng-required="!sensorTypeDisabled" ng-disabled="sensorTypeDisabled"
                 name="sensorType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTypes track by type.id" ng-model="fixtureForm.sensorType"
                 class="simpleArrowSelect" id="sensorType">
             <option value="">select method</option>
@@ -22,7 +22,7 @@
     <div class="fixtureFormLine">
         <label ng-class="{disabled:sensorQtyDisabled}" class="fixtureLabel"
                for="controlQty">Control Qty</label>
-        <input ng-disabled="sensorQtyDisabled" ng-required="!sensorDisabled"
+        <input ng-disabled="sensorQtyDisabled" ng-required="!sensorQtyDisabled"
                ng-model="fixtureForm.controlQuantity" class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
     </div>
 

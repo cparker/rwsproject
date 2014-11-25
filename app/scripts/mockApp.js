@@ -2,20 +2,29 @@
 
 
 angular.module('rwsprojectAppE2E', ['rwsprojectApp', 'ngMockE2E']).run(function ($httpBackend, $cookies) {
-    // let all views through (the actual html views from the views folder should be loaded)
-    $httpBackend.whenGET(new RegExp('views\/.*')).passThrough();
+  // let all views through (the actual html views from the views folder should be loaded)
+  $httpBackend.whenGET(new RegExp('views\/.*')).passThrough();
+  $httpBackend.whenGET(new RegExp('templates\/.*')).passThrough();
 
-    // Mock out the call to '/server/hello'
-    $httpBackend.whenGET('/server/hello').respond(200, {message: 'world'});
-    // Respond with 404 for all other service calls
-    $httpBackend.whenGET(new RegExp('service\/.*')).respond(404);
+  // $httpBackend.whenGET(/.*/).passThrough();
+  $httpBackend.whenPOST(/.*/).passThrough();
+  $httpBackend.whenPUT(/.*/).passThrough();
+  $httpBackend.whenDELETE(/.*/).passThrough();
 
-    // replace this all with mock data
-    // todo : have the python server simply log requests with beautified JSON so it's easy to copy
-    $httpBackend.whenGET(/.*/).passThrough();
-    $httpBackend.whenPOST(/.*/).passThrough();
-    $httpBackend.whenPUT(/.*/).passThrough();
-    $httpBackend.whenDELETE(/.*/).passThrough();
+  $httpBackend.whenGET('/server/checkAccess').respond(200, {
+    "role": "admin",
+    "username": "admin"
+  });
+
+  $httpBackend.whenGET('/server/getProjectInfo').respond(200, mockProjectInfo);
+  $httpBackend.whenGET('/server/getFixtureTypes').respond(200, mockFixtureTypes);
+  $httpBackend.whenGET('/server/regions').respond(200, mockRegions);
+  $httpBackend.whenGET('/server/getAccessories').respond(200, mockAccessories);
 
 
-});
+}).run(['$rootScope', 'dataService', function ($rootScope, dataService) {
+
+  console.log('setting mock mode to true');
+  dataService.fixtureLines = mockFixtureLines;
+
+}]);

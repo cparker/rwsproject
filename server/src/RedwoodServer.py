@@ -24,6 +24,7 @@ from datetime import timedelta
 import os, time, datetime, traceback, re
 from werkzeug import secure_filename
 from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBackedSessionManager
+import logging
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
@@ -32,6 +33,9 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
 app.config['SESSION_PATH'] = '/tmp/sessions'
 app.config['SECRET_KEY'] = os.urandom(24)
+
+app.logger.setLevel(logging.DEBUG)
+
 skip_paths = []
 app.session_interface = ManagedSessionInterface(
     CachingSessionManager(
@@ -97,7 +101,7 @@ cli = {}
 
 @app.before_request
 def filterRequests():
-    log('####### filtering requests ' + request.path)
+    log('\nREQUEST: ' + request.path)
 
     # let's list out some roles that we'll allow through with guest access
     # the default will be admin access is required
@@ -132,6 +136,13 @@ def filterRequests():
 
     if resp.status_code == 401:
         return resp  # prevent access
+
+
+@app.after_request
+def afterRequest(res):
+    log('RESPONSE ({0}): {1}\n'.format(res.status, str(res.data)))
+    return res
+
 
 
 def runFixtureQuery(query):
