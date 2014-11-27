@@ -17,7 +17,7 @@ angular.module('rwsprojectAppE2E', ['rwsprojectApp', 'ngMockE2E']).run(function 
   });
 
   $httpBackend.whenGET('/server/getProjectInfo').respond(200, mockProjectInfo);
-  $httpBackend.whenGET('/server/getFixtureTypes').respond(200, mockFixtureTypes);
+  $httpBackend.whenGET(/\/server\/getFixtureTypes.*/).respond(200, mockFixtureTypes);
   $httpBackend.whenGET('/server/regions').respond(200, mockRegions);
   $httpBackend.whenGET('/server/getAccessories').respond(200, mockAccessories);
 

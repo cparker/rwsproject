@@ -804,11 +804,18 @@ def doGetControlMethods():
 @app.route('/server/getPartInfo')
 def doGetPartInfo():
     query = """
-        select distinct model_numbers.name as model, model_numbers.id as model_id, descriptions.description as description, descriptions.id as desc_id, part_numbers.name as part_number,
-        part_numbers.id as part_id FROM
-        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers
+        select distinct
+        model_numbers.name as model, model_numbers.id as model_id,
+        descriptions.description as description, descriptions.id as desc_id,
+        part_numbers.name as part_number,
+        part_numbers.id as part_id,
+        pids.id as pid_id, pids.name as pid_name
 
-        WHERE fixture_types.id=product_join.fixture_id AND
+        FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers, pids
+
+        WHERE
+        fixture_types.id=product_join.fixture_id AND
         fixture_sizes.id = product_join.size_id AND
         regions.id=product_join.region_id AND
         mount_options.id = product_join.mount_id AND
@@ -820,6 +827,7 @@ def doGetPartInfo():
         model_numbers.id = product_join.model_id AND
         descriptions.id = product_join.desc_id AND
         part_numbers.id = product_join.part_number_id AND
+        pids.id = product_join.pid_id AND
 
         regions.id='{regionId}' AND
         fixture_types.id = '{fixtureTypeId}' AND

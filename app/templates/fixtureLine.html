@@ -44,6 +44,8 @@
 
                 <p>Sensor: {{line.sensorType.name}}</p>
 
+                <p>PID: {{line.partInfo.pid_name}}</p>
+
                 <a href="" ng-show="line.notes.length > 0" ng-click="tabs.toggleNotesDialog()">Notes √</a>
 
                 <a href="" ng-show="line.selectedAccessories && line.selectedAccessories.length > 0" ng-click="tabs.toggleAccessoriesDialog()">Accessories √</a>

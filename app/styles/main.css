@@ -166,6 +166,10 @@ select#projectCountry {
   padding: 2px;
 }
 
+.fixtureFormLine select.disabled {
+  background-color: #eeeeee;
+}
+
 .fixtureFormLine label {
   display: inline-block;
   vertical-align: text-top;
@@ -176,6 +180,10 @@ select#projectCountry {
   border-right-style: solid;
   border-right-color: gray;
   height: 230px;
+}
+
+#fixtureSectionOne select {
+  width: 10vw;
 }
 
 #fixtureSectionTwo {
@@ -253,7 +261,7 @@ select#projectCountry {
 
 .dialogOuter {
   width: 500px;
-  height: 565px;
+  height: 364px;
   position: absolute;
   left: 500px;
   top: 100px;
@@ -284,7 +292,7 @@ select#projectCountry {
   -webkit-border-radius: 5px;
   background: #ffffff;
   width: 91%;
-  height: 85%;
+  height: 78%;
   overflow-y: scroll;
 }
 

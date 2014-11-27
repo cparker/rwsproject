@@ -92,36 +92,12 @@ var mockFixtureTypes = {
 var mockAccessories = {
   "payload": [
     {
-      "description": "Universal Gateway Wiring Harness",
-      "part_number": "RG-2G-WH"
-    },
-    {
-      "description": "RIB Relay -  10 Amp SPDT, 120-277Vac",
-      "part_number": "PER-RIB21CDC"
-    },
-    {
-      "description": "Downlight Splitter (DL12A)",
-      "part_number": "760164233"
-    },
-    {
-      "description": "Cable Sharing Splitter - SP12A (2 per horizontal run)",
-      "part_number": "760191841"
-    },
-    {
       "description": "Sensor mounting box (open ceiling)",
       "part_number": "ADAPTER-BOX-1G"
     },
     {
       "description": "Sensor Mounting Bracket for ML 1x4 and 2x2",
       "part_number": "ADP-MOUNT-W"
-    },
-    {
-      "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (20pk)",
-      "part_number": "ADP-MOUNT-W-20"
-    },
-    {
-      "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (50pk)",
-      "part_number": "ADP-MOUNT-W-50"
     },
     {
       "description": "RJ45-18AWG Adapter (1 per CH)",
@@ -152,12 +128,8 @@ var mockAccessories = {
       "part_number": "CABEXT-8"
     },
     {
-      "description": "1ch fixt-adp pigtail, 36 inch length",
-      "part_number": "PIGTAIL-1-FIXTURE"
-    },
-    {
-      "description": "2ch fixt-adp pigtail, 36 inch length",
-      "part_number": "PIGTAIL-2-FIXTURE"
+      "description": "Downlight Splitter (DL12A)",
+      "part_number": "760164233"
     }
   ]
 };
@@ -340,7 +312,9 @@ var mockFixtureLines = [
       "model": "SPM22DRWSxxxxx1YY",
       "model_id": 62,
       "part_id": 19,
-      "part_number": "RG-2G-LED-SP221700RS-2G-01PIGTAIL-1-FIXTURE"
+      "part_number": "RG-2G-LED-SP221700RS-2G-01PIGTAIL-1-FIXTURE",
+      "pid_id" : 1,
+      "pid_name" : "PID001"
     },
     "projectId": "2014-11-17 02:33:23 PM",
     "selectedAccessories": [
@@ -532,7 +506,9 @@ var mockFixtureLines = [
       "model": "LF48HDCB3341RW",
       "model_id": 26,
       "part_id": 44,
-      "part_number": "n/a"
+      "part_number": "n/a",
+      "pid_id" : 2,
+      "pid_name" : "PID002"
     },
     "projectId": "2014-11-17 02:33:23 PM",
     "selectedAccessories": [
@@ -713,7 +689,9 @@ var mockFixtureLines = [
       "model": "MHTL-MAGNT8-RC-17-2",
       "model_id": 29,
       "part_id": 30,
-      "part_number": "SEN-3M1-W-MHTT1560"
+      "part_number": "SEN-3M1-W-MHTT1560",
+      "pid_id" : 3,
+      "pid_name" : "PID003"
     },
     "projectId": "2014-11-17 02:33:23 PM",
     "selectedAccessories": [
@@ -893,7 +871,9 @@ var mockFixtureLines = [
       "model": "C8xRW850XXXXXX",
       "model_id": 4,
       "part_id": 40,
-      "part_number": "SEN-3M1-W-PATH1700"
+      "part_number": "SEN-3M1-W-PATH1700",
+      "pid_id" : 4,
+      "pid_name" : "PID004"
     },
     "projectId": "2014-11-17 02:33:23 PM",
     "selectedAccessories": [
@@ -915,81 +895,6 @@ var mockFixtureLines = [
 ];
 
 
-
-
-
-var mockAccessories = {
-  "payload": [
-    {
-      "description": "Universal Gateway Wiring Harness",
-      "part_number": "RG-2G-WH"
-    },
-    {
-      "description": "RIB Relay -  10 Amp SPDT, 120-277Vac",
-      "part_number": "PER-RIB21CDC"
-    },
-    {
-      "description": "Downlight Splitter (DL12A)",
-      "part_number": "760164233"
-    },
-    {
-      "description": "Cable Sharing Splitter - SP12A (2 per horizontal run)",
-      "part_number": "760191841"
-    },
-    {
-      "description": "Sensor mounting box (open ceiling)",
-      "part_number": "ADAPTER-BOX-1G"
-    },
-    {
-      "description": "Sensor Mounting Bracket for ML 1x4 and 2x2",
-      "part_number": "ADP-MOUNT-W"
-    },
-    {
-      "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (20pk)",
-      "part_number": "ADP-MOUNT-W-20"
-    },
-    {
-      "description": "Sensor Mounting Bracket for ML 1x4 and 2x2 (50pk)",
-      "part_number": "ADP-MOUNT-W-50"
-    },
-    {
-      "description": "RJ45-18AWG Adapter (1 per CH)",
-      "part_number": "TRM-RJ45-EU"
-    },
-    {
-      "description": "10 pin to RJ45 fixture adapter",
-      "part_number": "CAB-10PIN-RJ45"
-    },
-    {
-      "description": "3-1 Wire Harness(3 fixtures: 1 LED gateway)",
-      "part_number": "HARNESS-3-FIXTURE"
-    },
-    {
-      "description": "10Pin Fixt-to-GW cable extender, 2\" length",
-      "part_number": "CABEXT-2"
-    },
-    {
-      "description": "10Pin Fixt-to-GW cable extender, 4\" length",
-      "part_number": "CABEXT-4"
-    },
-    {
-      "description": "10Pin Fixt-to-GW cable extender, 6\" length",
-      "part_number": "CABEXT-6"
-    },
-    {
-      "description": "10Pin Fixt-to-GW cable extender, 8\" length",
-      "part_number": "CABEXT-8"
-    },
-    {
-      "description": "1ch fixt-adp pigtail, 36 inch length",
-      "part_number": "PIGTAIL-1-FIXTURE"
-    },
-    {
-      "description": "2ch fixt-adp pigtail, 36 inch length",
-      "part_number": "PIGTAIL-2-FIXTURE"
-    }
-  ]
-};
 
 
 var mockEnginesFormData = {

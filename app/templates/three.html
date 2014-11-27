@@ -1,41 +1,52 @@
 <div id="fixtureSectionThree" xmlns="http://www.w3.org/1999/html">
-    <div class="circleNumber">3</div>
+  <div class="circleNumber">3</div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="controlMethod">Control method</label>
-        <select name="controlMethod" ng-change="changeControlMethod()"
-                ng-options="controlMethod.name for controlMethod in fixtureForm.dropDownChoices.controlMethods track by controlMethod.id" required
-                ng-model="fixtureForm.controlMethod" class="simpleArrowSelect" id="controlMethod">
-            <option value="">select method</option>
-        </select>
-    </div>
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="controlMethod">Control method</label>
+    <select name="controlMethod" ng-change="changeControlMethod()"
+            ng-options="controlMethod.name for controlMethod in fixtureForm.dropDownChoices.controlMethods track by controlMethod.id" required
+            ng-model="fixtureForm.controlMethod" class="simpleArrowSelect" id="controlMethod">
+      <option value="">select method</option>
+    </select>
+  </div>
 
-    <div class="fixtureFormLine">
-        <label ng-class="{disabled:sensorTypeDisabled}" class="fixtureLabel disabled" for="sensorType">Sensor type</label>
-        <select ng-required="!sensorTypeDisabled" ng-disabled="sensorTypeDisabled"
-                name="sensorType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTypes track by type.id" ng-model="fixtureForm.sensorType"
-                class="simpleArrowSelect" id="sensorType">
-            <option value="">select method</option>
-        </select>
-    </div>
+  <div class="fixtureFormLine">
+    <label ng-class="{disabled:sensorTypeDisabled}" class="fixtureLabel disabled" for="sensorType">Sensor type</label>
+    <select ng-class="{disabled:sensorTypeDisabled}" ng-required="!sensorTypeDisabled" ng-disabled="sensorTypeDisabled"
+            name="sensorType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTypes track by type.id" ng-model="fixtureForm.sensorType"
+            class="simpleArrowSelect" id="sensorType">
+      <option value="">select type</option>
+    </select>
+  </div>
 
-    <div class="fixtureFormLine">
-        <label ng-class="{disabled:sensorQtyDisabled}" class="fixtureLabel"
-               for="controlQty">Control Qty</label>
-        <input ng-disabled="sensorQtyDisabled" ng-required="!sensorQtyDisabled"
-               ng-model="fixtureForm.controlQuantity" class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
-    </div>
+  <div class="fixtureFormLine">
+    <label ng-class="{disabled:fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'}" class="fixtureLabel" for="sensorTwoType">Sensor</label>
+    <select ng-class="{disabled:fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'}"
+            ng-required="fixtureForm.fixtureType.name.toLowerCase() === 'downlight-shared'"
+            ng-disabled="fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'"
+            name="sensorTwoType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTwoTypes track by type.id" ng-model="fixtureForm.sensorTwoType"
+            class="simpleArrowSelect" id="sensorTwoType">
+      <option value="">select type</option>
+    </select>
+  </div>
 
-    <div>
-        <input class="fancyButton" type="button" id="addNotes" value="Notes..." ng-click="tabs.toggleNotesDialog()"/>
-        <input class="fancyButton" type="button" id="addAccessories" value="Accessories..." ng-click="tabs.toggleAccessoriesDialog()"/>
-    </div>
+  <div class="fixtureFormLine">
+    <label ng-class="{disabled:sensorQtyDisabled}" class="fixtureLabel"
+           for="controlQty">Control Qty</label>
+    <input ng-disabled="sensorQtyDisabled" ng-required="!sensorQtyDisabled"
+           ng-model="fixtureForm.controlQuantity" class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
+  </div>
 
-    <div class="buttonSpacer">
-    </div>
+  <div>
+    <input class="fancyButton" type="button" id="addNotes" value="Notes..." ng-click="tabs.toggleNotesDialog()"/>
+    <input class="fancyButton" type="button" id="addAccessories" value="Accessories..." ng-click="tabs.toggleAccessoriesDialog()"/>
+  </div>
 
-    <div>
-        <input ng-disabled="hasLineBeenAdded()" class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
-        <input class="fancyButton" type="button" id="resetLine" value="Reset" ng-click="resetFixtureForm()"/>
-    </div>
+  <div class="buttonSpacer">
+  </div>
+
+  <div>
+    <input ng-disabled="hasLineBeenAdded()" class="fancyButton" type="button" id="addLine" value="Add" ng-click="addFixtureLine()"/>
+    <input class="fancyButton" type="button" id="resetLine" value="Reset" ng-click="resetFixtureForm()"/>
+  </div>
 </div>

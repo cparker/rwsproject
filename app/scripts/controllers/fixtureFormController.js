@@ -2,6 +2,8 @@ angular.module('rwsprojectApp')
   .controller('fixtureFormController', ['$scope', '$filter', '$rootScope', 'dataService',
     function ($scope, $filter, $rootScope, dataService) {
 
+      $scope.sensorTypeDisabled = true;
+
       $rootScope.fixtureForm = {};
       $rootScope.fixtureForm.dropDownChoices = {};
 
@@ -24,8 +26,19 @@ angular.module('rwsprojectApp')
       };
 
 
+      $scope.setSensorTwoTypes = function () {
+        $rootScope.fixtureForm.dropDownChoices = $rootScope.fixtureForm.dropDownChoices || {};
+        $rootScope.fixtureForm.dropDownChoices.sensorTwoTypes = [
+          {name: 'RS-2G', id: 1},
+          {name: 'RS-2G-LS', id: 2},
+          {name: 'RS-2G-HS', id: 3}
+        ]
+      };
+
+
       $rootScope.$on('entering2', function (stuff, fromTab, toTab) {
         $scope.setFixtureTypesBySelectedRegion();
+        $scope.setSensorTwoTypes();
 
         $rootScope.fixtureForm = $rootScope.fixtureForm ? $rootScope.fixtureForm : {};
         // set some defaults
@@ -191,6 +204,13 @@ angular.module('rwsprojectApp')
       $scope.addFixtureLine = function () {
         $scope.fixtureTabForm.$setSubmitted();
 
+        if ($scope.fixtureForm.sensorTwoType) {
+          // they must be choosing a sensor two type for a downlight shared fixture, so add accessories based on what they chose
+          $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] = $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] || 0;
+
+          $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] += parseInt($scope.fixtureForm.controlQuantity);
+        }
+
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
           return {
             accessoryCount: tallyPair[1],
@@ -204,15 +224,18 @@ angular.module('rwsprojectApp')
         if ($scope.fixtureTabForm.$valid) {
           dataService.addFixtureLine($rootScope.fixtureForm, accessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.fixtureForm.dropDownChoices, dataService.fixNotes);
 
+
           // reset the form
           $scope.resetFixtureForm();
         }
+
       };
 
       $scope.resetFixtureForm = function () {
         $rootScope.fixtureForm = {};
         $rootScope.fixtureForm.emergencyQuantity = 0;
         $scope.setFixtureTypesBySelectedRegion();
+        $scope.setSensorTwoTypes();
         dataService.fixNotes = '';
         $scope.fixtureTabForm.$setPristine(true);
         dataService.selectedFixtureLine = undefined;
@@ -242,6 +265,4 @@ angular.module('rwsprojectApp')
         }
       });
 
-
-    }])
-;
+    }]);
