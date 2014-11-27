@@ -20,10 +20,10 @@
   </div>
 
   <div class="fixtureFormLine">
-    <label ng-class="{disabled:fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'}" class="fixtureLabel" for="sensorTwoType">Sensor</label>
-    <select ng-class="{disabled:fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'}"
-            ng-required="fixtureForm.fixtureType.name.toLowerCase() === 'downlight-shared'"
-            ng-disabled="fixtureForm.fixtureType.name.toLowerCase() != 'downlight-shared'"
+    <label ng-class="{disabled:!eightFootBirchwoodSelected}" class="fixtureLabel" for="sensorTwoType">Sensor</label>
+    <select ng-class="{disabled:!eightFootBirchwoodSelected}"
+            ng-required="eightFootBirchwoodSelected"
+            ng-disabled="!eightFootBirchwoodSelected"
             name="sensorTwoType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTwoTypes track by type.id" ng-model="fixtureForm.sensorTwoType"
             class="simpleArrowSelect" id="sensorTwoType">
       <option value="">select type</option>

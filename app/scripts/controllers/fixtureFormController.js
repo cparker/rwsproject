@@ -204,11 +204,19 @@ angular.module('rwsprojectApp')
       $scope.addFixtureLine = function () {
         $scope.fixtureTabForm.$setSubmitted();
 
+        // EXCEPTION: 8' birchwood exception for LED Gateway (where they have to choose an additional sensor type)
         if ($scope.fixtureForm.sensorTwoType) {
           // they must be choosing a sensor two type for a downlight shared fixture, so add accessories based on what they chose
           $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] = $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] || 0;
 
           $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] += parseInt($scope.fixtureForm.controlQuantity);
+        }
+
+        // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
+        if ($scope.fixtureForm.fixtureType.name.toLowerCase() == 'downlight-shared') {
+          var splitterPart = '760164233';
+          $rootScope.accessoryTally[splitterPart] = $rootScope.accessoryTally[splitterPart] || 0;
+          $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity);
         }
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
@@ -263,6 +271,23 @@ angular.module('rwsprojectApp')
             $rootScope.fixtureForm.sensorType = {};
           }
         }
+      });
+
+
+      // watch the form for certain fixture configurations to show up
+      $scope.$watch('fixtureForm.controlMethod', function (newVal, oldVal) {
+        // EXCEPTION 1. if they choose an 8' birchwood fixture, Sensor 3, we need to enable the sensor select list
+        if (
+          $scope.fixtureForm.fixtureType && $scope.fixtureForm.fixtureType.name.toLowerCase() === 'linear' &&
+          $scope.fixtureForm.fixtureSize && $scope.fixtureForm.fixtureSize.name === "8'" &&
+          $scope.fixtureForm.manufacturer && $scope.fixtureForm.manufacturer.name.toLowerCase() === 'birchwood' &&
+          $scope.fixtureForm.controlMethod && $scope.fixtureForm.controlMethod.name.toLowerCase() === 'led gateway'
+        ) {
+          $scope.eightFootBirchwoodSelected = true;
+        } else {
+          $scope.eightFootBirchwoodSelected = false;
+        }
+
       });
 
     }]);
