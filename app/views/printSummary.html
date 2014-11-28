@@ -7,18 +7,18 @@
 
     <div class="printSummaryFixtureHeader">Project Information</div>
     <div class="summaryPanel">
-        <ng-include src="'templates/summaryProjectInfo.html'"/>
+        <ng-include src="'templates/summaryProjectInfo.html?timestamp=@@timestamp'"/>
     </div>
     <div class="printSummaryFixtureHeader">Fixture Schedule</div>
-    <div class="summaryPanel"><ng-include src="'templates/summaryFixtureDetail.html'"></ng-include></div>
+    <div class="summaryPanel"><ng-include src="'templates/summaryFixtureDetail.html?timestamp=@@timestamp'"></ng-include></div>
 
     <div class="printSummarySpacer"></div>
     <div class="printSummaryFixtureHeader">Bill Of Materials</div>
-    <div class="summaryBOM"><ng-include src="'templates/summaryBOMDetail.html'"></ng-include></div>
+    <div class="summaryBOM"><ng-include src="'templates/summaryBOMDetail.html?timestamp=@@timestamp'"></ng-include></div>
 
     <div class="printSummarySpacer"></div>
     <div class="printSummaryFixtureHeader">Project File</div>
-    <div class="summaryProject"><ng-include src="'templates/summaryProjectDetail.html'"></ng-include></div>
+    <div class="summaryProject"><ng-include src="'templates/summaryProjectDetail.html?timestamp=@@timestamp'"></ng-include></div>
     <div class="printButton" ng-click="print()"></div>
 
     <p class="emergencyDisclaimer">
