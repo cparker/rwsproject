@@ -24,6 +24,7 @@ from datetime import timedelta
 import os, time, datetime, traceback, re
 from werkzeug import secure_filename
 from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBackedSessionManager
+import logging
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
@@ -32,6 +33,9 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
 app.config['SESSION_PATH'] = '/tmp/sessions'
 app.config['SECRET_KEY'] = os.urandom(24)
+
+app.logger.setLevel(logging.DEBUG)
+
 skip_paths = []
 app.session_interface = ManagedSessionInterface(
     CachingSessionManager(
@@ -97,7 +101,7 @@ cli = {}
 
 @app.before_request
 def filterRequests():
-    log('####### filtering requests ' + request.path)
+    log('\nREQUEST: ' + request.path)
 
     # let's list out some roles that we'll allow through with guest access
     # the default will be admin access is required
@@ -132,6 +136,13 @@ def filterRequests():
 
     if resp.status_code == 401:
         return resp  # prevent access
+
+
+@app.after_request
+def afterRequest(res):
+    log('RESPONSE ({0}): {1}\n'.format(res.status, str(res.data)))
+    return res
+
 
 
 def runFixtureQuery(query):
@@ -793,11 +804,18 @@ def doGetControlMethods():
 @app.route('/server/getPartInfo')
 def doGetPartInfo():
     query = """
-        select distinct model_numbers.name as model, model_numbers.id as model_id, descriptions.description as description, descriptions.id as desc_id, part_numbers.name as part_number,
-        part_numbers.id as part_id FROM
-        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers
+        select distinct
+        model_numbers.name as model, model_numbers.id as model_id,
+        descriptions.description as description, descriptions.id as desc_id,
+        part_numbers.name as part_number,
+        part_numbers.id as part_id,
+        pids.id as pid_id, pids.name as pid_name
 
-        WHERE fixture_types.id=product_join.fixture_id AND
+        FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, model_numbers, descriptions, part_numbers, pids
+
+        WHERE
+        fixture_types.id=product_join.fixture_id AND
         fixture_sizes.id = product_join.size_id AND
         regions.id=product_join.region_id AND
         mount_options.id = product_join.mount_id AND
@@ -809,6 +827,7 @@ def doGetPartInfo():
         model_numbers.id = product_join.model_id AND
         descriptions.id = product_join.desc_id AND
         part_numbers.id = product_join.part_number_id AND
+        pids.id = product_join.pid_id AND
 
         regions.id='{regionId}' AND
         fixture_types.id = '{fixtureTypeId}' AND

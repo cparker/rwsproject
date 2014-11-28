@@ -23,8 +23,8 @@
 
                 <div>
                     <div class="engineOneLabel">Total engines (channels/47)</div>
-                    <input readonly type="text" value="{{standardEngines}}"/>
-                    <input readonly type="text" value="{{emergencyEngines}}"/>
+                    <input readonly type="text" value="{{engineModel.enginesStandard}}"/>
+                    <input readonly type="text" value="{{engineModel.enginesEmergency}}"/>
                 </div>
 
                 <div>
@@ -50,37 +50,37 @@
 
                 <div>
                     <div class="engineOneLabel">Additional Engines</div>
-                    <input ng-model="engineModel.enginesStandard" name="enginesStandard" required type="number" min="0" placeholder="0">
-                    <input ng-model="engineModel.enginesEmergency" name="enginesEmergency" required type="number" min="0" placeholder="0">
+                    <input ng-model="engineModel.enginesStandardSpare" name="enginesStandardSpare" required type="number" min="0" placeholder="0">
+                    <input ng-model="engineModel.enginesEmergencySpare" name="enginesEmergencySpare" required type="number" min="0" placeholder="0">
                 </div>
                 <div>
-                    <div ng-class="{disabled:(engineModel.enginesStandard <=0 && engineModel.enginesEmergency <=0)}" class="engineOneLabel">Engine Voltage</div>
-                    <select ng-required="engineModel.enginesStandard > 0" ng-disabled="engineModel.enginesStandard <= 0" ng-model="engineModel.voltageStandard"
+                    <div ng-class="{disabled:(engineModel.enginesStandardSpare<=0 && engineModel.enginesEmergencySpare <=0)}" class="engineOneLabel">Engine Voltage</div>
+                    <select ng-required="engineModel.enginesStandardSpare > 0" ng-disabled="engineModel.enginesStandardSpare <= 0" ng-model="engineModel.voltageStandard"
                             name="engineVoltageStandard"
                             class="simpleArrowSelect voltage">
                         <option>277v</option>
                         <option>200v-250v</option>
                     </select>
-                    <select ng-disabled="engineModel.enginesEmergency <= 0" ng-model="engineModel.voltageEmergency" name="engineVoltageEmergency"
-                            class="simpleArrowSelect voltage" ng-required="engineModel.enginesEmergency > 0">
+                    <select ng-disabled="engineModel.enginesEmergencySpare <= 0" ng-model="engineModel.voltageEmergency" name="engineVoltageEmergency"
+                            class="simpleArrowSelect voltage" ng-required="engineModel.enginesEmergencySpare > 0">
                         <option selected="selected">277v</option>
                         <option>200v-250v</option>
                     </select>
                 </div>
 
                 <div class="engineSelectRow">
-                    <label ng-class="{disabled:engineModel.enginesStandard <= 0}">Standard Power Cord</label>
-                    <select ng-disabled="(engineModel.enginesStandard <= 0 || disableStandardCord)" ng-model="engineModel.cordStandard" name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesStandard > 0" ng-options="cord for cord in cordOptions">
+                    <label ng-class="{disabled:engineModel.enginesStandardSpare <= 0}">Standard Power Cord</label>
+                    <select ng-disabled="(engineModel.enginesStandardSpare <= 0 || disableStandardCord)" ng-model="engineModel.cordStandard" name="engineCordStandard"
+                            class="simpleArrowSelect cord" ng-required="engineModel.enginesStandardSpare > 0" ng-options="cord for cord in cordOptions">
                         <option value="">choose cord</option>
                     </select>
                 </div>
 
                 <div class="engineSelectRow">
-                    <label ng-class="{disabled:engineModel.enginesEmergency <= 0}">Emergency Power Cord</label>
-                    <select ng-disabled="engineModel.enginesEmergency <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
+                    <label ng-class="{disabled:engineModel.enginesEmergencySpare <= 0}">Emergency Power Cord</label>
+                    <select ng-disabled="engineModel.enginesEmergencySpare <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
                             name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergency > 0" ng-options="cord for cord in cordOptions">
+                            class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergencySpare > 0" ng-options="cord for cord in cordOptions">
                         <option value="">choose cord</option>
                     </select>
                 </div>
