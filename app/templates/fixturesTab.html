@@ -1,13 +1,13 @@
 <form class="fixtureForm" ng-controller="fixtureFormController" name="fixtureTabForm">
     <div class="row-fluid fixturesSection">
         <div id="sectionOne" class="span4">
-            <ng-include src="'templates/one.html'"/>
+            <ng-include src="'templates/one.html?timestamp=@@timestamp'"/>
         </div>
         <div id="sectionTwo" class="span4">
-            <ng-include src="'templates/two.html'"/>
+            <ng-include src="'templates/two.html?timestamp=@@timestamp'"/>
         </div>
         <div id="sectionThree" class="span4">
-            <ng-include src="'templates/three.html'"/>
+            <ng-include src="'templates/three.html?timestamp=@@timestamp'"/>
         </div>
     </div>
 </form>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="fixtureLineContainer">
-    <ng-include src="'templates/fixtureLine.html'"/>
+    <ng-include src="'templates/fixtureLine.html?timestamp=@@timestamp'"/>
 </div>
 
 

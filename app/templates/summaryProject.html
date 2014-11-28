@@ -1,4 +1,4 @@
-<a href="" ng-click="selectSummary('menu')"><- Back to summary</a>
+<a href="" ng-click="selectSummary('menu')">Back to summary</a>
 <div class="fixtureOuterHeader">
     <div class="fixtureHeaderContainer">
         <div class="fixtureHeaderIcon" ng-click="print()"></div>
@@ -8,10 +8,10 @@
     <div class="fixtureSubHeader">Project Information</div>
 </div>
 <div>
-    <ng-include src="'templates/summaryProjectInfo.html'"/>
+    <ng-include src="'templates/summaryProjectInfo.html?timestamp=@@timestamp'"/>
 </div>
 <div class="summaryProjectHeader">Project Worksheet</div>
 
 
-<ng-include src="'templates/summaryProjectDetail.html'"/>
+<ng-include src="'templates/summaryProjectDetail.html?timestamp=@@timestamp'"/>
 

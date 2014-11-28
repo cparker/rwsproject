@@ -85,38 +85,38 @@
 
     <div ng-class="{blur:isLoggedIn==false}" class="tab-content">
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('1')}" id="1">
-            <ng-include src="'templates/projectInfoTab.html'"/>
+            <ng-include src="'templates/projectInfoTab.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('2')}" id="2">
-            <ng-include src="'templates/fixturesTab.html'"/>
+            <ng-include src="'templates/fixturesTab.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('3')}" id="3">
-            <ng-include src="'templates/controlTab.html'"/>
+            <ng-include src="'templates/controlTab.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('4')}" id="4">
-            <ng-include src="'templates/enginesTab.html'"/>
+            <ng-include src="'templates/enginesTab.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('5')}" id="5">
-            <ng-include src="'templates/emergencyLightingTab.html'"/>
+            <ng-include src="'templates/emergencyLightingTab.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('6')}" id="6">
-            <ng-include src="'templates/spares.html'"/>
+            <ng-include src="'templates/spares.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('7')}" id="7">
-            <ng-include src="'templates/exclusions.html'"/>
+            <ng-include src="'templates/exclusions.html?timestamp=@@timestamp'"/>
         </div>
 
         <div class="tab-pane" ng-class="{active:tabs.isTabActive('8')}" id="8">
-            <ng-include src="'templates/summary.html'"/>
+            <ng-include src="'templates/summary.html?timestamp=@@timestamp'"/>
         </div>
 
     </div>
-    <ng-include src="'templates/accessories.html'"></ng-include>
-    <ng-include src="'templates/notes.html'"></ng-include>
+    <ng-include src="'templates/accessories.html?timestamp=@@timestamp'"></ng-include>
+    <ng-include src="'templates/notes.html?timestamp=@@timestamp'"></ng-include>
 </div>

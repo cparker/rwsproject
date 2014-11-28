@@ -1,17 +1,17 @@
 <div class="summaryPanel" ng-controller="summaryController">
     <div class="summaryMenu" ng-show="activeSummarySection == 'menu'">
-        <ng-include src="'templates/summaryMenu.html'"/>
+        <ng-include src="'templates/summaryMenu.html?timestamp=@@timestamp'"/>
     </div>
 
     <div class="summaryFixture" ng-show="activeSummarySection == 'fixture'">
-        <ng-include src="'templates/summaryFixture.html'"/>
+        <ng-include src="'templates/summaryFixture.html?timestamp=@@timestamp'"/>
     </div>
 
     <div class="summaryBOM" ng-show="activeSummarySection == 'bom'">
-        <ng-include src="'templates/summaryBOM.html'"/>
+        <ng-include src="'templates/summaryBOM.html?timestamp=@@timestamp'"/>
     </div>
 
     <div class="summaryProject" ng-show="activeSummarySection == 'project'">
-        <ng-include src="'templates/summaryProject.html'"/>
+        <ng-include src="'templates/summaryProject.html?timestamp=@@timestamp'"/>
     </div>
 </div>
