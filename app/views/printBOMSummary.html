@@ -1,0 +1,26 @@
+<div class="printSummary">
+
+    <div class="topButtons">
+        <div class="topButton backbutton" ng-click="goSummary()"></div>
+        <div class="topButton printButton" ng-click="print()"></div>
+    </div>
+
+    <div class="printSummaryFixtureHeader">Project Information</div>
+    <div class="summaryPanel">
+        <ng-include src="'templates/summaryProjectInfo.html?timestamp=@@timestamp'"/>
+    </div>
+    <div class="printSummarySpacer"></div>
+    <div class="printSummaryFixtureHeader">Bill Of Materials</div>
+    <div class="summaryBOM"><ng-include src="'templates/summaryBOMDetail.html?timestamp=@@timestamp'"></ng-include></div>
+
+    <p class="emergencyDisclaimer">
+        These calculation/configuration/design tools are provided for guidance purposes only “as is” and should not be used or in any way relied upon without
+        consultation with and supervision of experienced personnel and a local CommScope representative. CommScope makes no representations or warranties of any
+        kind, express or implied, and specifically disclaims and excludes any representation or warranty of merchantability, quality, content, completeness,
+        suitability, adequacy, accuracy, noninfringement or fitness for a particular purpose and any representation arising by usage of trade, course of dealing
+        or course of performance. CommScope is under no obligation to issue any upgrades, update specifications or notify users of this tool that changes have
+        been made. The user of these tools assumes all risks associated with such use, and CommScope hereby disclaims any and all liability for damages of any
+        kind resulting from such use.
+    </p>
+
+</div>

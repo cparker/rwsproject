@@ -1,5 +1,11 @@
 <!--  FIXTURE GATEWAYS -->
 <div class="bomHeader">Fixture Gateways, Sensors and Accessories</div>
+<div class="bomSectionHeader">
+  <div class="qty">Qty</div>
+  <div class="item">Desc</div>
+  <div class="partNum">Part #</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
 <div class="bomRow" ng-repeat="fixture in sensorThreeFixtures">
   <div class="qty">{{parseInt(fixture.controlQuantity) + fixture.spareControlQuantity}}</div>
   <div class="item">Sensor 3</div>
@@ -24,6 +30,12 @@
 
 <!--  CONTROLS AND ENGINES -->
 <div class="bomHeader">Controls and Engines</div>
+<div class="bomSectionHeader">
+  <div class="qty">Qty</div>
+  <div class="item">Desc</div>
+  <div class="partNum">Part #</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
 
 <div ng-hide="dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers <= 0" class="bomRow">
   <div class="qty">{{dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers}}</div>
@@ -64,6 +76,12 @@
 
 <!--  EMERGENCY -->
 <div class="bomHeader">Emergency Lighting Controls</div>
+<div class="bomSectionHeader">
+  <div class="qty">Qty</div>
+  <div class="item">Desc</div>
+  <div class="partNum">Part #</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
 <div ng-hide="emergencyRelayCount + dataService.sparesModel.emergencySpareControls <= 0" class="bomRow">
   <div class="qty">{{emergencyRelayCount + dataService.sparesModel.emergencySpareControls}}</div>
   <div class="item">Outage Gateway & Relay - 10A SPDT, 120-277VAC</div>
