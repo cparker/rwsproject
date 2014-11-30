@@ -153,7 +153,7 @@ angular.module('rwsprojectApp')
       });
 
       $scope.$watch('sparesModel.spareSharingCables', function(newVal, oldVal) {
-        $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + $scope.sparesModel.spareSharingCables;
+        $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + ($scope.sparesModel.spareSharingCables || 0);
       });
 
     }]);
