@@ -65,6 +65,8 @@ angular.module('rwsprojectApp')
             fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity)
         }, 0);
 
+        $scope.roundedTotalChannels = Math.ceil($scope.totalChannels);
+
         if (dataService.engineModel.voltageStandard) {
           $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
         }
@@ -125,6 +127,8 @@ angular.module('rwsprojectApp')
         $scope.sparesModel['200v-250v'] = $scope.sparesModel['200v-250v'] ? $scope.sparesModel['200v-250v'] : 0;
         $scope.sparesModel['277v'] = $scope.sparesModel['277v'] ? $scope.sparesModel['277v'] : 0;
 
+        $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + $scope.sparesModel.spareSharingCables;
+
 
       });
 
@@ -148,5 +152,8 @@ angular.module('rwsprojectApp')
 
       });
 
-    }])
-;
+      $scope.$watch('sparesModel.spareSharingCables', function(newVal, oldVal) {
+        $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + $scope.sparesModel.spareSharingCables;
+      });
+
+    }]);
