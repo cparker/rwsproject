@@ -32,6 +32,13 @@
   <div class="bomNotes">&nbsp;</div>
 </div>
 
+<div ng-hide="dataService.controlModel.dimmerPlates <= 0" class="bomRow">
+  <div class="qty">{{dataService.controlModel.dimmerPlates}}</div>
+  <div class="item">Dimmer Adaptor Plates</div>
+  <div class="partNum">RD-1G-WALLMOUNT</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
+
 <div ng-hide="dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables <= 0" class="bomRow">
   <div class="qty">{{dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables}}</div>
   <div class="item">Cable Sharing Splitter - SP12A (2 per horizontal run)</div>
