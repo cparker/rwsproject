@@ -97,7 +97,7 @@ angular.module('rwsprojectApp')
         });
 
         // the master list is the tally of all accessories for all fixtures
-        $scope.masterAccessoryList = _.pairs(_.reduce(dataService.fixtureLines, function (masterAcc, fixture) {
+        $rootScope.masterAccessoryList = _.pairs(_.reduce(dataService.fixtureLines, function (masterAcc, fixture) {
           var accessoriesByPartNumber = _.pairs(_.groupBy(fixture.selectedAccessories, function (acc) {
             return acc.accessory.part_number;
           }));
