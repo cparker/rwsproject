@@ -177,6 +177,7 @@
 .summaryPanel .fixtureBottomLine {
     display: flex;
     flex-direction: row;
+  border-bottom: 1px solid lightgray;
 }
 
 .fixtureBottomLine div {
@@ -208,7 +209,7 @@
 .summaryBOM .bomRow {
     display: flex;
     flex-direction: row;
-    max-height: 20px;
+    border-bottom: 1px solid lightgray;
 }
 
 .summaryBOM .bomRow .qty {
