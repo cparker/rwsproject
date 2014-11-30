@@ -130,6 +130,18 @@ var mockAccessories = {
     {
       "description": "Downlight Splitter (DL12A)",
       "part_number": "760164233"
+    },
+    {
+      "description": "Sensor2",
+      "part_number": "RS-2G"
+    },
+    {
+      "description": "Sensor2 LS",
+      "part_number": "RS-2G-LS"
+    },
+    {
+      "description": "Sensor2 HS",
+      "part_number": "RS-2G-HS"
     }
   ]
 };
