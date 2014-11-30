@@ -18,21 +18,21 @@
 <!--  CONTROLS AND ENGINES -->
 <div class="bomHeader">Controls and Engines</div>
 
-<div class="bomRow">
+<div ng-hide="dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers <= 0" class="bomRow">
   <div class="qty">{{dataService.controlModel.sceneControllers + dataService.sparesModel.sceneControllers}}</div>
   <div class="item">RW Scene Controller, White. 7 Button</div>
   <div class="partNum">DIM-2-4SW</div>
   <div class="bomNotes">{{dataService.controlModel.notes}}</div>
 </div>
 
-<div class="bomRow">
+<div ng-hide="dataService.controlModel.dimmers + dataService.sparesModel.dimmers <= 0" class="bomRow">
   <div class="qty">{{dataService.controlModel.dimmers + dataService.sparesModel.dimmers}}</div>
   <div class="item">RW Dimmer, White</div>
   <div class="partNum">RD-1G-W</div>
   <div class="bomNotes">&nbsp;</div>
 </div>
 
-<div class="bomRow">
+<div ng-hide="dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables <= 0" class="bomRow">
   <div class="qty">{{dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables}}</div>
   <div class="item">Cable Sharing Splitter - SP12A (2 per horizontal run)</div>
   <div class="partNum">760191841</div>
@@ -40,7 +40,7 @@
 </div>
 
 <!-- ENGINES GO HERE-->
-<div class="bomRow">
+<div ng-hide="dataService.engineGrandTotal <= 0" class="bomRow">
   <div class="qty">{{dataService.engineGrandTotal()}}</div>
   <div class="item">Engines</div>
   <div class="partNum">&nbsp;</div>
@@ -50,14 +50,14 @@
 
 <!--  EMERGENCY -->
 <div class="bomHeader">Emergency Lighting Controls</div>
-<div class="bomRow">
+<div ng-hide="emergencyRelayCount + dataService.sparesModel.emergencySpareControls <= 0" class="bomRow">
   <div class="qty">{{emergencyRelayCount + dataService.sparesModel.emergencySpareControls}}</div>
   <div class="item">Outage Gateway & Relay - 10A SPDT, 120-277VAC</div>
   <div class="partNum">RG-2G-OUTAGE-KT</div>
   <div class="bomNotes">&nbsp;</div>
 </div>
 
-<div class="bomRow">
+<div ng-hide="emergencyGatewayCount <= 0" class="bomRow">
   <div class="qty">{{emergencyGatewayCount}}</div>
   <div class="item">Emergency Lighting Gateway</div>
   <div class="partNum">RG-2G-ELCC-KT</div>
