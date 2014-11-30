@@ -29,7 +29,7 @@ import logging
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
 baseFileDir = '/bigfs/files/'
-app.config['PERMANENT_SESSION_LIFETIME'] = 30 * 60
+app.config['PERMANENT_SESSION_LIFETIME'] = 120 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
 app.config['SESSION_PATH'] = '/tmp/sessions'
 app.config['SECRET_KEY'] = os.urandom(24)

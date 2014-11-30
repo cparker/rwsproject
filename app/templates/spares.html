@@ -80,10 +80,10 @@
             <li>
                 <div class="spareLine">
                     <div class="firstItem">Cable sharing adaptor</div>
-                    <div class="currentQty">{{totalChannels}}</div>
+                    <div class="currentQty">{{roundedTotalChannels}}</div>
                     <div class="spareQty"><input required name="spareCableShare" placeholder="0" type="number" min="0"
                                                  ng-model="sparesModel.spareSharingCables"/></div>
-                    <div class="total">{{totalChannels + sparesModel.spareSharingCables}}</div>
+                    <div class="total">{{sparesModel.cableSharingAdaptors}}</div>
                 </div>
             </li>
 
