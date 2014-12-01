@@ -177,6 +177,7 @@
 .summaryPanel .fixtureBottomLine {
     display: flex;
     flex-direction: row;
+  border-bottom: 1px solid lightgray;
 }
 
 .fixtureBottomLine div {
@@ -205,25 +206,32 @@
     background: #2C95DD;
 }
 
+.summaryBOM .bomSectionHeader {
+  color: white;
+  background: #2C95DD;
+  display: flex;
+  flex-direction: row;
+}
+
 .summaryBOM .bomRow {
     display: flex;
     flex-direction: row;
-    max-height: 20px;
+    border-bottom: 1px solid lightgray;
 }
 
-.summaryBOM .bomRow .qty {
+.summaryBOM .qty {
     flex: 1
 }
 
-.summaryBOM .bomRow .item {
+.summaryBOM .item {
     flex: 5
 }
 
-.summaryBOM .bomRow .partNum {
+.summaryBOM .partNum {
     flex: 4.2;
 }
 
-.summaryBOM .bomRow .bomNotes {
+.summaryBOM .bomNotes {
     flex: 3;
     text-overflow: ellipsis;
     overflow: hidden;

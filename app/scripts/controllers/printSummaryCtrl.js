@@ -6,7 +6,7 @@ angular.module('rwsprojectApp')
 
             $scope.goSummary = function () {
                 $rootScope.printSummaryActive = false;
-                $window.location = '/#/home/8';
+                $window.location = '#/home/8';
             };
 
             $scope.emergencyRelayCount = dataService.emergencyOption == 1 ? 1 : 0;

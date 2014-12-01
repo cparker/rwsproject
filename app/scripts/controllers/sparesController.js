@@ -3,8 +3,10 @@ angular.module('rwsprojectApp')
     function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
       //todo REMOVE THIS
-
-      $scope.parseInt = parseInt;
+      $scope.spareFixtureControlPct = 0.05;
+      $scope.spareDimmerPct = 0.01;
+      $scope.spareAccessoryPct = 0.01;
+      $scope.accessorySparesChanged = false;
 
 
       // when we switch to the spares tab, we need to recompute some things
@@ -33,12 +35,12 @@ angular.module('rwsprojectApp')
           .filter(function (fix) {
             return fix.controlMethod.name === "Sensor 3";
           })
-          .map(function (fix) {
+          .map(function (fix, key, list) {
             if (!fix.spareControlQuantity) {
               if ($scope.isFixtureABirchwoodEight(fix)) {
                 fix.spareControlQuantity = parseInt(fix.controlQuantity);
               } else {
-                fix.spareControlQuantity = 0;
+                fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
               }
             }
             return fix;
@@ -51,9 +53,9 @@ angular.module('rwsprojectApp')
           .filter(function (fix) {
             return fix.controlMethod.name.toLowerCase().indexOf('led gateway') != -1;
           })
-          .map(function (fix) {
+          .map(function (fix, key, list) {
             if (!fix.spareControlQuantity) {
-              fix.spareControlQuantity = 0;
+              fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
             }
             return fix;
           })
@@ -97,7 +99,7 @@ angular.module('rwsprojectApp')
         });
 
         // the master list is the tally of all accessories for all fixtures
-        $scope.masterAccessoryList = _.pairs(_.reduce(dataService.fixtureLines, function (masterAcc, fixture) {
+        $rootScope.masterAccessoryList = _.pairs(_.reduce(dataService.fixtureLines, function (masterAcc, fixture) {
           var accessoriesByPartNumber = _.pairs(_.groupBy(fixture.selectedAccessories, function (acc) {
             return acc.accessory.part_number;
           }));
@@ -118,17 +120,31 @@ angular.module('rwsprojectApp')
 
         }, {}));
 
-        // now default spares to 0
-        $scope.sparesModel.dimmers = $scope.sparesModel.dimmers ? $scope.sparesModel.dimmers : 0;
-        $scope.sparesModel.sceneControllers = $scope.sparesModel.sceneControllers ? $scope.sparesModel.sceneControllers : 0;
-        $scope.sparesModel.emergencySpareControls = $scope.sparesModel.emergencySpareControls ? $scope.sparesModel.emergencySpareControls : 0;
-        $scope.sparesModel.spareSharingCables = $scope.sparesModel.spareSharingCables ? $scope.sparesModel.spareSharingCables : 0;
+        $scope.masterAccessoriesByDesc = {};
+        _.each($rootScope.masterAccessoryList, function (acc) {
+          $scope.masterAccessoriesByDesc[acc[1].desc] = acc[1].count;
+        });
+
+        // now default spares to computed values based on percentages
+        $scope.sparesModel.dimmers = $scope.sparesModel.dimmers ? $scope.sparesModel.dimmers : Math.ceil(dataService.controlModel.dimmers * $scope.spareDimmerPct);
+        $scope.sparesModel.sceneControllers = $scope.sparesModel.sceneControllers ? $scope.sparesModel.sceneControllers : Math.ceil(dataService.controlModel.sceneControllers * $scope.spareDimmerPct);
+        $scope.sparesModel.emergencySpareControls = $scope.sparesModel.emergencySpareControls ? $scope.sparesModel.emergencySpareControls : 1;
+        $scope.sparesModel.spareSharingCables = $scope.sparesModel.spareSharingCables ? $scope.sparesModel.spareSharingCables : 1;
         $scope.sparesModel.directorSpares = $scope.sparesModel.directorSpares ? $scope.sparesModel.directorSpares : 0;
         $scope.sparesModel['200v-250v'] = $scope.sparesModel['200v-250v'] ? $scope.sparesModel['200v-250v'] : 0;
         $scope.sparesModel['277v'] = $scope.sparesModel['277v'] ? $scope.sparesModel['277v'] : 0;
-
         $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + $scope.sparesModel.spareSharingCables;
 
+        console.log('about to iterate over sparesModel.accessorySpareTally ' + JSON.stringify($scope.sparesModel.accessorySpareTally));
+        if ($scope.accessorySparesChanged == false) {
+          _.each($scope.sparesModel.accessorySpareTally, function (v,k) {
+            $scope.sparesModel.accessorySpareTally[k] = Math.ceil($scope.masterAccessoriesByDesc[k] * $scope.spareAccessoryPct);
+          });
+        }
+
+        $scope.$watch('sparesModel.spareSharingCables', function (newVal, oldVal) {
+          $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + ($scope.sparesModel.spareSharingCables || 0);
+        });
 
       });
 
@@ -150,10 +166,13 @@ angular.module('rwsprojectApp')
           }
         }
 
+
       });
 
-      $scope.$watch('sparesModel.spareSharingCables', function(newVal, oldVal) {
-        $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + ($scope.sparesModel.spareSharingCables || 0);
-      });
+
+      // as soon as a user adjusts accessory spares, we no longer compute percentage defaults
+      $scope.adjustAccessorySpares = function () {
+        $scope.accessorySparesChanged = true;
+      };
 
     }]);

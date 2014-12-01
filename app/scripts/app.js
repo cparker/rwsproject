@@ -55,6 +55,16 @@ theApp
         controller: 'printSummaryCtrl',
         reloadOnSearch: false
       })
+      .when('/printBOMSummary', {
+        templateUrl: 'views/printBOMSummary.html',
+        controller: 'printSummaryCtrl',
+        reloadOnSearch: false
+      })
+      .when('/printFixture', {
+        templateUrl: 'views/printFixture.html',
+        controller: 'printSummaryCtrl',
+        reloadOnSearch: false
+      })
       .otherwise({
         redirectTo: '/'
       });

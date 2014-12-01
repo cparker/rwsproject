@@ -150,8 +150,15 @@
                 <div class="spareLine">
                     <div class="firstItem">{{acc[1].desc}}</div>
                     <div class="currentQty">{{acc[1].count}}</div>
-                    <div class="spareQty"><input placeholder="0" required name="spareAccessory{{acc[0]}}"
-                                                 ng-model="sparesModel.accessorySpareTally[acc[1].desc]" type="number" min="0"/></div>
+                    <div class="spareQty">
+                      <input placeholder="0" required
+                             name="spareAccessory{{acc[0]}}"
+                             ng-model="sparesModel.accessorySpareTally[acc[1].desc]"
+                             type="number"
+                             min="0"
+                             ng-change="adjustAccessorySpares()"
+                        />
+                    </div>
                     <div class="total">{{acc[1].count + sparesModel.accessorySpareTally[acc[1].desc]}}</div>
                 </div>
             </li>
