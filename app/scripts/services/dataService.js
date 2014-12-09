@@ -98,32 +98,39 @@ angular.module('rwsprojectApp')
         return $http.get('/server/getFixtureTypes?regionId=' + regionId);
       },
 
-      fetchMountTypes: function (regionId, fixtureTypeId) {
-        return $http.get('/server/getMountTypes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId);
+      fetchManufacturers: function (regionId, fixtureTypeId) {
+        return $http.get('/server/getManufacturers?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId);
       },
 
-      fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId) {
-        return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId);
+      fetchMountTypes: function (regionId, fixtureTypeId, manufacturerId) {
+        return $http.get('/server/getMountTypes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&manufacturerId=' + manufacturerId);
       },
 
-      fetchDistributions: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId) {
-        return $http.get('/server/getDistributions?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId);
+      fetchFixtureSizes: function (regionId, fixtureTypeId, mountTypeId, manufacturerId) {
+        return $http.get('/server/getFixtureSizes?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId +
+        '&manufacturerId=' + manufacturerId);
       },
 
-      fetchLumens: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId) {
-        return $http.get('/server/getLumens?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId);
+      fetchDistributions: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, manufacturerId) {
+        return $http.get('/server/getDistributions?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId +
+        '&fixtureSizeId=' + fixtureSizeId + '&manufacturerId=' + manufacturerId);
       },
 
-      fetchChannels: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId) {
-        return $http.get('/server/getChannels?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId);
+      fetchLumens: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, manufacturerId) {
+        return $http.get('/server/getLumens?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId +
+        '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&manufacturerId=' + manufacturerId);
       },
 
-      fetchManufacturers: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId) {
-        return $http.get('/server/getManufacturers?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId);
+      fetchChannels: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, manufacturerId) {
+        return $http.get('/server/getChannels?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId +
+        '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&manufacturerId=' + manufacturerId);
       },
+
 
       fetchControlMethods: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId) {
-        return $http.get('/server/getControlMethods?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId + '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' + channelsId + '&manufacturerId=' + manufacturerId);
+        return $http.get('/server/getControlMethods?regionId=' + regionId + '&fixtureTypeId=' + fixtureTypeId + '&mountTypeId=' + mountTypeId +
+        '&fixtureSizeId=' + fixtureSizeId + '&distributionId=' + distributionId + '&lumensId=' + lumensId + '&channelsId=' +
+        channelsId + '&manufacturerId=' + manufacturerId);
       },
 
       getPartInfo: function (regionId, fixtureTypeId, mountTypeId, fixtureSizeId, distributionId, lumensId, channelsId, manufacturerId, controlMethodId) {

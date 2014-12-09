@@ -1,32 +1,43 @@
 <div id="fixtureSectionOne">
 
-    <div class="circleNumber">1</div>
+  <div class="circleNumber">1</div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="fixtureID">Fixture ID</label>
-        <input ng-model="fixtureForm.fixtureId" required id="fixtureID" type="text" placeholder="0"/>
-    </div>
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="fixtureID">Fixture ID</label>
+    <input ng-model="fixtureForm.fixtureId" required id="fixtureID" type="text" placeholder="0"/>
+  </div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="fixtureType">Fixture type</label>
-        <select required name="fixtureType" ng-change="changeFixtureType()" ng-model="fixtureForm.fixtureType" ng-options="fixture.name for fixture in fixtureForm.dropDownChoices.fixtureTypes track by fixture.id" class="simpleArrowSelect" id="fixtureType">
-            <option value="">choose fixture</option>
-        </select>
-    </div>
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="fixtureType">Fixture type</label>
+    <select required name="fixtureType" ng-change="changeFixtureType()" ng-model="fixtureForm.fixtureType"
+            ng-options="fixture.name for fixture in fixtureForm.dropDownChoices.fixtureTypes track by fixture.id" class="simpleArrowSelect" id="fixtureType">
+      <option value="">choose fixture</option>
+    </select>
+  </div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="mountType">Mount type</label>
-        <select required name="mountType" ng-change="changeMountType()" ng-model="fixtureForm.mountType" ng-options="mount.name for mount in fixtureForm.dropDownChoices.mountTypes track by mount.id" class="simpleArrowSelect" id="mountType">
-            <option value="">choose mount</option>
-        </select>
-    </div>
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="manufacturer">Manufacturer</label>
+    <select name="manufacturer" ng-change="changeManufacturers()" ng-options="man.name for man in fixtureForm.dropDownChoices.manufacturers track by man.id"
+            ng-model="fixtureForm.manufacturer" required class="simpleArrowSelect" id="manufacturer">
+      <option value="">select manufacturer</option>
+    </select>
+  </div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="size">Size</label>
-        <select required name="fixtureSize" ng-change="changeFixtureSize()" ng-model="fixtureForm.fixtureSize" ng-options="size.name for size in fixtureForm.dropDownChoices.fixtureSizes track by size.id" class="simpleArrowSelect" id="size">
-            <option value="">choose size</option>
-        </select>
-    </div>
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="mountType">Mount type</label>
+    <select required name="mountType" ng-change="changeMountType()" ng-model="fixtureForm.mountType"
+            ng-options="mount.name for mount in fixtureForm.dropDownChoices.mountTypes track by mount.id" class="simpleArrowSelect" id="mountType">
+      <option value="">choose mount</option>
+    </select>
+  </div>
+
+  <div class="fixtureFormLine">
+    <label class="fixtureLabel" for="size">Size</label>
+    <select required name="fixtureSize" ng-change="changeFixtureSize()" ng-model="fixtureForm.fixtureSize"
+            ng-options="size.name for size in fixtureForm.dropDownChoices.fixtureSizes track by size.id" class="simpleArrowSelect" id="size">
+      <option value="">choose size</option>
+    </select>
+  </div>
 
 
 </div>

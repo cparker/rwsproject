@@ -64,14 +64,14 @@ angular.module('rwsprojectApp')
 
       $scope.changeFixtureType = function () {
 
-        dataService.fetchMountTypes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)
-          .success(function (mounts) {
-            $rootScope.fixtureForm.dropDownChoices.mountTypes = mounts.payload;
+        dataService.fetchManufacturers($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)
+          .success(function (man) {
+            $rootScope.fixtureForm.dropDownChoices.manufacturers = man.payload;
 
-            // if there is only one mount type, auto select it
-            if (mounts.payload.length == 1) {
-              $rootScope.fixtureForm.mountType = mounts.payload[0];
-              $scope.changeMountType();
+            // if there is only one, auto select it
+            if (man.payload.length == 1) {
+              $rootScope.fixtureForm.manufacturer = man.payload[0];
+              $scope.changeManufacturers();
             }
           })
           .error(function (er) {
@@ -81,7 +81,8 @@ angular.module('rwsprojectApp')
 
       $scope.changeMountType = function () {
 
-        dataService.fetchFixtureSizes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id)
+        dataService.fetchFixtureSizes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
+          $rootScope.fixtureForm.manufacturer.id)
           .success(function (sizes) {
             $rootScope.fixtureForm.dropDownChoices.fixtureSizes = sizes.payload;
 
@@ -98,7 +99,8 @@ angular.module('rwsprojectApp')
 
       $scope.changeFixtureSize = function () {
 
-        dataService.fetchDistributions($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id, $rootScope.fixtureForm.fixtureSize.id)
+        dataService.fetchDistributions($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id,
+          $rootScope.fixtureForm.mountType.id, $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.manufacturer.id)
           .success(function (distributions) {
             $rootScope.fixtureForm.dropDownChoices.distributions = distributions.payload;
 
@@ -118,7 +120,7 @@ angular.module('rwsprojectApp')
       $scope.changeDistribution = function () {
 
         dataService.fetchLumens($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
-          $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id)
+          $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.manufacturer.id)
           .success(function (lumens) {
             $rootScope.fixtureForm.dropDownChoices.lumens = lumens.payload;
 
@@ -136,7 +138,7 @@ angular.module('rwsprojectApp')
 
       $scope.changeLumens = function () {
         dataService.fetchChannels($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
-          $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id)
+          $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.manufacturer.id)
           .success(function (channels) {
             $rootScope.fixtureForm.dropDownChoices.channels = channels.payload;
 
@@ -153,23 +155,6 @@ angular.module('rwsprojectApp')
       };
 
       $scope.changeChannels = function () {
-        dataService.fetchManufacturers($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
-          $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id)
-          .success(function (manufacturers) {
-            $rootScope.fixtureForm.dropDownChoices.manufacturers = manufacturers.payload;
-
-            // auto select
-            if (manufacturers.payload.length == 1) {
-              $rootScope.fixtureForm.manufacturer = manufacturers.payload[0];
-              $scope.changeManufacturers();
-            }
-          })
-          .error(function (er) {
-            console.log(er);
-          })
-      };
-
-      $scope.changeManufacturers = function () {
         dataService.fetchControlMethods($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
           $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id,
           $rootScope.fixtureForm.manufacturer.id)
@@ -180,6 +165,22 @@ angular.module('rwsprojectApp')
             if (methods.payload.length == 1) {
               $rootScope.fixtureForm.controlMethod = methods.payload[0];
               $scope.changeControlMethod();
+            }
+          })
+          .error(function (er) {
+            console.log(er);
+          })
+      };
+
+      $scope.changeManufacturers = function () {
+        dataService.fetchMountTypes($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.manufacturer.id)
+          .success(function (mounts) {
+            $rootScope.fixtureForm.dropDownChoices.mountTypes = mounts.payload;
+
+            // auto select
+            if (mounts.payload.length == 1) {
+              $rootScope.fixtureForm.mountType = mounts.payload[0];
+              $scope.changeMountType();
             }
           })
           .error(function (er) {
