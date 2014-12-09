@@ -7,6 +7,9 @@ angular.module('rwsprojectApp')
         // defaults for non required fields
         $scope.controlModel = $scope.controlModel ? $scope.controlModel : {};
 
+        // reload from the data service if we've been here before
+        $scope.controlModel = dataService.controlModel || $scope.controlModel;
+
         $scope.controlModel.sceneControllers = $scope.controlModel.sceneControllers || 0;
         $scope.controlModel.dimmers = $scope.controlModel.dimmers || 0;
         $scope.controlModel.spdtSwitches = $scope.controlModel.spdtSwitches || 0;

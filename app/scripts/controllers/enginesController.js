@@ -27,6 +27,8 @@ angular.module('rwsprojectApp')
 
       $rootScope.$on('entering4', function (event, fromTab, toTab) {
 
+        $scope.engineModel = dataService.engineModel || $scope.engineModel;
+
         $scope.$watch('engineModel.voltageStandard', function (newVal, oldVal) {
           if (newVal == '277v') {
             $scope.disableStandardCord = true;

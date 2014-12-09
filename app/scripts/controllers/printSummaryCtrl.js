@@ -9,7 +9,7 @@ angular.module('rwsprojectApp')
                 $window.location = '#/home/8';
             };
 
-            $scope.emergencyRelayCount = dataService.emergencyOption == 1 ? 1 + dataService.sparesModel.emergencySpareControls : 0;
+            $scope.emergencyRelayCount = dataService.emergencyOption == 1 ? 1 + (dataService.sparesModel.emergencySpareControls || 0) : 0;
             $scope.emergencyGatewayCount = dataService.emergencyOption == 2 ? 1 : 0;
 
             $scope.sensorThreeFixtures = _.filter(dataService.fixtureLines, function (fix) {
