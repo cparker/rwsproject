@@ -22,12 +22,6 @@
         </select>
     </div>
 
-    <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="manufacturer">Manufacturer</label>
-        <select name="manufacturer" ng-change="changeManufacturers()" ng-options="man.name for man in fixtureForm.dropDownChoices.manufacturers track by man.id" ng-model="fixtureForm.manufacturer" required class="simpleArrowSelect" id="manufacturer">
-            <option value="">select manufacturer</option>
-        </select>
-    </div>
 
     <div class="fixtureFormLine">
         <label class="fixtureLabel" for="standardQuantity">Standard quantity</label>
