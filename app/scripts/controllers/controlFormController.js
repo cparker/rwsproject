@@ -10,6 +10,8 @@ angular.module('rwsprojectApp')
         // reload from the data service if we've been here before
         $scope.controlModel = dataService.controlModel || $scope.controlModel;
 
+        $scope.controlModel.useSharedCable = $scope.controlModel.useSharedCable || false;
+
         $scope.controlModel.sceneControllers = $scope.controlModel.sceneControllers || 0;
         $scope.controlModel.dimmers = $scope.controlModel.dimmers || 0;
         $scope.controlModel.spdtSwitches = $scope.controlModel.spdtSwitches || 0;
