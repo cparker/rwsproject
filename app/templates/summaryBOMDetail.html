@@ -58,8 +58,8 @@
   <div class="bomNotes">&nbsp;</div>
 </div>
 
-<div ng-hide="dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables <= 0" class="bomRow">
-  <div class="qty">{{dataService.sparesModel.spareSharingCables + dataService.controlModel.totalSharingCables}}</div>
+<div ng-hide="cableSharingAdaptorCount <= 0" class="bomRow">
+  <div class="qty">{{cableSharingAdaptorCount}}</div>
   <div class="item">Cable Sharing Splitter - SP12A (2 per horizontal run)</div>
   <div class="partNum">760191841</div>
   <div class="bomNotes">&nbsp;</div>
@@ -82,8 +82,8 @@
   <div class="partNum">Part #</div>
   <div class="bomNotes">&nbsp;</div>
 </div>
-<div ng-hide="emergencyRelayCount + dataService.sparesModel.emergencySpareControls <= 0" class="bomRow">
-  <div class="qty">{{emergencyRelayCount + dataService.sparesModel.emergencySpareControls}}</div>
+<div ng-hide="emergencyRelayCount <= 0" class="bomRow">
+  <div class="qty">{{emergencyRelayCount}}</div>
   <div class="item">Outage Gateway & Relay - 10A SPDT, 120-277VAC</div>
   <div class="partNum">RG-2G-OUTAGE-KT</div>
   <div class="bomNotes">&nbsp;</div>

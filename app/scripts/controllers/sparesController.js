@@ -15,6 +15,9 @@ angular.module('rwsprojectApp')
         $scope.sparesModel = $scope.sparesModel == undefined ? {} : $scope.sparesModel;
         $scope.engineTotals = $scope.engineTotals == undefined ? {} : $scope.engineTotals;
 
+        $scope.sparesModel = dataService.sparesModel || $scope.sparesModel;
+        $scope.engineTotals = dataService.engineTotals || $scope.engineTotals;
+
         $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
 
         // EXCEPTION: handle birchwood 8' exception.  If the fixture is a birchwood, 8', sensor 3, we need to add a spare
@@ -160,6 +163,7 @@ angular.module('rwsprojectApp')
         } else {
           if ($scope.sparesForm.$valid) {
             dataService.sparesModel = JSON.parse(JSON.stringify($scope.sparesModel));
+            dataService.engineTotals = $scope.engineTotals;
             $rootScope.tabs.activeTab = toTab;
           } else {
             $scope.sparesForm.$setSubmitted();
