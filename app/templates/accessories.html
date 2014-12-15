@@ -3,9 +3,9 @@
     <div class="dialogInner">
 
         <div class="accessoriesItem" ng-repeat="ac in accessories">
-            <label ng-class="{disabled:ac.description.indexOf('Sensor2') == 0}">{{ac.description}}</label>
-            <input ng-disabled="ac.description.indexOf('Sensor2') == 0"
-                   ng-class="{disabled:ac.description.indexOf('Sensor2') == 0}"
+            <label ng-class="{disabled:disableAccessoryChoice(ac.description)}">{{ac.description}}</label>
+            <input ng-disabled="disableAccessoryChoice(ac.description)"
+                   ng-class="{disabled:disableAccessoryChoice(ac.description)}"
                    ng-model="accessoryTally[ac.part_number]"
                    class="accessoriesText" id="{{$index}}" type="number" min="0" placeholder="0"/>
         </div>

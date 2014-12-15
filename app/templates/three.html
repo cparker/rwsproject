@@ -20,21 +20,10 @@
   </div>
 
   <div class="fixtureFormLine">
-    <label ng-class="{disabled:!eightFootBirchwoodSelected}" class="fixtureLabel" for="sensorTwoType">Sensor</label>
-    <select ng-class="{disabled:!eightFootBirchwoodSelected}"
-            ng-required="eightFootBirchwoodSelected"
-            ng-disabled="!eightFootBirchwoodSelected"
-            name="sensorTwoType" ng-options="type.name for type in fixtureForm.dropDownChoices.sensorTwoTypes track by type.id" ng-model="fixtureForm.sensorTwoType"
-            class="simpleArrowSelect" id="sensorTwoType">
-      <option value="">select type</option>
-    </select>
-  </div>
-
-  <div class="fixtureFormLine">
-    <label ng-class="{disabled:sensorQtyDisabled}" class="fixtureLabel"
+    <label class="fixtureLabel"
            for="controlQty">Control Qty</label>
-    <input ng-disabled="sensorQtyDisabled" ng-required="!sensorQtyDisabled"
-           ng-model="fixtureForm.controlQuantity" class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
+    <input ng-model="fixtureForm.controlQuantity"
+           class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
   </div>
 
   <div>

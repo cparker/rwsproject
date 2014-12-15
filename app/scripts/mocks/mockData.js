@@ -278,18 +278,14 @@ var mockFixtureLines = [
       "sensorTypes": [
         {
           "id": 1,
-          "name": "None"
-        },
-        {
-          "id": 2,
           "name": "Normal"
         },
         {
-          "id": 3,
+          "id": 2,
           "name": "Low"
         },
         {
-          "id": 4,
+          "id": 3,
           "name": "High"
         }
       ]
@@ -472,18 +468,14 @@ var mockFixtureLines = [
       "sensorTypes": [
         {
           "id": 1,
-          "name": "None"
-        },
-        {
-          "id": 2,
           "name": "Normal"
         },
         {
-          "id": 3,
+          "id": 2,
           "name": "Low"
         },
         {
-          "id": 4,
+          "id": 3,
           "name": "High"
         }
       ]
@@ -655,18 +647,14 @@ var mockFixtureLines = [
       "sensorTypes": [
         {
           "id": 1,
-          "name": "None"
-        },
-        {
-          "id": 2,
           "name": "Normal"
         },
         {
-          "id": 3,
+          "id": 2,
           "name": "Low"
         },
         {
-          "id": 4,
+          "id": 3,
           "name": "High"
         }
       ]
@@ -837,18 +825,14 @@ var mockFixtureLines = [
       "sensorTypes": [
         {
           "id": 1,
-          "name": "None"
-        },
-        {
-          "id": 2,
           "name": "Normal"
         },
         {
-          "id": 3,
+          "id": 2,
           "name": "Low"
         },
         {
-          "id": 4,
+          "id": 3,
           "name": "High"
         }
       ]

@@ -4,16 +4,21 @@ angular.module('rwsprojectApp')
 
       $scope.sensorTypeDisabled = true;
 
+      $scope.sensorTypeToAccessoryPart = {
+        "Normal": "RS-2G",
+        "Low": "RS-2G-LS",
+        "High": "RS-2G-HS"
+      };
+
       $rootScope.fixtureForm = {};
       $rootScope.fixtureForm.dropDownChoices = {};
 
       $scope.setFixtureTypesBySelectedRegion = function () {
         $rootScope.fixtureForm.dropDownChoices = $rootScope.fixtureForm.dropDownChoices == undefined ? {} : $rootScope.fixtureForm.dropDownChoices;
         $rootScope.fixtureForm.dropDownChoices.sensorTypes = [
-          {name: 'None', id: 1},
-          {name: 'Normal', id: 2},
-          {name: 'Low', id: 3},
-          {name: 'High', id: 4}
+          {name: 'Normal', id: 1},
+          {name: 'Low', id: 2},
+          {name: 'High', id: 3}
         ];
 
         dataService.fetchFixtureTypes($rootScope.tabs.tabOne.region.id)
@@ -206,11 +211,11 @@ angular.module('rwsprojectApp')
         $scope.fixtureTabForm.$setSubmitted();
 
         // EXCEPTION: 8' birchwood exception for LED Gateway (where they have to choose an additional sensor type)
-        if ($scope.fixtureForm.sensorTwoType) {
-          // they must be choosing a sensor two type for a downlight shared fixture, so add accessories based on what they chose
-          $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] = $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] || 0;
+        if ($scope.fixtureForm.sensorType) {
+          var part = $scope.sensorTypeToAccessoryPart[$scope.fixtureForm.sensorType.name];
+          $rootScope.accessoryTally[part] = $rootScope.accessoryTally[part] || 0;
 
-          $rootScope.accessoryTally[$scope.fixtureForm.sensorTwoType.name] += parseInt($scope.fixtureForm.controlQuantity);
+          $rootScope.accessoryTally[part] += parseInt($scope.fixtureForm.controlQuantity);
         }
 
         // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
@@ -221,6 +226,7 @@ angular.module('rwsprojectApp')
         }
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
+          console.log(tallyPair);
           return {
             accessoryCount: tallyPair[1],
             accessory: {
@@ -258,19 +264,7 @@ angular.module('rwsprojectApp')
 
       $scope.$watch('fixtureForm.controlMethod', function (newVal, oldVal) {
         if ($rootScope.fixtureForm.controlMethod) {
-          if (newVal.name.toLowerCase().indexOf('sensor 3') != -1) {
-            $scope.sensorTypeDisabled = true;
-            $scope.sensorQtyDisabled = false;
-            $rootScope.fixtureForm.sensorType = {name: 'Normal', id: 2};
-          } else if (newVal.name.toLowerCase().indexOf('led gateway') != -1) {
-            $scope.sensorTypeDisabled = false;
-            $scope.sensorQty = false;
-            $rootScope.fixtureForm.sensorType = {};
-          } else {
-            $scope.sensorTypeDisabled = true;
-            $scope.sensorQtyDisabled = true;
-            $rootScope.fixtureForm.sensorType = {};
-          }
+          $scope.sensorTypeDisabled = newVal.name.toLowerCase().indexOf('gateway') == -1;
         }
       });
 
