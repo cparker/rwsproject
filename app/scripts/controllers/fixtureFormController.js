@@ -213,18 +213,19 @@ angular.module('rwsprojectApp')
         $scope.fixtureTabForm.$setSubmitted();
 
         // EXCEPTION: 8' birchwood exception for LED Gateway (where they have to choose an additional sensor type)
-        if ($scope.fixtureForm.sensorType) {
+        if ($scope.fixtureForm.sensorType.name) {
           var part = $scope.sensorTypeToAccessoryPart[$scope.fixtureForm.sensorType.name];
           $rootScope.accessoryTally[part] = $rootScope.accessoryTally[part] || 0;
 
           $rootScope.accessoryTally[part] += parseInt($scope.fixtureForm.controlQuantity);
         }
 
+
         // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
         if ($scope.fixtureForm.fixtureType.name.toLowerCase() == 'downlight-shared') {
           var splitterPart = '760164233';
           $rootScope.accessoryTally[splitterPart] = $rootScope.accessoryTally[splitterPart] || 0;
-          $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity);
+          $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity || 1);
         }
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
@@ -255,7 +256,7 @@ angular.module('rwsprojectApp')
         }
       };
 
-      $rootScope.resetConfirmCancel = function() {
+      $rootScope.resetConfirmCancel = function () {
         $rootScope.resetConfirmEnabled = false;
       };
 
