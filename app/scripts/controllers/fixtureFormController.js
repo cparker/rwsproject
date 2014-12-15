@@ -4,6 +4,8 @@ angular.module('rwsprojectApp')
 
       $scope.sensorTypeDisabled = true;
 
+      $rootScope.resetConfirmEnabled = false;
+
       $scope.sensorTypeToAccessoryPart = {
         "Normal": "RS-2G",
         "Low": "RS-2G-LS",
@@ -226,7 +228,6 @@ angular.module('rwsprojectApp')
         }
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
-          console.log(tallyPair);
           return {
             accessoryCount: tallyPair[1],
             accessory: {
@@ -246,7 +247,20 @@ angular.module('rwsprojectApp')
 
       };
 
-      $scope.resetFixtureForm = function () {
+      $scope.resetFixtureFormPrompt = function () {
+        if ($scope.fixtureTabForm.$dirty) {
+          $rootScope.resetConfirmEnabled = true;
+        } else {
+          $scope.resetFixtureForm();
+        }
+      };
+
+      $rootScope.resetConfirmCancel = function() {
+        $rootScope.resetConfirmEnabled = false;
+      };
+
+      $rootScope.resetFixtureForm = function () {
+        $rootScope.resetConfirmEnabled = false;
         $rootScope.fixtureForm = {};
         $rootScope.fixtureForm.emergencyQuantity = 0;
         $scope.setFixtureTypesBySelectedRegion();

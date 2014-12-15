@@ -3,6 +3,7 @@ angular.module('rwsprojectApp')
 
     $scope.user = {};
 
+
     $rootScope.tabs = {};
     $rootScope.tabs.activeTab = '1';
 
@@ -94,7 +95,7 @@ angular.module('rwsprojectApp')
           return {
             accessoryCount: tallyPair[1],
             accessory: {
-              "description": $rootScope.accessoriesByPartNumber[tallyPair[0]].description,
+              "description": $rootScope.accessoriesByPartNumber[tallyPair[0]] ? $rootScope.accessoriesByPartNumber[tallyPair[0]].description : "",
               "part_number": tallyPair[0]
             }
           };

@@ -1126,3 +1126,15 @@ label.disabled {
   font-size: 0.7rem;
   margin: 10px;
 }
+
+.reset-confirm {
+  width: 440px;
+  padding: 30px;
+  height: 104px;
+  position: absolute;
+  left: 34.0vw;
+  top: 220px;
+  background: #D8E5F1;
+  -webkit-border-radius: 5px;
+  font-size: 1.2rem;
+}
