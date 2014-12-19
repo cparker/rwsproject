@@ -213,7 +213,7 @@ angular.module('rwsprojectApp')
         $scope.fixtureTabForm.$setSubmitted();
 
         // EXCEPTION: 8' birchwood exception for LED Gateway (where they have to choose an additional sensor type)
-        if ($scope.fixtureForm.sensorType.name) {
+        if ( ($scope.fixtureForm.sensorType || {}).name ) {
           var part = $scope.sensorTypeToAccessoryPart[$scope.fixtureForm.sensorType.name];
           $rootScope.accessoryTally[part] = $rootScope.accessoryTally[part] || 0;
 
