@@ -36,10 +36,10 @@ angular.module('rwsprojectApp')
         // these need to get recomputed every time because they might go back and add fixtures
         $scope.sensorThreeFixtures = _.chain(dataService.fixtureLines)
           .filter(function (fix) {
-            return fix.controlMethod.name === "Sensor 3";
+            return fix.controlMethod.name.toLowerCase().indexOf('gateway') === -1;
           })
           .map(function (fix, key, list) {
-            if (!fix.spareControlQuantity) {
+            if (fix.spareControlQuantity === undefined) {
               if ($scope.isFixtureABirchwoodEight(fix)) {
                 fix.spareControlQuantity = parseInt(fix.controlQuantity);
               } else {
@@ -54,10 +54,10 @@ angular.module('rwsprojectApp')
         // these need to get recomputed every time because they might go back and add fixtures
         $scope.ledGatewayFixtures = _.chain(dataService.fixtureLines)
           .filter(function (fix) {
-            return fix.controlMethod.name.toLowerCase().indexOf('led gateway') != -1;
+            return fix.controlMethod.name.toLowerCase().indexOf('gateway') != -1;
           })
           .map(function (fix, key, list) {
-            if (!fix.spareControlQuantity) {
+            if (fix.spareControlQuantity === undefined) {
               fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
             }
             return fix;
@@ -129,13 +129,13 @@ angular.module('rwsprojectApp')
         });
 
         // now default spares to computed values based on percentages
-        $scope.sparesModel.dimmers = $scope.sparesModel.dimmers ? $scope.sparesModel.dimmers : Math.ceil(dataService.controlModel.dimmers * $scope.spareDimmerPct);
-        $scope.sparesModel.sceneControllers = $scope.sparesModel.sceneControllers ? $scope.sparesModel.sceneControllers : Math.ceil(dataService.controlModel.sceneControllers * $scope.spareDimmerPct);
-        $scope.sparesModel.emergencySpareControls = $scope.sparesModel.emergencySpareControls ? $scope.sparesModel.emergencySpareControls : 1;
-        $scope.sparesModel.spareSharingCables = $scope.sparesModel.spareSharingCables ? $scope.sparesModel.spareSharingCables : 1;
-        $scope.sparesModel.directorSpares = $scope.sparesModel.directorSpares ? $scope.sparesModel.directorSpares : 0;
-        $scope.sparesModel['200v-250v'] = $scope.sparesModel['200v-250v'] ? $scope.sparesModel['200v-250v'] : 0;
-        $scope.sparesModel['277v'] = $scope.sparesModel['277v'] ? $scope.sparesModel['277v'] : 0;
+        $scope.sparesModel.dimmers = $scope.sparesModel.dimmers != undefined ? $scope.sparesModel.dimmers : Math.ceil(dataService.controlModel.dimmers * $scope.spareDimmerPct);
+        $scope.sparesModel.sceneControllers = $scope.sparesModel.sceneControllers != undefined ? $scope.sparesModel.sceneControllers : Math.ceil(dataService.controlModel.sceneControllers * $scope.spareDimmerPct);
+        $scope.sparesModel.emergencySpareControls = $scope.sparesModel.emergencySpareControls != undefined ? $scope.sparesModel.emergencySpareControls : 1;
+        $scope.sparesModel.spareSharingCables = $scope.sparesModel.spareSharingCables != undefined ? $scope.sparesModel.spareSharingCables : 1;
+        $scope.sparesModel.directorSpares = $scope.sparesModel.directorSpares != undefined ? $scope.sparesModel.directorSpares : 0;
+        $scope.sparesModel['200v-250v'] = $scope.sparesModel['200v-250v'] != undefined ? $scope.sparesModel['200v-250v'] : 0;
+        $scope.sparesModel['277v'] = $scope.sparesModel['277v'] != undefined ? $scope.sparesModel['277v'] : 0;
         $scope.sparesModel.cableSharingAdaptors = $scope.roundedTotalChannels + $scope.sparesModel.spareSharingCables;
 
         console.log('about to iterate over sparesModel.accessorySpareTally ' + JSON.stringify($scope.sparesModel.accessorySpareTally));
