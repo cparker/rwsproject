@@ -65,11 +65,27 @@
   <div class="bomNotes">&nbsp;</div>
 </div>
 
-<!-- ENGINES GO HERE-->
+<!-- 250V ENGINES -->
 <div ng-hide="dataService.engineGrandTotal <= 0" class="bomRow">
-  <div class="qty">{{dataService.engineGrandTotal()}}</div>
-  <div class="item">Engines</div>
-  <div class="partNum">&nbsp;</div>
+  <div class="qty">{{dataService.engineTotals['200v-250v']}}</div>
+  <div class="item">200v-250v Engines</div>
+  <div class="partNum">ENG-3-4834-250</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
+
+<!-- 277V ENGINES (which include cords) -->
+<div ng-hide="dataService.engineGrandTotal <= 0" class="bomRow">
+  <div class="qty">{{dataService.engineTotals['277v']}}</div>
+  <div class="item">277v Engines</div>
+  <div class="partNum">ENG-3-4834-277</div>
+  <div class="bomNotes">&nbsp;</div>
+</div>
+
+<!-- 250V ENGINE CORDS -->
+<div ng-hide="dataService.engineGrandTotal <= 0" class="bomRow" ng-repeat="cord in dataService.cordTotalPairs">
+  <div class="qty">{{cord[1]}}</div>
+  <div class="item">Power Cord: {{cord[0]}}</div>
+  <div class="partNum">{{cordPartNums[cord[0]]}}</div>
   <div class="bomNotes">&nbsp;</div>
 </div>
 

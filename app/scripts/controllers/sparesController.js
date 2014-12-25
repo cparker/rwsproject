@@ -2,6 +2,9 @@ angular.module('rwsprojectApp')
   .controller('sparesController', ['$scope', '$filter', '$rootScope', 'dataService', '$httpBackend',
     function ($scope, $filter, $rootScope, dataService, $httpBackend) {
 
+      $scope.twoSeventy = '277v';
+      $scope.twoHundred = '200v-250v';
+
       //todo REMOVE THIS
       $scope.spareFixtureControlPct = 0.05;
       $scope.spareDimmerPct = 0.01;
@@ -71,12 +74,20 @@ angular.module('rwsprojectApp')
         }, 0);
 
         $scope.roundedTotalChannels = Math.ceil($scope.totalChannels);
+        $scope.engineTotals[$scope.twoSeventy] = 0;
+        $scope.engineTotals[$scope.twoHundred] = 0;
 
         if (dataService.engineModel.voltageStandard) {
-          $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandard;
+          $scope.engineTotals[dataService.engineModel.voltageStandard] = dataService.engineModel.enginesStandardSpare;
         }
         if (dataService.engineModel.voltageEmergency) {
-          $scope.engineTotals[dataService.engineModel.voltageEmergency] = dataService.engineModel.enginesEmergency;
+          $scope.engineTotals[dataService.engineModel.voltageEmergency] = dataService.engineModel.enginesEmergencySpare;
+        }
+        if (dataService.engineModel.voltageEmergencyMain) {
+          $scope.engineTotals[dataService.engineModel.voltageEmergencyMain] += dataService.engineModel.enginesEmergency;
+        }
+        if (dataService.engineModel.voltageStandardMain) {
+          $scope.engineTotals[dataService.engineModel.voltageStandardMain] += dataService.engineModel.enginesStandard;
         }
 
         $scope.engineVoltagePairs = _.pairs($scope.engineTotals);
@@ -140,7 +151,7 @@ angular.module('rwsprojectApp')
 
         console.log('about to iterate over sparesModel.accessorySpareTally ' + JSON.stringify($scope.sparesModel.accessorySpareTally));
         if ($scope.accessorySparesChanged == false) {
-          _.each($scope.sparesModel.accessorySpareTally, function (v,k) {
+          _.each($scope.sparesModel.accessorySpareTally, function (v, k) {
             $scope.sparesModel.accessorySpareTally[k] = Math.ceil($scope.masterAccessoriesByDesc[k] * $scope.spareAccessoryPct);
           });
         }

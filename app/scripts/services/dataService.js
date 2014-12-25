@@ -183,7 +183,10 @@ angular.module('rwsprojectApp')
       sensorDisabled: false,
 
       engineGrandTotal: function () {
-        return this.engineModel.enginesStandard + this.engineModel.enginesEmergency + this.engineModel.enginesStandardSpare + this.engineModel.enginesEmergencySpare;
+        return this.engineModel.enginesStandard +
+          this.engineModel.enginesEmergency +
+          this.engineModel.enginesStandardSpare +
+          this.engineModel.enginesEmergencySpare;
       }
 
     };

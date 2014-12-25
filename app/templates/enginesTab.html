@@ -1,125 +1,183 @@
 <div class="enginesPanel">
 
-    <form name="enginesForm" ng-controller="enginesController" class="enginesForm">
+  <form name="enginesForm" ng-controller="enginesController" class="enginesForm">
 
-        <div class="enginesOne">
-            <div class="numberAndText">
-                <div class="circleNumber">1</div>
-                <p class="underlined">Channel summary from fixture selection</p>
-            </div>
+    <div class="enginesOne">
+      <div class="numberAndText">
+        <div class="circleNumber">1</div>
+        <p class="underlined">Channel summary from fixture selection</p>
+      </div>
 
-            <div class="engineSection">
-                <div>
-                    <div class="engineOneLabel"></div>
-                    <span>Standard</span>
-                    <span class="enginesSpacer">&nbsp;</span>
-                    <span>Emergency</span>
-                </div>
-                <div>
-                    <div class="engineOneLabel">Total channels used</div>
-                    <input readonly type="text" value="{{standardChannels}}"/>
-                    <input readonly type="text" value="{{emergencyChannels}}"/>
-                </div>
+      <div class="engineSection">
+        <div>
+          <div class="engineOneLabel"></div>
+          <span>Standard</span>
+          <span class="enginesSpacer">&nbsp;</span>
+          <span>Emergency</span>
+        </div>
+        <div>
+          <div class="engineOneLabel">Total channels used</div>
+          <input readonly type="text" value="{{standardChannels}}"/>
+          <input readonly type="text" value="{{emergencyChannels}}"/>
+        </div>
 
-                <div>
-                    <div class="engineOneLabel">Total engines (channels/47)</div>
-                    <input readonly type="text" value="{{engineModel.enginesStandard}}"/>
-                    <input readonly type="text" value="{{engineModel.enginesEmergency}}"/>
-                </div>
+        <!-- TODO : replace READONLY on the 2 below -->
+        <div>
+          <div class="engineOneLabel">Total engines (channels/47)</div>
+          <input type="number" min="0" ng-model="engineModel.enginesStandard"/>
+          <input type="number" min="0" ng-model="engineModel.enginesEmergency"/>
+        </div>
 
-                <div>
-                    <div class="redTriangleAlert engineRedTriangle"></div>
-                    <div class="enginesOneWarningText">
-                        <p><i>Multiple engine locations may require additional engines due to:</i></p>
+        <div>
+          <div ng-class="{disabled:(engineModel.enginesStandard <=0 && engineModel.enginesEmergency <=0)}" class="engineOneLabel">Engine Voltage</div>
 
-                        <p><i>- Cable length > 100 meters.</i></p>
+          <!-- this is voltage for the MAIN engines, as opposed to the ADDITIONAL engines, below -->
+          <select name="engineVoltageStandardMain"
+                  ng-required="engineModel.enginesStandard > 0"
+                  ng-disabled="engineModel.enginesStandard <= 0"
+                  ng-model="engineModel.voltageStandardMain"
+                  class="simpleArrowSelect voltage">
+            <option>277v</option>
+            <option>200v-250v</option>
+          </select>
 
-                        <p><i>- Multi-level installations.</i></p>
+          <select name="engineVoltageEmergencyMain"
+                  ng-required="engineModel.enginesEmergency > 0"
+                  ng-disabled="engineModel.enginesEmergency <= 0"
+                  ng-model="engineModel.voltageEmergencyMain"
+                  class="simpleArrowSelect voltage">
+            <option selected="selected">277v</option>
+            <option>200v-250v</option>
+          </select>
+        </div>
 
-                        <p><i>- IDF rack space considerations.</i></p>
+        <!-- these are power cords for the MAIN engines, as opposed to the ADDITIONAL engines, below -->
+        <div class="engineSelectRow">
+          <label ng-class="{disabled:engineModel.enginesStandard <= 0}">Standard Power Cord</label>
+          <select
+            name="engineCordStandardMain"
+            ng-disabled="(engineModel.enginesStandard <= 0 || disableStandardCordMain)"
+            ng-model="engineModel.cordStandardMain"
+            class="simpleArrowSelect cord"
+            ng-required="engineModel.enginesStandardSpare > 0"
+            ng-options="cord for cord in cordOptionsStandardMain">
+            <option value="">choose cord</option>
+          </select>
+        </div>
 
-                        <p><i>- Floors with different amount of fixtures.</i></p>
-                    </div>
-                </div>
+        <div class="engineSelectRow">
+          <label ng-class="{disabled:engineModel.enginesEmergency <= 0}">Emergency Power Cord</label>
+          <select
+            name="engineCordStandardMain"
+            ng-disabled="engineModel.enginesEmergency <= 0 || disableEmergencyCordMain"
+            ng-model="engineModel.cordEmergencyMain"
+            class="simpleArrowSelect cord"
+            ng-required="engineModel.enginesEmergency > 0"
+            ng-options="cord for cord in cordOptionsEmergencyMain">
+            <option value="">choose cord</option>
+          </select>
+        </div>
 
-                <div class="engineSpacerTwo">&nbsp;</div>
-                <div>
-                    <div class="engineOneLabel"></div>
-                    <span>Standard</span>
-                    <span class="enginesSpacer">&nbsp;</span>
-                    <span>Emergency</span>
-                </div>
+        <div>
+          <div class="redTriangleAlert engineRedTriangle"></div>
+          <div class="enginesOneWarningText">
+            <p><i>Multiple engine locations may require additional engines due to:</i></p>
 
-                <div>
-                    <div class="engineOneLabel">Additional Engines</div>
-                    <input ng-model="engineModel.enginesStandardSpare" name="enginesStandardSpare" required type="number" min="0" placeholder="0">
-                    <input ng-model="engineModel.enginesEmergencySpare" name="enginesEmergencySpare" required type="number" min="0" placeholder="0">
-                </div>
-                <div>
-                    <div ng-class="{disabled:(engineModel.enginesStandardSpare<=0 && engineModel.enginesEmergencySpare <=0)}" class="engineOneLabel">Engine Voltage</div>
-                    <select ng-required="engineModel.enginesStandardSpare > 0" ng-disabled="engineModel.enginesStandardSpare <= 0" ng-model="engineModel.voltageStandard"
-                            name="engineVoltageStandard"
-                            class="simpleArrowSelect voltage">
-                        <option>277v</option>
-                        <option>200v-250v</option>
-                    </select>
-                    <select ng-disabled="engineModel.enginesEmergencySpare <= 0" ng-model="engineModel.voltageEmergency" name="engineVoltageEmergency"
-                            class="simpleArrowSelect voltage" ng-required="engineModel.enginesEmergencySpare > 0">
-                        <option selected="selected">277v</option>
-                        <option>200v-250v</option>
-                    </select>
-                </div>
+            <p><i>- Cable length > 100 meters.</i></p>
 
-                <div class="engineSelectRow">
-                    <label ng-class="{disabled:engineModel.enginesStandardSpare <= 0}">Standard Power Cord</label>
-                    <select ng-disabled="(engineModel.enginesStandardSpare <= 0 || disableStandardCord)" ng-model="engineModel.cordStandard" name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesStandardSpare > 0" ng-options="cord for cord in cordOptions">
-                        <option value="">choose cord</option>
-                    </select>
-                </div>
+            <p><i>- Multi-level installations.</i></p>
 
-                <div class="engineSelectRow">
-                    <label ng-class="{disabled:engineModel.enginesEmergencySpare <= 0}">Emergency Power Cord</label>
-                    <select ng-disabled="engineModel.enginesEmergencySpare <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
-                            name="engineCordStandard"
-                            class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergencySpare > 0" ng-options="cord for cord in cordOptions">
-                        <option value="">choose cord</option>
-                    </select>
-                </div>
+            <p><i>- IDF rack space considerations.</i></p>
 
+            <p><i>- Floors with different amount of fixtures.</i></p>
+          </div>
+        </div>
 
-                <div>
-                    <div class="engineOneLabel">Wall mounting plates</div>
-                    <input name="platesStandard" ng-model="engineModel.platesStandard" required type="number" placeholder="0" min="0">
-                    <input name="platesEmergency" ng-model="engineModel.platesEmergency" required type="number" placeholder="0" min="0">
-                </div>
-            </div>
+        <div class="engineSpacerTwo">&nbsp;</div>
+        <div>
+          <div class="engineOneLabel"></div>
+          <span>Standard</span>
+          <span class="enginesSpacer">&nbsp;</span>
+          <span>Emergency</span>
+        </div>
+
+        <div>
+          <div class="engineOneLabel">Additional Engines</div>
+          <input ng-model="engineModel.enginesStandardSpare" name="enginesStandardSpare" required type="number" min="0" placeholder="0">
+          <input ng-model="engineModel.enginesEmergencySpare" name="enginesEmergencySpare" required type="number" min="0" placeholder="0">
+        </div>
+        <div>
+          <div ng-class="{disabled:(engineModel.enginesStandardSpare<=0 && engineModel.enginesEmergencySpare <=0)}" class="engineOneLabel">Engine Voltage</div>
+
+          <select name="engineVoltageStandard"
+                  ng-required="engineModel.enginesStandardSpare > 0"
+                  ng-disabled="engineModel.enginesStandardSpare <= 0"
+                  ng-model="engineModel.voltageStandard"
+                  class="simpleArrowSelect voltage">
+            <option>277v</option>
+            <option>200v-250v</option>
+          </select>
+
+          <select name="engineVoltageEmergency"
+                  ng-required="engineModel.enginesEmergencySpare > 0"
+                  ng-disabled="engineModel.enginesEmergencySpare <= 0"
+                  ng-model="engineModel.voltageEmergency"
+                  class="simpleArrowSelect voltage">
+            <option selected="selected">277v</option>
+            <option>200v-250v</option>
+          </select>
+        </div>
+
+        <div class="engineSelectRow">
+          <label ng-class="{disabled:engineModel.enginesStandardSpare <= 0}">Standard Power Cord</label>
+          <select ng-disabled="(engineModel.enginesStandardSpare <= 0 || disableStandardCord)" ng-model="engineModel.cordStandard" name="engineCordStandard"
+                  class="simpleArrowSelect cord" ng-required="engineModel.enginesStandardSpare > 0" ng-options="cord for cord in cordOptionsStandard">
+            <option value="">choose cord</option>
+          </select>
+        </div>
+
+        <div class="engineSelectRow">
+          <label ng-class="{disabled:engineModel.enginesEmergencySpare <= 0}">Emergency Power Cord</label>
+          <select ng-disabled="engineModel.enginesEmergencySpare <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
+                  name="engineCordStandard"
+                  class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergencySpare > 0" ng-options="cord for cord in cordOptionsEmergency">
+            <option value="">choose cord</option>
+          </select>
         </div>
 
 
-        <div class="enginesTwo">
-            <div class="numberAndText">
-                <div class="circleNumber">2</div>
-                <p class="underlined">Director</p>
-            </div>
-
-
-            <div class="engineSection">
-                <div>
-                    <div class="engineOneLabel">Number of directors</div>
-                    <input name="numberOfDirectors" ng-model="engineModel.directorCount" type="number" placeholder="0" min="0">
-                </div>
-                <div ng-class="{disabled:engineModel.directorCount <= 0}" class="engineOneLabel">Power cord</div>
-                <select ng-disabled="engineModel.directorCount <= 0" name="directorCord" ng-model="engineModel.directorCord"
-                        class="simpleArrowSelect powerCord">
-                    <option>PC-DIR-AUS (Australia)</option>
-                    <option>PC-DIR-CHINA (China)</option>
-                    <option>PC-DIR-EU (EU)</option>
-                    <option>PC-DIR-UK (UK)</option>
-                    <option>Included (US/Canada)</option>
-                </select>
-            </div>
+        <div>
+          <div class="engineOneLabel">Wall mounting plates</div>
+          <input name="platesStandard" ng-model="engineModel.platesStandard" required type="number" placeholder="0" min="0">
+          <input name="platesEmergency" ng-model="engineModel.platesEmergency" required type="number" placeholder="0" min="0">
         </div>
-    </form>
+      </div>
+    </div>
+
+
+    <div class="enginesTwo">
+      <div class="numberAndText">
+        <div class="circleNumber">2</div>
+        <p class="underlined">Director</p>
+      </div>
+
+
+      <div class="engineSection">
+        <div>
+          <div class="engineOneLabel">Number of directors</div>
+          <input name="numberOfDirectors" ng-model="engineModel.directorCount" type="number" placeholder="0" min="0">
+        </div>
+        <div ng-class="{disabled:engineModel.directorCount <= 0}" class="engineOneLabel">Power cord</div>
+        <select ng-disabled="engineModel.directorCount <= 0" name="directorCord" ng-model="engineModel.directorCord"
+                class="simpleArrowSelect powerCord">
+          <option>PC-DIR-AUS (Australia)</option>
+          <option>PC-DIR-CHINA (China)</option>
+          <option>PC-DIR-EU (EU)</option>
+          <option>PC-DIR-UK (UK)</option>
+          <option>Included (US/Canada)</option>
+        </select>
+      </div>
+    </div>
+  </form>
 
 </div>
