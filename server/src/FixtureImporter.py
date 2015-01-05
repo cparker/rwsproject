@@ -91,8 +91,6 @@ for row in csv_reader:
     # FIXTURE
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[1]])
-    if ('Troffer' in queryVal):
-        queryVal = "Troffer"
     query = "select id from fixture_types where name='{0}'".format(queryVal)
     fixtureId = queryForId(query, cur)
     inspect(fixtureId, query)
