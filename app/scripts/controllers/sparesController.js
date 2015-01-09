@@ -46,7 +46,7 @@ angular.module('rwsprojectApp')
               if ($scope.isFixtureABirchwoodEight(fix)) {
                 fix.spareControlQuantity = parseInt(fix.controlQuantity);
               } else {
-                fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
+                fix.spareControlQuantity = Math.ceil((parseInt(fix.controlQuantity) || 0) * $scope.spareFixtureControlPct);
               }
             }
             return fix;
@@ -61,7 +61,7 @@ angular.module('rwsprojectApp')
           })
           .map(function (fix, key, list) {
             if (fix.spareControlQuantity === undefined) {
-              fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
+              fix.spareControlQuantity = Math.ceil((parseInt(fix.controlQuantity) || 0) * $scope.spareFixtureControlPct);
             }
             return fix;
           })
