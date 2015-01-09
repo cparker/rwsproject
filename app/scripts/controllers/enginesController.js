@@ -6,6 +6,14 @@ angular.module('rwsprojectApp')
       var channelsPerEngine = 47;
       var enginesPerDirector = 41;
 
+      $rootScope.directorCords = [
+        {name: 'Director Power Cord - Australia', part: 'PC-DIR-AUS'},
+        {name: 'Director Power Cord - China', part: 'PC-DIR-CHINA'},
+        {name: 'Director Power Cord - EU', part: 'PC-DIR-EU'},
+        {name: 'Director Power Cord - UK', part: 'PC-DIR-UK'},
+        {name: 'Director Power Cord - US/Canada', part: 'included'}
+      ];
+
       var cordOptions277 = [
         'Included'
       ];
