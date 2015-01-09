@@ -237,11 +237,13 @@ angular.module('rwsprojectApp')
 
 
         // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
+        /*
         if ($scope.fixtureForm.fixtureType.name.toLowerCase() == 'downlight-shared') {
           var splitterPart = '760164233';
           $rootScope.accessoryTally[splitterPart] = $rootScope.accessoryTally[splitterPart] || 0;
           $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity || 1);
         }
+        */
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
           return {

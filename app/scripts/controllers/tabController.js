@@ -155,8 +155,8 @@ angular.module('rwsprojectApp')
     });
 
     $scope.disableAccessoryChoice = function (accessoryName) {
-      return accessoryName.toLowerCase().indexOf('sensor2') == 0 ||
-        accessoryName.toLowerCase().indexOf('dl12a') != -1;
+      return accessoryName.toLowerCase().indexOf('sensor2') == 0;
+      //|| accessoryName.toLowerCase().indexOf('dl12a') != -1;
     };
 
   });
