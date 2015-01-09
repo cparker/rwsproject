@@ -91,11 +91,21 @@
                 <div class="spareLine">
                     <div class="firstItem">Emergency light controls</div>
                     <div class="currentQty">
-                        <input name="emergencyControlOverride" placeholder="0" type="number" min="0"
-                               ng-model="emergencyKitNumber"/>
+                        <input
+                          name="emergencyControlOverride"
+                          placeholder="0"
+                          type="number"
+                          min="0"
+                          ng-model="emergencyKitNumber"/>
                     </div>
-                    <div class="spareQty"><input required placeholder="0" name="emergencyControlSpares" type="number" min="0"
-                                                 ng-model="sparesModel.emergencySpareControls"/></div>
+                    <div class="spareQty">
+                      <input required
+                             placeholder="0"
+                             name="emergencyControlSpares"
+                             type="number"
+                             min="0"
+                             ng-model="sparesModel.emergencySpareControls"/>
+                    </div>
                     <div class="total">{{emergencyKitNumber + sparesModel.emergencySpareControls}}</div>
                 </div>
             </li>

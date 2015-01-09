@@ -108,9 +108,9 @@ angular.module('rwsprojectApp')
 
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
 
-        $scope.engineModel.enginesStandard = Math.ceil($scope.standardChannels / channelsPerEngine);
-        $scope.engineModel.enginesEmergency = Math.ceil($scope.emergencyChannels / channelsPerEngine);
-        $scope.engineModel.directorCount = Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector);
+        $scope.engineModel.enginesStandard = $scope.engineModel.enginesStandard != undefined ? $scope.engineModel.enginesStandard : Math.ceil($scope.standardChannels / channelsPerEngine);
+        $scope.engineModel.enginesEmergency = $scope.engineModel.enginesEmergency != undefined ? $scope.engineModel.enginesEmergency : Math.ceil($scope.emergencyChannels / channelsPerEngine);
+        $scope.engineModel.directorCount = $scope.engineModel.directorCount != undefined ? $scope.engineModel.directorCount : Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector);
 
         // defaults
         $scope.engineModel.platesStandard = $scope.engineModel.platesStandard || 0;
