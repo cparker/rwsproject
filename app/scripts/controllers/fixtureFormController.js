@@ -70,6 +70,12 @@ angular.module('rwsprojectApp')
       });
 
       $scope.changeFixtureType = function () {
+        if ($rootScope.fixtureForm.fixtureType.name.toLowerCase() == 'out of scope') {
+          $rootScope.standardQtyRequired = false;
+          $rootScope.fixtureForm.standardQty = 0;
+        } else {
+          $rootScope.standardQtyRequired = true;
+        }
 
         dataService.fetchManufacturers($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)
           .success(function (man) {

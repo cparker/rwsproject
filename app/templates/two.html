@@ -24,8 +24,19 @@
 
 
     <div class="fixtureFormLine">
-        <label class="fixtureLabel" for="standardQuantity">Standard quantity</label>
-        <input name="standardQuantity" ng-model="fixtureForm.standardQuantity" required id="standardQuantity" type="text" placeholder="0"/>
+        <label
+          ng-class="{disabled:!standardQtyRequired}"
+          class="fixtureLabel"
+          for="standardQuantity">Standard quantity</label>
+        <input
+          name="standardQuantity"
+          ng-model="fixtureForm.standardQuantity"
+          ng-disabled="!standardQtyRequired"
+          ng-required="standardQtyRequired"
+          required id="standardQuantity"
+          type="text"
+          placeholder="0"
+          />
     </div>
 
     <div class="fixtureFormLine">
