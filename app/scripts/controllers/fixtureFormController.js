@@ -197,6 +197,15 @@ angular.module('rwsprojectApp')
 
 
       $scope.changeControlMethod = function () {
+        console.log('changed to ' , $rootScope.fixtureForm.controlMethod);
+
+        if ($rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'integrated' ||
+          $rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'n/a') {
+          $rootScope.controlQtyRequired = false;
+        } else {
+          $rootScope.controlQtyRequired = true;
+        }
+
         dataService.getPartInfo($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
           $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id,
           $rootScope.fixtureForm.manufacturer.id, $rootScope.fixtureForm.controlMethod.id)

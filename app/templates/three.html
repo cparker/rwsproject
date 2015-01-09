@@ -21,8 +21,11 @@
 
   <div class="fixtureFormLine">
     <label class="fixtureLabel"
+           ng-class="{disabled:!controlQtyRequired}"
            for="controlQty">Control Qty</label>
     <input ng-model="fixtureForm.controlQuantity"
+           ng-required="controlQtyRequired"
+           ng-disabled="!controlQtyRequired"
            class="redwoodPanelNarrowInput" type="text" id="controlQty" placeholder="0"/>
   </div>
 
