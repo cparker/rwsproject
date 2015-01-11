@@ -317,4 +317,12 @@ angular.module('rwsprojectApp')
 
       });
 
+      $scope.blurControlQty = function() {
+        console.log('blur on control quantity');
+        console.log('applying multipler of ',  $rootScope.fixtureForm.controlMethod.multiplier);
+        console.log('to entered value of ', $rootScope.fixtureForm.controlQuantity);
+        $rootScope.fixtureForm.controlQuantity = ($rootScope.fixtureForm.controlMethod.multiplier || 1.0) * $rootScope.fixtureForm.controlQuantity;
+        console.log('new control qty ', $rootScope.fixtureForm.controlQuantity);
+      };
+
     }]);
