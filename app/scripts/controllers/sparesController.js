@@ -180,9 +180,11 @@ angular.module('rwsprojectApp')
           // save our work so far
           dataService.sparesModel = JSON.parse(JSON.stringify($scope.sparesModel));
 
+
           $rootScope.tabs.activeTab = toTab;
         } else {
           if ($scope.sparesForm.$valid) {
+            dataService.emergencyKitNumber = $scope.emergencyKitNumber;
             dataService.sparesModel = JSON.parse(JSON.stringify($scope.sparesModel));
             dataService.engineTotals = $scope.engineTotals;
             $rootScope.tabs.activeTab = toTab;
