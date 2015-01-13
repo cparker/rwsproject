@@ -61,19 +61,20 @@ def inspect(queryResult, query):
 
 
 columnHeaderNames = [
-    'Country',                                      #0
-    'Fixture Type',                                 #1
-    'Mounting Type',                                #2
-    'Size',                                         #3
-    'Distribution',                                 #4
-    'Lumens',                                       #5
-    '# of Channels',                                #6
-    'MFG',                                          #7
-    'Model Number',                                 #8
-    'Description (MFG, Length, Series, Mount Type)',#9
-    'Control Method',                               #10
-    'LED Gateway/Sensor Part#',                     #11
-    'PID'                                           #12
+    'Country',  # 0
+    'Fixture Type',  #1
+    'Mounting Type',  #2
+    'Size',  #3
+    'Distribution',  #4
+    'Lumens',  #5
+    '# of Channels',  #6
+    'MFG',  #7
+    'Model Number',  #8
+    'Description (MFG, Length, Series, Mount Type)',  #9
+    'Control Method',  #10
+    'LED Gateway/Sensor Part#',  #11
+    'PID',  #12
+    'Control Qty Multiplier'  #13
 ]
 
 for row in csv_reader:
@@ -184,11 +185,44 @@ for row in csv_reader:
     inspect(pidID, query)
     cur.close()
 
+    # control qty multipler
+    cur = connection.cursor()
+    queryVal = cleanQueryVal(row[columnHeaderNames[13]])
+    query = "select id from control_quantity_multipliers where multiplier={0}".format(queryVal)
+    multID = queryForId(query, cur)
+    inspect(multID, query)
+    cur.close()
+
     insertStatement1 = """insert into product_join
-        (region_id,fixture_id,mount_id,size_id,light_distribution_id,manufacturer_id,channel_id,lumen_id,model_id,desc_id,control_id,part_number_id,pid_id)"""
-    insertStatement2 = insertStatement1 + " values ({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12})".format(
-        regId, fixtureId, mountId, sizeId, lightDistId, mId, cId, lumenId, modelId, descId, controlMethodId,
-        partNumberId, pidID
+        (region_id,
+        fixture_id,
+        mount_id,
+        size_id,
+        light_distribution_id,
+        manufacturer_id,
+        channel_id,
+        lumen_id,
+        model_id,
+        desc_id,
+        control_id,
+        part_number_id,
+        pid_id,
+        control_qty_mult_id)"""
+    insertStatement2 = insertStatement1 + " values ({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13})".format(
+        regId,
+        fixtureId,
+        mountId,
+        sizeId,
+        lightDistId,
+        mId,
+        cId,
+        lumenId,
+        modelId,
+        descId,
+        controlMethodId,
+        partNumberId,
+        pidID,
+        multID
     )
 
     print("INSERTED " + insertStatement2)

@@ -21,7 +21,17 @@ angular.module('rwsprojectApp')
         $scope.sparesModel = dataService.sparesModel || $scope.sparesModel;
         $scope.engineTotals = dataService.engineTotals || $scope.engineTotals;
 
-        $scope.emergencyKitNumber = dataService.emergencyOption == 1 || dataService.emergencyOption == 2 ? 1 : 0;
+        if (dataService.emergencyOption == 1) {
+          $scope.emergencyKitNumber =
+            dataService.engineModel.enginesStandard +
+            dataService.engineModel.enginesEmergency +
+            dataService.engineModel.enginesStandardSpare +
+            dataService.engineModel.enginesEmergencySpare;
+        } else {
+          $scope.emergencyKitNumber =
+            dataService.engineModel.enginesEmergency +
+            dataService.engineModel.enginesEmergencySpare;
+        }
 
         // EXCEPTION: handle birchwood 8' exception.  If the fixture is a birchwood, 8', sensor 3, we need to add a spare
         $scope.isFixtureABirchwoodEight = function (fix) {
@@ -46,7 +56,7 @@ angular.module('rwsprojectApp')
               if ($scope.isFixtureABirchwoodEight(fix)) {
                 fix.spareControlQuantity = parseInt(fix.controlQuantity);
               } else {
-                fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
+                fix.spareControlQuantity = Math.ceil((parseInt(fix.controlQuantity) || 0) * $scope.spareFixtureControlPct);
               }
             }
             return fix;
@@ -61,7 +71,7 @@ angular.module('rwsprojectApp')
           })
           .map(function (fix, key, list) {
             if (fix.spareControlQuantity === undefined) {
-              fix.spareControlQuantity = Math.ceil(list.length * $scope.spareFixtureControlPct);
+              fix.spareControlQuantity = Math.ceil((parseInt(fix.controlQuantity) || 0) * $scope.spareFixtureControlPct);
             }
             return fix;
           })

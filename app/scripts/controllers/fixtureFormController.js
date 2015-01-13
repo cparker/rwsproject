@@ -70,6 +70,12 @@ angular.module('rwsprojectApp')
       });
 
       $scope.changeFixtureType = function () {
+        if ($rootScope.fixtureForm.fixtureType.name.toLowerCase() == 'out of scope') {
+          $rootScope.standardQtyRequired = false;
+          $rootScope.fixtureForm.standardQty = 0;
+        } else {
+          $rootScope.standardQtyRequired = true;
+        }
 
         dataService.fetchManufacturers($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id)
           .success(function (man) {
@@ -197,6 +203,15 @@ angular.module('rwsprojectApp')
 
 
       $scope.changeControlMethod = function () {
+        console.log('changed to ' , $rootScope.fixtureForm.controlMethod);
+
+        if ($rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'integrated' ||
+          $rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'n/a') {
+          $rootScope.controlQtyRequired = false;
+        } else {
+          $rootScope.controlQtyRequired = true;
+        }
+
         dataService.getPartInfo($rootScope.tabs.tabOne.region.id, $rootScope.fixtureForm.fixtureType.id, $rootScope.fixtureForm.mountType.id,
           $rootScope.fixtureForm.fixtureSize.id, $rootScope.fixtureForm.distribution.id, $rootScope.fixtureForm.lumens.id, $rootScope.fixtureForm.channels.id,
           $rootScope.fixtureForm.manufacturer.id, $rootScope.fixtureForm.controlMethod.id)
@@ -222,11 +237,13 @@ angular.module('rwsprojectApp')
 
 
         // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
+        /*
         if ($scope.fixtureForm.fixtureType.name.toLowerCase() == 'downlight-shared') {
           var splitterPart = '760164233';
           $rootScope.accessoryTally[splitterPart] = $rootScope.accessoryTally[splitterPart] || 0;
           $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity || 1);
         }
+        */
 
         var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
           return {
@@ -299,5 +316,13 @@ angular.module('rwsprojectApp')
         }
 
       });
+
+      $scope.blurControlQty = function() {
+        console.log('blur on control quantity');
+        console.log('applying multipler of ',  $rootScope.fixtureForm.controlMethod.multiplier);
+        console.log('to entered value of ', $rootScope.fixtureForm.controlQuantity);
+        $rootScope.fixtureForm.controlQuantity = ($rootScope.fixtureForm.controlMethod.multiplier || 1.0) * $rootScope.fixtureForm.controlQuantity;
+        console.log('new control qty ', $rootScope.fixtureForm.controlQuantity);
+      };
 
     }]);

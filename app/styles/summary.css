@@ -356,4 +356,33 @@
     background-image: url('/images/back_arrow_white.png');
 }
 
+.project-file-header {
+  color:white;
+  background-color: #2C95DD;
+  display: flex;
+  flex-direction: row;
+}
 
+.project-file-header .col1 {
+  padding-left:6px;
+  padding-right:8px;
+  flex:1;
+}
+
+.project-file-header .col2 {
+  padding-left:6px;
+  padding-right:8px;
+  flex:1;
+}
+
+.project-file-header .col3 {
+  padding-left:6px;
+  padding-right:8px;
+  flex:1.5;
+}
+
+.project-file-header .col4 {
+  padding-left:6px;
+  padding-right:8px;
+  flex:4;
+}

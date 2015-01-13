@@ -773,8 +773,8 @@ def doGetManufacturers():
 @app.route('/server/getControlMethods')
 def doGetControlMethods():
     query = """
-        select distinct control_methods.name, control_methods.id FROM
-        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods
+        select distinct control_methods.name, control_methods.id, control_quantity_multipliers.multiplier FROM
+        light_distributions, fixture_sizes, mount_options, fixture_types, product_join, regions, lumens, channels, manufacturers, control_methods, control_quantity_multipliers
 
         WHERE fixture_types.id=product_join.fixture_id AND
         fixture_sizes.id = product_join.size_id AND
@@ -785,6 +785,7 @@ def doGetControlMethods():
         channels.id = product_join.channel_id AND
         manufacturers.id = product_join.manufacturer_id AND
         control_methods.id = product_join.control_id AND
+        control_quantity_multipliers.id = product_join.control_qty_mult_id AND
 
         regions.id='{regionId}' AND
         fixture_types.id = '{fixtureTypeId}' AND

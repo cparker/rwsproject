@@ -6,6 +6,14 @@ angular.module('rwsprojectApp')
       var channelsPerEngine = 47;
       var enginesPerDirector = 41;
 
+      $rootScope.directorCords = [
+        {name: 'Director Power Cord - Australia', part: 'PC-DIR-AUS'},
+        {name: 'Director Power Cord - China', part: 'PC-DIR-CHINA'},
+        {name: 'Director Power Cord - EU', part: 'PC-DIR-EU'},
+        {name: 'Director Power Cord - UK', part: 'PC-DIR-UK'},
+        {name: 'Director Power Cord - US/Canada', part: 'included'}
+      ];
+
       var cordOptions277 = [
         'Included'
       ];
@@ -100,9 +108,9 @@ angular.module('rwsprojectApp')
 
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
 
-        $scope.engineModel.enginesStandard = Math.ceil($scope.standardChannels / channelsPerEngine);
-        $scope.engineModel.enginesEmergency = Math.ceil($scope.emergencyChannels / channelsPerEngine);
-        $scope.engineModel.directorCount = Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector);
+        $scope.engineModel.enginesStandard = $scope.engineModel.enginesStandard != undefined ? $scope.engineModel.enginesStandard : Math.ceil($scope.standardChannels / channelsPerEngine);
+        $scope.engineModel.enginesEmergency = $scope.engineModel.enginesEmergency != undefined ? $scope.engineModel.enginesEmergency : Math.ceil($scope.emergencyChannels / channelsPerEngine);
+        $scope.engineModel.directorCount = $scope.engineModel.directorCount != undefined ? $scope.engineModel.directorCount : Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector);
 
         // defaults
         $scope.engineModel.platesStandard = $scope.engineModel.platesStandard || 0;

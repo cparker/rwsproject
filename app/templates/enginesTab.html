@@ -138,9 +138,12 @@
 
         <div class="engineSelectRow">
           <label ng-class="{disabled:engineModel.enginesEmergencySpare <= 0}">Emergency Power Cord</label>
-          <select ng-disabled="engineModel.enginesEmergencySpare <= 0 || disableEmergencyCord" ng-model="engineModel.cordEmergency"
+          <select ng-disabled="engineModel.enginesEmergencySpare <= 0 || disableEmergencyCord"
+                  ng-model="engineModel.cordEmergency"
                   name="engineCordStandard"
-                  class="simpleArrowSelect cord" ng-required="engineModel.enginesEmergencySpare > 0" ng-options="cord for cord in cordOptionsEmergency">
+                  class="simpleArrowSelect cord"
+                  ng-required="engineModel.enginesEmergencySpare > 0"
+                  ng-options="cord for cord in cordOptionsEmergency">
             <option value="">choose cord</option>
           </select>
         </div>
@@ -168,13 +171,13 @@
           <input name="numberOfDirectors" ng-model="engineModel.directorCount" type="number" placeholder="0" min="0">
         </div>
         <div ng-class="{disabled:engineModel.directorCount <= 0}" class="engineOneLabel">Power cord</div>
-        <select ng-disabled="engineModel.directorCount <= 0" name="directorCord" ng-model="engineModel.directorCord"
-                class="simpleArrowSelect powerCord">
-          <option>PC-DIR-AUS (Australia)</option>
-          <option>PC-DIR-CHINA (China)</option>
-          <option>PC-DIR-EU (EU)</option>
-          <option>PC-DIR-UK (UK)</option>
-          <option>Included (US/Canada)</option>
+        <select ng-disabled="engineModel.directorCount <= 0"
+                name="directorCord"
+                ng-model="engineModel.directorCord"
+                class="simpleArrowSelect powerCord"
+                ng-options="cord.name for cord in directorCords"
+          >
+          <option value="">coose cord</option>
         </select>
       </div>
     </div>
