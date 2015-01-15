@@ -6,6 +6,8 @@ angular.module('rwsprojectApp')
       var channelsPerEngine = 47;
       var enginesPerDirector = 41;
 
+      $scope.defaultsAdjusted = false;
+
       $rootScope.directorCords = [
         {name: 'Director Power Cord - Australia', part: 'PC-DIR-AUS'},
         {name: 'Director Power Cord - China', part: 'PC-DIR-CHINA'},
@@ -99,7 +101,7 @@ angular.module('rwsprojectApp')
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
 
         $scope.standardChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
-          return initial + fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity);
+          return initial + fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity) * (fixtureRec.controlMethod.multiplier || 1.0);
         }, 0);
 
         $scope.emergencyChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
@@ -108,18 +110,17 @@ angular.module('rwsprojectApp')
 
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
 
-        $scope.engineModel.enginesStandard = $scope.engineModel.enginesStandard != undefined ? $scope.engineModel.enginesStandard : Math.ceil($scope.standardChannels / channelsPerEngine);
-        $scope.engineModel.enginesEmergency = $scope.engineModel.enginesEmergency != undefined ? $scope.engineModel.enginesEmergency : Math.ceil($scope.emergencyChannels / channelsPerEngine);
-        $scope.engineModel.directorCount = $scope.engineModel.directorCount != undefined ? $scope.engineModel.directorCount : Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector);
+        if (!$scope.defaultsAdjusted) {
+          $scope.engineModel.enginesStandard = Math.ceil($scope.standardChannels / channelsPerEngine);
+          $scope.engineModel.enginesEmergency = Math.ceil($scope.emergencyChannels / channelsPerEngine);
+          $scope.engineModel.directorCount = Math.ceil(($scope.engineModel.enginesStandard + $scope.engineModel.enginesEmergency) / enginesPerDirector)
+        }
 
         // defaults
         $scope.engineModel.platesStandard = $scope.engineModel.platesStandard || 0;
         $scope.engineModel.platesEmergency = $scope.engineModel.platesEmergency || 0;
-        $scope.engineModel.enginesStandard = $scope.engineModel.enginesStandard || 0;
-        $scope.engineModel.enginesEmergency = $scope.engineModel.enginesEmergency || 0;
         $scope.engineModel.enginesStandardSpare = $scope.engineModel.enginesStandardSpare || 0;
         $scope.engineModel.enginesEmergencySpare = $scope.engineModel.enginesEmergencySpare || 0;
-        $scope.engineModel.directorCount = $scope.engineModel.directorCount || 0;
       });
 
 
