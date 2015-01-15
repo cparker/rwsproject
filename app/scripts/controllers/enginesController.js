@@ -101,11 +101,11 @@ angular.module('rwsprojectApp')
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
 
         $scope.standardChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
-          return initial + fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity) * (fixtureRec.controlMethod.multiplier || 1.0);
+          return initial + (fixtureRec.channels.channel_count * parseInt(fixtureRec.standardQuantity) * (fixtureRec.controlMethod.multiplier || 1.0) || 0);
         }, 0);
 
         $scope.emergencyChannels = _.reduce(dataService.fixtureLines, function (initial, fixtureRec) {
-          return initial + fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity);
+          return initial + (fixtureRec.channels.channel_count * parseInt(fixtureRec.emergencyQuantity) || 0);
         }, 0);
 
         $scope.engineModel = $scope.engineModel ? $scope.engineModel : {};
