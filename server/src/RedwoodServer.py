@@ -106,6 +106,7 @@ def filterRequests():
     # let's list out some roles that we'll allow through with guest access
     # the default will be admin access is required
     guestAccessAllowed = [
+        ".*",
         "\/server\/getFiles",
         "\/server\/checkAccess"
     ]
