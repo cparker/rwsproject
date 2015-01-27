@@ -62,7 +62,7 @@ def inspect(queryResult, query):
 
 columnHeaderNames = [
     'Country',  # 0
-    'Fixture Type',  #1
+    'Fixture Type',  # 1
     'Mounting Type',  #2
     'Size',  #3
     'Distribution',  #4
@@ -77,10 +77,22 @@ columnHeaderNames = [
     'Control Qty Multiplier'  #13
 ]
 
+
+def checkInsert(cur, tableName, value, column='name'):
+    existQ = "select count(*) from {0} where {1}='{2}'".format(tableName, column, value)
+    cur.execute(existQ)
+    if cur.fetchone()[0] <= 0:
+        insert = "insert into {0} ({1}) values('{2}')".format(tableName, column, value)
+        cur.execute(insert)
+        connection.commit()
+
+
 for row in csv_reader:
     # COUNTRY
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[0]])
+    # insert into regions if it doesn't exist
+    checkInsert(cur, 'regions', queryVal)
     query = "select id from regions where name='{0}'".format(queryVal)
     regId = queryForId(query, cur)
     inspect(regId, query)
@@ -92,6 +104,7 @@ for row in csv_reader:
     # FIXTURE
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[1]])
+    checkInsert(cur, 'fixture_types', queryVal)
     query = "select id from fixture_types where name='{0}'".format(queryVal)
     fixtureId = queryForId(query, cur)
     inspect(fixtureId, query)
@@ -100,6 +113,7 @@ for row in csv_reader:
     # MOUNT
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[2]])
+    checkInsert(cur, 'mount_options', queryVal)
     query = "select id from mount_options where name='{0}'".format(queryVal)
     mountId = queryForId(query, cur)
     inspect(mountId, query)
@@ -108,6 +122,7 @@ for row in csv_reader:
     # SIZE
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[3]])
+    checkInsert(cur, 'fixture_sizes', queryVal)
     query = "select id from fixture_sizes where name='{0}'".format(queryVal)
     sizeId = queryForId(query, cur)
     inspect(sizeId, query)
@@ -116,6 +131,7 @@ for row in csv_reader:
     # LIGHT DISTRIBUTION
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[4]])
+    checkInsert(cur, 'light_distributions', queryVal)
     query = "select id from light_distributions where name='{0}'".format(queryVal)
     lightDistId = queryForId(query, cur)
     inspect(lightDistId, query)
@@ -124,6 +140,7 @@ for row in csv_reader:
     # MANUFACTURER
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[7]])
+    checkInsert(cur, 'manufacturers', queryVal)
     query = "select id from manufacturers where name='{0}'".format(queryVal)
     mId = queryForId(query, cur)
     inspect(mId, query)
@@ -132,6 +149,7 @@ for row in csv_reader:
     # CHANNEL
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[6]])
+    checkInsert(cur, 'channels', queryVal, column='channel_count')
     query = "select id from channels where channel_count='{0}'".format(queryVal)
     cId = queryForId(query, cur)
     inspect(cId, query)
@@ -140,6 +158,7 @@ for row in csv_reader:
     # LUMENS
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[5]])
+    checkInsert(cur, 'lumens', queryVal, column='lumens')
     query = "select id from lumens where lumens='{0}'".format(queryVal)
     lumenId = queryForId(query, cur)
     inspect(lumenId, query)
@@ -148,6 +167,7 @@ for row in csv_reader:
     # MODEL
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[8]])
+    checkInsert(cur, 'model_numbers', queryVal)
     query = "select id from model_numbers where name='{0}'".format(queryVal)
     modelId = queryForId(query, cur)
     inspect(modelId, query)
@@ -156,6 +176,7 @@ for row in csv_reader:
     # DESCRIPTION
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[9]])
+    checkInsert(cur, 'descriptions', queryVal, column='description')
     query = "select id from descriptions where description='{0}'".format(queryVal)
     descId = queryForId(query, cur)
     inspect(descId, query)
@@ -164,6 +185,7 @@ for row in csv_reader:
     # CONTROL METHOD
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[10]])
+    checkInsert(cur, 'control_methods', queryVal)
     query = "select id from control_methods where name='{0}'".format(queryVal)
     controlMethodId = queryForId(query, cur)
     inspect(controlMethodId, query)
@@ -172,6 +194,7 @@ for row in csv_reader:
     # PART NUMBER
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[11]])
+    checkInsert(cur, 'part_numbers', queryVal)
     query = "select id from part_numbers where name='{0}'".format(queryVal)
     partNumberId = queryForId(query, cur)
     inspect(partNumberId, query)
@@ -180,14 +203,16 @@ for row in csv_reader:
     # PID
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[12]])
+    checkInsert(cur, 'pids', queryVal)
     query = "select id from pids where name='{0}'".format(queryVal)
     pidID = queryForId(query, cur)
     inspect(pidID, query)
     cur.close()
 
-    # control qty multipler
+    # control qty multiplier
     cur = connection.cursor()
     queryVal = cleanQueryVal(row[columnHeaderNames[13]])
+    checkInsert(cur, 'control_quantity_multipliers', queryVal, column='multiplier')
     query = "select id from control_quantity_multipliers where multiplier={0}".format(queryVal)
     multID = queryForId(query, cur)
     inspect(multID, query)
