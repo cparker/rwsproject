@@ -60,7 +60,7 @@
         <div class="summaryProjectAccessories">
           <div class="accessoryLabel">Accessories:</div>
           <div class="accessoryList">
-            <p ng-repeat="acc in fix.selectedAccessories">{{acc.accessory.description}}</p>
+            <p ng-repeat="acc in fix.selectedAccessories" ng-if="acc.accessoryCount > 0">{{acc.accessory.description}} : {{acc.accessoryCount}}</p>
           </div>
         </div>
 
