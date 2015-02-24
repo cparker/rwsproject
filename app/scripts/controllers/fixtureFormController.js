@@ -49,8 +49,8 @@ angular.module('rwsprojectApp')
 
         $rootScope.fixtureForm = $rootScope.fixtureForm ? $rootScope.fixtureForm : {};
         // set some defaults
-        $rootScope.fixtureForm.emergencyQuantity = $rootScope.fixtureForm.emergencyQuantity | 0;
-        $rootScope.fixtureForm.sensorType = $rootScope.fixtureForm.sensorType | 2;
+        $rootScope.fixtureForm.emergencyQuantity = $rootScope.fixtureForm.emergencyQuantity || 0;
+        $rootScope.fixtureForm.sensorType = $rootScope.fixtureForm.sensorType || 2;
       });
 
       $rootScope.$on('leaving2', function (event, fromTab, toTab) {
@@ -203,7 +203,6 @@ angular.module('rwsprojectApp')
 
 
       $scope.changeControlMethod = function () {
-        console.log('changed to ' , $rootScope.fixtureForm.controlMethod);
 
         if ($rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'integrated' ||
           $rootScope.fixtureForm.controlMethod.name.toLowerCase() == 'n/a') {
@@ -224,28 +223,16 @@ angular.module('rwsprojectApp')
       };
 
 
-      $scope.addFixtureLine = function () {
-        $scope.fixtureTabForm.$setSubmitted();
+      var computeAccessoryDetailsFromTally = function (tally) {
 
-        // EXCEPTION: 8' birchwood exception for LED Gateway (where they have to choose an additional sensor type)
-        if ( ($scope.fixtureForm.sensorType || {}).name ) {
+        if (($scope.fixtureForm.sensorType || {}).name) {
           var part = $scope.sensorTypeToAccessoryPart[$scope.fixtureForm.sensorType.name];
           $rootScope.accessoryTally[part] = $rootScope.accessoryTally[part] || 0;
 
           $rootScope.accessoryTally[part] += parseInt($scope.fixtureForm.controlQuantity);
         }
 
-
-        // EXCEPTION: downlight-shared exception, where we need to add 1 splitter * control quantity in accessories
-        /*
-        if ($scope.fixtureForm.fixtureType.name.toLowerCase() == 'downlight-shared') {
-          var splitterPart = '760164233';
-          $rootScope.accessoryTally[splitterPart] = $rootScope.accessoryTally[splitterPart] || 0;
-          $rootScope.accessoryTally[splitterPart] += parseInt($scope.fixtureForm.controlQuantity || 1);
-        }
-        */
-
-        var accessoryDetails = _.map(_.pairs($rootScope.accessoryTally), function (tallyPair) {
+        return _.map(_.pairs(tally), function (tallyPair) {
           return {
             accessoryCount: tallyPair[1],
             accessory: {
@@ -254,6 +241,28 @@ angular.module('rwsprojectApp')
             }
           };
         });
+      };
+
+
+      $scope.$watch('fixtureForm.sensorType', function (newVal, oldVal) {
+        if (newVal != undefined) {
+
+          // if a fixture is selected
+          // clear out the sensor type accessories in the tally
+          _.each($scope.sensorTypeToAccessoryPart, function (partName) {
+            $rootScope.accessoryTally[partName] = 0;
+          });
+
+          // then re compute the accessory details and update the fixture
+          $scope.fixtureForm.selectedAccessories = computeAccessoryDetailsFromTally($rootScope.accessoryTally || {});
+        }
+      });
+
+
+      $scope.addFixtureLine = function () {
+        $scope.fixtureTabForm.$setSubmitted();
+
+        var accessoryDetails = computeAccessoryDetailsFromTally($rootScope.accessoryTally);
 
         if ($scope.fixtureTabForm.$valid) {
           dataService.addFixtureLine($rootScope.fixtureForm, accessoryDetails, $rootScope.tabs.tabOne.dateTime, $rootScope.fixtureForm.dropDownChoices, dataService.fixNotes);
@@ -317,8 +326,8 @@ angular.module('rwsprojectApp')
 
       });
 
-      $scope.blurControlQty = function() {
-        $rootScope.fixtureForm.controlQuantity = Math.ceil( ($rootScope.fixtureForm.controlMethod.multiplier || 1.0) * $rootScope.fixtureForm.controlQuantity);
+      $scope.blurControlQty = function () {
+        $rootScope.fixtureForm.controlQuantity = Math.ceil(($rootScope.fixtureForm.controlMethod.multiplier || 1.0) * $rootScope.fixtureForm.controlQuantity);
       };
 
     }]);

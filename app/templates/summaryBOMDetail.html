@@ -20,7 +20,7 @@
   <div class="bomNotes">&nbsp;</div>
 </div>
 
-<div class="bomRow" ng-repeat="acc in masterAccessoryList">
+<div class="bomRow" ng-repeat="acc in masterAccessoryList" ng-if="acc[1].count > 0">
   <div class="qty">{{acc[1].count}}</div>
   <div class="item">{{acc[1].desc}}</div>
   <div class="partNum">{{acc[0]}}</div>
