@@ -65,6 +65,11 @@ theApp
         controller: 'printSummaryCtrl',
         reloadOnSearch: false
       })
+      .when('/upload', {
+        templateUrl: 'views/upload.html',
+        controller: 'uploadCtrl',
+        reloadOnSearch: false
+      })
       .otherwise({
         redirectTo: '/'
       });
