@@ -1,12 +1,15 @@
 <div class="fixture-data-upload">
 
-  <p class="message underlined">Upload spreadsheet format:</p>
-  <ul>
-    <li>See an example valid .css file <a href="upload-example.csv">here</a></li>
-    <li>The .csv must have exactly 13 columns</li>
-    <li>The .csv column names and order must match the example</li>
-  </ul>
+  <div class="instructions">
+    <p class="message underlined">Upload spreadsheet format:</p>
+    <ul>
+      <li>See an example valid .css file <a href="upload-example.csv">here</a></li>
+      <li>The .csv must have exactly 13 columns</li>
+      <li>The .csv column names and order must match the example</li>
+    </ul>
+  </div>
   <p class="message underlined">Choose a new fixture .csv file to upload</p>
+
   <div class="uploadbutton">
     <input type="file" nv-file-select uploader="uploader"/>
   </div>
@@ -39,19 +42,23 @@
     </li>
   </ul>
 
+
   <p class="message underlined">Upload Results</p>
-  <ul>
-    <li>Error on line 219: Unrecognized bla de bla</li>
-    <li>Error on line 219: Unrecognized bla de bla</li>
-    <li>Error on line 219: Unrecognized bla de bla</li>
-    <li>Error on line 219: Unrecognized bla de bla</li>
+  <b>Errors</b>
+  <ul class="errors">
+    <li ng-repeat="error in importResults.errors">{{error.csvError}} {{error.exception}}</li>
   </ul>
+
+  <b ng-click="warningsOpen=!warningsOpen">Warnings</b> (click to expand)
+  <div class="warnings" ng-class="{'warningsOpen':warningsOpen, 'warningsClosed':!warningsOpen}">
+    <ul class="warnings">
+      <li ng-repeat="warn in importResults.warnings">{{warn}}</li>
+    </ul>
+  </div>
 
   <p class="message">Correct the errors above and try the upload again</p>
 
   <button>Apply</button>
-
-
 
 
 </div>

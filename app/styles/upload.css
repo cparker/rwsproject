@@ -5,7 +5,7 @@
 
 .fixture-data-upload p.message {
   font-size: 1.5em;
-
+  margin-top: 1.0em;
 }
 
 .fixture-data-upload button {
@@ -24,4 +24,27 @@
   font-family: arial;
   font-size: 17px;
   text-decoration: none;
+}
+
+.fixture-data-upload .instructions {
+  color: rgb(137,137,137);
+}
+
+.fixture-data-upload ul {
+  list-style: none;
+}
+
+.fixture-data-upload .warnings {
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+  overflow: hidden;
+}
+
+.warningsOpen {
+  max-height: 200px;
+}
+
+.warningsClosed {
+  max-height:0;
 }

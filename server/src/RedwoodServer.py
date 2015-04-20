@@ -5,12 +5,13 @@
 Server for rwsproject.com
 
 Usage:
-    RedwoodServer.py [--verbose]
+    RedwoodServer.py [--verbose]  [--test]
 
 Arguments:
 
 Options:
     --verbose       lots of logging
+    --test          do some testing
 """
 
 __author__ = 'cp@cjparker.us'
@@ -25,10 +26,13 @@ import os, time, datetime, traceback, re
 from werkzeug import secure_filename
 from FileSessions import ManagedSessionInterface, CachingSessionManager, FileBackedSessionManager
 import logging
+import FixtureImporter
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
 baseFileDir = '/opt/tmp/redwoodfiles/'
+fixtureCSVDir = '/opt/tmp/redwoodFixtureData'
+
 app.config['PERMANENT_SESSION_LIFETIME'] = 120 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
 app.config['SESSION_PATH'] = '/tmp/sessions'
@@ -65,33 +69,94 @@ def log(text):
 
 
 class ConnectionHandler:
-    connection = None
+    # Since we use two DBs (active, and staging) we need to store which one is active in a central DB
+    configDBName = "rwsMain"
+    aDBName = "rwsproject_a"
+    bDBName = "rwsproject_b"
 
-    def setConnection(self):
-        self.connection = MySQLdb.connect(host="localhost",  # your host, usually localhost
-                                          user="root",  # your username
-                                          passwd="smartlights",  # your password
-                                          db="rwsproject")  # name of the data base
 
     def __init__(self):
-        self.setConnection()
+        x = None
 
-    def getConnection(self, newCon=False):
+    def getConfigConnection(self):
+        return MySQLdb.connect(host="localhost", user="root", passwd="smartlights", db=self.configDBName)
+
+    def getConnection(self):
+        adb = self.getActiveDB()
+        return MySQLdb.connect(host="localhost", user="root", passwd="smartlights", db=adb)
+
+    def getAlternateConnection(self):
+        adb = self.getActiveDB()
+        if adb == self.aDBName:
+            return MySQLdb.connect(host="localhost", user="root", passwd="smartlights", db=self.bDBName)
+        else:
+            return MySQLdb.connect(host="localhost", user="root", passwd="smartlights", db=self.aDBName)
+
+
+    # queries the central config DB and returns the name of the active database
+    def getActiveDB(self):
+        tempCon = None
+        result = None
+
         try:
-            if (newCon):
-                if (self.connection != None and self.connection.open):
-                    self.connection.close()
+            tempCon = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                                      user="root",  # your username
+                                      passwd="smartlights",  # your password
+                                      db=self.configDBName)  # name of the data base
 
-                self.setConnection()
-
-            self.connection.ping()
+            cur = tempCon.cursor()
+            cur.execute('select activeDB from config')
+            result = cur.fetchone()
 
         except Exception as ex:
-            log('our db connection broke, compensating ' + str(ex))
-            traceback.print_exc()
-            self.setConnection()
+            log('caught exception trying to getActiveDB {0}'.format(ex.message))
 
-        return self.connection
+        finally:
+            tempCon.close()
+
+        if result != None:
+            return result[0]
+        else:
+            raise ValueError(
+                'Could not determine active DB.  Make sure activeDB is set in the config table of the rwsMain DB.')
+
+
+    # call this to swap which database is currently active
+    def swapActiveDBs(self):
+        tempCon = None
+        result = None
+
+        try:
+            tempCon = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                                      user="root",  # your username
+                                      passwd="smartlights",  # your password
+                                      db=self.configDBName)  # name of the data base
+
+            cur = tempCon.cursor()
+            cur.execute('select activeDB from config')
+            result = cur.fetchone()
+
+            if result != None:
+                activeDB = result[0]
+                if activeDB == self.aDBName:
+                    cur.execute(
+                        "update config set activeDB='{0}' where activeDB='{1}'".format(self.bDBName, self.aDBName))
+                else:
+                    cur.execute(
+                        "update config set activeDB='{0}' where activeDB='{1}'".format(self.aDBName, self.bDBName))
+
+                tempCon.commit()
+
+            else:
+                raise ValueError(
+                    "Could not determine active DB.  Make sure activeDB is set in the config table of the rwsMain DB.")
+
+        except Exception as ex:
+            log('caught exception trying to getActiveDB {0}'.format(ex.message))
+            raise ex
+
+        finally:
+            tempCon.close()
 
 
 connectionHandler = ConnectionHandler()
@@ -146,7 +211,7 @@ def afterRequest(res):
 
 
 def runFixtureQuery(query):
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
     try:
         cur.execute(query)
@@ -173,7 +238,7 @@ def index():
 def login():
     session.permanent = True
 
-    con = connectionHandler.getConnection()
+    con = connectionHandler.getConfigConnection()
     cur = con.cursor(cursors.DictCursor)
     resp = jsonify({})
 
@@ -223,7 +288,7 @@ def handleRegions():
 
 @app.route('/server/submitProjectInfo', methods=['POST'])
 def handleSubmitProjectInfo():
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
     try:
         log('submitProjectInfo received ' + str(request.json))
@@ -263,7 +328,7 @@ def handleSubmitProjectInfo():
 @app.route('/server/submitFixture', methods=['POST'])
 def handleSubmitFixture():
     log('received ' + str(request.json))
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
     try:
         cur.execute("""
@@ -338,7 +403,7 @@ def doGetProjectFixtures():
         fixture forms
     """
 
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
 
     try:
@@ -537,7 +602,7 @@ def deleteFile():
 @app.route('/server/getProjectInfo', methods=['GET'])
 def handleGetProjectInfo():
     if session.has_key('activeProject'):
-        con = connectionHandler.getConnection(newCon=True)
+        con = connectionHandler.getConnection()
         cur = con.cursor(cursors.DictCursor)
 
         try:
@@ -565,7 +630,7 @@ def handleGetProjectInfo():
 
 @app.route('/server/getFixtureTypes')
 def doGetFixtureTypes():
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
 
     try:
@@ -591,7 +656,7 @@ def doGetFixtureTypes():
 
 @app.route('/server/getMountTypes')
 def doGetMountTypes():
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
 
     try:
@@ -625,7 +690,7 @@ def doGetMountTypes():
 
 @app.route('/server/getFixtureSizes')
 def doGetFixtureSizes():
-    con = connectionHandler.getConnection(newCon=True)
+    con = connectionHandler.getConnection()
     cur = con.cursor(cursors.DictCursor)
     try:
         cur.execute("""
@@ -866,6 +931,7 @@ def doGetAccessories():
     return runFixtureQuery(query)
 
 
+# This is for uploading generic files
 @app.route('/server/uploadFile', methods=['POST'])
 def upload_file():
     uploadDir = baseFileDir + '/' + request.args.get('dir') + '/'
@@ -875,6 +941,46 @@ def upload_file():
     if file:
         file.save(os.path.join(uploadDir, filename))
         return emptyResponse(200)
+
+
+# This is for uploading new fixture data spreadsheets (.csv)
+@app.route('/server/uploadFixtureData', methods=['POST'])
+def upload_fixture_data():
+    con = connectionHandler.getAlternateConnection()
+    responseDict = {}
+    resp = None
+    try:
+        uploadDir = fixtureCSVDir
+        file = request.files['file']
+        filename = file.filename
+        log('fixture csv name is {0}'.format(filename))
+        if file:
+            file.save(os.path.join(uploadDir, filename))
+
+
+        # import the new spreadsheet data into the staging DB.  If the import succeeded, we can switch DBs
+        importResults = FixtureImporter.ImportFromWebapp(os.path.join(uploadDir, filename), con)
+        log('importResults are {0}'.format(importResults))
+        responseDict['importResults'] = importResults
+
+        resp = jsonify(responseDict)
+
+        if len(importResults['errors']) <= 0:
+
+            # switch DBs here
+            connectionHandler.swapActiveDBs()
+
+            resp.status_code = 200
+        else:
+            resp.status_code = 500
+
+    except Exception as ex:
+        log('caught exception while uploading new spreadsheet {0}\n{1}'.format(ex.message, traceback.format_exc()))
+
+    finally:
+        con.close()
+
+    return resp
 
 
 @app.route('/server/checkAccess')
@@ -902,12 +1008,35 @@ def simple():
 
 app.secret_key = os.urandom(24)
 
+
+def Test():
+    log('Running tests')
+
+    conHandler = ConnectionHandler()
+    adb = conHandler.getActiveDB()
+    print('adb is {0}'.format(adb))
+    assert adb != None, 'activeDB cannot be None'
+
+    conHandler.swapActiveDBs()
+    adb2 = conHandler.getActiveDB()
+    print('after swqp adb2 is {0} '.format(adb2))
+
+    if adb == 'rwsproject_a':
+        assert adb2 == 'rwsproject_b'
+    else:
+        assert adb2 == 'rwsproject_a'
+
+
 if __name__ == '__main__':
     cli = docopt(__doc__)
 
     log('verbose logging enabled')
 
-    app.debug = True
-    app.run(host='0.0.0.0')
+    if cli['--test']:
+        Test()
+
+    else:
+        app.debug = True
+        app.run(host='0.0.0.0')
 
 
