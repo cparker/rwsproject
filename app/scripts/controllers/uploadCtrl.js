@@ -2,8 +2,9 @@ angular.module('rwsprojectApp')
   .controller('uploadCtrl', ['$scope', 'FileUploader', 'dataService', '$route', '$rootScope',
     function ($scope, FileUploader, dataService, $route, $rootScope) {
 
-      $scope.importResults = {
+      $scope.importResultsMock = {
         "errors": [
+          /*
           {
             "csvError": "Error on row 11",
             "exception": "",
@@ -75,6 +76,7 @@ angular.module('rwsprojectApp')
             },
             "stack": "Traceback (most recent call last):\n  File \"/opt/projects/redwood/rwsproject/server/src/FixtureImporter.py\", line 291, in DoImport\n    multID = queryForId(query, cur)\n  File \"/opt/projects/redwood/rwsproject/server/src/FixtureImporter.py\", line 25, in queryForId\n    cursor.execute(query)\n  File \"build/bdist.macosx-10.9-intel/egg/MySQLdb/cursors.py\", line 205, in execute\n    self.errorhandler(self, exc, value)\n  File \"build/bdist.macosx-10.9-intel/egg/MySQLdb/connections.py\", line 36, in defaulterrorhandler\n    raise errorclass, errorvalue\nOperationalError: (1054, \"Unknown column 'sdf' in 'where clause'\")\n"
           }
+          */
         ],
         "insertedCount": 419,
         "warnings": [
@@ -369,14 +371,29 @@ angular.module('rwsprojectApp')
       $scope.uploader.url = $scope.baseUploadURL;
       $scope.uploader.removeAfterUpload = true;
 
-      $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
-        console.info('onErrorItem', fileItem, response, status, headers);
-        //$scope.importResults = response.importResults
+      $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        console.info('onSuccessItem', fileItem, response, status, headers);
+        $scope.importAttempted = true;
+        $scope.importResults = response.importResults
       };
 
-      $scope.expandWarnings = function() {
+      $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+        console.info('onErrorItem', fileItem, response, status, headers);
+        $scope.importAttempted = true;
+        $scope.importResults = response.importResults
+      };
 
+      $scope.swapFixtureDB = function () {
+        dataService.swapFixtureDB()
+          .success(function () {
+            $scope.swapSucceeded = true;
+          })
+          .error(function (data, status) {
+            $scope.swapSucceeded = false;
+            $scope.swapResult = data.result;
+          })
       }
+
 
     }]);
 

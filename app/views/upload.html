@@ -3,7 +3,7 @@
   <div class="instructions">
     <p class="message underlined">Upload spreadsheet format:</p>
     <ul>
-      <li>See an example valid .css file <a href="upload-example.csv">here</a></li>
+      <li>See an example valid .css file <a href="/images/example-import.csv">here</a></li>
       <li>The .csv must have exactly 13 columns</li>
       <li>The .csv column names and order must match the example</li>
     </ul>
@@ -43,28 +43,47 @@
   </ul>
 
 
-  <p class="message underlined">Upload Results</p>
+  <div ng-show="importAttempted">
+    <p class="message underlined">Upload Results</p>
 
-  <div ng-class="{'errorsHidden':importResults.errors.length <= 0}">
-    <b>Errors: {{importResults.errors.length}}</b>
-    <ul class="errors">
-      <li ng-click="errorDetailsOpen = !errorDetailsOpen" ng-repeat="error in importResults.errors"><span class="errorIcon"></span>{{error.csvError}} {{error.exception}} (Click for details)
-        <div ng-class="{'errorDetailsOpen':errorDetailsOpen, 'errorDetailsClosed':!errorDetailsOpen}" class="errorDetails"><pre>{{error.row | json}}</pre> <br/> {{error.stack}}</div>
-      </li>
-    </ul>
+    <div><b>Errors: {{importResults.errors.length}}</b></div>
+    <div ng-class="{'errorsHidden':importResults.errors.length <= 0}">
+      <ul class="errors">
+        <li ng-click="errorDetailsOpen = !errorDetailsOpen" ng-repeat="error in importResults.errors"><span class="errorIcon"></span>{{error.csvError}}
+          {{error.exception}} (Click for details)
+          <div ng-class="{'errorDetailsOpen':errorDetailsOpen, 'errorDetailsClosed':!errorDetailsOpen}" class="errorDetails"><strong>Field details:</strong>
+            <pre>{{error.row | json}}</pre>
+            <br/> <strong>Stack trace:</strong><br/>{{error.stack}}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <b ng-click="warningsOpen=!warningsOpen">Warnings: {{importResults.warnings.length}}</b> <span ng-show="importResults.warnings.length > 0">(click to expand)</span>
+    <div class="warnings" ng-class="{'warningsOpen':warningsOpen, 'warningsClosed':!warningsOpen}">
+      <ul>
+        <li ng-repeat="warn in importResults.warnings"><span class="warningIcon"></span>{{warn}}</li>
+      </ul>
+    </div>
   </div>
 
-  <b ng-click="warningsOpen=!warningsOpen">Warnings: {{importResults.warnings.length}}</b> (click to expand)
-  <div class="warnings" ng-class="{'warningsOpen':warningsOpen, 'warningsClosed':!warningsOpen}">
-    <ul>
-      <li ng-repeat="warn in importResults.warnings"><span class="warningIcon"></span>{{warn}}</li>
-    </ul>
+  <p ng-show="importResults.errors.length > 0" class="message"><strong>Correct the errors above and try the upload again</strong></p>
+
+  <div ng-show="importResults.errors.length <= 0">
+    <p class="message">Import succeeded. Click Apply below to make the changes live.</p>
+    <button ng-click="swapFixtureDB()">Apply</button>
   </div>
 
-  <p class="message">Correct the errors above and try the upload again</p>
+  <div ng-show="swapSucceeded==true">
+    <p class="message">Apply succeeded. Changes are now live.</p>
+    <a href="/#/home">Back to BOM tool</a>
+  </div>
 
-  <button>Apply</button>
+  <div ng-show="swapSucceeded==false">
+    <p class="message">Apply failed.</p>
 
+    <p><strong>Error: </strong>{{swapResult}}</p>
+  </div>
 
 </div>
 

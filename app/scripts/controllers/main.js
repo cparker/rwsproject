@@ -8,8 +8,8 @@
  * Controller of the rwsprojectApp
  */
 angular.module('rwsprojectApp')
-  .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', '$window',
-    function ($scope, $http, $rootScope, dataService, $window) {
+  .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', '$window', '$location',
+    function ($scope, $http, $rootScope, dataService, $window, $location) {
 
       $rootScope.parseInt = parseInt;
 
@@ -86,5 +86,10 @@ angular.module('rwsprojectApp')
 
       $rootScope.dismissError = function () {
         $rootScope.errorMessage = undefined;
+      };
+
+      $rootScope.go = function (loc) {
+        $location.path(loc);
       }
+
     }]);

@@ -45,8 +45,8 @@
     </div>
 
     <!-- UPLOAD -->
-    <div class="pull-right headerRight upload">
-      <p><a href="#/upload">Upload</a></p>
+    <div ng-click="go('/upload')" class="pull-right headerRight upload">
+      <p>Upload</p>
       <div></div>
     </div>
 
@@ -59,7 +59,7 @@
   <div ng-view=""></div>
 
   <div class="footer">
-    <p>Copyright 2014 Redwood Inc. ®</p>
+    <p>Copyright 2015 Redwood Inc. ®</p>
     <ng-include src="'templates/error.html?timestamp=@@timestamp'"/>
   </div>
   <div>

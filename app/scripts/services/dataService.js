@@ -187,6 +187,13 @@ angular.module('rwsprojectApp')
           this.engineModel.enginesEmergency +
           this.engineModel.enginesStandardSpare +
           this.engineModel.enginesEmergencySpare;
+      },
+
+      swapFixtureDB: function() {
+        return $http({
+          method: 'POST',
+          url: '/server/swapFixtureDB'
+        });
       }
 
     };

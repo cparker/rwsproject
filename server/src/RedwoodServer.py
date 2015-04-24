@@ -967,9 +967,6 @@ def upload_fixture_data():
 
         if len(importResults['errors']) <= 0:
 
-            # switch DBs here
-            connectionHandler.swapActiveDBs()
-
             resp.status_code = 200
         else:
             resp.status_code = 500
@@ -981,6 +978,25 @@ def upload_fixture_data():
         con.close()
 
     return resp
+
+
+@app.route('/server/swapFixtureDB', methods=['POST'])
+def swapFixtureDB():
+    respDict = {}
+    resp = None
+    try:
+        connectionHandler.swapActiveDBs()
+        respDict['result'] = 'Database swap succeeded.  Current database is now {0}'.format(connectionHandler.getActiveDB())
+        resp = jsonify(respDict)
+        resp.status_code = 200
+
+    except Exception as ex:
+        respDict['result'] = 'Database swap failed.  Error: {0} {1}'.format(str(ex), traceback.format_exc())
+        resp = jsonify(respDict)
+        resp.status_code = 500
+
+    finally:
+        return resp
 
 
 @app.route('/server/checkAccess')
