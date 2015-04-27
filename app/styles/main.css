@@ -55,6 +55,14 @@ textarea {
   color: white;
 }
 
+.header a {
+  color:white;
+}
+
+.header a:link {
+  text-decoration: none;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -1109,8 +1117,16 @@ select#projectCountry {
   flex: 1;
 }
 
-.headerRight div {
+.signoff div {
   background: url("/images/signoffWhite.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 22px;
+  height: 22px;
+}
+
+.upload div {
+  background: url("/images/white-up-arrow.png");
   background-repeat: no-repeat;
   background-size: contain;
   width: 22px;

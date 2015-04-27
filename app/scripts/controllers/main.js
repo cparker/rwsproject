@@ -8,13 +8,21 @@
  * Controller of the rwsprojectApp
  */
 angular.module('rwsprojectApp')
-  .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', '$window',
-    function ($scope, $http, $rootScope, dataService, $window) {
+  .controller('MainCtrl', ['$scope', '$http', '$rootScope', 'dataService', '$window', '$location',
+    function ($scope, $http, $rootScope, dataService, $window, $location) {
+
+      var disclaimerCookieName = 'rws-disclaimer-accepted';
+      $rootScope.licenseAccepted = (Cookies.get(disclaimerCookieName) || false) === "true";
 
       $rootScope.parseInt = parseInt;
 
       $rootScope.print = function () {
         $window.print();
+      };
+
+      $rootScope.acceptLicense = function () {
+        Cookies.set(disclaimerCookieName, true, {'expires': moment().add(1, 'year').toDate()});
+        $window.location = '/';
       };
 
       $rootScope.back = function () {
@@ -86,5 +94,10 @@ angular.module('rwsprojectApp')
 
       $rootScope.dismissError = function () {
         $rootScope.errorMessage = undefined;
+      };
+
+      $rootScope.go = function (loc) {
+        $location.path(loc);
       }
+
     }]);

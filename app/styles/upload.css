@@ -1,0 +1,87 @@
+
+.fixture-data-upload {
+  padding: 2.0em;
+}
+
+.fixture-data-upload p.message {
+  font-size: 1.5em;
+  margin-top: 1.0em;
+}
+
+.fixture-data-upload button {
+  background: #1B9AF7;
+  -webkit-appearance: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.fixture-data-upload .instructions {
+  color: rgb(137, 137, 137);
+}
+
+.fixture-data-upload ul {
+  list-style: none;
+}
+
+.fixture-data-upload .warnings {
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+  overflow: scroll;
+  width:40%;
+}
+
+.warningsOpen {
+  max-height: 200px;
+}
+
+.warningsClosed {
+  max-height: 0;
+}
+
+.errorsHidden {
+  display: none;
+}
+
+
+.fixture-data-upload .errorIcon {
+  background-image: url(/images/alert-square.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+  padding-left: 20px;
+}
+
+.fixture-data-upload .warningIcon {
+  background-image: url(/images/yellow-alert-square.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+  padding-left: 20px;
+}
+
+.errorDetails {
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+  overflow: hidden;
+}
+
+.errorDetailsOpen {
+  max-height: 999px;
+}
+
+.errorDetailsClosed {
+  max-height:0;
+}
+
+

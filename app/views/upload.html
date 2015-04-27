@@ -1,0 +1,89 @@
+<div class="fixture-data-upload">
+
+  <div class="instructions">
+    <p class="message underlined">Upload spreadsheet format:</p>
+    <ul>
+      <li>See an example valid .css file <a href="/images/example-import.csv">here</a></li>
+      <li>The .csv must have exactly 13 columns</li>
+      <li>The .csv column names and order must match the example</li>
+    </ul>
+  </div>
+  <p class="message underlined">Choose a new fixture .csv file to upload</p>
+
+  <div class="uploadbutton">
+    <input type="file" nv-file-select uploader="uploader"/>
+  </div>
+
+  <ul>
+    <li ng-repeat="item in uploader.queue">
+      <div>Name: {{ item.file.name }}</div>
+      <div>Size: {{ item.file.size/1024/1024|number:2 }} Mb</div>
+      <div ng-show="uploader.isHTML5">
+        Progress: {{ item.progress }}
+        <div class="item-progress-box">
+          <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+        </div>
+      </div>
+      <div ng-if="controller.isImage(item._file)">
+        Thumbnail (only images):
+        <!-- Image preview -->
+        <!--auto height-->
+        <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+        <!--auto width-->
+        <div ng-thumb="{ file: item._file, height: 100 }"></div>
+        <!--fixed width and height -->
+        <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+      </div>
+      <div>
+        <button ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Upload</button>
+        <button ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancel</button>
+        <button ng-click="item.remove()">Remove</button>
+      </div>
+    </li>
+  </ul>
+
+
+  <div ng-show="importAttempted">
+    <p class="message underlined">Upload Results</p>
+
+    <div><b>Errors: {{importResults.errors.length}}</b></div>
+    <div ng-class="{'errorsHidden':importResults.errors.length <= 0}">
+      <ul class="errors">
+        <li ng-click="errorDetailsOpen = !errorDetailsOpen" ng-repeat="error in importResults.errors"><span class="errorIcon"></span>{{error.csvError}}
+          {{error.exception}} (Click for details)
+          <div ng-class="{'errorDetailsOpen':errorDetailsOpen, 'errorDetailsClosed':!errorDetailsOpen}" class="errorDetails"><strong>Field details:</strong>
+            <pre>{{error.row | json}}</pre>
+            <br/> <strong>Stack trace:</strong><br/>{{error.stack}}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <b ng-click="warningsOpen=!warningsOpen">Warnings: {{importResults.warnings.length}}</b> <span ng-show="importResults.warnings.length > 0">(click to expand)</span>
+    <div class="warnings" ng-class="{'warningsOpen':warningsOpen, 'warningsClosed':!warningsOpen}">
+      <ul>
+        <li ng-repeat="warn in importResults.warnings"><span class="warningIcon"></span>{{warn}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <p ng-show="importResults.errors.length > 0" class="message"><strong>Correct the errors above and try the upload again</strong></p>
+
+  <div ng-show="importResults.errors.length <= 0">
+    <p class="message">Import succeeded. Click Apply below to make the changes live.</p>
+    <button ng-click="swapFixtureDB()">Apply</button>
+  </div>
+
+  <div ng-show="swapSucceeded==true">
+    <p class="message">Apply succeeded. Changes are now live.</p>
+    <a href="/#/home">Back to BOM tool</a>
+  </div>
+
+  <div ng-show="swapSucceeded==false">
+    <p class="message">Apply failed.</p>
+
+    <p><strong>Error: </strong>{{swapResult}}</p>
+  </div>
+
+</div>
+
