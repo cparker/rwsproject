@@ -949,6 +949,13 @@ def upload_fixture_data():
     con = connectionHandler.getAlternateConnection()
     responseDict = {}
     resp = None
+
+    if not session.has_key('role') or session['role'] != 'admin':
+        responseDict['result'] = 'access denied'
+        resp = jsonify(responseDict)
+        resp.status_code = 401
+        return resp
+
     try:
         uploadDir = fixtureCSVDir
         file = request.files['file']
@@ -984,6 +991,12 @@ def upload_fixture_data():
 def swapFixtureDB():
     respDict = {}
     resp = None
+    if not session.has_key('role') or session['role'] != 'admin':
+        respDict['result'] = 'access denied'
+        resp = jsonify(respDict)
+        resp.status_code = 401
+        return resp
+
     try:
         connectionHandler.swapActiveDBs()
         respDict['result'] = 'Database swap succeeded.  Current database is now {0}'.format(connectionHandler.getActiveDB())
