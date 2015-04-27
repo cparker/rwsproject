@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="styles/emergency.css">
   <link rel="stylesheet" href="styles/spares.css">
   <link rel="stylesheet" href="styles/upload.css">
+  <link rel="stylesheet" href="styles/license.css">
   <link rel="stylesheet" href="styles/animations.css">
   <!-- endbuild -->
 
@@ -62,8 +63,15 @@
     <p>Copyright 2015 Redwood Inc. ®</p>
     <ng-include src="'templates/error.html?timestamp=@@timestamp'"/>
   </div>
+
+  <!-- LOGIN -->
   <div>
     <ng-include src="'templates/login-modal.html?timestamp=@@timestamp'"></ng-include>
+  </div>
+
+  <!-- LICENSE -->
+  <div>
+    <ng-include src="'templates/license-modal.html?timestamp=@@timestamp'"></ng-include>
   </div>
 </div>
 

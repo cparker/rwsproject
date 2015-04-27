@@ -1,0 +1,49 @@
+
+.license-modal {
+  -webkit-border-radius: 5px;
+  position: fixed;
+  top: 0;
+  left: 4px;
+  background: #8895A7;
+  margin: 5px;
+  padding: 5px;
+  width: 98%;
+  height: 98%;
+  opacity: 0.9;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+}
+
+.license-centered-content {
+  margin-top: 10%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.license-centered-content .title {
+  width: 100%;
+  text-align: center;
+  font-size: 4.0em;
+}
+
+.license-centered-content .body {
+  margin-top: 25px;
+  font-size: 1.4em;
+  line-height: 1.3;
+  text-indent: 30px;
+}
+
+.license-centered-content .accept {
+  width:100%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.license-centered-content .accept button {
+  font-size: 1.4em;
+  padding:10px;
+}
