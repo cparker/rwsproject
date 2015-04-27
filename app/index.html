@@ -46,7 +46,7 @@
     </div>
 
     <!-- UPLOAD -->
-    <div ng-click="go('/upload')" class="pull-right headerRight upload">
+    <div ng-show="authenticatedUser.role=='admin'" ng-click="go('/upload')" class="pull-right headerRight upload">
       <p>Upload</p>
       <div></div>
     </div>
