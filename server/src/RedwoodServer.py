@@ -31,7 +31,7 @@ import FixtureImporter
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=60)
 baseFileDir = '/bigfs/files/'
-fixtureCSVDir = '/opt/tmp/redwoodFixtureData'
+fixtureCSVDir = '/bigfs/csv-uploads'
 
 app.config['PERMANENT_SESSION_LIFETIME'] = 120 * 60
 app.config['UPLOAD_FOLDER'] = baseFileDir
