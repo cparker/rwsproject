@@ -2,8 +2,8 @@ angular.module('rwsprojectApp')
   .controller('uploadCtrl', ['$scope', 'FileUploader', 'dataService', '$route', '$rootScope',
     function ($scope, FileUploader, dataService, $route, $rootScope) {
 
-      $scope.importAttempted = true;
-      $scope.importResults = {
+//      $scope.importAttempted = true;
+      $scope.importResultsMock = {
         "errors": [
           "un recognized column foofoo",
           {
