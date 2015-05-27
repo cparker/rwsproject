@@ -42,12 +42,16 @@
   width:40%;
 }
 
+.warn-wrapper {
+  height: 2.5em;
+}
+
 .warningsOpen {
   max-height: 200px;
 }
 
 .warningsClosed {
-  max-height: 0;
+  max-height: 0px;
 }
 
 .errorsHidden {

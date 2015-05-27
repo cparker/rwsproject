@@ -49,8 +49,8 @@
     <div><b>Errors: {{importResults.errors.length}}</b></div>
     <div ng-class="{'errorsHidden':importResults.errors.length <= 0}">
       <ul class="errors">
-        <li ng-click="errorDetailsOpen = !errorDetailsOpen" ng-repeat="error in importResults.errors"><span class="errorIcon"></span>{{error.csvError}}
-          {{error.exception}} (Click for details)
+        <li ng-click="errorDetailsOpen = !errorDetailsOpen" ng-repeat="error in importResults.errors"><span class="errorIcon"></span>{{error.csvError || error}}
+          {{error.exception}} <span ng-if="error.exception || error.row">(Click for details)</span>
           <div ng-class="{'errorDetailsOpen':errorDetailsOpen, 'errorDetailsClosed':!errorDetailsOpen}" class="errorDetails"><strong>Field details:</strong>
             <pre>{{error.row | json}}</pre>
             <br/> <strong>Stack trace:</strong><br/>{{error.stack}}
@@ -59,7 +59,7 @@
       </ul>
     </div>
 
-    <b ng-click="warningsOpen=!warningsOpen">Warnings: {{importResults.warnings.length}}</b> <span ng-show="importResults.warnings.length > 0">(click to expand)</span>
+    <div class="warn-wrapper"><b ng-click="warningsOpen=!warningsOpen">Warnings: {{importResults.warnings.length}}</b> <span ng-show="importResults.warnings.length > 0">(click to expand)</span></div>
     <div class="warnings" ng-class="{'warningsOpen':warningsOpen, 'warningsClosed':!warningsOpen}">
       <ul>
         <li ng-repeat="warn in importResults.warnings"><span class="warningIcon"></span>{{warn}}</li>
